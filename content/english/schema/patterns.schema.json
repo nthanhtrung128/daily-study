@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "patterns.schema.json",
+  "title": "Câu mẫu theo tình huống (content/english/patterns.json)",
+  "description": "Mỗi câu mẫu là một câu hoàn chỉnh để nghe và nhại; slots chỉ ra phần trong câu có thể thay bằng từ khác để luyện tự thay từ.",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/pattern" }
+    }
+  },
+  "$defs": {
+    "slot": {
+      "type": "object",
+      "required": ["text", "alts"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "description": "Đoạn xuất hiện nguyên văn trong en, là chỗ được thay.", "type": "string", "minLength": 1 },
+        "alts": {
+          "description": "Các phương án thay thế, đặt vào chỗ text vẫn thành câu đúng.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "pattern": {
+      "type": "object",
+      "required": ["id", "situation", "en", "vi", "slots", "topic", "level"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^pt-\\d{4}$" },
+        "situation": { "description": "Tình huống dùng câu (tiếng Việt).", "$ref": "common.schema.json#/$defs/vi" },
+        "en": { "$ref": "common.schema.json#/$defs/en" },
+        "vi": { "$ref": "common.schema.json#/$defs/vi" },
+        "slots": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "$ref": "#/$defs/slot" } },
+        "topic": { "$ref": "common.schema.json#/$defs/topic" },
+        "level": { "$ref": "common.schema.json#/$defs/level" },
+        "note": { "$ref": "common.schema.json#/$defs/note" }
+      }
+    }
+  }
+}

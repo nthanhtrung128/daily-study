@@ -1,11 +1,14 @@
 /**
  * Kiểm tra nội dung trong content/ trước khi commit: đúng cấu trúc, id không trùng, trường bắt buộc không rỗng.
  * Chạy: npm run validate:content. Thoát mã 1 nếu có lỗi.
- * S1 kiểm tra content/tr101/data.json; content/english/ sẽ có schema ở S4.
+ * - content/tr101/data.json: cấu trúc, id, trường bắt buộc.
+ * - content/english/*.json: theo JSON Schema trong content/english/schema/ (bộ kiểm tra viết tay ở scripts/lib/english-content.ts),
+ *   cộng id duy nhất, không trùng câu tiếng Anh, slot câu mẫu khớp câu; in số mục theo chủ đề / trình độ.
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { ENGLISH_FILES, formatCounts, validateEnglishFile, type Schema, type SchemaRegistry } from './lib/english-content';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const errors: string[] = [];
@@ -73,9 +76,35 @@ function validateTr101() {
 }
 
 function validateEnglish() {
-  const dir = join(ROOT, 'content/english');
-  if (!existsSync(dir)) return;
-  for (const f of readdirSync(dir).filter((f) => f.endsWith('.json'))) readJson(`content/english/${f}`);
+  const base = 'content/english';
+  const schemaDir = join(ROOT, base, 'schema');
+  if (!existsSync(schemaDir)) return err(`${base}/schema: chưa có thư mục schema`);
+
+  const registry: SchemaRegistry = {};
+  for (const f of readdirSync(schemaDir).filter((f) => f.endsWith('.schema.json')).sort()) {
+    const s = readJson(`${base}/schema/${f}`);
+    if (!isObj(s)) continue;
+    if (s.$id !== f) err(`${base}/schema/${f}: "$id" phải là "${f}"`);
+    registry[f] = s as Schema;
+  }
+
+  const known = new Set(ENGLISH_FILES.map((x) => x.file));
+  for (const f of readdirSync(join(ROOT, base)).filter((f) => f.endsWith('.json'))) {
+    if (!known.has(f)) err(`${base}/${f}: file chưa được khai báo trong ENGLISH_FILES (scripts/lib/english-content.ts)`);
+  }
+
+  for (const spec of ENGLISH_FILES) {
+    const rel = `${base}/${spec.file}`;
+    if (!existsSync(join(ROOT, rel))) {
+      if (spec.required) err(`${rel}: thiếu file`);
+      continue;
+    }
+    const data = readJson(rel);
+    if (data === undefined) continue;
+    const r = validateEnglishFile(spec, data, registry);
+    r.errors.forEach(err);
+    console.log(`  ${spec.file}: ${r.count} mục — ${formatCounts(r.byTopic)} | ${formatCounts(r.byLevel)}`);
+  }
 }
 
 validateTr101();

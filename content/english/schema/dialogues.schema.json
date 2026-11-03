@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dialogues.schema.json",
+  "title": "Hội thoại shadowing (content/english/dialogues.json — nội dung soạn ở S7)",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/dialogue" }
+    }
+  },
+  "$defs": {
+    "line": {
+      "type": "object",
+      "required": ["speaker", "en", "vi"],
+      "additionalProperties": false,
+      "properties": {
+        "speaker": { "description": "Nhãn người nói, ví dụ A, B.", "type": "string", "pattern": "^[A-D]$" },
+        "en": { "$ref": "common.schema.json#/$defs/en" },
+        "vi": { "$ref": "common.schema.json#/$defs/vi" }
+      }
+    },
+    "dialogue": {
+      "type": "object",
+      "required": ["id", "title", "situation", "topic", "level", "lines"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^dl-\\d{4}$" },
+        "title": { "$ref": "common.schema.json#/$defs/en" },
+        "situation": { "$ref": "common.schema.json#/$defs/vi" },
+        "topic": { "$ref": "common.schema.json#/$defs/topic" },
+        "level": { "$ref": "common.schema.json#/$defs/level" },
+        "lines": { "type": "array", "minItems": 4, "maxItems": 20, "items": { "$ref": "#/$defs/line" } },
+        "note": { "$ref": "common.schema.json#/$defs/note" }
+      }
+    }
+  }
+}

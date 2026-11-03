@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phrases.schema.json",
+  "title": "Cụm từ tiếng Anh công sở (content/english/phrases.json)",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/phrase" }
+    }
+  },
+  "$defs": {
+    "phrase": {
+      "type": "object",
+      "required": ["id", "en", "vi", "example", "topic", "level"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "description": "Mã ổn định, không đổi khi sửa nội dung.", "type": "string", "pattern": "^ph-\\d{4}$" },
+        "en": { "$ref": "common.schema.json#/$defs/en" },
+        "vi": { "$ref": "common.schema.json#/$defs/vi" },
+        "example": { "description": "Câu ví dụ trong ngữ cảnh công việc C&B.", "$ref": "common.schema.json#/$defs/en" },
+        "topic": { "$ref": "common.schema.json#/$defs/topic" },
+        "level": { "$ref": "common.schema.json#/$defs/level" },
+        "ipa": { "description": "Phiên âm IPA (tùy chọn), đặt trong dấu /…/.", "type": "string", "pattern": "^/.+/$" },
+        "note": { "$ref": "common.schema.json#/$defs/note" }
+      }
+    }
+  }
+}

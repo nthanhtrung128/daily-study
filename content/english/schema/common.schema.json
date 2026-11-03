@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Định nghĩa dùng chung cho nội dung tiếng Anh",
+  "$defs": {
+    "level": {
+      "description": "Trình độ CEFR của mục học.",
+      "type": "string",
+      "enum": ["B1", "B2", "C1"]
+    },
+    "topic": {
+      "description": "Chủ đề: office = công sở chung, meetings = họp, email = viết email, cb-hr = C&B / HR / Total Rewards, interview = phỏng vấn, negotiation = deal lương / thương lượng.",
+      "type": "string",
+      "enum": ["office", "meetings", "email", "cb-hr", "interview", "negotiation"]
+    },
+    "en": {
+      "description": "Câu / cụm tiếng Anh, không có khoảng trắng đầu cuối.",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 240,
+      "pattern": "^\\S(.*\\S)?$"
+    },
+    "vi": {
+      "description": "Nghĩa tiếng Việt ngắn.",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 200,
+      "pattern": "^\\S(.*\\S)?$"
+    },
+    "note": {
+      "description": "Ghi chú cách dùng (tiếng Việt).",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 300
+    }
+  }
+}
