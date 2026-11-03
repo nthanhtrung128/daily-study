@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import { getSetting, setSetting } from '../../../core/db';
 import { useProgress } from '../../../ui/useProgress';
 import { EN_DURATIONS, enStats, planEnglish } from '../plan';
-import { ACCENTS } from '../tts';
 import { SAY_ITEMS, planSpeaking } from '../speech/sayItems';
 import { SPEAKING_TOPICS } from '../speech/topics';
 import { isDue } from '../../../core/leitner';
-import { setTtsPrefs, useTtsPrefs } from '../useTts';
 import type { EnView } from './EnglishScreen';
 import '../english.css';
 
@@ -19,7 +17,6 @@ const DEFAULT: EnPrefs = { min: 10 };
 /** Khối "Tiếng Anh giao tiếp" trên trang Hôm nay: bắt đầu phiên thẻ từ / câu mẫu / shadowing. */
 export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
   const p = useProgress();
-  const tp = useTtsPrefs();
   const [prefs, setPrefs] = useState<EnPrefs>(DEFAULT);
 
   useEffect(() => {
@@ -52,7 +49,7 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
   return (
     <div className="panel stack en-home" aria-labelledby="h-en">
       <div>
-        <div className="eyebrow">Tiếng Anh giao tiếp</div>
+        <div className="eyebrow">Ôn riêng · Tiếng Anh giao tiếp</div>
         <h2 id="h-en" className="h-page">
           Luyện nói công sở
         </h2>
@@ -94,13 +91,6 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
           </button>
         ))}
       </div>
-      <div className="row" role="group" aria-label="Giọng đọc">
-        {ACCENTS.map((a) => (
-          <button key={a.id} type="button" className="chip" aria-pressed={tp.accent === a.id} onClick={() => setTtsPrefs({ accent: a.id })}>
-            {a.label}
-          </button>
-        ))}
-      </div>
       <div className="en-go">
         <button type="button" className="btn en-go-btn" disabled={!phPlan.length} onClick={() => start('phrase')}>
           Thẻ từ
@@ -123,7 +113,7 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
           <small>{`${SPEAKING_TOPICS.length} đề · ghi âm, nghe lại`}</small>
         </button>
       </div>
-      <p className="hint">Âm thanh và micro chỉ bật khi bạn bấm nút. Bản ghi âm chỉ lưu trên máy. Phiên trộn TR 40% · tiếng Anh 60% sẽ có ở bước sau.</p>
+      <p className="hint">Âm thanh và micro chỉ bật khi bạn bấm nút. Bản ghi âm chỉ lưu trên máy. Giọng đọc và tốc độ đổi trong Cài đặt.</p>
     </div>
   );
 }

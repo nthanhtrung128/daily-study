@@ -89,7 +89,7 @@ export function TopicScreen({ onExit }: { onExit: () => void }) {
 
 type Phase = 'idle' | 'requesting' | 'recording' | 'saving';
 
-function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
+export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
   const [secs, setSecs] = useState(() => defaultSeconds(topic));
   const [withText, setWithText] = useState(false);
   const [phase, setPhase] = useState<Phase>('idle');

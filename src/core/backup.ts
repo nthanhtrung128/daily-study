@@ -61,7 +61,8 @@ function cleanDay(day: string, v: unknown): DayStat | null {
   if (!isDay(day) || !isObj(v)) return null;
   const n = int(v.n);
   if (n === null) return null;
-  return { day, n, ok: Math.min(n, int(v.ok) ?? 0), s: int(v.s) ?? 0 };
+  const nw = int(v.nw);
+  return { day, n, ok: Math.min(n, int(v.ok) ?? 0), s: int(v.s) ?? 0, ...(nw ? { nw: Math.min(n, nw) } : {}) };
 }
 
 /** Thêm tiền tố "tr:" cho id bản cũ (K001, F01, Q001, M01, G001, C-mid…). */

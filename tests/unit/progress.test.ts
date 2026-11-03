@@ -25,7 +25,8 @@ describe('Progress (IndexedDB)', () => {
     await q.load();
     expect(q.stateOf('tr:K001')).toMatchObject({ box: 1, due: '2026-11-03', wrong: 1 });
     expect(q.stateOf('tr:Q001')).toMatchObject({ box: 1, due: '2026-11-04', wrong: 0 });
-    expect(q.dayStat('2026-11-03')).toEqual({ day: '2026-11-03', n: 2, ok: 1, s: 95 });
+    expect(q.dayStat('2026-11-03')).toEqual({ day: '2026-11-03', n: 2, ok: 1, s: 95, nw: 1 });
+    expect(q.newToday()).toBe(1);
     expect(q.streak()).toBe(2);
     expect(q.note('tr:M01')).toBe('ý chính');
     expect(await store.reviews.count()).toBe(3);
