@@ -22,13 +22,20 @@ export class Progress {
     private now: () => Date = () => new Date(),
   ) {}
 
-  async load(): Promise<void> {
+  /** Đọc từ IndexedDB. `reset` (sau khi nhập tiến độ): bỏ dữ liệu trong bộ nhớ, đọc lại toàn bộ. */
+  async load(reset = false): Promise<void> {
+    if (reset) await this.pending;
     try {
       const [items, days, notes] = await Promise.all([
         this.store.items.toArray(),
         this.store.days.toArray(),
         this.store.notes.toArray(),
       ]);
+      if (reset) {
+        this.states.clear();
+        this.days.clear();
+        this.notes.clear();
+      }
       for (const { id, box, due, wrong, last } of items) this.states.set(id, { box, due, wrong, last });
       for (const d of days) this.days.set(d.day, d);
       for (const n of notes) this.notes.set(n.id, n.text);
@@ -68,6 +75,11 @@ export class Progress {
 
   entries(): IterableIterator<[string, LeitnerState]> {
     return this.states.entries();
+  }
+
+  /** Mọi ngày có thống kê (bản đồ nhiệt, tổng lượt ôn). */
+  allDays(): IterableIterator<DayStat> {
+    return this.days.values();
   }
 
   dayStat(day: string): DayStat {
@@ -110,10 +122,16 @@ export class Progress {
     return this.notes.get(id) ?? '';
   }
 
+  /** Lưu ghi chú; để trống thì xóa (như bản cũ). */
   setNote(id: string, text: string): void {
-    this.notes.set(id, text);
+    if (text.trim()) {
+      this.notes.set(id, text);
+      this.persist(() => this.store.notes.put({ id, text, at: Date.now() }));
+    } else {
+      this.notes.delete(id);
+      this.persist(() => this.store.notes.delete(id));
+    }
     this.emit();
-    this.persist(() => this.store.notes.put({ id, text, at: Date.now() }));
   }
 }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { loadTheme, saveTheme, type Theme } from '../../core/theme';
+import { BackupPanel } from '../components/BackupPanel';
 import { Placeholder } from '../components/Placeholder';
 
 const THEME_LABELS: Record<Theme, string> = { auto: 'Theo máy', light: 'Sáng', dark: 'Tối' };
@@ -43,6 +44,7 @@ export function SettingsPage() {
         <p className="hint num" style={{ margin: 0 }}>
           Phiên bản {__APP_VERSION__}
         </p>
+        <BackupPanel />
       </div>
     </section>
   );
