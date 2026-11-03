@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "speaking-topics.schema.json",
+  "title": "Đề nói 1 phút (content/english/speaking-topics.json — nội dung soạn ở S7)",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/topicItem" }
+    }
+  },
+  "$defs": {
+    "topicItem": {
+      "type": "object",
+      "required": ["id", "en", "vi", "topic", "level", "hints"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^st-\\d{4}$" },
+        "en": { "description": "Đề bài tiếng Anh.", "$ref": "common.schema.json#/$defs/en" },
+        "vi": { "$ref": "common.schema.json#/$defs/vi" },
+        "topic": { "$ref": "common.schema.json#/$defs/topic" },
+        "level": { "$ref": "common.schema.json#/$defs/level" },
+        "hints": {
+          "description": "Gợi ý ý / cụm nên dùng khi nói.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": { "$ref": "common.schema.json#/$defs/en" }
+        },
+        "seconds": { "description": "Thời gian nói (mặc định 60).", "type": "integer", "minimum": 30, "maximum": 180 },
+        "trConcept": { "description": "Id khái niệm TR101 liên quan (đề giải thích khái niệm).", "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
