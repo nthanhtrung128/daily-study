@@ -123,6 +123,16 @@ export function trackErrors(page: Page): string[] {
 export async function audit(page: Page, where: string, found: string[]): Promise<void> {
   // Chờ hiệu ứng vào trang (0,18 s) xong để đo đúng vị trí và độ mờ.
   await page.waitForTimeout(220);
+  // WebKit có thể chưa chạy xong hiệu ứng (độ mờ 0,6 → 1): chờ mọi animation kết thúc rồi mới đo.
+  // Bỏ qua animation lặp vô hạn (chấm đỏ "đang ghi âm").
+  await page.evaluate(() =>
+    Promise.all(
+      document
+        .getAnimations()
+        .filter((a) => a.effect?.getComputedTiming().iterations !== Infinity)
+        .map((a) => a.finished.catch(() => undefined)),
+    ),
+  );
   const issues = await page.evaluate(auditDom);
   for (const i of issues) found.push(`[${where}] ${i}`);
 }

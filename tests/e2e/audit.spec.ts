@@ -14,9 +14,27 @@ const gotoHome = async (page: Page) => {
   await page.goto('./#hom-nay');
 };
 
+// Service worker (autoUpdate) có thể tự tải lại trang ở lần mở đầu, làm luồng bấm chập chờn trên WebKit.
+// Các test quét / a11y / rò rỉ không cần nó; test offline bên dưới bật lại.
+test.use({ serviceWorkers: 'block' });
+
+/** Log console của test đang chạy — in ra khi test hỏng để chẩn đoán trên CI (WebKit). */
+let consoleLog: string[] = [];
+
 test.beforeEach(async ({ page }) => {
+  consoleLog = [];
+  page.on('console', (m) => consoleLog.push(`${m.type()}: ${m.text()}`));
+  page.on('pageerror', (e) => consoleLog.push(`pageerror: ${e.message}`));
   await page.addInitScript(watchCsp);
   await page.addInitScript(stubMedia);
+});
+
+test.afterEach(async ({ page }, info) => {
+  if (info.status === info.expectedStatus) return;
+  const body = await page
+    .evaluate(() => `${location.href}\n${document.body.innerText.slice(0, 400)}`)
+    .catch((e: unknown) => `không đọc được trang: ${String(e)}`);
+  console.log(`[chẩn đoán] ${info.title}\n${body}\n${consoleLog.slice(-20).join('\n')}`);
 });
 
 const VARIANTS = [
@@ -137,19 +155,25 @@ test('rời màn khi đang đọc / nghe / ghi âm: tắt TTS, nhận giọng v�
   await expect.poll(() => w('__synthCancels')).toBeGreaterThan(before);
 });
 
-test('offline sau lần mở đầu: mọi trang, mọi màn tiếng Anh và tra cứu vẫn chạy, không lỗi', async ({ page, context }) => {
-  test.slow();
-  await page.goto('./');
-  await page.evaluate(async () => {
-    await navigator.serviceWorker.ready;
+test.describe('offline', () => {
+  test.use({ serviceWorkers: 'allow' });
+
+  test('offline sau lần mở đầu: mọi trang, mọi màn tiếng Anh và tra cứu vẫn chạy, không lỗi', async ({ page, context }) => {
+    test.slow();
+    await page.goto('./');
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    await page.reload();
+    await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
+    const errors = trackErrors(page);
+    await context.setOffline(true);
+    await page.reload();
+    // Đi lại toàn bộ luồng khi mất mạng (nội dung JSON, các chunk tải sau đều phải có trong cache).
+    await walkApp(page, async () => undefined);
+    // Trình duyệt vẫn thử ra mạng (service worker kiểm tra bản mới): Chromium ghi ERR_INTERNET_DISCONNECTED,
+    // WebKit ghi "Failed to load resource". Đó là lỗi mạng mong đợi khi offline; luồng ở trên đã chạy hết.
+    expect(errors.filter((e) => !/net::ERR_INTERNET_DISCONNECTED|Failed to load resource/.test(e)), errors.join('\n')).toEqual([]);
+    await context.setOffline(false);
   });
-  await page.reload();
-  await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
-  const errors = trackErrors(page);
-  await context.setOffline(true);
-  await page.reload();
-  // Đi lại toàn bộ luồng khi mất mạng (nội dung JSON, các chunk tải sau đều phải có trong cache).
-  await walkApp(page, async () => undefined);
-  expect(errors.filter((e) => !/net::ERR_INTERNET_DISCONNECTED/.test(e)), errors.join('\n')).toEqual([]);
-  await context.setOffline(false);
 });
