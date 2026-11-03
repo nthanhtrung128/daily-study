@@ -1,0 +1,618 @@
+<title>Sổ ôn Total Rewards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Bố cục: một cột hẹp như cuốn sổ tay C&B; motif chính là thanh dải lương Min – Mid – Max dùng để đo mức thuộc bài. */
+:root{
+  --bg:#EEF1F4; --surface:#FFFFFF; --sunk:#E3E8ED; --ink:#14202B; --muted:#5A6776; --line:#CDD5DE;
+  --accent:#1D5BC4; --accent-ink:#FFFFFF; --accent-soft:#DCE7FA;
+  --good:#17804F; --good-soft:#D9F0E4; --warn:#A86A00; --warn-soft:#F8EBCF; --bad:#BB3A26; --bad-soft:#F8DED8;
+  --f-display:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-card:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-num:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1318; --surface:#151C24; --sunk:#1C2530; --ink:#E5EAF0; --muted:#95A2B0; --line:#2A3542;
+  --accent:#7FA6FF; --accent-ink:#0B1220; --accent-soft:#1E2C47;
+  --good:#4CC28A; --good-soft:#163527; --warn:#E3A93C; --warn-soft:#3A2D12; --bad:#F27560; --bad-soft:#3D1D18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1318; --surface:#151C24; --sunk:#1C2530; --ink:#E5EAF0; --muted:#95A2B0; --line:#2A3542;
+  --accent:#7FA6FF; --accent-ink:#0B1220; --accent-soft:#1E2C47;
+  --good:#4CC28A; --good-soft:#163527; --warn:#E3A93C; --warn-soft:#3A2D12; --bad:#F27560; --bad-soft:#3D1D18; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg)}
+body{color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+/* Thanh trên */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.top-in{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;line-height:1.15;margin-right:auto;min-width:0}
+.brand b{font-family:var(--f-display);font-size:17px;font-weight:700;letter-spacing:-.01em}
+.brand span{font-size:12px;color:var(--muted)}
+.streak{font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.streak b{font-family:var(--f-num)}
+nav.tabs{display:flex;gap:4px;width:100%;overflow-x:auto;scrollbar-width:none}
+nav.tabs a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-weight:500;font-size:14px;padding:6px 12px;border-radius:999px}
+nav.tabs a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+
+/* Thanh dải lương */
+.range{position:relative;height:30px;margin:6px 0 2px}
+.range .track{position:absolute;left:0;right:0;top:12px;height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}
+.range .fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:4px}
+.range .tick{position:absolute;top:8px;width:1px;height:16px;background:var(--muted);opacity:.6}
+.range .mark{position:absolute;top:2px;width:3px;height:28px;background:var(--ink);border-radius:2px;transform:translateX(-1px)}
+.range-lbl{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+
+/* Khối chung */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.muted{color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:14px;line-height:1.2}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip small{opacity:.75;margin-left:4px}
+.btn{border:0;border-radius:8px;padding:11px 18px;font-weight:600;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:7px 12px;font-size:14px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{padding:12px;border-radius:8px;background:var(--sunk)}
+.stat b{display:block;font-family:var(--f-num);font-size:22px;font-weight:500}
+.stat span{font-size:12.5px;color:var(--muted)}
+.hint{font-size:13px;color:var(--muted)}
+
+/* Phiên ôn */
+.sess-top{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--muted)}
+.sess-top .bar{flex:1;height:6px;border-radius:3px;background:var(--sunk);overflow:hidden}
+.sess-top .bar i{display:block;height:100%;background:var(--accent);width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 20px;min-height:260px;display:flex;flex-direction:column;gap:14px}
+.card .kind{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.card h2{font-family:var(--f-card);font-weight:600;font-size:clamp(21px,4.6vw,27px);line-height:1.3}
+.card .en{font-family:var(--f-num);font-size:13px;color:var(--muted)}
+.card .q{font-family:var(--f-card);font-size:19px;line-height:1.45}
+.back{border-top:1px dashed var(--line);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.kv{display:grid;grid-template-columns:90px minmax(0,1fr);gap:4px 12px;font-size:14.5px}
+.kv dt{color:var(--muted);font-size:13px}
+.kv dd{margin:0;min-width:0}
+.formula{font-family:var(--f-num);font-size:14px;background:var(--sunk);padding:8px 10px;border-radius:6px;overflow-x:auto}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:11px 12px;display:flex;gap:10px;align-items:flex-start}
+.opt .k{font-family:var(--f-num);color:var(--muted);flex:0 0 auto}
+.opt.ok{border-color:var(--good);background:var(--good-soft)}
+.opt.no{border-color:var(--bad);background:var(--bad-soft)}
+.opt[disabled]{cursor:default}
+.fb{border-radius:8px;padding:10px 12px;font-size:14.5px}
+.fb.ok{background:var(--good-soft)}
+.fb.no{background:var(--bad-soft)}
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.grade button{border-radius:8px;padding:10px 6px;border:1px solid var(--line);background:var(--surface);font-weight:600;font-size:14px}
+.grade .g0{color:var(--bad)} .grade .g1{color:var(--warn)} .grade .g2{color:var(--good)}
+.grade small{display:block;font-weight:400;font-size:11.5px;color:var(--muted)}
+input[type=text],input[type=search],textarea{width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{min-height:90px;resize:vertical}
+.calc-in{display:flex;gap:8px;align-items:center}
+.calc-in input{font-family:var(--f-num);font-size:18px;max-width:220px}
+.unit{color:var(--muted);font-size:14px}
+.data-list{font-family:var(--f-num);font-size:13.5px;background:var(--sunk);padding:8px 10px;border-radius:6px;overflow-x:auto;white-space:nowrap}
+.tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.tag.sup{background:var(--warn-soft);color:var(--warn)}
+
+/* Tra cứu */
+.results{display:flex;flex-direction:column;gap:8px}
+details.item{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+details.item summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;gap:10px;align-items:baseline}
+details.item summary::-webkit-details-marker{display:none}
+details.item summary b{font-weight:600}
+details.item summary .en{font-family:var(--f-num);font-size:12.5px;color:var(--muted);min-width:0}
+details.item summary .tag{margin-left:auto;flex:0 0 auto}
+details.item .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+.lvl{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--line);flex:0 0 auto;align-self:center}
+.lvl.l1{background:var(--warn)} .lvl.l2{background:var(--good)}
+
+/* Tiến độ */
+.prog-row{display:grid;grid-template-columns:150px minmax(0,1fr) 60px;gap:10px;align-items:center;font-size:13.5px}
+.stackbar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--sunk)}
+.stackbar i{display:block;height:100%}
+.stackbar .s2{background:var(--good)} .stackbar .s1{background:var(--warn)}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.heat{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;max-width:320px}
+.heat i{aspect-ratio:1;border-radius:3px;background:var(--sunk);max-width:100%}
+.heat i.h1{background:color-mix(in srgb,var(--accent) 35%,var(--sunk))}
+.heat i.h2{background:color-mix(in srgb,var(--accent) 65%,var(--sunk))}
+.heat i.h3{background:var(--accent)}
+.heat i.today{outline:2px solid var(--ink);outline-offset:-2px}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.03em;white-space:nowrap}
+td.nw{white-space:nowrap}
+td.n{font-family:var(--f-num);text-align:right}
+.status{font-size:14px;padding:10px 12px;border-radius:8px;background:var(--sunk)}
+.status.ok{background:var(--good-soft)} .status.no{background:var(--bad-soft)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-size:14px;z-index:20}
+@media (max-width:520px){
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .prog-row{grid-template-columns:96px minmax(0,1fr) 44px}
+  .kv{grid-template-columns:minmax(0,1fr)}
+  .kv dt{margin-top:4px}
+}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .18s ease-out}@keyframes in{from{transform:translateY(4px);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="top-in">
+    <div class="brand"><b>Sổ ôn Total Rewards</b><span>Khóa Total Rewards 101 · 10 buổi</span></div>
+    <div class="streak" id="streak">Chuỗi <b>0</b> ngày</div>
+  </div>
+  <nav class="tabs" aria-label="Mục">
+    <a href="#hom-nay" data-v="hom-nay">Hôm nay</a>
+    <a href="#tra-cuu" data-v="tra-cuu">Tra cứu</a>
+    <a href="#tien-do" data-v="tien-do">Tiến độ</a>
+    <a href="#trang-tinh" data-v="trang-tinh">Google Sheet</a>
+  </nav>
+</div></header>
+
+<main class="wrap" id="app">
+  <section id="v-hom-nay" class="stack">
+    <div class="panel stack">
+      <div>
+        <div class="eyebrow">Mức thuộc bài – vị trí trong dải</div>
+        <div class="range" id="homeRange" aria-hidden="true"><div class="track"><div class="fill"></div></div><i class="tick" style="left:50%"></i><i class="mark"></i></div>
+        <div class="range-lbl"><span>Min · mới học</span><span>Mid · nắm cơ bản</span><span>Max · thành thạo</span></div>
+        <p class="hint" id="homePen" style="margin:8px 0 0"></p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="stDue">0</b><span>đến hạn ôn hôm nay</span></div>
+        <div class="stat"><b id="stWrong">0</b><span>câu từng làm sai</span></div>
+        <div class="stat"><b id="stToday">0</b><span>mục đã ôn hôm nay</span></div>
+      </div>
+    </div>
+
+    <div class="panel stack">
+      <h1 style="font-size:22px">Hôm nay ôn bao lâu?</h1>
+      <div class="row" id="durChips" role="group" aria-label="Thời lượng"></div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px">Cách ôn</div>
+        <div class="row" id="modeChips" role="group" aria-label="Cách ôn"></div>
+        <p class="hint" id="modeHint" style="margin:8px 0 0"></p>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px">Buổi học</div>
+        <div class="row" id="baiChips" role="group" aria-label="Buổi học"></div>
+      </div>
+      <div class="row"><button class="btn" id="startBtn" type="button">Bắt đầu</button><span class="hint" id="planHint"></span></div>
+    </div>
+    <p class="hint" id="syncNote"></p>
+  </section>
+
+  <section id="v-on-tap" class="stack" hidden>
+    <div class="sess-top"><span id="sessCount">1/10</span><div class="bar"><i id="sessBar"></i></div><span class="num" id="sessTime">00:00</span><button class="btn ghost small" id="endBtn" type="button">Kết thúc</button></div>
+    <div id="cardHost"></div>
+  </section>
+
+  <section id="v-ket-qua" class="stack" hidden></section>
+
+  <section id="v-tra-cuu" class="stack" hidden>
+    <div class="panel stack">
+      <input type="search" id="q" placeholder="Tìm khái niệm, thuật ngữ, công thức… (VD: compa, overlap, merit)" aria-label="Tìm kiếm">
+      <div class="row" id="lkType" role="group" aria-label="Loại"></div>
+      <div class="row" id="lkBai" role="group" aria-label="Buổi"></div>
+    </div>
+    <p class="hint" id="lkCount"></p>
+    <div class="results" id="lkList"></div>
+  </section>
+
+  <section id="v-tien-do" class="stack" hidden></section>
+
+  <section id="v-trang-tinh" class="stack" hidden>
+    <div class="panel stack">
+      <h1 style="font-size:22px">Bộ tra cứu trên Google Sheet</h1>
+      <p style="margin:0">Cùng dữ liệu với sổ ôn này, gồm 9 sheet: Hướng dẫn, Tìm kiếm (gõ từ khóa ở ô B1), Kiến thức (162 khái niệm), Công thức (19), Thuật ngữ (346), Trắc nghiệm (121), Câu hỏi mở (100), Checklist L1 (49), Tiến độ. Mỗi sheet có cột <b>Mức độ thuộc</b> chọn từ danh sách và cột ghi chú tô vàng để bạn tự ghi.</p>
+      <div class="row">
+        <button class="btn" id="mkSheet" type="button" hidden>Tạo Google Sheet trong Drive của tôi</button>
+        <button class="btn ghost" id="dlXlsx" type="button" hidden>Tải file Excel (.xlsx)</button>
+      </div>
+      <div class="status" id="sheetStatus" hidden></div>
+      <p class="hint" style="margin:0">Nút tạo Google Sheet dùng kết nối Google Drive của bạn trong Claude; lần đầu trang sẽ hỏi quyền. Nếu không dùng được, tải file Excel rồi kéo vào Google Drive và chọn “Mở bằng Google Trang tính”.</p>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" hidden></div>
+
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script id="xlsx" type="text/plain">__XLSX_B64__</script>
+<script>
+(() => {
+'use strict';
+const D = JSON.parse(document.getElementById('data').textContent);
+const BAI = D.meta.bai;
+const BAI_KEYS = ['1','2','3','4','5','6','7','8-9','10','Bổ sung'];
+const BAI_LABEL = {'1':'B1 Tổng quan','2':'B2 Base Pay','3':'B3 Thang lương','4':'B4 Variable Pay','5':'B5 Đánh giá CV','6':'B6 Merit','7':'B7 Lương 3P','8-9':'B8–9 Hiệu suất','10':'B10 Truyền thông','Bổ sung':'Pháp lý VN'};
+const BAI_SHORT = {'1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8-9':'8–9','10':'10','Bổ sung':'Pháp lý VN','Đọc thêm':'Đọc thêm'};
+const $ = s => document.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (v == null) continue; if (k === 'class') e.className = v; else if (k === 'text') e.textContent = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(k)); return e; };
+const fmt = (n, d = 0) => Number(n).toLocaleString('vi-VN', { minimumFractionDigits: d, maximumFractionDigits: d });
+const todayKey = (off = 0) => { const d = new Date(); d.setDate(d.getDate() + off); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const dayDiff = (a, b) => Math.round((new Date(a + 'T00:00:00') - new Date(b + 'T00:00:00')) / 864e5);
+const addDays = (k, n) => { const d = new Date(k + 'T00:00:00'); d.setDate(d.getDate() + n); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const toast = msg => { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2200); };
+const baiOf = s => { s = String(s || ''); if (s.includes('Bổ sung')) return ['Bổ sung']; if (s.includes('Đọc thêm')) return ['Đọc thêm']; if (s === '8-9') return ['8-9']; const out = []; for (const m of s.matchAll(/\d+/g)) { const n = m[0]; if (n === '8' || n === '9') out.push('8-9'); else out.push(n); } return out.length ? [...new Set(out)] : ['Đọc thêm']; };
+
+/* ---------- Lưu trữ: db theo từng người (nếu có) + bộ nhớ trình duyệt ---------- */
+const LKEY = 'tr101.state.v1';
+let S = { srs: {}, days: {}, notes: {}, prefs: { min: 10, mode: 'mix', bai: [] }, sheetUrl: '', updatedAt: 0 };
+const Store = { ref: null, nref: null, timer: null, chain: Promise.resolve(), notesDirty: false,
+  loadLocal() { try { const j = JSON.parse(localStorage.getItem(LKEY) || 'null'); if (j && j.srs) S = Object.assign(S, j); } catch (e) {} },
+  saveLocal() { try { localStorage.setItem(LKEY, JSON.stringify(S)); } catch (e) {} },
+  async init() {
+    try {
+      if (!window.claude || !claude.use) return;
+      const [db, user] = await Promise.all([claude.use('db'), claude.use('user')]);
+      if (!db || !user) return;
+      const uid = await user.id();
+      if (!uid) return;
+      const base = 'data/users/' + uid + '/';
+      this.ref = db.doc(base + 'state'); this.nref = db.doc(base + 'notes');
+      const [snap, nsnap] = await Promise.all([this.ref.get(), this.nref.get()]);
+      const r = snap.exists ? (snap.data() || {}) : null;
+      const nr = nsnap.exists ? (nsnap.data() || {}) : null;
+      if (r && (r.updatedAt || 0) >= (S.updatedAt || 0)) {
+        const notes = nr && nr.notes ? nr.notes : S.notes;
+        S = Object.assign({ srs: {}, days: {}, prefs: S.prefs, sheetUrl: '' }, JSON.parse(JSON.stringify(r)), { notes: JSON.parse(JSON.stringify(notes || {})) });
+        this.saveLocal();
+      } else if (S.updatedAt) { this.notesDirty = true; this.schedule(); }
+      $('#syncNote').textContent = 'Tiến độ và ghi chú được lưu vào tài khoản Claude của bạn, mở trên máy khác vẫn còn.';
+      renderAll();
+    } catch (e) { this.ref = null; this.nref = null; }
+  },
+  touch(notes) { S.updatedAt = Date.now(); if (notes) this.notesDirty = true; this.saveLocal(); this.schedule(); },
+  schedule() {
+    if (!this.ref) return; clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      const { notes, ...rest } = S; const body = JSON.parse(JSON.stringify(rest));
+      const nb = this.notesDirty ? { notes: JSON.parse(JSON.stringify(notes || {})) } : null; this.notesDirty = false;
+      this.chain = this.chain.then(async () => { await this.ref.set(body); if (nb) await this.nref.set(nb); })
+        .catch(err => { if (nb) this.notesDirty = true; toast(err && err.code === 'quota_exceeded' ? 'Bộ nhớ tài khoản đầy, tiến độ tạm lưu trên trình duyệt này.' : 'Chưa đồng bộ được, tiến độ vẫn lưu trên trình duyệt này.'); });
+    }, 1500);
+  }
+};
+
+/* ---------- Ngân hàng mục ôn ---------- */
+const ITEMS = {}; // id -> {id,type,bai[],...}
+const LVL_NAME = ['Chưa học', 'Đang học', 'Đã thuộc'];
+D.concepts.forEach(c => ITEMS[c.id] = { id: c.id, type: 'flash', bai: baiOf(c.bai), c });
+D.formulas.forEach(f => ITEMS[f.id] = { id: f.id, type: 'formula', bai: baiOf(f.bai), f });
+D.quiz.forEach(q => ITEMS[q.id] = { id: q.id, type: 'quiz', bai: baiOf(q.bai), q });
+D.openq.forEach(o => ITEMS[o.id] = { id: o.id, type: 'open', bai: baiOf(o.bai), o });
+D.gloss.forEach(g => { if (!/ít phổ biến/.test(g.note)) ITEMS['G' + String(g.n).padStart(3, '0')] = { id: 'G' + String(g.n).padStart(3, '0'), type: 'term', bai: [], g }; });
+
+/* ---------- Bài tính sinh ngẫu nhiên ---------- */
+const tr = n => fmt(n / 1e6, 2);
+const CALC = [
+ { id: 'C-mid', bai: '2', name: 'Midpoint', gen() { const min = rnd(50, 250) * 1e5, s = pick([.3, .35, .4, .5]), max = Math.round(min * (1 + s) / 1e3) * 1e3; const a = (min + max) / 2; return { q: `Grade có Min ${fmt(min)} đ, Max ${fmt(max)} đ. Midpoint bằng bao nhiêu?`, ans: a / 1e6, unit: 'triệu đồng', dec: 2, tol: .01, sol: `Mid = (Min + Max)/2 = (${fmt(min)} + ${fmt(max)})/2 = ${fmt(a)} đ ≈ ${tr(a)} triệu.` }; } },
+ { id: 'C-spread', bai: '2', name: 'Range spread', gen() { const min = rnd(60, 300) * 1e5, max = Math.round(min * (1 + rnd(25, 60) / 100) / 1e4) * 1e4; const a = (max - min) / min * 100; return { q: `Min ${fmt(min)} đ, Max ${fmt(max)} đ. Range spread là bao nhiêu %?`, ans: a, unit: '%', dec: 1, tol: .15, sol: `Spread = (Max − Min)/Min = (${fmt(max)} − ${fmt(min)})/${fmt(min)} = ${fmt(a, 1)}%. Nhớ chia cho Min.` }; } },
+ { id: 'C-minmid', bai: '3', name: 'Min từ Mid', gen() { const mid = rnd(80, 600) * 1e5, s = pick([.2, .3, .35, .4, .5]); const a = mid / (1 + s / 2), mx = a * (1 + s); return { q: `Midpoint ${fmt(mid)} đ, range spread ${fmt(s * 100)}%. Min của dải là bao nhiêu?`, ans: a / 1e6, unit: 'triệu đồng', dec: 2, tol: .01, sol: `Min = Mid/(1 + spread/2) = ${fmt(mid)}/${fmt(1 + s / 2, 3)} = ${fmt(a)} đ ≈ ${tr(a)} triệu. Max = Min × (1 + spread) = ${tr(mx)} triệu.` }; } },
+ { id: 'C-overlap', bai: '2', name: 'Overlap', gen() { const m1 = rnd(80, 150) * 1e5, x1 = Math.round(m1 * (1 + rnd(30, 50) / 100) / 1e5) * 1e5, m2 = Math.round(m1 * (1 + rnd(10, 25) / 100) / 1e5) * 1e5, x2 = Math.round(m2 * (1 + rnd(30, 50) / 100) / 1e5) * 1e5; const a = (x1 - m2) / (x2 - m2) * 100; return { q: `Grade dưới: ${fmt(m1)} – ${fmt(x1)} đ. Grade trên: ${fmt(m2)} – ${fmt(x2)} đ. Overlap là bao nhiêu %?`, ans: a, unit: '%', dec: 1, tol: .15, sol: `Overlap = (Max dưới − Min trên)/(Max trên − Min trên) = (${fmt(x1)} − ${fmt(m2)})/(${fmt(x2)} − ${fmt(m2)}) = ${fmt(a, 1)}%.` }; } },
+ { id: 'C-mdiff', bai: '2', name: 'Midpoint differential', gen() { const m1 = rnd(100, 400) * 1e5, d = rnd(5, 30) / 100, m2 = Math.round(m1 * (1 + d) / 1e3) * 1e3; const a = (m2 - m1) / m1 * 100; return { q: `Mid grade dưới ${fmt(m1)} đ, mid grade trên ${fmt(m2)} đ. Midpoint differential là bao nhiêu %?`, ans: a, unit: '%', dec: 1, tol: .15, sol: `MD = (Mid trên − Mid dưới)/Mid dưới = (${fmt(m2)} − ${fmt(m1)})/${fmt(m1)} = ${fmt(a, 1)}%.` }; } },
+ { id: 'C-cr', bai: '3', name: 'Compa-ratio', gen() { const mid = rnd(100, 400) * 1e5, sal = Math.round(mid * rnd(80, 120) / 100 / 1e5) * 1e5; const a = sal / mid; return { q: `Midpoint ${fmt(mid)} đ, lương nhân viên ${fmt(sal)} đ. Compa-ratio là bao nhiêu?`, ans: a, unit: '(VD 0,95)', dec: 2, tol: .006, sol: `CR = Lương/Mid = ${fmt(sal)}/${fmt(mid)} = ${fmt(a, 2)} (${a >= 1 ? 'trên' : 'dưới'} midpoint).` }; } },
+ { id: 'C-pen', bai: '3', name: 'Range penetration', gen() { const min = rnd(70, 200) * 1e5, max = Math.round(min * 1.5 / 1e5) * 1e5, sal = Math.round((min + (max - min) * rnd(5, 95) / 100) / 1e5) * 1e5; const a = (sal - min) / (max - min) * 100; return { q: `Dải ${fmt(min)} – ${fmt(max)} đ, lương ${fmt(sal)} đ. Range penetration là bao nhiêu %?`, ans: a, unit: '%', dec: 1, tol: .15, sol: `RP = (Lương − Min)/(Max − Min) = (${fmt(sal)} − ${fmt(min)})/(${fmt(max)} − ${fmt(min)}) = ${fmt(a, 1)}%.` }; } },
+ { id: 'C-mi', bai: '3', name: 'Market index', gen() { const mk = rnd(150, 500) * 1e5, sal = Math.round(mk * rnd(70, 120) / 100 / 1e5) * 1e5; const a = sal / mk * 100; return { q: `Lương ${fmt(sal)} đ, mức thị trường (P50) ${fmt(mk)} đ. Market index là bao nhiêu %?`, ans: a, unit: '%', dec: 1, tol: .15, sol: `MI = Lương/Thị trường = ${fmt(sal)}/${fmt(mk)} = ${fmt(a, 1)}% — chỉ số bên ngoài (khác compa-ratio so với midpoint).` }; } },
+ { id: 'C-pct', bai: '3', name: 'Percentile', gen() { const n = pick([11, 15]); const vals = shuffle(Array.from({ length: 40 }, (_, i) => (15 + i) * 5e5)).slice(0, n).sort((a, b) => a - b); const p = pick([25, 75, 90]); const pos = p / 100 * (n - 1) + 1, lo = Math.floor(pos), fr = pos - lo; const a = fr ? vals[lo - 1] + (vals[lo] - vals[lo - 1]) * fr : vals[lo - 1]; return { q: `Khảo sát ${n} mức lương (triệu đồng, đã sắp xếp): ${vals.map(v => fmt(v / 1e6, 1)).join(' · ')}. Tính P${p}.`, ans: a / 1e6, unit: 'triệu đồng', dec: 2, tol: .01, sol: `Vị trí = ${p}/100 × (${n} − 1) + 1 = ${fmt(pos, 2)}. ${fr ? `Giá trị thứ ${lo} = ${fmt(vals[lo - 1] / 1e6, 1)}, thứ ${lo + 1} = ${fmt(vals[lo] / 1e6, 1)} → ${fmt(vals[lo - 1] / 1e6, 1)} + (${fmt(vals[lo] / 1e6, 1)} − ${fmt(vals[lo - 1] / 1e6, 1)}) × ${fmt(fr, 2)} = ${fmt(a / 1e6, 2)}` : `Đúng giá trị thứ ${lo} = ${fmt(a / 1e6, 2)}`} triệu.` }; } },
+ { id: 'C-bonus', bai: '4', name: 'Thưởng hiệu suất', gen() { const sal = rnd(12, 40) * 1e6, tm = pick([1, 1.5, 2]); const w = pick([[.2, 0, .8], [.1, .3, .6], [.3, .4, .3], [.1, .2, .7]]); const k = [pick([.9, 1, 1.1, 1.2]), pick([.8, .9, 1, 1.1]), pick([.8, 1, 1.2, 1.3, 1.5])]; const f = w[0] * k[0] + w[1] * k[1] + w[2] * k[2]; const a = f * sal * tm; const parts = [['công ty', 0], ['bộ phận', 1], ['cá nhân', 2]].filter(([, i]) => w[i] > 0); return { q: `Lương ${fmt(sal / 1e6)} triệu/tháng, thưởng mục tiêu ${fmt(tm, 1)} tháng lương. Trọng số – kết quả: ${parts.map(([n, i]) => `${n} ${fmt(w[i] * 100)}% (KQ ${fmt(k[i], 1)})`).join('; ')}. Tiền thưởng là bao nhiêu?`, ans: a / 1e6, unit: 'triệu đồng', dec: 2, tol: .01, sol: `Thưởng = (${parts.map(([, i]) => `${fmt(k[i], 1)}×${fmt(w[i] * 100)}%`).join(' + ')}) × ${fmt(sal / 1e6)} × ${fmt(tm, 1)} = ${fmt(f, 3)} × ${fmt(sal * tm / 1e6, 1)} = ${tr(a)} triệu.` }; } },
+ { id: 'C-sales', bai: '4', name: 'Thưởng theo target incentive', gen() { const quota = rnd(10, 40) * 1e8, ti = rnd(4, 15) * 1e7, att = rnd(101, 140), acc = pick([1.5, 2, 3]); const a = ti + (att - 100) / 100 * ti * acc; return { q: `Quota ${fmt(quota / 1e9, 1)} tỷ, target incentive ${fmt(ti / 1e6)} triệu khi đạt 100%. Nhân viên đạt ${att}% quota; phần vượt áp accelerator ${fmt(acc, 1)}×. Thưởng là bao nhiêu?`, ans: a / 1e6, unit: 'triệu đồng', dec: 1, tol: .06, sol: `Thưởng = Target + %vượt × Target × accelerator = ${fmt(ti / 1e6)} + ${att - 100}% × ${fmt(ti / 1e6)} × ${fmt(acc, 1)} = ${fmt(a / 1e6, 1)} triệu.` }; } },
+ { id: 'C-icr', bai: '4', name: 'ICR', gen() { const quota = rnd(10, 50) * 1e8, ti = rnd(5, 20) * 1e7; const a = ti / quota * 100; return { q: `Quota năm ${fmt(quota / 1e9, 1)} tỷ, target incentive ${fmt(ti / 1e6)} triệu. Tỷ lệ hoa hồng cá nhân (ICR) là bao nhiêu %?`, ans: a, unit: '%', dec: 2, tol: .01, sol: `ICR = Target incentive/Quota = ${fmt(ti / 1e6)} triệu / ${fmt(quota / 1e6)} triệu = ${fmt(a, 2)}%.` }; } },
+ { id: 'C-cell', bai: '6', name: 'Đóng góp ô merit', gen() { const P = pick([.15, .2, .3, .35, .4, .45]), C = pick([.16, .2, .24, .25, .3, .35]), G = pick([3, 4, 4.5, 5, 5.5, 6, 7.5, 8.5]); const a = P * C * G; return { q: `Tỷ lệ NV ở xếp loại này ${fmt(P * 100)}%, tỷ lệ NV ở quartile này ${fmt(C * 100)}%, mức tăng của ô ${fmt(G, 1)}%. Ô này đóng góp bao nhiêu điểm % vào tổng ngân sách merit?`, ans: a, unit: 'điểm %', dec: 3, tol: .002, sol: `P × C × G = ${fmt(P, 2)} × ${fmt(C, 2)} × ${fmt(G, 1)} = ${fmt(a, 3)}.` }; } },
+ { id: 'C-mean', bai: '6', name: 'Điểm trung bình kỳ vọng', gen() { let r = [rnd(5, 20), rnd(25, 45), rnd(25, 45), rnd(0, 10)]; let t = r.reduce((x, y) => x + y, 0); if (t > 100) { r[1] -= t - 100; t = 100; } const r1 = 100 - t; const dist = [r[0], r[1], r[2], r[3], r1]; const a = (5 * dist[0] + 4 * dist[1] + 3 * dist[2] + 2 * dist[3] + 1 * dist[4]) / 100; return { q: `Phân bố xếp loại dự kiến: 5 = ${dist[0]}%, 4 = ${dist[1]}%, 3 = ${dist[2]}%, 2 = ${dist[3]}%, 1 = ${dist[4]}%. Điểm trung bình kỳ vọng là bao nhiêu?`, ans: a, unit: 'điểm', dec: 2, tol: .006, sol: `Σ(xếp loại × tỷ lệ) = 5×${fmt(dist[0] / 100, 2)} + 4×${fmt(dist[1] / 100, 2)} + 3×${fmt(dist[2] / 100, 2)} + 2×${fmt(dist[3] / 100, 2)} + 1×${fmt(dist[4] / 100, 2)} = ${fmt(a, 2)}.` }; } },
+ { id: 'C-meritmid', bai: '6', name: 'Merit theo % midpoint', gen() { const mid = rnd(100, 300) * 1e5, p = pick([3, 4, 5, 6]), sal = Math.round(mid * rnd(80, 120) / 100 / 1e5) * 1e5; const inc = mid * p / 100, a = inc / sal * 100; return { q: `Chính sách tăng ${p}% của midpoint cho mức "Đạt". Midpoint ${fmt(mid)} đ, lương nhân viên ${fmt(sal)} đ. Mức tăng tính theo % lương hiện tại là bao nhiêu?`, ans: a, unit: '%', dec: 2, tol: .02, sol: `Tăng = ${p}% × ${fmt(mid)} = ${fmt(inc)} đ → ${fmt(inc)}/${fmt(sal)} = ${fmt(a, 2)}% lương. Người dưới mid tăng nhanh hơn về %.` }; } },
+ { id: 'C-aging', bai: '6', name: 'Data aging', gen() { const base = rnd(100, 400) * 1e5, g = pick([5, 6, 7, 8, 9, 10]), m = rnd(3, 12); const a = base * Math.pow(1 + g / 100 / 12, m); return { q: `Dữ liệu khảo sát: ${fmt(base)} đ, thu thập cách đây ${m} tháng. Thị trường tăng ${g}%/năm. Giá trị cập nhật hiện tại là bao nhiêu?`, ans: a / 1e6, unit: 'triệu đồng', dec: 2, tol: .01, sol: `= ${fmt(base / 1e6, 1)} × (1 + ${g}%/12)^${m} = ${fmt(base / 1e6, 1)} × ${fmt(Math.pow(1 + g / 1200, m), 4)} = ${tr(a)} triệu.` }; } },
+ { id: 'C-comp', bai: '8-9', name: 'COMP2 / COMP3', gen() { const b = rnd(12, 50) * 1e6, t13 = pick([1, 1, 2]), al = rnd(1, 6) * 5e5, sti = rnd(10, 80) * 1e6, which = pick([2, 3]); const c2 = b * 12 + b * t13 + al * 12, a = which === 2 ? c2 : c2 + sti; return { q: `Lương cơ bản ${fmt(b / 1e6)} triệu/tháng, thưởng cam kết ${t13} tháng lương, phụ cấp tiền ${fmt(al / 1e6, 1)} triệu/tháng, thưởng hiệu quả năm ${fmt(sti / 1e6)} triệu. Tính COMP${which} (Mercer).`, ans: a / 1e6, unit: 'triệu đồng/năm', dec: 1, tol: .06, sol: `COMP1 = ${fmt(b / 1e6)}×12 = ${fmt(b * 12 / 1e6)}; COMP2 = COMP1 + ${fmt(b * t13 / 1e6)} + ${fmt(al * 12 / 1e6, 1)} = ${fmt(c2 / 1e6, 1)}${which === 3 ? `; COMP3 = COMP2 + ${fmt(sti / 1e6)} = ${fmt(a / 1e6, 1)}` : ''} triệu.` }; } },
+ { id: 'C-pit', bai: 'Bổ sung', name: 'Thuế TNCN 2026', sup: true, gen() { const g = rnd(16, 50) * 1e6, dep = pick([0, 0, 1, 2]); const ins = g * .105, ti = Math.max(0, g - ins - 15.5e6 - dep * 6.2e6); const B = [[10e6, .05], [30e6, .1], [60e6, .2], [100e6, .3], [Infinity, .35]]; let tax = 0, prev = 0; for (const [cap, r] of B) { if (ti > prev) tax += (Math.min(ti, cap) - prev) * r; prev = cap; } return { q: `Lương đóng BH ${fmt(g / 1e6)} triệu/tháng (dưới trần), ${dep} người phụ thuộc, không có thu nhập khác. Thuế TNCN tháng theo quy định 2026 là bao nhiêu?`, ans: Math.round(tax), unit: 'đồng', dec: 0, tol: 1500, sol: `BH người lao động 10,5% = ${fmt(ins)} đ. Thu nhập tính thuế = ${fmt(g)} − ${fmt(ins)} − 15.500.000${dep ? ` − ${dep}×6.200.000` : ''} = ${fmt(ti)} đ. Thuế theo biểu 5 bậc (5/10/20/30/35%) = ${fmt(Math.round(tax))} đ.` }; } },
+ { id: 'C-ins', bai: 'Bổ sung', name: 'Chi phí bảo hiểm doanh nghiệp', sup: true, gen() { const g = rnd(8, 45) * 1e6; const a = g * .215; return { q: `Lương đóng bảo hiểm ${fmt(g / 1e6)} triệu/tháng (dưới trần). Doanh nghiệp đóng BHXH + BHYT + BHTN bao nhiêu mỗi tháng?`, ans: a / 1e6, unit: 'triệu đồng', dec: 3, tol: .002, sol: `21,5% × ${fmt(g / 1e6)} = ${fmt(a / 1e6, 3)} triệu (BHXH 17,5% + BHYT 3% + BHTN 1%; chưa gồm KPCĐ 2%).` }; } },
+];
+CALC.forEach(c => ITEMS[c.id] = { id: c.id, type: 'calc', bai: baiOf(c.bai), calc: c });
+
+/* ---------- Lặp lại ngắt quãng (Leitner) ---------- */
+const INTERVAL = [0, 1, 3, 7, 14, 30];
+const srsOf = id => S.srs[id] || null; // [box, due, wrong, last]
+const level = id => { const s = srsOf(id); if (!s || !s[0]) return 0; return s[0] >= 4 ? 2 : 1; };
+function grade(id, g) { // g: 0 quên/sai, 1 mơ hồ, 2 nhớ rõ/đúng
+  const t = todayKey(); const s = srsOf(id) || [0, t, 0, ''];
+  let [box, , wrong] = s;
+  if (g === 2) { box = Math.min(5, box + 1); } else if (g === 1) { box = Math.max(1, Math.min(box, 2)); } else { box = 1; wrong++; }
+  const due = g === 0 ? t : addDays(t, g === 1 ? 1 : INTERVAL[box]);
+  S.srs[id] = [box, due, wrong, t];
+  const d = S.days[t] || { n: 0, ok: 0, s: 0 }; d.n++; if (g === 2) d.ok++; S.days[t] = d;
+  Store.touch();
+}
+const isDue = id => { const s = srsOf(id); return !!(s && s[0] && s[1] <= todayKey()); };
+const TIME = { flash: 25, formula: 30, term: 15, quiz: 40, calc: 90, open: 75 };
+
+/* ---------- Trang chủ ---------- */
+const DUR = [5, 10, 15, 20, 30];
+const MODES = [
+ ['mix', 'Hỗn hợp', 'Đề xuất: ưu tiên mục đến hạn và câu từng sai, rồi thêm mục mới; trộn thẻ, trắc nghiệm, bài tính, câu hỏi mở.'],
+ ['flash', 'Thẻ ghi nhớ', 'Khái niệm và công thức: tự nhớ lại rồi lật thẻ, tự chấm Quên / Mơ hồ / Nhớ rõ.'],
+ ['quiz', 'Trắc nghiệm', '121 câu có giải thích; câu sai được đưa vào danh sách ôn lại.'],
+ ['calc', 'Bài tính', 'Số liệu sinh ngẫu nhiên mỗi lần: midpoint, spread, overlap, compa-ratio, merit, thưởng, COMP, thuế TNCN.'],
+ ['open', 'Câu hỏi mở', '81 câu “Bạn có trả lời được?” Buổi 10 và câu tự kiểm tra từng buổi.'],
+ ['term', 'Thuật ngữ Anh – Việt', 'Thẻ thuật ngữ từ Sổ tay thuật ngữ TR (bỏ các mục ít phổ biến).'],
+ ['review', 'Chỉ ôn đến hạn & câu sai', 'Không thêm mục mới; dùng khi muốn ôn nhanh phần chưa chắc.'],
+];
+function chip(label, pressed, on, extra) { return el('button', { type: 'button', class: 'chip', 'aria-pressed': String(!!pressed), onclick: on }, label, extra || null); }
+function renderHome() {
+  const all = Object.values(ITEMS).filter(i => i.type !== 'term');
+  const tracked = all.length;
+  const pen = all.reduce((s, i) => s + Math.min(5, (srsOf(i.id) || [0])[0]) / 5, 0) / tracked;
+  const r = $('#homeRange'); r.querySelector('.fill').style.width = (pen * 100) + '%'; r.querySelector('.mark').style.left = (pen * 100) + '%';
+  const learned = all.filter(i => level(i.id) === 2).length;
+  $('#homePen').textContent = `Range penetration kiến thức: ${fmt(pen * 100, 1)}% · ${learned}/${tracked} mục đã thuộc (ô hộp Leitner 4–5).`;
+  $('#stDue').textContent = Object.keys(ITEMS).filter(isDue).length;
+  $('#stWrong').textContent = Object.entries(S.srs).filter(([id, s]) => s[2] > 0 && ITEMS[id]).length;
+  $('#stToday').textContent = (S.days[todayKey()] || { n: 0 }).n;
+  const p = S.prefs;
+  const dc = $('#durChips'); dc.replaceChildren(...DUR.map(m => chip(m + ' phút', p.min === m, () => { p.min = m; Store.touch(); renderHome(); })));
+  const mc = $('#modeChips'); mc.replaceChildren(...MODES.map(([k, l]) => chip(l, p.mode === k, () => { p.mode = k; Store.touch(); renderHome(); })));
+  $('#modeHint').textContent = (MODES.find(m => m[0] === p.mode) || MODES[0])[2];
+  const bc = $('#baiChips');
+  bc.replaceChildren(chip('Tất cả', !p.bai.length, () => { p.bai = []; Store.touch(); renderHome(); }),
+    ...BAI_KEYS.map(k => chip(k === 'Bổ sung' ? 'Pháp lý VN' : 'Buổi ' + BAI_SHORT[k], p.bai.includes(k), () => { p.bai = p.bai.includes(k) ? p.bai.filter(x => x !== k) : [...p.bai, k]; Store.touch(); renderHome(); })));
+  const plan = buildSession(true);
+  $('#startBtn').textContent = `Bắt đầu ${p.min} phút`;
+  $('#startBtn').disabled = !plan.length;
+  $('#planHint').textContent = plan.length ? `${plan.length} mục · ${countBy(plan)}` : 'Không còn mục đến hạn hay câu sai trong phạm vi đã chọn.';
+  renderStreak();
+}
+function countBy(list) { const c = {}; list.forEach(i => c[i.type] = (c[i.type] || 0) + 1); const n = { flash: 'thẻ', formula: 'công thức', quiz: 'trắc nghiệm', calc: 'bài tính', open: 'câu mở', term: 'thuật ngữ' }; return Object.entries(c).map(([k, v]) => `${v} ${n[k]}`).join(', '); }
+function streakCount() { let n = 0, k = todayKey(); if (!S.days[k]) k = todayKey(-1); while (S.days[k] && S.days[k].n > 0) { n++; k = addDays(k, -1); } return n; }
+function renderStreak() { const n = streakCount(); $('#streak').replaceChildren('Chuỗi ', el('b', { text: String(n) }), ' ngày'); }
+
+/* ---------- Xây phiên ôn ---------- */
+function inScope(i) { const b = S.prefs.bai; if (!b.length) return true; if (i.type === 'term') return true; return i.bai.some(x => b.includes(x)); }
+function prio(i) { const s = srsOf(i.id); if (!s || !s[0]) return 1 + Math.random() * .5; if (s[1] <= todayKey()) return 3 + (s[2] ? 1 : 0) + Math.random() * .5; if (s[2] > 0 && s[0] < 3) return 2 + Math.random() * .3; return Math.random() * .2; }
+function buildSession(dry) {
+  const p = S.prefs, budget = p.min * 60;
+  const types = { mix: { flash: .3, formula: .1, quiz: .35, calc: .15, open: .1 }, flash: { flash: .75, formula: .25 }, quiz: { quiz: 1 }, calc: { calc: 1 }, open: { open: 1 }, term: { term: 1 }, review: { flash: .3, formula: .1, quiz: .4, open: .2 } }[p.mode] || { quiz: 1 };
+  const pools = {};
+  for (const t of Object.keys(types)) {
+    let arr = Object.values(ITEMS).filter(i => i.type === t && inScope(i));
+    if (p.mode === 'review') arr = arr.filter(i => isDue(i.id) || ((srsOf(i.id) || [])[2] > 0 && (srsOf(i.id) || [9])[0] < 3));
+    arr = arr.map(i => [prio(i), i]).sort((a, b) => b[0] - a[0]);
+    if (t !== 'calc' && p.mode === 'mix') arr = arr.filter(([pr]) => pr >= 1); // hỗn hợp: bỏ mục đã thuộc chưa đến hạn
+    pools[t] = arr.map(x => x[1]);
+  }
+  const out = [], used = { }; let time = 0; const cnt = {};
+  const keys = Object.keys(types).filter(t => pools[t].length);
+  let guard = 0;
+  while (time < budget && keys.length && guard++ < 400) {
+    const tot = out.length + 1;
+    keys.sort((a, b) => ((cnt[a] || 0) / tot - types[a]) - ((cnt[b] || 0) / tot - types[b]));
+    const t = keys[0];
+    const it = t === 'calc' ? pools[t][(cnt[t] || 0) % pools[t].length] : pools[t].shift();
+    if (!it) { keys.shift(); continue; }
+    if (t !== 'calc' && !pools[t].length) keys.splice(keys.indexOf(t), 1);
+    out.push(it); cnt[t] = (cnt[t] || 0) + 1; time += TIME[t];
+  }
+  return dry ? out : shuffle(out);
+}
+
+/* ---------- Phiên ôn ---------- */
+let SESS = null;
+function startSession() {
+  const list = buildSession(false); if (!list.length) return;
+  SESS = { list, i: 0, t0: Date.now(), results: [], timer: setInterval(tick, 1000) };
+  go('on-tap'); showCard();
+}
+function tick() { if (!SESS) return; const s = Math.floor((Date.now() - SESS.t0) / 1000); $('#sessTime').textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0') + ' / ' + S.prefs.min + ':00'; }
+function finishSession() {
+  if (!SESS) return; clearInterval(SESS.timer);
+  const secs = Math.round((Date.now() - SESS.t0) / 1000), t = todayKey();
+  if (SESS.results.length) { const d = S.days[t] || { n: 0, ok: 0, s: 0 }; d.s += secs; S.days[t] = d; Store.touch(); }
+  renderResult(SESS, secs); SESS = null; go('ket-qua', true); renderStreak();
+}
+function answer(it, g, extra) { SESS.results.push({ it, g, extra }); grade(it.id, g); }
+function next() { SESS.i++; if (SESS.i >= SESS.list.length) finishSession(); else showCard(); }
+function head(it, label) {
+  const b = it.bai.map(x => x === 'Bổ sung' ? 'Pháp lý VN [Bổ sung]' : x === 'Đọc thêm' ? 'Bài đọc thêm' : 'Buổi ' + BAI_SHORT[x]).join(' · ');
+  const lv = level(it.id);
+  return el('div', { class: 'kind' }, el('span', { text: label }), el('span', { text: b + (it.type !== 'calc' ? ' · ' + LVL_NAME[lv] : '') }));
+}
+function gradeRow(it) {
+  const mk = (g, t, s) => el('button', { type: 'button', class: 'g' + g, onclick: () => { answer(it, g); next(); } }, t, el('small', { text: s }));
+  return el('div', { class: 'grade' }, mk(0, 'Quên', 'ôn lại hôm nay'), mk(1, 'Mơ hồ', 'ôn lại ngày mai'), mk(2, 'Nhớ rõ', 'giãn lịch ôn'));
+}
+function showCard() {
+  const it = SESS.list[SESS.i];
+  $('#sessCount').textContent = (SESS.i + 1) + '/' + SESS.list.length;
+  $('#sessBar').style.width = (SESS.i / SESS.list.length * 100) + '%';
+  tick();
+  const host = $('#cardHost'); let card;
+  if (it.type === 'flash') {
+    const c = it.c; const back = el('div', { class: 'back' }, kv(c)); back.hidden = true;
+    const actions = el('div', {}, el('button', { type: 'button', class: 'btn', onclick: e => { back.hidden = false; e.target.replaceWith(gradeRow(it)); } }, 'Lật thẻ'));
+    card = el('div', { class: 'card' }, head(it, 'Thẻ khái niệm · ' + c.chude), el('h2', { text: c.vi }), c.en ? el('div', { class: 'en', text: c.en }) : null, el('p', { class: 'hint', text: 'Tự nói định nghĩa' + (c.ct ? ', công thức' : '') + ' và một ví dụ rồi lật thẻ.' }), back, actions);
+  } else if (it.type === 'formula') {
+    const f = it.f; const back = el('div', { class: 'back' }, el('div', { class: 'formula', text: f.f }), el('div', { class: 'hint', text: 'Ví dụ: ' + f.ex })); back.hidden = true;
+    card = el('div', { class: 'card' }, head(it, 'Thẻ công thức'), el('h2', { text: f.name }), el('p', { class: 'hint', text: 'Viết ra công thức trước khi lật.' }), back, el('div', {}, el('button', { type: 'button', class: 'btn', onclick: e => { back.hidden = false; e.target.replaceWith(gradeRow(it)); } }, 'Lật thẻ')));
+  } else if (it.type === 'term') {
+    const g = it.g; const back = el('div', { class: 'back' }, el('div', { class: 'q', text: g.vi }), g.note ? el('div', { class: 'hint', text: 'Đối chiếu khóa học: ' + g.note }) : null); back.hidden = true;
+    card = el('div', { class: 'card' }, head(it, 'Thuật ngữ #' + g.n), el('h2', { text: g.en }), back, el('div', {}, el('button', { type: 'button', class: 'btn', onclick: e => { back.hidden = false; e.target.replaceWith(gradeRow(it)); } }, 'Xem nghĩa')));
+  } else if (it.type === 'quiz') {
+    const q = it.q; const order = shuffle(q.o.map((t, i) => i)); const fb = el('div', { 'aria-live': 'polite' });
+    const opts = el('div', { class: 'opts' }, order.map((oi, k) => el('button', { type: 'button', class: 'opt', 'data-oi': oi, onclick: e => {
+      const right = oi === q.a; opts.querySelectorAll('.opt').forEach(b => { b.disabled = true; const v = +b.dataset.oi; if (v === q.a) b.classList.add('ok'); else if (b === e.currentTarget) b.classList.add('no'); });
+      fb.replaceChildren(el('div', { class: 'fb ' + (right ? 'ok' : 'no') }, el('b', { text: right ? 'Đúng. ' : 'Chưa đúng. ' }), q.ex), el('div', { style: 'margin-top:10px' }, el('button', { type: 'button', class: 'btn', onclick: next }, 'Câu tiếp')));
+      answer(it, right ? 2 : 0, { pick: oi });
+    } }, el('span', { class: 'k', text: 'ABCD'[k] }), el('span', { text: q.o[oi] }))));
+    card = el('div', { class: 'card' }, head(it, 'Trắc nghiệm'), el('div', { class: 'q', text: q.q }), opts, fb);
+  } else if (it.type === 'calc') {
+    const c = it.calc; const P = c.gen(); const inp = el('input', { type: 'text', inputmode: 'decimal', id: 'calcIn', autocomplete: 'off', 'aria-label': 'Đáp số' }); const fb = el('div', { 'aria-live': 'polite' });
+    const check = () => {
+      const cands = parseNums(inp.value).filter(x => !isNaN(x)); if (!cands.length) { inp.focus(); return; }
+      const v = cands[0], ok = cands.some(x => Math.abs(x - P.ans) <= P.tol + 1e-9); inp.disabled = true; btn.remove();
+      fb.replaceChildren(el('div', { class: 'fb ' + (ok ? 'ok' : 'no') }, el('b', { text: ok ? 'Đúng. ' : `Chưa đúng — đáp số ${fmt(P.ans, P.dec)} ${P.unit}. ` }), P.sol), el('div', { style: 'margin-top:10px' }, el('button', { type: 'button', class: 'btn', onclick: next }, 'Câu tiếp')));
+      answer(it, ok ? 2 : 0, { v, ans: P.ans });
+    };
+    const btn = el('button', { type: 'button', class: 'btn', onclick: check }, 'Kiểm tra');
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+    card = el('div', { class: 'card' }, head(it, 'Bài tính · ' + c.name + (c.sup ? ' [Bổ sung]' : '')), el('div', { class: 'q', text: P.q }), el('div', { class: 'calc-in' }, inp, el('span', { class: 'unit', text: P.unit })), el('div', { class: 'hint', text: P.dec ? `Làm tròn ${P.dec} chữ số thập phân; dùng dấu phẩy hoặc dấu chấm đều được.` : 'Nhập số tròn, có thể viết 1.530.000 hoặc 1530000.' }), el('div', {}, btn), fb);
+    setTimeout(() => inp.focus(), 50);
+  } else if (it.type === 'open') {
+    const o = it.o; const ta = el('textarea', { id: 'openAns', placeholder: 'Gạch ý trả lời của bạn (không bắt buộc, chỉ lưu khi bạn bấm Lưu vào ghi chú)…' });
+    const back = el('div', { class: 'back' }, o.hint ? el('div', {}, el('div', { class: 'eyebrow', text: 'Gợi ý' }), el('div', { text: o.hint })) : el('div', { class: 'hint', text: 'Câu hỏi thiết kế để tự đối chiếu với thực tế công ty bạn; không có đáp án cố định.' }), el('div', { class: 'row' }, el('button', { type: 'button', class: 'btn ghost small', onclick: () => { if (ta.value.trim()) { S.notes[o.id] = ta.value.trim(); Store.touch(true); toast('Đã lưu vào ghi chú'); } } }, 'Lưu vào ghi chú')));
+    back.hidden = true; if (S.notes[o.id]) ta.value = S.notes[o.id];
+    card = el('div', { class: 'card' }, head(it, 'Câu hỏi mở · ' + o.grp), el('div', { class: 'q', text: o.q }), ta, back, el('div', {}, el('button', { type: 'button', class: 'btn', onclick: e => { back.hidden = false; e.target.replaceWith(gradeRow(it)); } }, 'Xem gợi ý & tự chấm')));
+  }
+  host.replaceChildren(card);
+}
+function kv(c) {
+  const dl = el('dl', { class: 'kv' });
+  const add = (k, v, cls) => { if (!v) return; dl.append(el('dt', { text: k }), el('dd', cls ? { class: cls, text: v } : { text: v })); };
+  add('Ý chính', c.dn); add('Công thức', c.ct, 'formula'); add('Ví dụ', c.vd); add('Nguồn', c.src);
+  return dl;
+}
+function parseNums(raw) {
+  let s = String(raw).trim().replace(/\s|đồng|triệu|nghìn|vnd|đ|%/gi, '');
+  if (!s || !/^[-+]?[\d.,]+$/.test(s)) return [];
+  const dots = (s.match(/\./g) || []).length, coms = (s.match(/,/g) || []).length;
+  if (dots && coms) return [parseFloat(s.lastIndexOf(',') > s.lastIndexOf('.') ? s.replace(/\./g, '').replace(',', '.') : s.replace(/,/g, ''))];
+  if (coms > 1) return [parseFloat(s.replace(/,/g, ''))];
+  if (dots > 1) return [parseFloat(s.replace(/\./g, ''))];
+  const sep = dots ? '.' : coms ? ',' : '';
+  if (!sep) return [parseFloat(s)];
+  const dec = parseFloat(s.replace(sep, '.')), after = s.split(sep)[1] || '';
+  // "1.530" kiểu Việt Nam là một nghìn năm trăm ba mươi; "12.5" là mười hai phẩy năm — chấp nhận cả hai cách đọc khi có đúng 3 chữ số sau dấu.
+  return after.length === 3 ? [dec, parseFloat(s.replace(sep, ''))] : [dec];
+}
+function renderResult(sess, secs) {
+  const n = sess.results.length, ok = sess.results.filter(r => r.g === 2).length;
+  const wrong = sess.results.filter(r => r.g === 0);
+  const v = $('#v-ket-qua');
+  const list = el('div', { class: 'results' }, wrong.map(r => el('details', { class: 'item' }, el('summary', {}, el('b', { text: titleOf(r.it) })), el('div', { class: 'body' }, explainOf(r.it)))));
+  v.replaceChildren(el('div', { class: 'panel stack' },
+    el('h1', { style: 'font-size:22px', text: n ? 'Xong phiên ôn hôm nay' : 'Phiên ôn chưa có câu trả lời' }),
+    el('div', { class: 'stats' }, el('div', { class: 'stat' }, el('b', { text: String(n) }), el('span', { text: 'mục đã ôn' })), el('div', { class: 'stat' }, el('b', { text: n ? fmt(ok / n * 100) + '%' : '–' }), el('span', { text: 'nhớ rõ / làm đúng' })), el('div', { class: 'stat' }, el('b', { text: Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') }), el('span', { text: 'thời gian' }))),
+    el('p', { class: 'hint', style: 'margin:0', text: wrong.length ? `${wrong.length} mục quên hoặc sai được xếp lịch ôn lại ngay trong phiên sau.` : 'Không có mục nào sai. Các mục nhớ rõ được giãn lịch ôn.' }),
+    el('div', { class: 'row' }, el('button', { type: 'button', class: 'btn', onclick: () => { S.prefs.min = 5; Store.touch(); startSession(); } }, 'Ôn thêm 5 phút'), el('a', { href: '#hom-nay', class: 'btn ghost', style: 'text-decoration:none' }, 'Về trang Hôm nay'))),
+    wrong.length ? el('div', { class: 'eyebrow', text: 'Xem lại mục quên / sai' }) : null, wrong.length ? list : null);
+}
+function titleOf(it) { return it.type === 'flash' ? it.c.vi : it.type === 'formula' ? it.f.name : it.type === 'term' ? it.g.en : it.type === 'quiz' ? it.q.q : it.type === 'calc' ? 'Bài tính: ' + it.calc.name : it.o.q; }
+function explainOf(it) {
+  if (it.type === 'flash') return kv(it.c);
+  if (it.type === 'formula') return el('div', {}, el('div', { class: 'formula', text: it.f.f }), el('div', { class: 'hint', text: 'Ví dụ: ' + it.f.ex }));
+  if (it.type === 'term') return el('div', { text: it.g.vi + (it.g.note ? ' — ' + it.g.note : '') });
+  if (it.type === 'quiz') return el('div', {}, el('div', {}, el('b', { text: 'Đáp án: ' }), it.q.o[it.q.a]), el('div', { class: 'hint', text: it.q.ex }));
+  if (it.type === 'calc') return el('div', { class: 'hint', text: 'Bài tính sinh số mới mỗi lần; ôn lại công thức trong tab Tra cứu → Công thức.' });
+  return el('div', { text: it.o.hint || 'Tự đối chiếu với thực tế công ty bạn.' });
+}
+
+/* ---------- Tra cứu ---------- */
+const LK = { type: 'concept', bai: '' };
+const LK_TYPES = [['concept', 'Khái niệm'], ['formula', 'Công thức'], ['term', 'Thuật ngữ'], ['open', 'Câu hỏi mở'], ['quiz', 'Trắc nghiệm']];
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd');
+function renderLookup() {
+  $('#lkType').replaceChildren(...LK_TYPES.map(([k, l]) => chip(l, LK.type === k, () => { LK.type = k; renderLookup(); })));
+  $('#lkBai').replaceChildren(chip('Mọi buổi', !LK.bai, () => { LK.bai = ''; renderLookup(); }), ...[...BAI_KEYS, 'Đọc thêm'].map(k => chip(k === 'Bổ sung' ? 'Pháp lý VN' : k === 'Đọc thêm' ? 'Đọc thêm' : 'Buổi ' + BAI_SHORT[k], LK.bai === k, () => { LK.bai = LK.bai === k ? '' : k; renderLookup(); })));
+  $('#lkBai').hidden = LK.type === 'term';
+  const q = norm($('#q').value.trim());
+  let rows = [];
+  if (LK.type === 'concept') rows = D.concepts.map(c => ({ id: c.id, bai: baiOf(c.bai), t: c.vi, en: c.en, hay: [c.vi, c.en, c.dn, c.ct, c.vd, c.kw].join(' '), body: () => kv(c), tag: c.chude }));
+  if (LK.type === 'formula') rows = D.formulas.map(f => ({ id: f.id, bai: baiOf(f.bai), t: f.name, en: f.f, hay: [f.name, f.f, f.ex].join(' '), body: () => el('div', {}, el('div', { class: 'formula', text: f.f }), el('div', { class: 'hint', text: 'Ví dụ: ' + f.ex })), tag: 'Buổi ' + f.bai }));
+  if (LK.type === 'term') rows = D.gloss.map(g => ({ id: 'G' + String(g.n).padStart(3, '0'), bai: [], t: g.en, en: g.vi, hay: [g.en, g.vi, g.note].join(' '), body: () => el('div', {}, el('div', { text: g.vi }), g.note ? el('div', { class: 'hint', text: 'Đối chiếu: ' + g.note }) : null), tag: '#' + g.n }));
+  if (LK.type === 'open') rows = D.openq.map(o => ({ id: o.id, bai: baiOf(o.bai), t: o.q, en: '', hay: [o.q, o.hint, o.grp].join(' '), body: () => el('div', {}, o.hint ? el('div', { text: 'Gợi ý: ' + o.hint }) : el('div', { class: 'hint', text: 'Không có đáp án cố định.' })), tag: o.id }));
+  if (LK.type === 'quiz') rows = D.quiz.map(qq => ({ id: qq.id, bai: baiOf(qq.bai), t: qq.q, en: '', hay: [qq.q, ...qq.o, qq.ex].join(' '), body: () => el('div', {}, el('div', {}, el('b', { text: 'Đáp án: ' }), qq.o[qq.a]), el('div', { class: 'hint', text: qq.ex })), tag: qq.id }));
+  if (LK.bai && LK.type !== 'term') rows = rows.filter(r => r.bai.includes(LK.bai));
+  if (q) rows = rows.filter(r => norm(r.hay).includes(q));
+  $('#lkCount').textContent = `${rows.length} kết quả` + (rows.length > 80 ? ' · hiển thị 80 kết quả đầu, gõ thêm từ khóa để lọc' : '');
+  $('#lkList').replaceChildren(...rows.slice(0, 80).map(r => {
+    const note = el('textarea', { placeholder: 'Ghi chú của bạn cho mục này…', 'aria-label': 'Ghi chú' }); note.value = S.notes[r.id] || '';
+    note.addEventListener('change', () => { const v = note.value.trim(); if (v) S.notes[r.id] = v; else delete S.notes[r.id]; Store.touch(true); toast('Đã lưu ghi chú'); });
+    const d = el('details', { class: 'item' }, el('summary', {}, el('i', { class: 'lvl l' + level(r.id), title: LVL_NAME[level(r.id)] }), el('b', { text: r.t }), r.en ? el('span', { class: 'en', text: r.en }) : null, el('span', { class: 'tag', text: r.tag })), el('div', { class: 'body' }));
+    d.addEventListener('toggle', () => { if (d.open && !d._f) { d._f = 1; d.querySelector('.body').append(r.body(), note); } });
+    return d;
+  }));
+}
+
+/* ---------- Tiến độ ---------- */
+function renderProgress() {
+  const v = $('#v-tien-do');
+  const rows = BAI_KEYS.map(k => { const its = Object.values(ITEMS).filter(i => i.type !== 'term' && i.type !== 'calc' && i.bai.includes(k)); const l2 = its.filter(i => level(i.id) === 2).length, l1 = its.filter(i => level(i.id) === 1).length; return { k, n: its.length, l1, l2 }; });
+  const prog = el('div', { class: 'stack', style: 'gap:10px' }, rows.map(r => el('div', { class: 'prog-row' }, el('span', { text: BAI_LABEL[r.k], title: BAI[r.k] }), el('div', { class: 'stackbar', role: 'img', 'aria-label': `${r.l2} đã thuộc, ${r.l1} đang học trên ${r.n}` }, el('i', { class: 's2', style: `width:${r.n ? r.l2 / r.n * 100 : 0}%` }), el('i', { class: 's1', style: `width:${r.n ? r.l1 / r.n * 100 : 0}%` })), el('span', { class: 'num', style: 'text-align:right', text: `${r.l2}/${r.n}` }))));
+  const heat = el('div', { class: 'heat', 'aria-label': '35 ngày gần nhất' });
+  for (let i = 34; i >= 0; i--) { const k = todayKey(-i), n = (S.days[k] || { n: 0 }).n; heat.append(el('i', { class: (n >= 30 ? 'h3' : n >= 12 ? 'h2' : n > 0 ? 'h1' : '') + (i === 0 ? ' today' : ''), title: `${k}: ${n} mục` })); }
+  const tot = Object.values(S.days).reduce((a, d) => ({ n: a.n + d.n, s: a.s + (d.s || 0) }), { n: 0, s: 0 });
+  const hard = Object.entries(S.srs).filter(([id, s]) => s[2] > 0 && ITEMS[id]).sort((a, b) => b[1][2] - a[1][2]).slice(0, 12);
+  const calcRows = CALC.map(c => { const s = srsOf(c.id); return [c.name, s ? s[2] : 0, s ? LVL_NAME[level(c.id)] : 'Chưa làm']; });
+  v.replaceChildren(
+    el('div', { class: 'panel stack' }, el('h1', { style: 'font-size:22px', text: 'Tiến độ theo buổi' }), el('div', { class: 'legend' }, el('span', {}, el('i', { style: 'background:var(--good)' }), 'Đã thuộc'), el('span', {}, el('i', { style: 'background:var(--warn)' }), 'Đang học'), el('span', {}, el('i', { style: 'background:var(--sunk)' }), 'Chưa học')), prog),
+    el('div', { class: 'panel stack' }, el('h2', { style: 'font-size:18px', text: 'Nhịp ôn 35 ngày' }), heat, el('p', { class: 'hint', style: 'margin:0', text: `Tổng ${tot.n} lượt ôn · ${Math.round(tot.s / 60)} phút · chuỗi hiện tại ${streakCount()} ngày.` })),
+    el('div', { class: 'panel stack' }, el('h2', { style: 'font-size:18px', text: 'Hay quên / sai nhất' }), hard.length ? el('div', { class: 'tbl-wrap' }, el('table', {}, el('thead', {}, el('tr', {}, el('th', { text: 'Mục' }), el('th', { text: 'Lần sai', style: 'text-align:right' }))), el('tbody', {}, hard.map(([id, s]) => el('tr', {}, el('td', { text: titleOf(ITEMS[id]) }), el('td', { class: 'n', text: String(s[2]) })))))) : el('p', { class: 'hint', style: 'margin:0', text: 'Chưa có mục nào sai. Làm vài phiên trắc nghiệm hoặc bài tính để danh sách này có dữ liệu.' }),
+      hard.length ? el('div', {}, el('button', { type: 'button', class: 'btn small', onclick: () => { S.prefs.mode = 'review'; Store.touch(); startSession(); } }, 'Ôn ngay các mục này')) : null),
+    el('div', { class: 'panel stack' }, el('h2', { style: 'font-size:18px', text: 'Bài tính' }), el('div', { class: 'tbl-wrap' }, el('table', {}, el('thead', {}, el('tr', {}, el('th', { text: 'Dạng' }), el('th', { text: 'Lần sai', style: 'text-align:right' }), el('th', { text: 'Mức' }))), el('tbody', {}, calcRows.map(r => el('tr', {}, el('td', { text: r[0] }), el('td', { class: 'n', text: String(r[1]) }), el('td', { class: 'nw', text: r[2] }))))))),
+    el('p', { class: 'hint', text: 'Lịch ôn theo hộp Leitner: nhớ rõ thì giãn 1 → 3 → 7 → 14 → 30 ngày; quên hoặc sai thì quay về hộp 1 và ôn lại ngay phiên sau.' })
+  );
+}
+
+/* ---------- Google Sheet / Excel ---------- */
+const XLSX_MIME = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+function xlsxBlob() { const b64 = document.getElementById('xlsx').textContent.trim(); const bin = atob(b64); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return { blob: new Blob([u], { type: XLSX_MIME }), b64 }; }
+function setStatus(msg, cls, link) { const s = $('#sheetStatus'); s.hidden = false; s.className = 'status ' + (cls || ''); s.replaceChildren(msg); if (link) s.append(' ', el('a', { href: link, target: '_blank', rel: 'noopener', text: 'Mở Google Sheet' })); }
+function findLink(o, depth = 0) { if (!o || depth > 4) return null; if (typeof o === 'string') { try { return findLink(JSON.parse(o), depth + 1); } catch (e) { return null; } } if (typeof o !== 'object') return null; for (const k of ['webViewLink', 'alternateLink', 'url', 'link', 'viewUrl']) if (typeof o[k] === 'string' && /^https:\/\//.test(o[k])) return o[k]; if (typeof o.id === 'string' && o.id.length > 15) return 'https://docs.google.com/spreadsheets/d/' + o.id + '/edit'; for (const v of Object.values(o)) { const r = findLink(v, depth + 1); if (r) return r; } return null; }
+async function initSheet() {
+  if (S.sheetUrl) setStatus('Bộ tra cứu đã được tạo trong Google Drive của bạn.', 'ok', S.sheetUrl);
+  let mcp = null, dl = null;
+  try { [mcp, dl] = await Promise.all([window.claude && claude.use ? claude.use('mcp') : null, window.claude && claude.use ? claude.use('downloads') : null]); } catch (e) {}
+  const mk = $('#mkSheet'), dx = $('#dlXlsx');
+  if (dl) { dx.hidden = false; dx.onclick = async () => { try { await dl.save({ filename: 'TR101_tra_cuu.xlsx', data: xlsxBlob().blob }); toast('Đã tải file Excel'); } catch (e) { if (e && e.code === 'declined') return; setStatus(e && e.code === 'rate_limited' ? 'Đang có một hộp thoại tải xuống mở — đóng nó rồi thử lại.' : 'Không tải được file ở chế độ xem này.', 'no'); } }; }
+  if (!mcp) { if (!dl) setStatus('Chế độ xem này không hỗ trợ tạo hay tải file. Mở trang trong ứng dụng Claude để dùng hai nút này.', ''); return; }
+  mk.hidden = false; if (S.sheetUrl) mk.textContent = 'Tạo thêm một bản Google Sheet';
+  mk.onclick = async () => {
+    mk.disabled = true; setStatus('Đang tạo Google Sheet trong Drive của bạn…', '');
+    try {
+      let fileArgs = false; try { const lt = await mcp.listTools(); fileArgs = !!(lt && lt.fileArgs); } catch (e) {}
+      const { blob, b64 } = xlsxBlob();
+      const input = { title: 'TR101 – Bộ tra cứu Total Rewards', contentMimeType: XLSX_MIME, base64Content: fileArgs ? { $file: { data: blob, name: 'TR101_tra_cuu.xlsx', type: XLSX_MIME } } : b64 };
+      const res = await mcp.callTool('Google Drive', 'create_file', input, { cache: false });
+      const link = findLink(res && (res.payload !== undefined ? res.payload : res)) || findLink(res);
+      if (link) { S.sheetUrl = link; Store.touch(); setStatus('Đã tạo xong.', 'ok', link); mk.textContent = 'Tạo thêm một bản Google Sheet'; }
+      else setStatus('Google Drive đã nhận file nhưng không trả về đường dẫn. Mở Google Drive, tìm “TR101 – Bộ tra cứu Total Rewards”.', 'ok');
+    } catch (e) {
+      const c = e && e.code;
+      const M = { server_not_connected: 'Bạn chưa kết nối Google Drive. Thêm Google Drive trong claude.ai → Settings → Connectors rồi bấm lại.', needs_reauth: 'Kết nối Google Drive đã hết hạn. Kết nối lại trong claude.ai → Settings → Connectors rồi bấm lại.', not_in_manifest: 'Trang chưa được phép dùng Google Drive. Mở menu Quyền của trang để bật, hoặc dùng nút Tải file Excel.', selection_required: 'Bạn có nhiều kết nối Google Drive. Chọn một kết nối khi Claude hỏi rồi bấm lại.', blocked_by_policy: 'Tổ chức của bạn chặn công cụ tạo file Google Drive. Dùng nút Tải file Excel.', approval_required: 'Lệnh tạo file cần bạn duyệt. Bấm lại nút và chọn Cho phép.', tool_error: 'Google Drive báo lỗi: ' + ((e && e.message) || '') , server_unavailable: 'Google Drive chưa phản hồi. Kiểm tra Drive xem file đã được tạo chưa trước khi bấm lại.', upstream_error: 'Chưa rõ file đã được tạo hay chưa. Kiểm tra Google Drive trước khi bấm lại.' };
+      setStatus(M[c] || ('Không tạo được Google Sheet (' + (c || 'lỗi') + '). Dùng nút Tải file Excel rồi tải lên Drive.'), 'no');
+    } finally { mk.disabled = false; }
+  };
+}
+
+/* ---------- Điều hướng ---------- */
+const VIEWS = ['hom-nay', 'on-tap', 'ket-qua', 'tra-cuu', 'tien-do', 'trang-tinh'];
+function go(v, keepHash) { VIEWS.forEach(x => { const s = document.getElementById('v-' + x); if (s) s.hidden = x !== v; }); document.querySelectorAll('nav.tabs a').forEach(a => a.setAttribute('aria-current', a.dataset.v === v ? 'page' : 'false')); if (!keepHash && ['hom-nay', 'tra-cuu', 'tien-do', 'trang-tinh'].includes(v) && location.hash !== '#' + v) history.replaceState(null, '', '#' + v); window.scrollTo(0, 0); }
+function route() { let v = (location.hash || '').slice(1); if (!['hom-nay', 'tra-cuu', 'tien-do', 'trang-tinh'].includes(v)) v = 'hom-nay'; if (SESS && v !== 'on-tap') { clearInterval(SESS.timer); SESS = null; } go(v, true); if (v === 'hom-nay') renderHome(); if (v === 'tra-cuu') renderLookup(); if (v === 'tien-do') renderProgress(); }
+function renderAll() { renderStreak(); const v = (location.hash || '#hom-nay').slice(1); if (v === 'tien-do') renderProgress(); else if (v === 'tra-cuu') renderLookup(); else if (!SESS) renderHome(); if (S.sheetUrl && $('#sheetStatus').hidden) setStatus('Bộ tra cứu đã được tạo trong Google Drive của bạn.', 'ok', S.sheetUrl); }
+window.addEventListener('hashchange', route);
+$('#startBtn').addEventListener('click', startSession);
+$('#endBtn').addEventListener('click', finishSession);
+$('#q').addEventListener('input', () => { clearTimeout(renderLookup._t); renderLookup._t = setTimeout(renderLookup, 120); });
+
+Store.loadLocal();
+route();
+Store.init();
+initSheet();
+})();
+</script>
