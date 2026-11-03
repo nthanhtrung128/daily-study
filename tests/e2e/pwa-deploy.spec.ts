@@ -181,3 +181,54 @@ test('/dang-nhap không lấy từ cache service worker (để Cloudflare Access
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
   expect(await cspViolations(page)).toEqual([]);
 });
+
+test('CSP + Permissions-Policy cho luyện nói (S6): micro được phép, phát lại ghi âm blob: không bị chặn', async ({ page }) => {
+  await page.goto('./#hom-nay');
+  const result = await page.evaluate(async () => {
+    // WAV 8 kHz, 0,1 s im lặng — giống bản ghi âm lưu trong IndexedDB rồi phát bằng blob: URL.
+    const n = 800;
+    const buf = new ArrayBuffer(44 + n * 2);
+    const v = new DataView(buf);
+    const str = (o: number, s: string) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+    str(0, 'RIFF');
+    v.setUint32(4, 36 + n * 2, true);
+    str(8, 'WAVEfmt ');
+    v.setUint32(16, 16, true);
+    v.setUint16(20, 1, true);
+    v.setUint16(22, 1, true);
+    v.setUint32(24, 8000, true);
+    v.setUint32(28, 16000, true);
+    v.setUint16(32, 2, true);
+    v.setUint16(34, 16, true);
+    str(36, 'data');
+    v.setUint32(40, n * 2, true);
+    const url = URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+    const audio = document.createElement('audio');
+    audio.preload = 'auto';
+    const loaded = await new Promise<string>((res) => {
+      audio.onloadedmetadata = () => res('ok');
+      audio.onerror = () => res(`error ${audio.error?.code ?? ''}`);
+      setTimeout(() => res('timeout'), 5000);
+      audio.src = url;
+      document.body.append(audio);
+    });
+    audio.remove();
+    const d = document as unknown as {
+      permissionsPolicy?: { allowsFeature(f: string): boolean };
+      featurePolicy?: { allowsFeature(f: string): boolean };
+    };
+    const policy = d.permissionsPolicy ?? d.featurePolicy;
+    return {
+      loaded,
+      mic: policy ? policy.allowsFeature('microphone') : null,
+      camera: policy ? policy.allowsFeature('camera') : null,
+    };
+  });
+  expect(result.loaded).toBe('ok');
+  // WebKit chưa có document.permissionsPolicy → null (bỏ qua phần này).
+  if (result.mic !== null) {
+    expect(result.mic).toBe(true);
+    expect(result.camera).toBe(false);
+  }
+  expect(await cspViolations(page)).toEqual([]);
+});
