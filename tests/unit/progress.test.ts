@@ -58,7 +58,7 @@ describe('Progress (IndexedDB)', () => {
     const p = new Progress(db2);
     await p.load();
     expect(p.stateOf('tr:K009')?.box).toBe(3);
-    expect(db2.verno).toBe(2);
+    expect(db2.verno).toBe(3);
     await db2.delete();
   });
 });

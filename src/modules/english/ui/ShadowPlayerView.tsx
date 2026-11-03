@@ -3,6 +3,8 @@ import { ShadowPlayer } from '../player';
 import type { Track } from '../tracks';
 import { RATES, tts } from '../tts';
 import { setTtsPrefs, useTtsPrefs } from '../useTts';
+import { SayCheck } from './SayCheck';
+import { speechRec } from '../speech/recognizer';
 
 const fmtRate = (r: number) => `${String(r).replace('.', ',')}×`;
 
@@ -64,11 +66,15 @@ export function ShadowPlayerView({ track }: { track: Track }) {
         {status}
       </p>
 
+
       <div className="sh-ctrl" role="group" aria-label="Điều khiển">
         <button type="button" className="btn ghost sh-btn" onClick={() => player.prev()} disabled={s.index === 0} aria-label="Câu trước">
           <Icon d={PREV} />
         </button>
-        <button type="button" className="btn sh-btn sh-play" onClick={() => player.toggle()} aria-label={s.playing ? 'Tạm dừng' : 'Phát'} disabled={!tts.supported}>
+        <button type="button" className="btn sh-btn sh-play" onClick={() => {
+            speechRec.abort();
+            player.toggle();
+          }} aria-label={s.playing ? 'Tạm dừng' : 'Phát'} disabled={!tts.supported}>
           <Icon d={s.playing ? PAUSE : PLAY} />
         </button>
         <button type="button" className="btn ghost sh-btn" onClick={() => player.next()} disabled={s.index >= player.length - 1} aria-label="Câu sau">
@@ -102,6 +108,7 @@ export function ShadowPlayerView({ track }: { track: Track }) {
           ))}
       </div>
       {!tts.supported && <p className="hint">Trình duyệt này không hỗ trợ đọc văn bản (speechSynthesis).</p>}
+      {line && <SayCheck key={`${track.id}:${s.index}`} target={line.en} listen={false} onStart={() => player.pause()} />}
 
       <ol className="sh-list" aria-label="Danh sách câu">
         {track.lines.map((l, i) => (

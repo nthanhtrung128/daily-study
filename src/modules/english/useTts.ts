@@ -1,6 +1,7 @@
 import { useEffect, useSyncExternalStore } from 'react';
 import { getSetting, setSetting } from '../../core/db';
 import { clampRate, tts, type Accent } from './tts';
+import { speechRec } from './speech/recognizer';
 
 /** Cài đặt đọc (giọng Mỹ/Anh, tốc độ) — lưu trong bảng settings của IndexedDB. */
 export interface TtsPrefs {
@@ -61,5 +62,7 @@ export function useSpeaking(): boolean {
 
 /** Đọc một câu theo cài đặt hiện tại. Gọi trực tiếp trong onClick (iOS). */
 export function say(text: string): void {
+  // Đang nhận giọng thì hủy, để micro không thu tiếng máy đọc.
+  speechRec.abort();
   void tts.speak(text, { rate: prefs.rate, accent: prefs.accent });
 }
