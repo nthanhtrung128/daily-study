@@ -4,3 +4,6 @@ import { afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
 afterEach(() => cleanup());
+
+// jsdom chưa có scrollTo.
+window.scrollTo = (() => undefined) as typeof window.scrollTo;
