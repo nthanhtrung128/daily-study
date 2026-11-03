@@ -5,6 +5,7 @@ import { TodayPage } from './ui/pages/TodayPage';
 import { LookupPage } from './ui/pages/LookupPage';
 import { ProgressPage } from './ui/pages/ProgressPage';
 import { SettingsPage } from './ui/pages/SettingsPage';
+import { useProgress } from './ui/useProgress';
 
 const PAGES: Record<RouteId, () => ReactElement> = {
   'hom-nay': TodayPage,
@@ -16,6 +17,7 @@ const PAGES: Record<RouteId, () => ReactElement> = {
 export function App() {
   const route = useHashRoute();
   const Page = PAGES[route];
+  const streak = useProgress().streak();
 
   return (
     <>
@@ -27,7 +29,7 @@ export function App() {
               <span>Total Rewards 101 · Tiếng Anh công sở</span>
             </div>
             <div className="streak" aria-label="Chuỗi ngày ôn">
-              Chuỗi <b>0</b> ngày
+              Chuỗi <b data-testid="streak">{streak}</b> ngày
             </div>
           </div>
           <nav className="tabs" aria-label="Mục">

@@ -1,8 +1,8 @@
 import Dexie, { type EntityTable } from 'dexie';
 
 /**
- * Lưu trữ cục bộ (IndexedDB) — tiến độ, nhật ký ôn, cài đặt. Không gửi dữ liệu ra ngoài.
- * Khung S1: mới có bảng; logic Leitner / phiên ôn sẽ thêm ở S2.
+ * Lưu trữ cục bộ (IndexedDB) — tiến độ, nhật ký ôn, cài đặt, ghi chú. Không gửi dữ liệu ra ngoài.
+ * v1 (S1): items, reviews, settings. v2 (S2): thêm days (thống kê theo ngày) và notes.
  */
 
 /** Trạng thái Leitner của một mục (thẻ TR, câu trắc nghiệm, cụm từ EN…). */
@@ -30,6 +30,20 @@ export interface ReviewLog {
   at: number;
 }
 
+/** Thống kê một ngày: số lượt ôn, số lượt nhớ rõ/đúng, số giây ôn. */
+export interface DayStat {
+  day: string;
+  n: number;
+  ok: number;
+  s: number;
+}
+
+export interface Note {
+  id: string;
+  text: string;
+  at: number;
+}
+
 export interface Setting {
   key: string;
   value: unknown;
@@ -39,6 +53,8 @@ export class StudyDB extends Dexie {
   items!: EntityTable<ItemState, 'id'>;
   reviews!: EntityTable<ReviewLog, 'id'>;
   settings!: EntityTable<Setting, 'key'>;
+  days!: EntityTable<DayStat, 'day'>;
+  notes!: EntityTable<Note, 'id'>;
 
   constructor(name = 'daily-study') {
     super(name);
@@ -46,6 +62,10 @@ export class StudyDB extends Dexie {
       items: 'id, box, due',
       reviews: '++id, itemId, day',
       settings: 'key',
+    });
+    this.version(2).stores({
+      days: 'day',
+      notes: 'id',
     });
   }
 }
