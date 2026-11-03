@@ -10,9 +10,16 @@ import { useTtsLifecycle } from '../useTts';
 import { PatternCard } from './PatternCard';
 import { PhraseCard } from './PhraseCard';
 import { ShadowPlayerView } from './ShadowPlayerView';
+import { SpeakScreen } from './SpeakScreen';
+import { TopicScreen } from './TopicScreen';
+import type { SayItem } from '../speech/sayItems';
 import '../english.css';
 
-export type EnView = { kind: 'cards'; type: EnType; list: EnItem[]; t0: number; minutes: number } | { kind: 'shadow'; t0: number };
+export type EnView =
+  | { kind: 'cards'; type: EnType; list: EnItem[]; t0: number; minutes: number }
+  | { kind: 'shadow'; t0: number }
+  | { kind: 'speak'; list: SayItem[]; t0: number }
+  | { kind: 'topics'; t0: number };
 
 interface Result {
   it: EnItem;
@@ -34,6 +41,13 @@ export function EnglishScreen({ view, onExit }: { view: EnView; onExit: () => vo
   };
 
   if (done) return <EnResult {...done} onHome={onExit} />;
+  if (view.kind === 'speak' || view.kind === 'topics') {
+    const leave = (count: number) => {
+      if (count > 0 || view.kind === 'topics') p.addSeconds(Math.round((Date.now() - view.t0) / 1000));
+      onExit();
+    };
+    return view.kind === 'speak' ? <SpeakScreen list={view.list} t0={view.t0} onExit={leave} /> : <TopicScreen onExit={() => leave(0)} />;
+  }
   if (view.kind === 'shadow') return <ShadowScreen onExit={() => finish([])} />;
   return <CardSession list={view.list} type={view.type} t0={view.t0} minutes={view.minutes} onFinish={finish} />;
 }

@@ -3,6 +3,7 @@ import Dexie, { type EntityTable } from 'dexie';
 /**
  * Lưu trữ cục bộ (IndexedDB) — tiến độ, nhật ký ôn, cài đặt, ghi chú. Không gửi dữ liệu ra ngoài.
  * v1 (S1): items, reviews, settings. v2 (S2): thêm days (thống kê theo ngày) và notes.
+ * v3 (S6): thêm recordings (bản ghi âm đề nói, lưu dạng ArrayBuffer để chạy cả trên Safari cũ).
  */
 
 /** Trạng thái Leitner của một mục (thẻ TR, câu trắc nghiệm, cụm từ EN…). */
@@ -44,6 +45,22 @@ export interface Note {
   at: number;
 }
 
+/** Một bản ghi âm đề nói (chỉ lưu trên máy). */
+export interface Recording {
+  id?: number;
+  /** Id đề nói, vd "st-0001". */
+  topicId: string;
+  /** Đề bài (lưu kèm để vẫn hiển thị được nếu đề đổi / bị xóa). */
+  title: string;
+  at: number;
+  /** Độ dài (ms). */
+  ms: number;
+  mime: string;
+  size: number;
+  data: ArrayBuffer;
+  transcript?: string;
+}
+
 export interface Setting {
   key: string;
   value: unknown;
@@ -55,6 +72,7 @@ export class StudyDB extends Dexie {
   settings!: EntityTable<Setting, 'key'>;
   days!: EntityTable<DayStat, 'day'>;
   notes!: EntityTable<Note, 'id'>;
+  recordings!: EntityTable<Recording, 'id'>;
 
   constructor(name = 'daily-study') {
     super(name);
@@ -66,6 +84,9 @@ export class StudyDB extends Dexie {
     this.version(2).stores({
       days: 'day',
       notes: 'id',
+    });
+    this.version(3).stores({
+      recordings: '++id, topicId, at',
     });
   }
 }
