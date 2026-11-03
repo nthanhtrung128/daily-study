@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#1D5BC4"/>
+  <!-- Thanh dải lương Min – Mid – Max -->
+  <rect x="96" y="236" width="320" height="40" rx="20" fill="#FFFFFF" fill-opacity=".28"/>
+  <rect x="96" y="236" width="208" height="40" rx="20" fill="#FFFFFF"/>
+  <rect x="254" y="214" width="4" height="84" rx="2" fill="#FFFFFF" fill-opacity=".7"/>
+  <rect x="296" y="180" width="16" height="152" rx="8" fill="#14202B"/>
+</svg>
