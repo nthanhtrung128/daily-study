@@ -11,7 +11,7 @@ import type { Grade } from '../../../core/leitner';
  * - số: "15" = "fifteen", "1,530" = "one thousand five hundred thirty", "12.5" = "twelve point five",
  *   "15%" = "fifteen percent", "$200" = "two hundred dollars", "3rd" = "third", "9:30" = "nine thirty";
  * - vài biến thể chính tả: ok/okay, e-mail/email, -ise/-ize, a.m./am.
- * Từ đệm ("um", "uh", "er"…) trong câu nói bị bỏ qua.
+ * Từ đệm ("um", "uh", "er", "ah"…) bị bỏ qua ở cả hai phía.
  */
 
 export interface Token {
@@ -319,7 +319,7 @@ export const INSERT_WEIGHT = 0.5;
 export function scoreSpeech(target: string, heard: string): ScoreResult {
   const words = displayWords(target);
   const hwords = displayWords(heard);
-  const ref = tokenize(target);
+  const ref = tokenize(target, { dropFillers: true });
   const hyp = tokenize(heard, { dropFillers: true });
   const ops = align(ref, hyp);
 

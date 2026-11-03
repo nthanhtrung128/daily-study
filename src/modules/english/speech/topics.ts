@@ -13,6 +13,10 @@ export interface SpeakingTopic {
   hints: string[];
   seconds?: number;
   trConcept?: string;
+  /** Cụm nên dùng (S7). */
+  useful?: string[];
+  /** Câu mở đầu mẫu (S7). */
+  opener?: string;
 }
 
 /** Đề tạm (tự soạn) — chỉ dùng khi chưa có speaking-topics.json. Id "st-tmp-*" để không trùng đề thật. */
@@ -68,7 +72,7 @@ export const FALLBACK_TOPICS: readonly SpeakingTopic[] = [
 ];
 
 // Nếu đã có content/english/speaking-topics.json (S7) thì nạp; chưa có thì glob rỗng, build vẫn chạy.
-const files = import.meta.glob<{ items: SpeakingTopic[] }>('../../../content/english/speaking-topics.json', {
+const files = import.meta.glob<{ items: SpeakingTopic[] }>('../../../../content/english/speaking-topics.json', {
   eager: true,
   import: 'default',
 });

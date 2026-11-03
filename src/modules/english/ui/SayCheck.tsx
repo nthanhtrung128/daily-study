@@ -115,7 +115,7 @@ export function SayCheck({ target, listen = true, onScored, onApply, onStart }: 
   const showTyping = !supported || !!err;
 
   return (
-    <div className="say" data-testid="say-check">
+    <div className="say-check" data-testid="say-check">
       <div className="row">
         <button
           type="button"

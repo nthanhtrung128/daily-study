@@ -53,6 +53,9 @@ export function TopicScreen({ onExit }: { onExit: () => void }) {
               Đề ngẫu nhiên
             </button>
           </div>
+          <div className="eyebrow">Bản ghi gần đây</div>
+          <RecordingList showTitle limit={3} />
+          <div className="eyebrow">Chọn đề</div>
           {present.length > 1 && (
             <div className="row" role="group" aria-label="Lọc theo chủ đề">
               <button type="button" className="chip" aria-pressed={filter === null} onClick={() => setFilter(null)}>
@@ -78,8 +81,6 @@ export function TopicScreen({ onExit }: { onExit: () => void }) {
               </button>
             ))}
           </div>
-          <div className="eyebrow">Bản ghi gần đây</div>
-          <RecordingList showTitle />
         </>
       )}
     </section>
@@ -197,6 +198,27 @@ function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
             ))}
           </ul>
         </div>
+        {!!topic.useful?.length && (
+          <div>
+            <div className="eyebrow">Cụm nên dùng</div>
+            <div className="row topic-useful" lang="en">
+              {topic.useful.map((u, i) => (
+                <span key={i} className="tag">
+                  {u}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        {topic.opener && (
+          <div>
+            <div className="eyebrow">Câu mở đầu mẫu</div>
+            <div className="en-ex">
+              <p lang="en">{topic.opener}</p>
+              <SpeakButton text={topic.opener} label="Nghe câu mở đầu" what={topic.opener} />
+            </div>
+          </div>
+        )}
         <div className="row" role="group" aria-label="Thời gian nói">
           {DURATIONS.map((d) => (
             <button

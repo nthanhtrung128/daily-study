@@ -6,11 +6,12 @@ const fmtWhen = (at: number) =>
   new Date(at).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
 
 /** Danh sách bản ghi trên máy: nghe lại, tải về, xóa (bấm 2 lần để chắc chắn). */
-export function RecordingList({ topicId, refresh = 0, showTitle = false }: { topicId?: string; refresh?: number; showTitle?: boolean }) {
+export function RecordingList({ topicId, refresh = 0, showTitle = false, limit }: { topicId?: string; refresh?: number; showTitle?: boolean; limit?: number }) {
   const [rows, setRows] = useState<Recording[] | null>(null);
   const [urls, setUrls] = useState<Record<number, string>>({});
   const [confirm, setConfirm] = useState<number | null>(null);
   const [tick, setTick] = useState(0);
+  const [all, setAll] = useState(false);
 
   useEffect(() => {
     let live = true;
@@ -42,11 +43,12 @@ export function RecordingList({ topicId, refresh = 0, showTitle = false }: { top
   if (!rows) return null;
   if (!rows.length) return <p className="hint" data-testid="rec-empty">Chưa có bản ghi nào. Bản ghi chỉ lưu trên máy này.</p>;
   const total = rows.reduce((a, r) => a + r.size, 0);
+  const visible = limit && !all ? rows.slice(0, limit) : rows;
 
   return (
     <div className="stack rec-list-wrap">
       <ul className="rec-list" aria-label="Bản ghi">
-        {rows.map((r) => {
+        {visible.map((r) => {
           const id = r.id as number;
           const url = urls[id];
           return (
@@ -94,6 +96,13 @@ export function RecordingList({ topicId, refresh = 0, showTitle = false }: { top
           );
         })}
       </ul>
+      {visible.length < rows.length && (
+        <div>
+          <button type="button" className="btn ghost small" onClick={() => setAll(true)}>
+            Xem tất cả ({rows.length})
+          </button>
+        </div>
+      )}
       <p className="hint">
         {rows.length} bản ghi · {fmtSize(total)} · chỉ lưu trên máy này (không gửi đi đâu).
       </p>

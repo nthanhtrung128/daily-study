@@ -1,8 +1,8 @@
 /* ==== Luyện nói (S6): nói có chấm, đề nói 1 phút, bản ghi ====
    File riêng, chỉ dùng design token có sẵn trên :root nên tự theo light/dark. Vùng chạm ≥ 44px. */
 
-.say { display: flex; flex-direction: column; gap: 10px; border-top: 1px dashed var(--line); padding-top: 12px; min-width: 0; }
-.say .btn, .say .chip, .rec-list .btn { min-height: 44px; }
+.say-check { display: flex; flex-direction: column; gap: 10px; border-top: 1px dashed var(--line); padding-top: 12px; min-width: 0; }
+.say-check .btn, .say-check .chip, .rec-list .btn { min-height: 44px; }
 .say-mic, .rec-btn { display: inline-flex; align-items: center; gap: 8px; }
 .say-mic.on, .rec-btn.on { background: var(--bad); color: #fff; }
 .say-mic svg, .rec-btn svg { flex: 0 0 auto; }
@@ -13,6 +13,7 @@
   .say-dot { animation: say-pulse 1.1s ease-in-out infinite; }
 }
 @keyframes say-pulse { 50% { opacity: 0.25; } }
+.on .say-dot { background: #fff; }
 .say-err { font-size: 13.5px; color: var(--bad); background: var(--bad-soft); border-radius: 8px; padding: 10px 12px; overflow-wrap: anywhere; }
 .say-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -57,3 +58,4 @@ ins.w-extra { color: var(--muted); font-style: italic; text-decoration: none; ba
 .rec-danger { color: var(--bad); border-color: var(--bad); }
 .rec-bar { height: 6px; border-radius: 3px; background: var(--surface); overflow: hidden; }
 .rec-bar i { display: block; height: 100%; background: var(--bad); width: 0; transition: width 0.2s linear; }
+.topic-useful .tag { font-size: 13.5px; padding: 4px 10px; background: var(--accent-soft); color: var(--ink); overflow-wrap: anywhere; max-width: 100%; }
