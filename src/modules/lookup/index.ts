@@ -1,5 +1,4 @@
-import phrasesRaw from '../../../content/english/phrases.json';
-import patternsRaw from '../../../content/english/patterns.json';
+import { PATTERNS, PHRASES, TOPIC_VI, enId, type Pattern, type Phrase } from '../english/content';
 import { fold, matchesAll, queryTokens } from '../../core/fold';
 import { DATA, baiOf, type Concept, type Formula, type Gloss, type OpenQ, type Quiz } from '../tr/data';
 import { ITEM_BY_ID, titleOf, trId } from '../tr/items';
@@ -8,31 +7,7 @@ import { ITEM_BY_ID, titleOf, trId } from '../tr/items';
  * Chỉ mục tra cứu: khái niệm, công thức, thuật ngữ Anh–Việt, câu hỏi mở, trắc nghiệm của TR101
  * và cụm từ / câu mẫu tiếng Anh. Id mỗi mục trùng id Leitner (tr:…, en:…) để chấm mức thuộc và ghi chú.
  */
-export interface Phrase {
-  id: string;
-  en: string;
-  vi: string;
-  example?: string;
-  note?: string;
-  topic: string;
-  level: string;
-}
-export interface Pattern {
-  id: string;
-  situation: string;
-  en: string;
-  vi: string;
-  slots?: { text: string; alts: string[] }[];
-  note?: string;
-  topic: string;
-  level: string;
-}
-
-export const PHRASES = (phrasesRaw as unknown as { items: Phrase[] }).items;
-export const PATTERNS = (patternsRaw as unknown as { items: Pattern[] }).items;
-
-/** Id Leitner cho mục tiếng Anh: "en:" + id trong content (ph-0001, pt-0001). */
-export const enId = (raw: string) => `en:${raw}`;
+export { PATTERNS, PHRASES, enId };
 
 export type LookupKind = 'concept' | 'formula' | 'term' | 'open' | 'quiz' | 'phrase' | 'pattern';
 
@@ -72,15 +47,7 @@ export const KINDS = Object.keys(KIND_LABEL) as LookupKind[];
 /** Loại mục không gắn với buổi học TR101. */
 export const NO_BAI: ReadonlySet<LookupKind> = new Set(['term', 'phrase', 'pattern']);
 
-const TOPIC_LABEL: Record<string, string> = {
-  office: 'Công sở',
-  meetings: 'Họp',
-  email: 'Email',
-  'cb-hr': 'C&B / HR',
-  interview: 'Phỏng vấn',
-  negotiation: 'Thương lượng',
-};
-export const topicLabel = (t: string) => TOPIC_LABEL[t] ?? t;
+export const topicLabel = (t: string): string => (TOPIC_VI as Record<string, string>)[t] ?? t;
 
 function entry(e: Omit<LookupEntry, 'hay' | 'head'>, parts: unknown[]): LookupEntry {
   return { ...e, hay: fold(parts.join(' ')), head: fold(`${e.title} ${e.sub}`) };
