@@ -120,6 +120,27 @@ export function trackErrors(page: Page): string[] {
   return errs;
 }
 
+const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
+export type TabId = keyof typeof TABS;
+
+/**
+ * Mở một tab như người dùng (bấm thanh tab). Không dùng page.goto('./#…') khi chỉ đổi hash:
+ * trên WebKit đôi khi không phát `hashchange`, URL đổi mà trang vẫn ở tab cũ. Trang trắng thì tải bằng goto.
+ */
+export async function openTab(page: Page, id: TabId): Promise<void> {
+  if (!page.url().startsWith('http')) await page.goto(`./#${id}`);
+  else await page.getByRole('navigation', { name: 'Mục' }).getByRole('link', { name: TABS[id], exact: true }).click();
+  await expect(page).toHaveURL(new RegExp(`#${id}$`));
+  await expect(page.getByRole('link', { name: TABS[id], exact: true })).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
+}
+
+/** Trang Hôm nay mở lại từ đầu (rời sang tab khác rồi quay lại để màn ôn đang mở được đóng). */
+export async function freshHome(page: Page): Promise<void> {
+  if (page.url().startsWith('http')) await openTab(page, 'tien-do');
+  await openTab(page, 'hom-nay');
+}
+
 export async function audit(page: Page, where: string, found: string[]): Promise<void> {
   // Chờ hiệu ứng vào trang (0,18 s) xong để đo đúng vị trí và độ mờ.
   await page.waitForTimeout(220);
@@ -143,12 +164,7 @@ export async function audit(page: Page, where: string, found: string[]): Promise
  */
 export async function walkApp(page: Page, at: (where: string) => Promise<void>): Promise<void> {
   const btn = (name: string | RegExp) => page.getByRole('button', { name, exact: typeof name === 'string' });
-  const home = async () => {
-    // Đi qua tab khác để trang Hôm nay mở lại từ đầu (đổi hash không tải lại trang).
-    await page.goto('./#tien-do');
-    await page.goto('./#hom-nay');
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  };
+  const home = () => freshHome(page);
 
   await home();
   await at('hom-nay');
@@ -244,7 +260,7 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await at('en-de-noi-ban-ghi');
 
   // Tra cứu: mở một mục TR và một cụm EN.
-  await page.goto('./#tra-cuu');
+  await openTab(page, 'tra-cuu');
   await at('tra-cuu');
   await page.getByRole('searchbox').fill('compa');
   await page.locator('details.item summary').first().click();
@@ -256,11 +272,11 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await expect(page.getByText('Không có mục nào khớp', { exact: false })).toBeVisible();
   await at('tra-cuu-rong');
 
-  await page.goto('./#tien-do');
+  await openTab(page, 'tien-do');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   await at('tien-do');
 
-  await page.goto('./#cai-dat');
+  await openTab(page, 'cai-dat');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   await at('cai-dat');
   await btn('Dán JSON').click();

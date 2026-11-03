@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { audit, trackErrors, walkApp } from './helpers/audit';
+import { audit, freshHome, openTab, trackErrors, walkApp, type TabId } from './helpers/audit';
 import { stubMedia, watchCsp } from './helpers/stubs';
 
 /**
@@ -9,10 +9,7 @@ import { stubMedia, watchCsp } from './helpers/stubs';
  */
 
 /** Mở trang Hôm nay từ đầu (đổi hash sang cùng trang không làm trang mở lại). */
-const gotoHome = async (page: Page) => {
-  await page.goto('./#tien-do');
-  await page.goto('./#hom-nay');
-};
+const gotoHome = (page: Page) => freshHome(page);
 
 // Service worker (autoUpdate) có thể tự tải lại trang ở lần mở đầu, làm luồng bấm chập chờn trên WebKit.
 // Các test quét / a11y / rò rỉ không cần nó; test offline bên dưới bật lại.
@@ -63,13 +60,13 @@ for (const { scheme, width } of VARIANTS) {
 test('giao diện Tối chọn tay (máy đang sáng): đủ tương phản, theme-color đổi theo', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   const found: string[] = [];
-  await page.goto('./#cai-dat');
+  await openTab(page, 'cai-dat');
   await page.getByRole('button', { name: 'Tối', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   const colors = await page.locator('meta[name="theme-color"]').evaluateAll((els) => els.map((e) => e.getAttribute('content')));
   expect(new Set(colors)).toEqual(new Set(['#0E1318']));
-  for (const hash of ['hom-nay', 'tra-cuu', 'tien-do', 'cai-dat']) {
-    await page.goto(`./#${hash}`);
+  for (const hash of ['hom-nay', 'tra-cuu', 'tien-do', 'cai-dat'] as TabId[]) {
+    await openTab(page, hash);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await audit(page, `tối-tay #${hash}`, found);
   }
@@ -148,7 +145,7 @@ test('rời màn khi đang đọc / nghe / ghi âm: tắt TTS, nhận giọng v�
   await expect.poll(() => w('__recLive')).toBe(0);
 
   // Trang Cài đặt: Nghe thử rồi chuyển tab → hủy đọc.
-  await page.goto('./#cai-dat');
+  await openTab(page, 'cai-dat');
   const before = await w('__synthCancels');
   await page.getByRole('button', { name: 'Nghe thử' }).click();
   await page.getByRole('link', { name: 'Tiến độ' }).click();
