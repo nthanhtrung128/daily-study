@@ -4,6 +4,7 @@ import { GradeRow } from '../../tr/cards/TrCard';
 import { TOPIC_VI, type Phrase } from '../content';
 import type { CardDir } from '../plan';
 import { SpeakButton } from './SpeakButton';
+import { SayCheck } from './SayCheck';
 
 export interface PhraseCardProps {
   ph: Phrase;
@@ -58,6 +59,7 @@ export function PhraseCard({ ph, dir, state, note, onSaveNote, onGrade }: Phrase
               <p lang="en">{ph.example}</p>
               <SpeakButton text={ph.example} label="Nghe câu" what={ph.example} />
             </div>
+            <SayCheck target={ph.example} listen={false} />
           </div>
           {ph.note && <p className="hint">{ph.note}</p>}
           <div className="field">

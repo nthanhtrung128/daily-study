@@ -4,6 +4,7 @@ import { GradeRow } from '../../tr/cards/TrCard';
 import { TOPIC_VI, type Pattern } from '../content';
 import { applySlots, optionText, segments } from '../slots';
 import { SpeakButton } from './SpeakButton';
+import { SayCheck } from './SayCheck';
 
 export interface PatternCardProps {
   pt: Pattern;
@@ -51,6 +52,7 @@ export function PatternCard({ pt, state, onGrade }: PatternCardProps) {
             <SpeakButton text={pt.en} label="Nghe câu" what={pt.en} />
           </div>
           <p className="hint">Nghe rồi nhại lại 2–3 lần, bắt chước nhịp và ngữ điệu. Phần tô màu là chỗ sẽ tự thay từ.</p>
+          <SayCheck target={pt.en} listen={false} />
           <div>
             <button type="button" className="btn" onClick={() => setStep(2)}>
               Đã nhại · sang tự thay từ
@@ -77,7 +79,8 @@ export function PatternCard({ pt, state, onGrade }: PatternCardProps) {
             <SpeakButton text={current} label="Nghe câu đã thay" what={current} />
           </div>
           {pt.note && <p className="hint">{pt.note}</p>}
-          <p className="hint">Nói to câu đã thay, rồi tự chấm: bạn nói câu này đã trôi chảy chưa?</p>
+          <p className="hint">Nói to câu đã thay (bấm “Nói thử” để máy chấm), rồi tự chấm: bạn nói câu này đã trôi chảy chưa?</p>
+          <SayCheck key={current} target={current} listen={false} onApply={onGrade} />
           <GradeRow onPick={onGrade} />
         </>
       )}

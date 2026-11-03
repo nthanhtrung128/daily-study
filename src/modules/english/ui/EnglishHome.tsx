@@ -3,6 +3,9 @@ import { getSetting, setSetting } from '../../../core/db';
 import { useProgress } from '../../../ui/useProgress';
 import { EN_DURATIONS, enStats, planEnglish } from '../plan';
 import { ACCENTS } from '../tts';
+import { SAY_ITEMS, planSpeaking } from '../speech/sayItems';
+import { SPEAKING_TOPICS } from '../speech/topics';
+import { isDue } from '../../../core/leitner';
 import { setTtsPrefs, useTtsPrefs } from '../useTts';
 import type { EnView } from './EnglishScreen';
 import '../english.css';
@@ -34,6 +37,12 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
   const pt = enStats(p.stateOf, today, 'pattern');
   const phPlan = planEnglish('phrase', p.stateOf, today, { minutes: prefs.min, dry: true });
   const ptPlan = planEnglish('pattern', p.stateOf, today, { minutes: prefs.min, dry: true });
+
+  const sayDue = SAY_ITEMS.filter((i) => isDue(p.stateOf(i.id), today)).length;
+  const startSpeak = () => {
+    const list = planSpeaking(p.stateOf, today, { count: prefs.min });
+    if (list.length) onStart({ kind: 'speak', list, t0: Date.now() });
+  };
 
   const start = (type: 'phrase' | 'pattern') => {
     const list = planEnglish(type, p.stateOf, today, { minutes: prefs.min });
@@ -105,8 +114,16 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
           Shadowing
           <small>Nghe từng câu, nhại theo</small>
         </button>
+        <button type="button" className="btn en-go-btn" onClick={startSpeak}>
+          Luyện nói
+          <small>{`${prefs.min} câu · máy chấm từng từ${sayDue ? ` · ${sayDue} đến hạn` : ''}`}</small>
+        </button>
+        <button type="button" className="btn ghost en-go-btn" onClick={() => onStart({ kind: 'topics', t0: Date.now() })}>
+          Đề nói 1 phút
+          <small>{`${SPEAKING_TOPICS.length} đề · ghi âm, nghe lại`}</small>
+        </button>
       </div>
-      <p className="hint">Âm thanh chỉ phát khi bạn bấm nút nghe. Phiên trộn TR 40% · tiếng Anh 60% sẽ có ở bước sau.</p>
+      <p className="hint">Âm thanh và micro chỉ bật khi bạn bấm nút. Bản ghi âm chỉ lưu trên máy. Phiên trộn TR 40% · tiếng Anh 60% sẽ có ở bước sau.</p>
     </div>
   );
 }
