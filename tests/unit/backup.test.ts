@@ -146,13 +146,16 @@ describe('xuất / nhập vào IndexedDB', () => {
       app: 'daily-study',
       format: 1,
       items: [{ id: 'tr:K1', box: 9, due: '2026-11-01', wrong: '2', last: 5 }, { id: 'tr:K2', box: 1 }, 'x'],
-      days: [{ day: '2026-11-01', n: 3, ok: 9 }],
+      days: [{ day: '2026-11-01', n: 3, ok: 9 }, { day: '2026-11-02', n: 4, ok: 1, s: 60, nw: 2 }],
       notes: [{ id: 'tr:K1', text: '' }],
       reviews: [{ itemId: 'tr:K1', day: '2026-11-01', grade: 2, at: 1 }, { itemId: 'tr:K1', day: 'x', grade: 2 }],
       settings: [{ key: 'a', value: 1 }, { nokey: 1 }],
     });
     expect(d.items).toEqual([{ id: 'tr:K1', box: 5, due: '2026-11-01', wrong: 2, last: 5 }]);
-    expect(d.days).toEqual([{ day: '2026-11-01', n: 3, ok: 3, s: 0 }]);
+    expect(d.days).toEqual([
+      { day: '2026-11-01', n: 3, ok: 3, s: 0 },
+      { day: '2026-11-02', n: 4, ok: 1, s: 60, nw: 2 },
+    ]);
     expect(d.notes).toEqual([]);
     expect(d.reviews).toHaveLength(1);
     expect(d.settings).toEqual([{ key: 'a', value: 1 }]);

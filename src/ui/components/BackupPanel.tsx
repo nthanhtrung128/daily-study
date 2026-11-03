@@ -10,6 +10,7 @@ import {
   type ImportMode,
   type ParsedBackup,
 } from '../../core/backup';
+import { reloadDailyPrefs } from '../useDailyPrefs';
 import { fmt } from '../../core/num';
 import { totals } from '../../modules/progress/stats';
 import { useProgress } from '../useProgress';
@@ -79,6 +80,7 @@ export function BackupPanel() {
     try {
       await applyBackup(pending.data, mode);
       await p.load(true);
+      reloadDailyPrefs();
       const s = summarize(pending.data);
       setStatus({
         kind: 'ok',

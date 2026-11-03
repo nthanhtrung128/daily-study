@@ -37,6 +37,8 @@ export interface DayStat {
   n: number;
   ok: number;
   s: number;
+  /** Số mục mới (lần đầu chấm) trong ngày — dùng cho giới hạn mục mới/ngày (S8). Bản cũ không có → 0. */
+  nw?: number;
 }
 
 export interface Note {

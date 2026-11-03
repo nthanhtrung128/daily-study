@@ -86,6 +86,11 @@ export class Progress {
     return this.days.get(day) ?? { day, n: 0, ok: 0, s: 0 };
   }
 
+  /** Số mục mới đã học hôm nay. */
+  newToday(): number {
+    return this.dayStat(this.today()).nw ?? 0;
+  }
+
   streak(): number {
     return streakCount((d) => this.days.get(d)?.n ?? 0, this.today());
   }
@@ -93,11 +98,13 @@ export class Progress {
   grade(id: string, g: Grade): LeitnerState {
     const t = this.today();
     const at = this.now().getTime();
-    const next = applyGrade(this.states.get(id), g, t, at);
+    const prev = this.states.get(id);
+    const next = applyGrade(prev, g, t, at);
     this.states.set(id, next);
     const d = { ...this.dayStat(t) };
     d.n++;
     if (g === 2) d.ok++;
+    if (!prev?.box) d.nw = (d.nw ?? 0) + 1;
     this.days.set(t, d);
     this.emit();
     this.persist(() =>

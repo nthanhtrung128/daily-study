@@ -10,6 +10,13 @@ import { DEFAULT_PREFS, DURATIONS, MODES, countBy, homeStats, modeOf, planSessio
 import { Explain, TrCard } from '../../modules/tr/cards/TrCard';
 import { EnglishHome } from '../../modules/english/ui/EnglishHome';
 import { EnglishScreen, type EnView } from '../../modules/english/ui/EnglishScreen';
+import { DailyPanel } from '../mix/DailyPanel';
+import { planToday } from '../mix/planToday';
+import { DailySession } from '../mix/DailySession';
+import { DailyResultView } from '../mix/DailyResultView';
+import { useDailyPrefs } from '../useDailyPrefs';
+import type { DailyEntry } from '../../modules/mix/plan';
+import type { DailyResult } from '../../modules/mix/result';
 
 const PREFS_KEY = 'tr.prefs';
 
@@ -17,7 +24,12 @@ interface Result {
   it: TrItem;
   g: Grade;
 }
-type View = { kind: 'home' } | { kind: 'session'; list: TrItem[]; t0: number } | { kind: 'result'; results: Result[]; secs: number };
+type View =
+  | { kind: 'home' }
+  | { kind: 'session'; list: TrItem[]; t0: number }
+  | { kind: 'result'; results: Result[]; secs: number }
+  | { kind: 'mix'; entries: DailyEntry[]; t0: number; minutes: number }
+  | { kind: 'mix-result'; results: DailyResult[]; secs: number };
 
 const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
@@ -31,6 +43,7 @@ function Chip({ pressed, onClick, children }: { pressed: boolean; onClick: () =>
 
 export function TodayPage() {
   const p = useProgress();
+  const daily = useDailyPrefs();
   const [prefs, setPrefs] = useState<Prefs>(DEFAULT_PREFS);
   const [view, setView] = useState<View>({ kind: 'home' });
   const [en, setEn] = useState<EnView | null>(null);
@@ -56,7 +69,27 @@ export function TodayPage() {
     if (list.length) setView({ kind: 'session', list, t0: Date.now() });
   };
 
+  const startMix = (minutes: number, entries: DailyEntry[] = planToday(p, daily, minutes).entries) => {
+    if (entries.length) setView({ kind: 'mix', entries, t0: Date.now(), minutes });
+  };
+
   if (en) return <EnglishScreen view={en} onExit={() => setEn(null)} />;
+  if (view.kind === 'mix') {
+    return (
+      <DailySession
+        entries={view.entries}
+        t0={view.t0}
+        minutes={view.minutes}
+        onFinish={(results, secs) => {
+          if (results.length) p.addSeconds(secs);
+          setView({ kind: 'mix-result', results, secs });
+        }}
+      />
+    );
+  }
+  if (view.kind === 'mix-result') {
+    return <DailyResultView {...view} onMore={() => startMix(5)} onHome={() => setView({ kind: 'home' })} />;
+  }
   if (view.kind === 'session') {
     return (
       <Session
@@ -91,6 +124,8 @@ export function TodayPage() {
 
   return (
     <section className="stack" aria-labelledby="h-today">
+      <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
+
       <div className="panel stack">
         <div>
           <RangeBar value={st.pen} />
@@ -115,10 +150,13 @@ export function TodayPage() {
         </div>
       </div>
 
-      <div className="panel stack">
-        <h1 id="h-today" className="h-page">
-          Hôm nay ôn bao lâu?
-        </h1>
+      <div className="panel stack" aria-labelledby="h-tr">
+        <div>
+          <div className="eyebrow">Ôn riêng</div>
+          <h2 id="h-tr" className="h-page">
+            Total Rewards
+          </h2>
+        </div>
         <div className="row" role="group" aria-label="Thời lượng">
           {DURATIONS.map((m) => (
             <Chip key={m} pressed={prefs.min === m} onClick={() => update({ min: m })}>
