@@ -3,7 +3,8 @@
  * Chạy: npm run validate:content. Thoát mã 1 nếu có lỗi.
  * - content/tr101/data.json: cấu trúc, id, trường bắt buộc.
  * - content/english/*.json: theo JSON Schema trong content/english/schema/ (bộ kiểm tra viết tay ở scripts/lib/english-content.ts),
- *   cộng id duy nhất, không trùng câu tiếng Anh, slot câu mẫu khớp câu; in số mục theo chủ đề / trình độ.
+ *   cộng id duy nhất, không trùng câu tiếng Anh, slot câu mẫu khớp câu, vai hội thoại khớp người nói,
+ *   trConcept của đề nói có trong TR101; in số mục theo chủ đề / trình độ.
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -13,6 +14,8 @@ import { ENGLISH_FILES, formatCounts, validateEnglishFile, type Schema, type Sch
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const errors: string[] = [];
 const err = (msg: string) => errors.push(msg);
+/** Id khái niệm TR101, để đề nói kiểm tra trConcept. */
+const trConceptIds = new Set<string>();
 
 type Obj = Record<string, unknown>;
 const isObj = (v: unknown): v is Obj => typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -62,7 +65,10 @@ function validateTr101() {
     if (!parts.every((x) => x in bai)) err(`${where}: buổi "${row.bai}" không có trong meta.bai`);
   };
 
-  checkList(file, 'concepts', d.concepts, ['id', 'vi', 'dn'], 'id', checkBai);
+  checkList(file, 'concepts', d.concepts, ['id', 'vi', 'dn'], 'id', (row, where) => {
+    checkBai(row, where);
+    if (isStr(row.id)) trConceptIds.add(row.id);
+  });
   checkList(file, 'gloss', d.gloss, ['en', 'vi']);
   checkList(file, 'quiz', d.quiz, ['id', 'q'], 'id', (row, where) => {
     checkBai(row, where);
@@ -101,7 +107,7 @@ function validateEnglish() {
     }
     const data = readJson(rel);
     if (data === undefined) continue;
-    const r = validateEnglishFile(spec, data, registry);
+    const r = validateEnglishFile(spec, data, registry, { trConceptIds });
     r.errors.forEach(err);
     console.log(`  ${spec.file}: ${r.count} mục — ${formatCounts(r.byTopic)} | ${formatCounts(r.byLevel)}`);
   }

@@ -1,0 +1,1546 @@
+{
+  "$schema": "./schema/speaking-topics.schema.json",
+  "items": [
+    {
+      "id": "st-0001",
+      "en": "Explain what \"total rewards\" means to a new employee.",
+      "vi": "Giải thích \"tổng đãi ngộ\" cho nhân viên mới.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K001",
+      "hints": [
+        "Total rewards is everything an employee receives in exchange for their work.",
+        "It includes pay, but also benefits, well-being, recognition and development.",
+        "Some parts are financial, others are non-financial.",
+        "Give one example of a non-cash reward that people often forget."
+      ],
+      "useful": ["in exchange for", "financial and non-financial", "the whole package", "goes beyond salary", "for example"],
+      "opener": "When people hear \"rewards\", they usually think of salary, but total rewards is much broader than that."
+    },
+    {
+      "id": "st-0002",
+      "en": "Describe the five parts of the total rewards model.",
+      "vi": "Mô tả 5 cấu phần của mô hình tổng đãi ngộ.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K002",
+      "hints": [
+        "Compensation: fixed and variable pay.",
+        "Benefits: insurance, leave and other protection.",
+        "Well-being: physical, mental and financial health.",
+        "Performance and recognition, plus development and career opportunities.",
+        "Explain why a company needs all five, not just pay."
+      ],
+      "useful": ["the first component is", "moving on to", "work together as a system", "last but not least", "in a nutshell"],
+      "opener": "The total rewards model has five components, and I'll go through them one by one."
+    },
+    {
+      "id": "st-0003",
+      "en": "Explain the three main goals of a rewards programme.",
+      "vi": "Giải thích ba mục tiêu chính của chương trình đãi ngộ.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K003",
+      "hints": [
+        "Attract: bring the right people into the company.",
+        "Motivate: encourage people to perform and grow.",
+        "Retain: keep the people the company cannot afford to lose.",
+        "Give an example of a reward that supports each goal."
+      ],
+      "useful": ["attract talent", "drive performance", "keep key people", "each programme should support", "that's why"],
+      "opener": "Every rewards programme should answer one question: does it help us attract, motivate or retain the right people?"
+    },
+    {
+      "id": "st-0004",
+      "en": "What is variable pay, and how is it different from fixed pay?",
+      "vi": "Lương biến đổi là gì, khác lương cố định thế nào?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K005",
+      "hints": [
+        "Fixed pay is guaranteed: base salary and fixed allowances.",
+        "Variable pay depends on results: bonuses, commission, incentives.",
+        "Variable pay must be earned again every period.",
+        "It shares risk between the company and the employee."
+      ],
+      "useful": ["guaranteed", "has to be earned", "at risk", "linked to results", "whereas"],
+      "opener": "The simplest way to explain the difference is this: fixed pay rewards the job, and variable pay rewards results."
+    },
+    {
+      "id": "st-0005",
+      "en": "Explain what a compensation philosophy is and why it matters.",
+      "vi": "Giải thích triết lý đãi ngộ là gì và vì sao quan trọng.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K021",
+      "hints": [
+        "It's a set of principles that explains why and how we pay people.",
+        "It covers market position, pay mix and what we reward.",
+        "It helps managers make consistent decisions.",
+        "It makes pay easier to communicate and defend."
+      ],
+      "useful": ["guiding principles", "consistent decisions", "market position", "when in doubt", "defend a decision"],
+      "opener": "A compensation philosophy is like a compass: it doesn't give you every answer, but it shows you the direction."
+    },
+    {
+      "id": "st-0006",
+      "en": "What is a total rewards statement, and why send one?",
+      "vi": "Bảng tổng đãi ngộ là gì, vì sao nên gửi cho nhân viên?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K022",
+      "hints": [
+        "It's a personal document that shows the full value of an employee's package.",
+        "It includes pay, bonus, insurance, leave and training.",
+        "Most employees underestimate what the company spends on them.",
+        "It improves understanding and can support retention."
+      ],
+      "useful": ["the full value of", "underestimate", "hidden costs", "make visible", "on a personal level"],
+      "opener": "Most employees only look at their payslip, so they see just part of the picture."
+    },
+    {
+      "id": "st-0007",
+      "en": "Explain the lead-lag pay policy.",
+      "vi": "Giải thích chính sách lương dẫn – chậm.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K024",
+      "hints": [
+        "The market moves during the year, but our salaries change only once.",
+        "With lead-lag, we set pay at the market level expected in the middle of the year.",
+        "So we lead the market in the first half and lag in the second half.",
+        "On average, we stay in line with the market over the year."
+      ],
+      "useful": ["the market keeps moving", "in the first half of the year", "on average", "in line with", "that's the trade-off"],
+      "opener": "Salaries are usually adjusted once a year, but the market doesn't stand still, and that's where lead-lag comes in."
+    },
+    {
+      "id": "st-0008",
+      "en": "What is a pay grade?",
+      "vi": "Ngạch lương là gì?",
+      "topic": "cb-hr",
+      "level": "B1",
+      "trConcept": "K031",
+      "hints": [
+        "A pay grade is a group of jobs with similar value to the company.",
+        "Each grade has its own salary range.",
+        "Jobs in the same grade can be very different, like an accountant and an IT specialist.",
+        "Grades make pay decisions more consistent."
+      ],
+      "useful": ["a group of jobs", "of similar value", "salary range", "the same grade", "more consistent"],
+      "opener": "A pay grade is basically a box: we put jobs of similar value into the same box and give that box a salary range."
+    },
+    {
+      "id": "st-0009",
+      "en": "Explain what the midpoint of a salary range represents.",
+      "vi": "Giải thích điểm giữa của dải lương thể hiện điều gì.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K033",
+      "hints": [
+        "The midpoint is the middle of the range between minimum and maximum.",
+        "It is usually linked to the market rate we want to pay.",
+        "It represents pay for a fully competent, experienced person.",
+        "New hires usually start below it; top performers can go above it."
+      ],
+      "useful": ["fully competent", "the market reference point", "below the midpoint", "over time", "in practice"],
+      "opener": "If you remember only one number in a salary range, it should be the midpoint."
+    },
+    {
+      "id": "st-0010",
+      "en": "What is a pay range, and how do we measure its width?",
+      "vi": "Dải lương là gì và đo độ rộng thế nào?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K035",
+      "hints": [
+        "A pay range has a minimum, a midpoint and a maximum.",
+        "Range spread is the difference between max and min, as a percentage of the minimum.",
+        "Junior roles have narrower ranges; senior roles have wider ones.",
+        "A wider range leaves more room for growth inside the job."
+      ],
+      "useful": ["minimum, midpoint and maximum", "as a percentage of", "narrower", "wider", "room for growth"],
+      "opener": "A pay range tells us the lowest and the highest we're willing to pay for a job."
+    },
+    {
+      "id": "st-0011",
+      "en": "Explain range overlap between two grades.",
+      "vi": "Giải thích độ chồng lấn giữa hai ngạch.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K037",
+      "hints": [
+        "Overlap is the part of a lower grade's range that is shared with the next grade.",
+        "Some overlap is healthy: an experienced senior can earn as much as a new manager.",
+        "Too much overlap makes promotions feel meaningless.",
+        "Too little overlap creates very big jumps at promotion."
+      ],
+      "useful": ["shared with", "a healthy amount of", "too much overlap", "promotion feels meaningless", "strike a balance"],
+      "opener": "When two salary ranges overlap, it means some people in the lower grade can earn the same as people in the grade above."
+    },
+    {
+      "id": "st-0012",
+      "en": "What is broadbanding, and when does it make sense?",
+      "vi": "Dải lương rộng là gì, khi nào nên dùng?",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K042",
+      "hints": [
+        "Broadbanding combines many narrow grades into a few wide bands.",
+        "It gives managers more flexibility and supports a flatter organisation.",
+        "It suits companies that reward skills and career growth.",
+        "Risks: less control over costs and less structure for managers."
+      ],
+      "useful": ["combine into", "a flatter organisation", "more flexibility", "the downside is", "it works best when"],
+      "opener": "Broadbanding means replacing many small grades with a handful of very wide bands."
+    },
+    {
+      "id": "st-0013",
+      "en": "Explain gainsharing and how it differs from profit sharing.",
+      "vi": "Giải thích gainsharing và khác chia lợi nhuận thế nào.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K044",
+      "hints": [
+        "Gainsharing rewards a group for improving productivity or cutting costs.",
+        "The money comes from the savings the team creates.",
+        "Profit sharing is based on the profit of the whole company.",
+        "Gainsharing has a clearer line of sight for employees."
+      ],
+      "useful": ["productivity gains", "the savings are shared", "at company level", "within their control", "a clearer link"],
+      "opener": "Gainsharing and profit sharing sound similar, but they reward very different things."
+    },
+    {
+      "id": "st-0014",
+      "en": "What is profit sharing?",
+      "vi": "Chia sẻ lợi nhuận là gì?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K045",
+      "hints": [
+        "Profit sharing gives employees part of the company's profit.",
+        "It is usually paid once a year after the results are confirmed.",
+        "It builds a sense of ownership and team spirit.",
+        "But individuals may feel they can't influence the result."
+      ],
+      "useful": ["a share of the profit", "once a year", "a sense of ownership", "beyond their control", "the main benefit is"],
+      "opener": "Profit sharing is a simple idea: when the company does well, everyone gets a piece of the success."
+    },
+    {
+      "id": "st-0015",
+      "en": "Compare short-term and long-term incentives.",
+      "vi": "So sánh khuyến khích ngắn hạn và dài hạn.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K046",
+      "hints": [
+        "Short-term incentives reward results within one year, like annual bonuses.",
+        "Long-term incentives reward results over three to five years.",
+        "Long-term incentives are often shares, options or deferred cash.",
+        "They help retain senior people and align them with shareholders."
+      ],
+      "useful": ["within a year", "over several years", "vesting", "align with shareholders", "by contrast"],
+      "opener": "The main difference between short-term and long-term incentives is the time horizon."
+    },
+    {
+      "id": "st-0016",
+      "en": "Explain compa-ratio to a line manager.",
+      "vi": "Giải thích compa-ratio cho quản lý trực tiếp.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K047",
+      "hints": [
+        "Compa-ratio is an employee's salary divided by the midpoint of their range.",
+        "One point zero means they are paid exactly at the midpoint.",
+        "Below one is normal for new or developing people.",
+        "Above one is normal for very experienced, high-performing people."
+      ],
+      "useful": ["divided by", "exactly at the midpoint", "below one", "it's an internal measure", "for instance"],
+      "opener": "Compa-ratio is one of the simplest numbers in C&B, and it tells you a lot about where someone is paid."
+    },
+    {
+      "id": "st-0017",
+      "en": "What is range penetration?",
+      "vi": "Mức thâm nhập dải lương là gì?",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K048",
+      "hints": [
+        "It shows how far an employee has moved through their range.",
+        "Zero percent is at the minimum; one hundred percent is at the maximum.",
+        "Formula: salary minus minimum, divided by maximum minus minimum.",
+        "It's useful when ranges are not symmetrical or very wide."
+      ],
+      "useful": ["how far through the range", "at the minimum", "the formula is", "compared with compa-ratio", "it's especially useful when"],
+      "opener": "Range penetration answers a simple question: how far along the range has this person travelled?"
+    },
+    {
+      "id": "st-0018",
+      "en": "Explain the difference between compa-ratio and market index.",
+      "vi": "Phân biệt compa-ratio và market index.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K049",
+      "hints": [
+        "Compa-ratio compares pay with our own midpoint: it's internal.",
+        "Market index compares pay with the market rate: it's external.",
+        "If our structure is behind the market, the two numbers will differ.",
+        "Using both gives a more complete picture."
+      ],
+      "useful": ["internal versus external", "compared with the market rate", "the two numbers can tell different stories", "a more complete picture", "let me give you an example"],
+      "opener": "Compa-ratio and market index look alike, but they compare pay against two different things."
+    },
+    {
+      "id": "st-0019",
+      "en": "What is a red-circle employee, and how do you manage it?",
+      "vi": "Nhân viên \"vòng tròn đỏ\" là gì, xử lý thế nào?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K051",
+      "hints": [
+        "A red-circle employee is paid above the maximum of their range.",
+        "Causes: long service, past negotiations or no benchmarking.",
+        "Common approach: no base increase until the range catches up.",
+        "Options: lump-sum payments, re-evaluating the job or a promotion."
+      ],
+      "useful": ["above the maximum", "catch up", "freeze the base", "a lump sum instead", "handle it carefully"],
+      "opener": "A red-circle employee is someone whose salary is higher than the top of their range."
+    },
+    {
+      "id": "st-0020",
+      "en": "What is a green-circle employee?",
+      "vi": "Nhân viên \"vòng tròn xanh\" là gì?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K052",
+      "hints": [
+        "A green-circle employee is paid below the minimum of their range.",
+        "It can happen with new hires, after ranges move up, or by mistake.",
+        "Usually we bring them up to the minimum quickly.",
+        "If they're still learning the job, we agree a plan to get there."
+      ],
+      "useful": ["below the minimum", "bring up to", "as a priority", "a development plan", "the risk is"],
+      "opener": "A green-circle employee is the opposite of a red-circle one: they're paid below the bottom of the range."
+    },
+    {
+      "id": "st-0021",
+      "en": "Explain pay compression and how to fix it.",
+      "vi": "Giải thích nén lương và cách khắc phục.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K053",
+      "hints": [
+        "Compression is when pay differences between levels or people become too small.",
+        "Example: new hires earn almost as much as experienced staff.",
+        "Causes: hot market, small merit budgets, small grade gaps.",
+        "Fixes: equity adjustments, reviewing hiring rates and redesigning the structure."
+      ],
+      "useful": ["too small a gap", "new hires earn almost as much as", "a symptom of", "equity adjustment", "in the long run"],
+      "opener": "Pay compression happens quietly, and many companies notice it only when experienced people start to leave."
+    },
+    {
+      "id": "st-0022",
+      "en": "Explain the 25th, 50th and 75th percentiles in a salary survey.",
+      "vi": "Giải thích phân vị 25, 50, 75 trong khảo sát lương.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K055",
+      "hints": [
+        "Percentiles show where a salary sits compared with the whole market.",
+        "At the 50th percentile, half the market pays more and half pays less.",
+        "The 75th percentile is a higher, more competitive level.",
+        "Which one we use depends on our pay philosophy."
+      ],
+      "useful": ["half the market", "more competitive", "the median", "depends on our philosophy", "to put it simply"],
+      "opener": "Imagine lining up one hundred companies from the lowest to the highest salary."
+    },
+    {
+      "id": "st-0023",
+      "en": "What is the market pricing approach?",
+      "vi": "Định giá theo thị trường là gì?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K056",
+      "hints": [
+        "We value jobs mainly by what the external market pays.",
+        "First we match our jobs to survey jobs, then we look at the market data.",
+        "It's fast and keeps us competitive.",
+        "But it can weaken internal equity if the market is unusual."
+      ],
+      "useful": ["match jobs to", "external market", "fast and practical", "internal equity", "the main risk is"],
+      "opener": "With market pricing, the market tells us how much a job is worth."
+    },
+    {
+      "id": "st-0024",
+      "en": "Explain the point factor method of job evaluation.",
+      "vi": "Giải thích phương pháp chấm điểm yếu tố.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K057",
+      "hints": [
+        "We choose compensable factors, such as skill, effort, responsibility and working conditions.",
+        "Each factor has levels and points.",
+        "Each job gets a total score, and scores are grouped into grades.",
+        "It's systematic and easy to defend, but it takes time."
+      ],
+      "useful": ["compensable factors", "a total score", "grouped into grades", "systematic", "time-consuming"],
+      "opener": "The point factor method works a bit like a scoring system in an exam."
+    },
+    {
+      "id": "st-0025",
+      "en": "What is pay mix, and why does it differ by role?",
+      "vi": "Pay mix là gì, vì sao khác nhau theo vai trò?",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K064",
+      "hints": [
+        "Pay mix is the split between fixed pay and target variable pay.",
+        "Sales roles may have a 60/40 mix; support roles maybe 90/10.",
+        "The more a role can influence results, the more variable pay it has.",
+        "The mix shapes behaviour and risk."
+      ],
+      "useful": ["the split between", "influence results", "for example, a 70/30 mix", "shapes behaviour", "the more ..., the more ..."],
+      "opener": "Two jobs can have the same total target pay but a very different pay mix."
+    },
+    {
+      "id": "st-0026",
+      "en": "Explain threshold, target and cap in a bonus plan.",
+      "vi": "Giải thích ngưỡng, mục tiêu và trần trong kế hoạch thưởng.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K066",
+      "hints": [
+        "The threshold is the minimum performance before any bonus is paid, often 70 to 80 percent.",
+        "The target is the expected level, which pays 100 percent of the bonus.",
+        "The cap is the maximum payout, often 150 to 200 percent.",
+        "Together, they define the payout curve."
+      ],
+      "useful": ["below the threshold", "at target", "capped at", "the payout curve", "the reason for a cap is"],
+      "opener": "Every well-designed bonus plan has three key points: threshold, target and cap."
+    },
+    {
+      "id": "st-0027",
+      "en": "What are malus and clawback?",
+      "vi": "Malus và clawback là gì?",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K068",
+      "hints": [
+        "Malus reduces or cancels a bonus before it is paid.",
+        "Clawback recovers a bonus that has already been paid.",
+        "Both are used when serious misconduct or errors are discovered.",
+        "They protect the company and encourage responsible behaviour."
+      ],
+      "useful": ["before it is paid", "already paid out", "misconduct", "protect the company", "a safety net"],
+      "opener": "Malus and clawback sound technical, but the idea behind them is simple: rewards should be deserved."
+    },
+    {
+      "id": "st-0028",
+      "en": "Explain how a commission accelerator works.",
+      "vi": "Giải thích hệ số gia tốc hoa hồng.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K078",
+      "hints": [
+        "An accelerator increases the commission rate above a certain level, usually quota.",
+        "It motivates top performers to keep selling.",
+        "A decelerator lowers the rate below a level.",
+        "It should be tested with past data to control the cost."
+      ],
+      "useful": ["above quota", "the rate goes up", "keep pushing", "model the cost", "on the other hand"],
+      "opener": "An accelerator is a way of saying to sales people: the more you sell, the more each sale is worth."
+    },
+    {
+      "id": "st-0029",
+      "en": "Compare stock options and restricted stock units.",
+      "vi": "So sánh quyền chọn cổ phiếu và RSU.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K081",
+      "hints": [
+        "Stock options give the right to buy shares at a fixed price.",
+        "They only have value if the share price rises above that price.",
+        "RSUs are shares given after a vesting period, so they usually keep some value.",
+        "Both are used to retain key people and align them with shareholders."
+      ],
+      "useful": ["the right to buy", "a fixed price", "vesting period", "keep some value", "align interests"],
+      "opener": "Stock options and RSUs are both equity rewards, but the risk for the employee is quite different."
+    },
+    {
+      "id": "st-0030",
+      "en": "Why is job analysis the first step in building a pay system?",
+      "vi": "Vì sao phân tích công việc là bước đầu khi xây hệ thống lương?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K082",
+      "hints": [
+        "Job analysis collects information about what a job involves.",
+        "It produces job descriptions and job specifications.",
+        "Without it, job evaluation and market matching are just guesses.",
+        "Sources: interviews, questionnaires, observation."
+      ],
+      "useful": ["collect information", "job description", "the foundation of", "otherwise", "we use several sources"],
+      "opener": "You can't decide what a job is worth until you know what the job actually is."
+    },
+    {
+      "id": "st-0031",
+      "en": "Explain job architecture.",
+      "vi": "Giải thích kiến trúc công việc.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K125",
+      "hints": [
+        "Job architecture organises all jobs into families, career tracks and levels.",
+        "Example: job family, then track such as professional or management, then level.",
+        "It links each job to a pay range and career path.",
+        "It makes career moves and pay decisions clearer."
+      ],
+      "useful": ["organise jobs into", "job family", "career track", "level", "a common language"],
+      "opener": "Job architecture is the framework that tells you where every job in the company sits."
+    },
+    {
+      "id": "st-0032",
+      "en": "What is a benchmark job?",
+      "vi": "Công việc chuẩn (benchmark job) là gì?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K091",
+      "hints": [
+        "A benchmark job is a well-known job that exists in many companies.",
+        "It has a clear and stable description, so it's easy to match in surveys.",
+        "We use benchmark jobs as anchor points for the structure.",
+        "Other jobs can then be slotted around them."
+      ],
+      "useful": ["exists in many companies", "easy to match", "anchor point", "slot in", "stable over time"],
+      "opener": "When we build a salary structure, we don't price every job; we start with benchmark jobs."
+    },
+    {
+      "id": "st-0033",
+      "en": "Explain what job evaluation is and why companies do it.",
+      "vi": "Đánh giá công việc là gì, vì sao doanh nghiệp làm?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K029",
+      "hints": [
+        "Job evaluation compares jobs to decide their relative value.",
+        "It evaluates the job, not the person doing it.",
+        "The result is a job worth hierarchy, the basis of the grade structure.",
+        "It supports internal equity and fair pay decisions."
+      ],
+      "useful": ["relative value", "the job, not the person", "job hierarchy", "internal equity", "the end result is"],
+      "opener": "Job evaluation is about one question: how important is this job compared with others in the company?"
+    },
+    {
+      "id": "st-0034",
+      "en": "How does a merit increase work?",
+      "vi": "Tăng lương theo thành tích vận hành thế nào?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K105",
+      "hints": [
+        "A merit increase is an annual increase to base pay based on performance.",
+        "It comes from a fixed merit budget, often a percentage of payroll.",
+        "It becomes part of salary permanently.",
+        "It only works if ratings really differentiate performance."
+      ],
+      "useful": ["based on performance", "merit budget", "permanent", "differentiate", "the key condition is"],
+      "opener": "A merit increase rewards past performance by increasing base salary for the future."
+    },
+    {
+      "id": "st-0035",
+      "en": "Explain how a merit matrix works.",
+      "vi": "Giải thích ma trận tăng lương.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K111",
+      "hints": [
+        "A merit matrix combines performance rating and position in range.",
+        "Higher ratings get higher increases.",
+        "People low in the range get more than people high in the range, for the same rating.",
+        "Over time, people with the same performance move towards the same pay level."
+      ],
+      "useful": ["two dimensions", "position in range", "for the same rating", "move towards", "stay within budget"],
+      "opener": "A merit matrix is a table that answers two questions at once: how well did you perform, and where are you paid today?"
+    },
+    {
+      "id": "st-0036",
+      "en": "When do we use an equity or market adjustment?",
+      "vi": "Khi nào dùng điều chỉnh công bằng hoặc điều chỉnh thị trường?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K109",
+      "hints": [
+        "An equity adjustment fixes unfair gaps inside the company.",
+        "A market adjustment brings pay up when it falls behind the market.",
+        "Both are separate from the normal merit increase.",
+        "They need clear evidence and a separate budget."
+      ],
+      "useful": ["inside the company", "falls behind the market", "separate from merit", "evidence", "a one-off correction"],
+      "opener": "Not every pay increase is about performance; sometimes we need to correct a gap."
+    },
+    {
+      "id": "st-0037",
+      "en": "Explain the 3P pay model.",
+      "vi": "Giải thích mô hình lương 3P.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K121",
+      "hints": [
+        "P1, pay for position: the value of the job sets the range.",
+        "P2, pay for person: skills and competence decide where you sit in the range.",
+        "P3, pay for performance: results are rewarded through bonuses.",
+        "Together, they balance internal equity, market competitiveness and motivation."
+      ],
+      "useful": ["pay for position", "pay for person", "pay for performance", "work together", "in Vietnam, many companies"],
+      "opener": "3P is a popular model in Vietnam, and it answers three questions: what job do you do, how good are you at it, and what results do you deliver?"
+    },
+    {
+      "id": "st-0038",
+      "en": "What is a calibration meeting, and why is it useful?",
+      "vi": "Họp hiệu chỉnh xếp loại là gì, có ích gì?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "trConcept": "K136",
+      "hints": [
+        "Managers meet to review and compare performance ratings across teams.",
+        "The goal is consistency: the same standard for everyone.",
+        "It reduces bias, such as managers who are too generous or too strict.",
+        "HR usually facilitates and asks for evidence."
+      ],
+      "useful": ["across teams", "the same standard", "reduce bias", "facilitate", "evidence-based"],
+      "opener": "Without calibration, a \"good\" rating in one team can mean something very different in another team."
+    },
+    {
+      "id": "st-0039",
+      "en": "What makes an incentive plan effective?",
+      "vi": "Điều gì làm kế hoạch khuyến khích hiệu quả?",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K140",
+      "hints": [
+        "Line of sight: employees can see how their actions affect the result.",
+        "Few, clear measures that are cascaded from company goals.",
+        "A payout that is big enough to matter.",
+        "A performance culture where results really make a difference."
+      ],
+      "useful": ["line of sight", "within their control", "big enough to matter", "keep it simple", "if people can't see the link"],
+      "opener": "The best incentive plans are the ones employees can explain in one sentence."
+    },
+    {
+      "id": "st-0040",
+      "en": "Explain Herzberg's idea about pay and motivation.",
+      "vi": "Giải thích quan điểm của Herzberg về lương và động lực.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "trConcept": "K142",
+      "hints": [
+        "Herzberg separated hygiene factors from motivators.",
+        "Hygiene factors, like pay and conditions, prevent dissatisfaction.",
+        "Motivators, like achievement and recognition, create real motivation.",
+        "So fair pay is necessary, but it isn't enough on its own."
+      ],
+      "useful": ["hygiene factors", "motivators", "prevent dissatisfaction", "necessary but not sufficient", "on its own"],
+      "opener": "One of the most useful ideas in rewards comes from Herzberg: money doesn't always motivate."
+    },
+    {
+      "id": "st-0041",
+      "en": "Explain to an employee why their payslip changed this month.",
+      "vi": "Giải thích cho nhân viên vì sao phiếu lương tháng này thay đổi.",
+      "topic": "cb-hr",
+      "level": "B1",
+      "hints": [
+        "Start by looking at the payslip together.",
+        "Name the change: a new allowance, overtime, a bonus or a deduction.",
+        "Explain the effect on tax or insurance.",
+        "Tell them what will happen next month."
+      ],
+      "useful": ["let's look at it together", "this line shows", "that's why", "from next month", "if you have any other questions"],
+      "opener": "Thanks for asking. Let's go through your payslip line by line."
+    },
+    {
+      "id": "st-0042",
+      "en": "Explain the annual salary review process to a new manager.",
+      "vi": "Giải thích quy trình xét lương năm cho một quản lý mới.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "hints": [
+        "Timing: when the cycle starts and when decisions are final.",
+        "Inputs: performance ratings, position in range and the budget.",
+        "The manager's role: make proposals and explain them to the team.",
+        "Approval and communication steps."
+      ],
+      "useful": ["the cycle starts in", "the main inputs are", "your role is to", "once it's approved", "the most common mistake is"],
+      "opener": "The salary review can feel complicated the first time, so let me give you the big picture."
+    },
+    {
+      "id": "st-0043",
+      "en": "How would you communicate a pay decision that an employee won't like?",
+      "vi": "Bạn truyền đạt quyết định lương mà nhân viên sẽ không thích thế nào?",
+      "topic": "cb-hr",
+      "level": "C1",
+      "hints": [
+        "Prepare the facts and the reasons before the meeting.",
+        "Deliver the message clearly and early in the conversation.",
+        "Listen and acknowledge their feelings.",
+        "Explain what they can do to change the outcome in the future."
+      ],
+      "useful": ["I want to be straightforward with you", "I understand this is disappointing", "the reason is", "what we can do is", "going forward"],
+      "opener": "The worst thing you can do with bad news is hide it in the middle of a long explanation."
+    },
+    {
+      "id": "st-0044",
+      "en": "Should companies be open about salary ranges?",
+      "vi": "Doanh nghiệp có nên công khai dải lương không?",
+      "topic": "cb-hr",
+      "level": "B2",
+      "hints": [
+        "Benefits: trust, fairness and fewer rumours.",
+        "Risks: more questions and pressure on managers.",
+        "Preparation: clean structure and trained managers.",
+        "Give your own opinion with a reason."
+      ],
+      "useful": ["on the one hand", "on the other hand", "build trust", "managers need to be ready", "in my view"],
+      "opener": "Pay transparency is one of the hottest topics in rewards right now, and I have mixed feelings about it."
+    },
+    {
+      "id": "st-0045",
+      "en": "Describe a benefit you would add at your company, and why.",
+      "vi": "Mô tả một phúc lợi bạn muốn bổ sung ở công ty và lý do.",
+      "topic": "cb-hr",
+      "level": "B1",
+      "hints": [
+        "Name the benefit.",
+        "Explain who would use it and why it matters to them.",
+        "Estimate the cost roughly.",
+        "Explain how it would help attract or keep people."
+      ],
+      "useful": ["I'd like to introduce", "it would help", "especially for", "it wouldn't cost much", "in the long term"],
+      "opener": "If I could add one benefit tomorrow, it would be..."
+    },
+    {
+      "id": "st-0046",
+      "en": "Describe your current job and your main responsibilities.",
+      "vi": "Mô tả công việc hiện tại và trách nhiệm chính.",
+      "topic": "office",
+      "level": "B1",
+      "hints": [
+        "Your job title and team.",
+        "Two or three main responsibilities.",
+        "Who you work with most.",
+        "What you like about the job."
+      ],
+      "useful": ["I work as", "I'm responsible for", "I work closely with", "the part I enjoy most is", "on top of that"],
+      "opener": "I work as a C&B specialist in a team of five people."
+    },
+    {
+      "id": "st-0047",
+      "en": "Describe a typical working day.",
+      "vi": "Mô tả một ngày làm việc điển hình.",
+      "topic": "office",
+      "level": "B1",
+      "hints": [
+        "How your day starts.",
+        "The main tasks in the morning and afternoon.",
+        "Meetings and people you talk to.",
+        "How the day usually ends."
+      ],
+      "useful": ["first thing in the morning", "after that", "around lunchtime", "in the afternoon", "by the end of the day"],
+      "opener": "My day usually starts with a cup of coffee and my inbox."
+    },
+    {
+      "id": "st-0048",
+      "en": "Talk about a project you're proud of.",
+      "vi": "Kể về một dự án bạn tự hào.",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "What the project was and why it was needed.",
+        "Your role in it.",
+        "A challenge you faced.",
+        "The result and what you learned."
+      ],
+      "useful": ["the goal was to", "I was in charge of", "the biggest challenge was", "in the end", "what I learned was"],
+      "opener": "One project I'm really proud of is the new allowance policy we launched last year."
+    },
+    {
+      "id": "st-0049",
+      "en": "Describe the best quality of a manager you've worked with.",
+      "vi": "Mô tả phẩm chất tốt nhất của một quản lý bạn từng làm cùng.",
+      "topic": "office",
+      "level": "B1",
+      "hints": [
+        "Introduce the manager without using their name.",
+        "Name one quality.",
+        "Give a specific example.",
+        "Explain how it affected you."
+      ],
+      "useful": ["one of my former managers", "what I admired most was", "for example", "it made me feel", "I try to do the same"],
+      "opener": "The best manager I've had was someone who always listened before she decided."
+    },
+    {
+      "id": "st-0050",
+      "en": "How do you handle stress at work?",
+      "vi": "Bạn xử lý căng thẳng trong công việc thế nào?",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "Describe what usually causes stress in your job.",
+        "One practical thing you do during the day.",
+        "One thing you do outside work.",
+        "How you ask for help when needed."
+      ],
+      "useful": ["the busiest time for me is", "I try to", "break it down", "switch off", "ask for help early"],
+      "opener": "Stress is part of the job in C&B, especially during payroll and salary review season."
+    },
+    {
+      "id": "st-0051",
+      "en": "Talk about a mistake you made at work and what you learned.",
+      "vi": "Kể về một lỗi bạn mắc trong công việc và bài học.",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "What happened, briefly.",
+        "How you discovered it.",
+        "What you did to fix it.",
+        "What you changed afterwards."
+      ],
+      "useful": ["I made a mistake when", "as soon as I noticed", "I took responsibility", "since then", "it taught me"],
+      "opener": "Everyone makes mistakes, and one of mine taught me a lot about double-checking."
+    },
+    {
+      "id": "st-0052",
+      "en": "How do you prioritise when everything is urgent?",
+      "vi": "Bạn sắp xếp ưu tiên thế nào khi mọi việc đều gấp?",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "List all the tasks and deadlines.",
+        "Separate what is urgent from what is important.",
+        "Talk to stakeholders about realistic timing.",
+        "Ask your manager when priorities conflict."
+      ],
+      "useful": ["urgent versus important", "the impact if it's late", "realistic deadlines", "I'd check with my manager", "push back politely"],
+      "opener": "When everything is urgent, the first thing I do is stop and make a list."
+    },
+    {
+      "id": "st-0053",
+      "en": "What does work-life balance mean to you?",
+      "vi": "Cân bằng công việc – cuộc sống với bạn là gì?",
+      "topic": "office",
+      "level": "B1",
+      "hints": [
+        "Give your own definition.",
+        "Describe what you do after work.",
+        "Explain what makes balance hard in your job.",
+        "Say what companies can do to help."
+      ],
+      "useful": ["for me, it means", "after work, I usually", "it's not always easy", "during busy periods", "companies can help by"],
+      "opener": "For me, work-life balance doesn't mean working less; it means having time for the people I love."
+    },
+    {
+      "id": "st-0054",
+      "en": "Do you prefer working from home or in the office?",
+      "vi": "Bạn thích làm ở nhà hay ở văn phòng hơn?",
+      "topic": "office",
+      "level": "B1",
+      "hints": [
+        "State your preference.",
+        "Give two reasons.",
+        "Mention one disadvantage.",
+        "Say what an ideal arrangement would be."
+      ],
+      "useful": ["I prefer", "the main reason is", "the downside is", "ideally", "a mix of both"],
+      "opener": "Honestly, I like a mix of both, but if I had to choose..."
+    },
+    {
+      "id": "st-0055",
+      "en": "Where do you see your career in five years?",
+      "vi": "Bạn thấy sự nghiệp của mình ở đâu sau 5 năm?",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "The role you want.",
+        "The skills you need to develop.",
+        "The steps you're taking now.",
+        "Why this goal matters to you."
+      ],
+      "useful": ["in five years, I'd like to", "to get there, I need to", "I'm currently working on", "step by step", "what motivates me is"],
+      "opener": "In five years, I'd like to be leading a reward team."
+    },
+    {
+      "id": "st-0056",
+      "en": "What skills will HR professionals need in the future?",
+      "vi": "Người làm nhân sự sẽ cần kỹ năng gì trong tương lai?",
+      "topic": "office",
+      "level": "C1",
+      "hints": [
+        "Data and analytics skills.",
+        "Understanding the business, not just HR.",
+        "Communication and storytelling.",
+        "Adaptability as technology changes."
+      ],
+      "useful": ["data literacy", "business acumen", "tell a story with numbers", "adapt to change", "more than ever"],
+      "opener": "HR is changing fast, and I think three skills will matter more than anything else."
+    },
+    {
+      "id": "st-0057",
+      "en": "How could artificial intelligence change HR work?",
+      "vi": "AI có thể thay đổi công việc nhân sự thế nào?",
+      "topic": "office",
+      "level": "C1",
+      "hints": [
+        "Tasks it can automate, like answering routine questions.",
+        "How it can help with analysis.",
+        "Risks: bias, privacy and wrong answers.",
+        "What humans will still need to do."
+      ],
+      "useful": ["automate routine tasks", "free up time for", "the risk of bias", "keep a human in the loop", "judgement"],
+      "opener": "AI won't replace HR, but HR people who use AI may replace those who don't."
+    },
+    {
+      "id": "st-0058",
+      "en": "Describe a colleague you learned a lot from.",
+      "vi": "Mô tả một đồng nghiệp mà bạn học hỏi được nhiều.",
+      "topic": "office",
+      "level": "B1",
+      "hints": [
+        "Who they are and how you worked together.",
+        "What they were good at.",
+        "One specific thing they taught you.",
+        "How you use it today."
+      ],
+      "useful": ["when I first joined", "she was really good at", "she taught me how to", "I still use", "I'm grateful for"],
+      "opener": "When I first joined the company, I sat next to someone who changed the way I work."
+    },
+    {
+      "id": "st-0059",
+      "en": "Give advice to someone starting their first job in HR.",
+      "vi": "Lời khuyên cho người mới bắt đầu việc đầu tiên trong ngành nhân sự.",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "Learn the basics of labour law and payroll.",
+        "Listen to employees and managers.",
+        "Be careful with confidential information.",
+        "Ask questions and find a mentor."
+      ],
+      "useful": ["my first piece of advice is", "don't be afraid to", "keep it confidential", "find a mentor", "most importantly"],
+      "opener": "If you're starting out in HR, here are three things I wish someone had told me."
+    },
+    {
+      "id": "st-0060",
+      "en": "How do you build good relationships with other departments?",
+      "vi": "Bạn xây dựng quan hệ tốt với các phòng ban khác thế nào?",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "Understand their goals and pressures.",
+        "Communicate early, not only when there's a problem.",
+        "Keep your promises and deadlines.",
+        "Give an example from your work."
+      ],
+      "useful": ["understand their priorities", "reach out early", "keep my promises", "a good example is", "trust takes time"],
+      "opener": "In C&B, we can't do anything alone, so relationships with other teams are essential."
+    },
+    {
+      "id": "st-0061",
+      "en": "What makes a good team?",
+      "vi": "Điều gì tạo nên một đội nhóm tốt?",
+      "topic": "office",
+      "level": "B1",
+      "hints": [
+        "Clear goals.",
+        "Trust and open communication.",
+        "People with different strengths.",
+        "An example of a good team you were in."
+      ],
+      "useful": ["a clear goal", "trust each other", "speak openly", "different strengths", "the best team I've been in"],
+      "opener": "I think a good team is more than a group of good people."
+    },
+    {
+      "id": "st-0062",
+      "en": "How do you give feedback to a colleague?",
+      "vi": "Bạn góp ý cho đồng nghiệp thế nào?",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "Choose the right time and place.",
+        "Describe the behaviour, not the person.",
+        "Explain the impact.",
+        "Suggest a way forward and listen."
+      ],
+      "useful": ["do you have a minute?", "I noticed that", "the impact was", "what do you think?", "how about"],
+      "opener": "Giving feedback to a peer can be harder than giving it to someone in your team."
+    },
+    {
+      "id": "st-0063",
+      "en": "Talk about a time you had to learn something quickly.",
+      "vi": "Kể về lần bạn phải học điều gì đó thật nhanh.",
+      "topic": "office",
+      "level": "B2",
+      "hints": [
+        "What you needed to learn and why.",
+        "How much time you had.",
+        "How you learned it.",
+        "The result."
+      ],
+      "useful": ["I had only", "I started by", "I asked", "by the deadline", "looking back"],
+      "opener": "Last year, I had to learn a new payroll system in less than two weeks."
+    },
+    {
+      "id": "st-0064",
+      "en": "Give a short update on a project you're working on.",
+      "vi": "Cập nhật ngắn về một dự án bạn đang làm.",
+      "topic": "meetings",
+      "level": "B1",
+      "hints": [
+        "What the project is.",
+        "What's done.",
+        "What's next.",
+        "Any risks or help needed."
+      ],
+      "useful": ["just a quick update on", "so far, we've", "the next step is", "one risk is", "I'd need help with"],
+      "opener": "Just a quick update on the benefits renewal project."
+    },
+    {
+      "id": "st-0065",
+      "en": "Present one key number from your work and explain it.",
+      "vi": "Trình bày một con số quan trọng trong công việc và giải thích.",
+      "topic": "meetings",
+      "level": "B2",
+      "hints": [
+        "State the number clearly.",
+        "Compare it with something: last year, the target or the market.",
+        "Explain why it changed.",
+        "Say what action is needed."
+      ],
+      "useful": ["the number I want to highlight is", "compared with last year", "this is mainly because", "what this means for us is", "I recommend"],
+      "opener": "The number I'd like you to remember today is eighteen percent."
+    },
+    {
+      "id": "st-0066",
+      "en": "Open a meeting: welcome people, state the purpose and the agenda.",
+      "vi": "Mở đầu cuộc họp: chào, nêu mục đích và chương trình.",
+      "topic": "meetings",
+      "level": "B1",
+      "hints": [
+        "Welcome and thank people.",
+        "State the purpose in one sentence.",
+        "Go through the agenda items.",
+        "Mention the time and how you'll take questions."
+      ],
+      "useful": ["thanks for joining", "the purpose of this meeting is", "we have three items", "we'll finish by", "please save questions for the end"],
+      "opener": "Good morning, everyone, and thanks for joining."
+    },
+    {
+      "id": "st-0067",
+      "en": "Close a meeting: summarise and confirm next steps.",
+      "vi": "Kết thúc cuộc họp: tóm tắt và xác nhận bước tiếp theo.",
+      "topic": "meetings",
+      "level": "B1",
+      "hints": [
+        "Summarise the main decisions.",
+        "Confirm who does what and by when.",
+        "Mention the next meeting.",
+        "Thank people."
+      ],
+      "useful": ["to wrap up", "we've agreed that", "is going to", "by Friday", "I'll send the minutes"],
+      "opener": "We're almost out of time, so let me wrap up."
+    },
+    {
+      "id": "st-0068",
+      "en": "Disagree politely with a proposal in a meeting.",
+      "vi": "Phản đối lịch sự một đề xuất trong cuộc họp.",
+      "topic": "meetings",
+      "level": "B2",
+      "hints": [
+        "Acknowledge the good parts of the idea.",
+        "State your concern clearly.",
+        "Give a reason or data.",
+        "Suggest an alternative."
+      ],
+      "useful": ["I can see the benefits of", "my concern is", "based on the data", "what if we", "I'm open to discussing"],
+      "opener": "I like the idea in principle, but I have one concern."
+    },
+    {
+      "id": "st-0069",
+      "en": "Persuade your manager to support a new idea.",
+      "vi": "Thuyết phục quản lý ủng hộ một ý tưởng mới.",
+      "topic": "meetings",
+      "level": "C1",
+      "hints": [
+        "The problem your idea solves.",
+        "The idea in one sentence.",
+        "Benefits and cost.",
+        "A small first step to reduce risk."
+      ],
+      "useful": ["the problem we're facing is", "what I'm proposing is", "the main benefit would be", "we could start small", "I'd be happy to lead it"],
+      "opener": "I'd like five minutes to share an idea that could save us a lot of time during the salary review."
+    },
+    {
+      "id": "st-0070",
+      "en": "Explain a complex HR rule to people who don't work in HR.",
+      "vi": "Giải thích một quy định nhân sự phức tạp cho người ngoài ngành.",
+      "topic": "meetings",
+      "level": "C1",
+      "hints": [
+        "Choose one rule, for example how tax on bonuses works.",
+        "Avoid jargon or explain it simply.",
+        "Use a simple example with round numbers.",
+        "Check understanding."
+      ],
+      "useful": ["in simple terms", "let's take an example", "imagine that", "in other words", "does that make sense?"],
+      "opener": "Let me explain this without any technical words."
+    },
+    {
+      "id": "st-0071",
+      "en": "Handle a question you can't answer in a meeting.",
+      "vi": "Xử lý câu hỏi mà bạn chưa trả lời được trong cuộc họp.",
+      "topic": "meetings",
+      "level": "B2",
+      "hints": [
+        "Thank the person for the question.",
+        "Be honest that you don't know yet.",
+        "Share what you do know.",
+        "Promise a follow-up with a time."
+      ],
+      "useful": ["that's a great question", "I don't have the exact figure", "what I can tell you is", "let me check and come back to you", "by tomorrow"],
+      "opener": "That's a great question, and I want to give you an accurate answer."
+    },
+    {
+      "id": "st-0072",
+      "en": "Propose a solution to a problem that keeps happening in your team.",
+      "vi": "Đề xuất giải pháp cho một vấn đề lặp lại trong nhóm.",
+      "topic": "meetings",
+      "level": "B2",
+      "hints": [
+        "Describe the problem and how often it happens.",
+        "Explain the root cause.",
+        "Propose a solution.",
+        "Explain how you'll measure success."
+      ],
+      "useful": ["it keeps happening", "the root cause is", "I'd suggest that we", "we'll know it's working if", "let's try it for a month"],
+      "opener": "Every month, we face the same problem with late timesheets."
+    },
+    {
+      "id": "st-0073",
+      "en": "Present the pros and cons of a four-day work week.",
+      "vi": "Trình bày ưu và nhược điểm của tuần làm 4 ngày.",
+      "topic": "meetings",
+      "level": "C1",
+      "hints": [
+        "Pros: well-being, attraction and productivity.",
+        "Cons: customer coverage and higher pressure on four days.",
+        "Which roles it could work for.",
+        "Your conclusion."
+      ],
+      "useful": ["the main advantage is", "a major drawback is", "it could work for", "it would be hard for", "on balance"],
+      "opener": "A four-day work week sounds great, but is it realistic for a company like ours?"
+    },
+    {
+      "id": "st-0074",
+      "en": "Open an online meeting with a regional team.",
+      "vi": "Mở đầu cuộc họp online với nhóm khu vực.",
+      "topic": "meetings",
+      "level": "B2",
+      "hints": [
+        "Greet people in different locations and time zones.",
+        "Check the audio and screen sharing.",
+        "State the goal of the call.",
+        "Explain how people can ask questions."
+      ],
+      "useful": ["good morning or good afternoon, depending on where you are", "can everyone hear me?", "I'll share my screen", "the goal of today's call is", "feel free to use the chat"],
+      "opener": "Good morning or good afternoon, everyone, depending on where you are."
+    },
+    {
+      "id": "st-0075",
+      "en": "Explain why a project is delayed and what you will do.",
+      "vi": "Giải thích vì sao dự án bị chậm và bạn sẽ làm gì.",
+      "topic": "meetings",
+      "level": "B2",
+      "hints": [
+        "State the delay clearly.",
+        "Explain the reason without blaming people.",
+        "Present the new plan.",
+        "Say what you need from others."
+      ],
+      "useful": ["I need to let you know that", "the main reason is", "the new timeline is", "to avoid further delays", "I'd appreciate your support with"],
+      "opener": "I need to be upfront with you: the job evaluation project is running about two weeks late."
+    },
+    {
+      "id": "st-0076",
+      "en": "Tell me about yourself.",
+      "vi": "Hãy giới thiệu về bản thân.",
+      "topic": "interview",
+      "level": "B1",
+      "hints": [
+        "Your current role and experience in a few words.",
+        "One or two key achievements.",
+        "What you're looking for next.",
+        "Keep it to about one minute."
+      ],
+      "useful": ["I currently work as", "I have ... years of experience in", "one thing I'm proud of is", "I'm now looking for", "that's why I applied"],
+      "opener": "I'm a C&B specialist with six years of experience, mostly in manufacturing."
+    },
+    {
+      "id": "st-0077",
+      "en": "Why do you want to work in compensation and benefits?",
+      "vi": "Vì sao bạn muốn làm mảng lương thưởng – phúc lợi?",
+      "topic": "interview",
+      "level": "B1",
+      "hints": [
+        "What first got you interested.",
+        "What you enjoy about the work.",
+        "How it uses your strengths.",
+        "What you want to achieve."
+      ],
+      "useful": ["I first got interested when", "what I enjoy most is", "it combines", "numbers and people", "I'd like to make a difference"],
+      "opener": "I like C&B because it sits where numbers and people meet."
+    },
+    {
+      "id": "st-0078",
+      "en": "What is your greatest strength?",
+      "vi": "Điểm mạnh lớn nhất của bạn là gì?",
+      "topic": "interview",
+      "level": "B1",
+      "hints": [
+        "Name one strength.",
+        "Give a specific example.",
+        "Show the result.",
+        "Link it to the job."
+      ],
+      "useful": ["my greatest strength is", "for example, last year", "as a result", "in this role, it would help me", "people often tell me"],
+      "opener": "I'd say my greatest strength is attention to detail."
+    },
+    {
+      "id": "st-0079",
+      "en": "What is an area you're working to improve?",
+      "vi": "Bạn đang cải thiện điểm nào?",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "Be honest and choose something real but not critical.",
+        "Explain how you noticed it.",
+        "Describe what you're doing about it.",
+        "Show your progress."
+      ],
+      "useful": ["something I'm working on is", "I realised that", "to improve, I've been", "I've already seen", "it's still a work in progress"],
+      "opener": "One area I'm actively working on is speaking up in large meetings."
+    },
+    {
+      "id": "st-0080",
+      "en": "Tell me about a time you worked under a lot of pressure.",
+      "vi": "Kể về một lần bạn làm việc dưới áp lực lớn.",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "Situation: what made it stressful.",
+        "Task: what you needed to deliver.",
+        "Action: how you organised yourself.",
+        "Result: what happened in the end."
+      ],
+      "useful": ["the situation was", "I had to", "so I decided to", "we managed to", "the key was"],
+      "opener": "During my first year-end payroll, three people in my team were off sick at the same time."
+    },
+    {
+      "id": "st-0081",
+      "en": "Describe a time you had a conflict with a colleague.",
+      "vi": "Kể về một lần bạn mâu thuẫn với đồng nghiệp.",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "What the disagreement was about.",
+        "How you approached the conversation.",
+        "How you reached an agreement.",
+        "What the relationship is like now."
+      ],
+      "useful": ["we had different views on", "I suggested we talk", "I tried to understand", "we agreed to", "since then"],
+      "opener": "I once disagreed with a finance colleague about how to forecast the bonus pool."
+    },
+    {
+      "id": "st-0082",
+      "en": "Tell me about a time you used data to influence a decision.",
+      "vi": "Kể về lần bạn dùng dữ liệu để tác động đến quyết định.",
+      "topic": "interview",
+      "level": "C1",
+      "hints": [
+        "The decision and who made it.",
+        "The data you collected and analysed.",
+        "How you presented it.",
+        "The decision that was made and its impact."
+      ],
+      "useful": ["management was planning to", "I pulled together", "the data showed that", "I presented it as", "as a result, they decided"],
+      "opener": "Management was about to cut the merit budget, and I used turnover data to change their minds."
+    },
+    {
+      "id": "st-0083",
+      "en": "Why should we hire you?",
+      "vi": "Vì sao chúng tôi nên tuyển bạn?",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "Match your experience to the main needs of the role.",
+        "Mention one thing that makes you different.",
+        "Show motivation.",
+        "Finish confidently."
+      ],
+      "useful": ["you're looking for someone who", "I've done exactly that", "what makes me different is", "I'm genuinely excited", "I'm confident I can"],
+      "opener": "From what you've told me, you need someone who can fix the structure and explain it clearly."
+    },
+    {
+      "id": "st-0084",
+      "en": "Why are you leaving your current job?",
+      "vi": "Vì sao bạn rời công việc hiện tại?",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "Stay positive about your current employer.",
+        "Focus on what you're looking for, not what you're escaping.",
+        "Mention growth and new challenges.",
+        "Link it to this role."
+      ],
+      "useful": ["I've learned a lot at", "I'm ready for", "the next step in my career", "broader scope", "this role offers"],
+      "opener": "I've had a great four years at my current company, and I've learned a lot there."
+    },
+    {
+      "id": "st-0085",
+      "en": "Describe a process you improved.",
+      "vi": "Mô tả một quy trình bạn đã cải tiến.",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "What the old process was and its problem.",
+        "What you changed.",
+        "How you got others to accept the change.",
+        "The measurable result."
+      ],
+      "useful": ["the old process was", "it took", "I introduced", "people were sceptical at first", "it now takes"],
+      "opener": "Our old salary review process used twenty different Excel files."
+    },
+    {
+      "id": "st-0086",
+      "en": "How do you keep up with changes in labour law and the market?",
+      "vi": "Bạn cập nhật thay đổi luật lao động và thị trường thế nào?",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "Official sources you follow.",
+        "Networks and events.",
+        "Surveys and reports.",
+        "How you share updates with your team."
+      ],
+      "useful": ["I follow", "I regularly attend", "I'm part of a network", "I share a short summary", "it's essential in C&B because"],
+      "opener": "In C&B, rules change every year, so staying up to date is part of the job."
+    },
+    {
+      "id": "st-0087",
+      "en": "How do you handle confidential information?",
+      "vi": "Bạn xử lý thông tin bảo mật thế nào?",
+      "topic": "interview",
+      "level": "B2",
+      "hints": [
+        "Why confidentiality matters in C&B.",
+        "Practical steps: access rights, passwords, clean desk.",
+        "What you do when someone asks about others' pay.",
+        "An example."
+      ],
+      "useful": ["on a need-to-know basis", "password-protected", "I politely decline", "I never discuss", "trust is everything"],
+      "opener": "In C&B, we see everyone's salary, so confidentiality is not optional."
+    },
+    {
+      "id": "st-0088",
+      "en": "Tell me about a time you failed.",
+      "vi": "Kể về một lần bạn thất bại.",
+      "topic": "interview",
+      "level": "C1",
+      "hints": [
+        "Choose a real failure with a clear lesson.",
+        "Take responsibility.",
+        "What you learned.",
+        "How you've applied it since."
+      ],
+      "useful": ["it didn't go as planned", "I underestimated", "I take responsibility for", "the lesson for me was", "since then, I always"],
+      "opener": "A few years ago, I launched a recognition programme that almost nobody used."
+    },
+    {
+      "id": "st-0089",
+      "en": "Describe your ideal manager.",
+      "vi": "Mô tả người quản lý lý tưởng của bạn.",
+      "topic": "interview",
+      "level": "B1",
+      "hints": [
+        "Two or three qualities.",
+        "Why they matter to you.",
+        "How you work best.",
+        "Keep it positive."
+      ],
+      "useful": ["I work best with", "someone who", "gives clear direction", "gives me space to", "regular feedback"],
+      "opener": "I work best with a manager who gives clear goals and then trusts me to deliver."
+    },
+    {
+      "id": "st-0090",
+      "en": "Respond to a job offer that is lower than you expected.",
+      "vi": "Phản hồi một lời mời làm việc thấp hơn kỳ vọng.",
+      "topic": "negotiation",
+      "level": "B2",
+      "hints": [
+        "Thank them and show interest.",
+        "State the gap politely.",
+        "Support your request with data or experience.",
+        "Ask about flexibility in other parts of the package."
+      ],
+      "useful": ["thank you for the offer", "I was expecting something closer to", "based on my research", "is there any flexibility on", "I'm confident we can find a solution"],
+      "opener": "Thank you so much for the offer. I'm really excited about the role."
+    },
+    {
+      "id": "st-0091",
+      "en": "Ask your manager for a promotion.",
+      "vi": "Đề nghị quản lý xét thăng chức.",
+      "topic": "negotiation",
+      "level": "C1",
+      "hints": [
+        "Describe how your role has grown.",
+        "Give two or three results.",
+        "Show you're already working at the next level.",
+        "Ask for a clear next step and timeline."
+      ],
+      "useful": ["over the past year", "I've taken on", "I've consistently", "I'd like to be considered for", "what would I need to show"],
+      "opener": "I'd like to talk about my next step in the team."
+    },
+    {
+      "id": "st-0092",
+      "en": "Negotiate a later start date with a new employer.",
+      "vi": "Thương lượng lùi ngày bắt đầu với công ty mới.",
+      "topic": "negotiation",
+      "level": "B1",
+      "hints": [
+        "Thank them and confirm you're committed.",
+        "Explain your notice period or reason.",
+        "Suggest a specific date.",
+        "Offer something in return, like joining an onboarding call early."
+      ],
+      "useful": ["I'm fully committed to", "my notice period is", "would it be possible to start on", "in the meantime, I could", "thank you for understanding"],
+      "opener": "I'm really looking forward to joining, and I want to leave my current job properly."
+    },
+    {
+      "id": "st-0093",
+      "en": "Explain to a candidate why the offer can't go higher.",
+      "vi": "Giải thích cho ứng viên vì sao lời mời không thể cao hơn.",
+      "topic": "negotiation",
+      "level": "B2",
+      "hints": [
+        "Show that you understand their request.",
+        "Explain the range and internal equity.",
+        "Highlight the rest of the package.",
+        "Offer a future review or other options."
+      ],
+      "useful": ["I completely understand", "the range for this role", "to keep it fair for the team", "on top of the base", "what we can offer is"],
+      "opener": "I understand you were hoping for more, and I want to be transparent about why we can't go higher."
+    },
+    {
+      "id": "st-0094",
+      "en": "Ask for flexible working arrangements.",
+      "vi": "Đề nghị chế độ làm việc linh hoạt.",
+      "topic": "negotiation",
+      "level": "B2",
+      "hints": [
+        "What you're asking for exactly.",
+        "Why it matters to you.",
+        "How you'll make sure the work still gets done.",
+        "Suggest a trial period."
+      ],
+      "useful": ["I'd like to request", "it would help me to", "I'll still be available", "my results won't be affected", "could we try it for"],
+      "opener": "I'd like to ask about the possibility of working from home two days a week."
+    },
+    {
+      "id": "st-0095",
+      "en": "As an employer, respond to a competing offer.",
+      "vi": "Là nhà tuyển dụng, phản hồi lời mời cạnh tranh của ứng viên.",
+      "topic": "negotiation",
+      "level": "C1",
+      "hints": [
+        "Thank the candidate for being open.",
+        "Ask what matters most to them.",
+        "Compare the whole package, not only base pay.",
+        "Make a clear and final proposal."
+      ],
+      "useful": ["thank you for being transparent", "what matters most to you", "beyond base salary", "the total package", "this is our best and final offer"],
+      "opener": "Thank you for telling me about the other offer; I appreciate your honesty."
+    },
+    {
+      "id": "st-0096",
+      "en": "Negotiate a better price with a salary survey vendor.",
+      "vi": "Thương lượng giá tốt hơn với nhà cung cấp khảo sát lương.",
+      "topic": "negotiation",
+      "level": "B2",
+      "hints": [
+        "Explain your budget limit.",
+        "Mention your long relationship or a multi-year deal.",
+        "Ask for options: smaller scope or a discount.",
+        "Agree on next steps in writing."
+      ],
+      "useful": ["our budget this year is", "we've worked together for", "would you consider", "if we commit to two years", "please send a revised proposal"],
+      "opener": "We'd really like to continue working with you, but this year's budget is tight."
+    },
+    {
+      "id": "st-0097",
+      "en": "Ask your manager for a training budget.",
+      "vi": "Đề nghị quản lý cấp ngân sách đào tạo.",
+      "topic": "negotiation",
+      "level": "B1",
+      "hints": [
+        "The course and its cost.",
+        "How it helps your work and the team.",
+        "How you'll share what you learn.",
+        "When you'd like to start."
+      ],
+      "useful": ["I'd like to take a course in", "it costs about", "it would help me", "I can share what I learn", "it starts in"],
+      "opener": "I've found a course that I think would really help our team."
+    },
+    {
+      "id": "st-0098",
+      "en": "How do you write an email explaining a payroll error to employees?",
+      "vi": "Bạn viết email giải thích lỗi tính lương cho nhân viên thế nào?",
+      "topic": "email",
+      "level": "B2",
+      "hints": [
+        "A clear subject line.",
+        "Apologise and explain what happened, briefly.",
+        "Say what will be corrected and when.",
+        "Give a contact for questions."
+      ],
+      "useful": ["I'd start with a clear subject line", "we sincerely apologise", "the correction will be paid on", "no action is needed from you", "if you have any questions"],
+      "opener": "When there's a payroll error, the email needs to be short, honest and very clear."
+    },
+    {
+      "id": "st-0099",
+      "en": "What makes a good work email?",
+      "vi": "Thế nào là một email công việc tốt?",
+      "topic": "email",
+      "level": "B1",
+      "hints": [
+        "A subject that says what it's about.",
+        "The main point in the first two lines.",
+        "Short paragraphs or bullet points.",
+        "A clear request and deadline."
+      ],
+      "useful": ["get to the point", "the main message", "bullet points", "a clear deadline", "I always reread"],
+      "opener": "For me, a good email is one that people can understand in thirty seconds."
+    },
+    {
+      "id": "st-0100",
+      "en": "How do you follow up politely when someone doesn't reply?",
+      "vi": "Bạn nhắc lại lịch sự thế nào khi ai đó chưa trả lời?",
+      "topic": "email",
+      "level": "B1",
+      "hints": [
+        "Wait a reasonable time.",
+        "Write a short, friendly reminder.",
+        "Repeat the key request and deadline.",
+        "If there's still no reply, call or talk in person."
+      ],
+      "useful": ["just following up on", "I know you're busy", "could you let me know by", "I'll give them a call", "I try not to sound pushy"],
+      "opener": "Following up is a big part of my job, because I depend on data from many people."
+    }
+  ]
+}
