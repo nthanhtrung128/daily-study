@@ -14,6 +14,7 @@ Mục lục
 7. [Sao lưu tiến độ trước khi xóa app / đổi máy](#7-sao-lưu-tiến-độ)
 8. [Cách thay thế: deploy bằng lệnh, không nối GitHub](#8-cách-thay-thế-deploy-bằng-lệnh)
 9. [Những gì repo đã cấu hình sẵn](#9-những-gì-repo-đã-cấu-hình-sẵn)
+10. [Danh sách kiểm tra trên iPhone thật](#10-danh-sách-kiểm-tra-trên-iphone-thật)
 
 ---
 
@@ -105,7 +106,7 @@ Nên:
 - Đặt *Session Duration* của ứng dụng Access dài (1 tháng) như bước 2.
 
 Khi muốn đăng nhập lại để lấy bản mới (dấu hiệu: số *Phiên bản* ở trang **Cài đặt** không đổi sau khi đã có bản mới):
-- **Cách A (khi app đã có nút)**: repo đã cấu hình để đường dẫn `/dang-nhap` **luôn đi ra mạng**, không lấy từ bộ nhớ máy. Mở đường dẫn này *từ bên trong app* (dự kiến S8 thêm nút "Đăng nhập lại / kiểm tra bản mới" ở trang Cài đặt trỏ tới `./dang-nhap`) → Access hiện trang đăng nhập → nhập mã email → app mở lại và tự cập nhật.
+- **Cách A**: trong app → **Cài đặt** → mục *Dữ liệu* → nút **Kiểm tra bản mới / đăng nhập lại**. Nút mở đường dẫn `./dang-nhap`, đường dẫn này **luôn đi ra mạng** (không lấy từ bộ nhớ máy) → nếu phiên hết hạn, Access hiện trang đăng nhập → nhập mã email → app mở lại và tự cập nhật. Khi không có mạng, nút chỉ báo "Đang không có mạng" (không mở trang lỗi).
 - **Cách B (luôn làm được)**: trong app → Cài đặt → **Xuất tiến độ** (lưu file vào *Tệp*) → xóa app khỏi Màn hình chính → làm lại mục 4 → mở app mới → Cài đặt → **Nhập từ file…** chọn file vừa lưu.
 - Trên máy tính (Chrome/Edge/Safari): chỉ cần mở `https://…pages.dev/dang-nhap`, hoặc xóa dữ liệu trang rồi mở lại.
 
@@ -125,7 +126,7 @@ Tiến độ và ghi âm **chỉ nằm trên máy** (IndexedDB). Xóa app khỏi
 
 Trước khi xóa app hoặc đổi máy:
 1. Mở app → **Cài đặt** → **Xuất tiến độ (.json)**.
-2. iPhone hỏi tải file / hiện bản xem trước → bấm **Tải về** hoặc nút **Chia sẻ** → **Lưu vào Tệp** → *iCloud Drive* (hoặc *Trên iPhone*). Giữ lại vài bản gần nhất. Nếu bấm Xuất trong app ở Màn hình chính mà không thấy gì xảy ra: **đừng xóa app**, báo lại để sửa (mở link trong Safari không lấy được tiến độ này, vì Safari có bộ nhớ riêng).
+2. Trong **app ở Màn hình chính**: app mở **bảng Chia sẻ** → chọn **Lưu vào Tệp** → *iCloud Drive* (hoặc *Trên iPhone*). Nếu app hiện thêm nút **Lưu file sao lưu** (iOS đòi bấm thêm một lần) thì bấm nút đó. Trong **Safari**: iPhone hỏi tải file → **Tải về**, file nằm trong Tệp → *Tải về*. Giữ lại vài bản gần nhất. Nếu vẫn không thấy gì xảy ra: **đừng xóa app**, báo lại để sửa (mở link trong Safari không lấy được tiến độ này, vì Safari có bộ nhớ riêng).
 3. Ở máy/app mới: **Cài đặt** → **Nhập từ file…** → chọn file → xác nhận.
 
 Nên xuất định kỳ, vd mỗi tuần một lần. File có tiến độ ôn của bạn; không gửi lên chỗ công khai. (File sao lưu hiện chưa gồm bản ghi âm luyện nói.)
@@ -165,3 +166,61 @@ PW_WEBKIT=1 npm run test:e2e        # thêm WebKit (engine của Safari); cần:
 ```
 
 CI (GitHub Actions) luôn chạy cả Chromium và WebKit.
+
+## 10. Danh sách kiểm tra trên iPhone thật
+
+Test tự động (Playwright giả lập iPhone 14 / iPhone SE, cả WebKit) đã kiểm bố cục, offline, header, luồng bấm. Những mục dưới đây **chỉ kiểm được trên iPhone thật** (giọng đọc, micro, nhận giọng, Lịch, Tệp). Làm một lượt sau lần deploy đầu, và sau mỗi lần nâng iOS lớn. Đánh dấu ☐ → ☑.
+
+### A. Cài đặt và mở app
+- ☐ Safari → link app → đăng nhập Access bằng mã email → thấy trang **Hôm nay**, không lỗi.
+- ☐ Để yên ~10 giây, rồi **Chia sẻ → Thêm vào MH chính** (mục 4). Biểu tượng hiện đúng (nền xanh, không bị cắt viền), tên "Ôn mỗi ngày".
+- ☐ Mở từ biểu tượng: app chạy toàn màn hình (không có thanh địa chỉ); nếu phải đăng nhập Access lần nữa thì nhập mã như mục 4.
+- ☐ Tai thỏ / Dynamic Island và thanh Home không che chữ hay nút (đầu trang, cuối trang, khi cuộn). Xoay ngang (nếu máy cho) không vỡ bố cục.
+- ☐ Không có trang nào cuộn ngang được bằng ngón tay (thử vuốt trái/phải ở cả 4 tab và trong màn ôn).
+
+### B. Offline
+- ☐ Sau lần mở đầu có mạng: bật **Chế độ máy bay** → thoát hẳn app (vuốt khỏi đa nhiệm) → mở lại. App vẫn lên, đủ 4 tab.
+- ☐ Khi offline: bắt đầu phiên **Hôm nay**, ôn TR, thẻ từ, câu mẫu, shadowing một hội thoại, tra cứu "touch base", mở Tiến độ → đều chạy; chấm vài mục, thoát app, mở lại → tiến độ còn.
+- ☐ Khi offline, Cài đặt → **Kiểm tra bản mới / đăng nhập lại** chỉ báo "Đang không có mạng".
+
+### C. Giọng đọc tiếng Anh (TTS)
+- ☐ Cài giọng tốt (miễn phí, chạy offline): **Cài đặt iPhone → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Anh** → tải một giọng có nhãn **Nâng cao** (*Enhanced*) hoặc **Cao cấp** (*Premium*). Gợi ý: Mỹ — *Ava (Cao cấp)*, *Zoe (Cao cấp)*, *Evan (Nâng cao)*, *Samantha (Nâng cao)*; Anh — *Serena (Cao cấp)*, *Daniel (Nâng cao)*, *Kate (Nâng cao)*. Mỗi giọng khoảng 100–400 MB, nên tải qua Wi‑Fi. (Giọng "Siri" không dùng được cho trang web.) Tên menu có thể hơi khác giữa các bản iOS.
+- ☐ Sau khi tải giọng: thoát hẳn app rồi mở lại (Safari chỉ đọc danh sách giọng lúc mở).
+- ☐ Cài đặt (trong app) → **Giọng Mỹ / Giọng Anh**, tốc độ **0,75× / 0,85× / 1×** → **Nghe thử**: nghe đúng giọng, đúng tốc độ; giọng tự nhiên (không phải giọng robot/hiệu ứng).
+- ☐ Nút **gạt im lặng** (Ring/Silent) đang bật im lặng: kiểm xem vẫn nghe được (iOS có thể tắt tiếng TTS trang web khi gạt im lặng — nếu không nghe, gạt sang chuông).
+- ☐ Đang đọc mà bấm sang tab khác / về Màn hình chính → tiếng dừng ngay.
+- ☐ Shadowing: phát một hội thoại, câu nghỉ để nhại, **Lặp câu**, **Ẩn chữ**, câu trước / sau đều chạy; khóa màn hình giữa chừng → dừng, không đọc tiếp nền.
+
+### D. Micro, nhận giọng (Safari cần mạng), ghi âm
+- ☐ Lần đầu bấm **Nói thử** (thẻ câu mẫu hoặc Luyện nói): iPhone hỏi quyền **Micro** và **Nhận dạng giọng nói** → **Cho phép**. Từ chối thử một lần → app báo hướng dẫn tiếng Việt; bật lại trong Cài đặt iPhone → Safari → Micrô (hoặc **aA** → Cài đặt trang web).
+- ☐ **Nhận giọng cần mạng** (Safari gửi âm thanh tới máy chủ Apple): có mạng → nói câu mẫu → hiện chữ, điểm %, tô từ sai/thiếu. Tắt mạng → bấm Nói thử → app báo "cần mạng" và hiện ô gõ / đọc chính tả.
+- ☐ Nói xong im lặng: Safari tự dừng sau vài giây; bấm **Dừng** cũng chấm ngay. Chấm đúng mức: nói chuẩn ≥ 90% → Nhớ rõ.
+- ☐ **Đề nói 1 phút**: chọn đề → **Bắt đầu ghi âm** → chấm cam/đỏ "đang dùng micro" hiện trên thanh trạng thái → đếm ngược chạy → hết giờ tự lưu (hoặc **Dừng & lưu**) → chấm micro **tắt ngay**.
+- ☐ Nghe lại bản ghi ngay trong app (nút ▶ của trình phát), tua được; **Tải về** lưu file `.m4a` vào Tệp; **Xóa** (bấm 2 lần) xóa được.
+- ☐ Đang ghi âm thì về Màn hình chính hoặc chuyển tab trong app → ghi âm dừng, phần đã ghi được lưu, chấm micro tắt.
+- ☐ Thoát app, mở lại → bản ghi vẫn còn.
+- ☐ Bật **VoiceOver** (tùy chọn): đếm ngược chỉ đọc các mốc (30, 20, 10, 5 giây), điểm luyện nói được đọc khi chấm xong.
+
+### E. Nhắc lịch (.ics)
+- ☐ Cài đặt → chọn giờ nhắc + ngày → **Tải file nhắc lịch (.ics)** → iPhone hiện bản xem trước sự kiện → **Thêm tất cả** → chọn lịch → **Xong**.
+- ☐ Mở app **Lịch**: sự kiện lặp lại đúng các ngày đã chọn, đúng giờ Việt Nam, có báo nhắc; bấm vào sự kiện thấy link mở app.
+- ☐ Nếu bấm tải trong app ở Màn hình chính mà không thấy gì: mở cùng link bằng Safari và tải ở đó (file .ics không chứa tiến độ).
+
+### F. Sao lưu / khôi phục
+- ☐ Trong app ở Màn hình chính: Cài đặt → **Xuất tiến độ (.json)** → bảng Chia sẻ hiện ra (hoặc nút **Lưu file sao lưu** → bấm) → **Lưu vào Tệp** (iCloud Drive). Mở file trong Tệp xem được nội dung JSON.
+- ☐ **Nhập từ file…** → chọn file vừa lưu → bảng xác nhận hiện đúng số mục / lượt ôn → **Gộp** → báo thành công, số liệu Tiến độ không đổi.
+- ☐ (Một lần, khi đổi máy) Thử **Thay thế** trên app mới cài → tiến độ giống máy cũ.
+- ☐ Nếu còn Sổ ôn bản cũ: dán state cũ (**Dán JSON**) → xác nhận → tiến độ cũ hiện trong Tiến độ.
+
+### G. Giao diện tối, cỡ chữ, chuyển động
+- ☐ Cài đặt iPhone → Màn hình & Độ sáng → **Tối**: app (chế độ *Theo máy*) chuyển tối, thanh trạng thái tối theo; chữ, nút đỏ (Thay thế, đang ghi âm), thẻ xanh/vàng đều đọc rõ.
+- ☐ Trong app chọn **Sáng** khi máy đang tối (và ngược lại): app và thanh trạng thái theo lựa chọn trong app; thoát mở lại vẫn giữ.
+- ☐ **Cỡ chữ lớn** (Cài đặt → Màn hình & Độ sáng → Cỡ chữ): app dùng cỡ chữ cố định nên không đổi — dùng thu phóng 2 ngón nếu cần; không có chữ bị che.
+- ☐ Bật **Trợ năng → Chuyển động → Giảm chuyển động**: thẻ mới hiện ngay, không trượt.
+
+### H. Dữ liệu, cập nhật
+- ☐ Cài đặt → dòng *Phiên bản* hiện số trong `package.json`. Sau khi merge bản mới: mở app có mạng → vài giây sau app tự tải lại, số phiên bản đổi; hoặc bấm **Kiểm tra bản mới / đăng nhập lại**.
+- ☐ Nếu app báo **"Không mở được bộ nhớ trên máy"** hoặc **"Bộ nhớ máy đã đầy"**: đang dùng Duyệt web riêng tư hoặc iPhone hết dung lượng — tiến độ lần đó **không được lưu**; xử lý theo hướng dẫn trong thông báo rồi Xuất tiến độ.
+
+Gặp lỗi: ghi lại bước làm, bản iOS (Cài đặt → Cài đặt chung → Giới thiệu), chụp màn hình, rồi báo để sửa.
+

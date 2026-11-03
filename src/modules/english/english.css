@@ -33,7 +33,7 @@
 .en-steps li::before { content: counter(st); font-family: var(--f-num); margin-right: 6px; opacity: 0.8; }
 .en-steps li[aria-current='step'] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 .en-sent .slot {
-  background: var(--accent-soft); color: inherit; border-radius: 4px; padding: 0 3px; font: inherit;
+  background: var(--accent-soft); color: inherit; border-radius: 2px; padding: 0; font: inherit; /* không đệm ngang: ô dài ở cuối dòng không đẩy chữ tràn khung (320px) */
   border-bottom: 2px solid var(--accent); box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
 .en-sent .slot.changed { background: var(--good-soft); border-bottom-color: var(--good); }

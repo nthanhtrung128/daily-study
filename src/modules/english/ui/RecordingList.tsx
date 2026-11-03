@@ -12,12 +12,17 @@ export function RecordingList({ topicId, refresh = 0, showTitle = false, limit }
   const [confirm, setConfirm] = useState<number | null>(null);
   const [tick, setTick] = useState(0);
   const [all, setAll] = useState(false);
+  const [err, setErr] = useState('');
 
   useEffect(() => {
     let live = true;
     void listRecordings(topicId)
       .then((r) => live && setRows(r))
-      .catch(() => live && setRows([]));
+      .catch(() => {
+        if (!live) return;
+        setRows([]);
+        setErr('Không đọc được bản ghi trên máy (trình duyệt chặn lưu trữ).');
+      });
     return () => {
       live = false;
     };
@@ -41,7 +46,20 @@ export function RecordingList({ topicId, refresh = 0, showTitle = false, limit }
   }, [confirm]);
 
   if (!rows) return null;
-  if (!rows.length) return <p className="hint" data-testid="rec-empty">Chưa có bản ghi nào. Bản ghi chỉ lưu trên máy này.</p>;
+  const errBox = err ? (
+    <p className="say-err" role="alert">
+      {err}
+    </p>
+  ) : null;
+  if (!rows.length)
+    return (
+      <>
+        {errBox}
+        <p className="hint" data-testid="rec-empty">
+          Chưa có bản ghi nào. Bản ghi chỉ lưu trên máy này.
+        </p>
+      </>
+    );
   const total = rows.reduce((a, r) => a + r.size, 0);
   const visible = limit && !all ? rows.slice(0, limit) : rows;
 
@@ -84,9 +102,10 @@ export function RecordingList({ topicId, refresh = 0, showTitle = false, limit }
                   onClick={() => {
                     if (confirm !== id) return setConfirm(id);
                     setConfirm(null);
+                    setErr('');
                     void deleteRecording(id)
                       .then(() => setTick((x) => x + 1))
-                      .catch(() => undefined);
+                      .catch(() => setErr('Không xóa được bản ghi. Thử lại sau.'));
                   }}
                 >
                   {confirm === id ? 'Bấm lần nữa để xóa' : 'Xóa'}
@@ -103,6 +122,7 @@ export function RecordingList({ topicId, refresh = 0, showTitle = false, limit }
           </button>
         </div>
       )}
+      {errBox}
       <p className="hint">
         {rows.length} bản ghi · {fmtSize(total)} · chỉ lưu trên máy này (không gửi đi đâu).
       </p>

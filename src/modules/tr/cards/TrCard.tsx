@@ -5,6 +5,7 @@ import { fmt, isCorrect, parseNums } from '../../../core/num';
 import { defaultRng, shuffle } from '../../../core/rng';
 import { baiLabel, type Concept } from '../data';
 import type { TrItem } from '../items';
+import { useFocusOnMount } from '../../../ui/useFocusOnMount';
 
 /** Một thẻ trong phiên ôn TR: khái niệm, công thức, thuật ngữ, trắc nghiệm, bài tính, câu hỏi mở. */
 export interface CardProps {
@@ -70,12 +71,18 @@ export function ConceptKv({ c }: { c: Concept }) {
 /** Thẻ tự nhớ: mặt trước → nút lật → mặt sau + 3 nút chấm. */
 function FlipCard({ head, front, back, flipLabel, grade, extra }: { head: ReactNode; front: ReactNode; back: ReactNode; flipLabel: string; grade: (g: Grade) => void; extra?: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const cardRef = useFocusOnMount<HTMLDivElement>();
+  const backRef = useFocusOnMount<HTMLDivElement>(open);
   return (
-    <div className="card">
+    <div className="card" ref={cardRef} tabIndex={-1}>
       {head}
       {front}
       {extra}
-      {open && <div className="back">{back}</div>}
+      {open && (
+        <div className="back" ref={backRef} tabIndex={-1}>
+          {back}
+        </div>
+      )}
       <div>
         {open ? (
           <GradeRow onPick={grade} />
@@ -105,8 +112,9 @@ function QuizCard({ it, state, onGrade, onNext }: CardProps & { it: Extract<TrIt
   const [picked, setPicked] = useState<number | null>(null);
   const done = picked !== null;
   const right = picked === q.a;
+  const cardRef = useFocusOnMount<HTMLDivElement>();
   return (
-    <div className="card">
+    <div className="card" ref={cardRef} tabIndex={-1}>
       <Head it={it} state={state} label="Trắc nghiệm" />
       <div className="q">{q.q}</div>
       <div className="opts">
@@ -152,8 +160,9 @@ function CalcCard({ it, state, onGrade, onNext }: CardProps & { it: Extract<TrIt
     setRes(ok);
     onGrade(ok ? 2 : 0);
   };
+  const cardRef = useFocusOnMount<HTMLDivElement>();
   return (
-    <div className="card">
+    <div className="card" ref={cardRef} tabIndex={-1}>
       <Head it={it} state={state} label={`Bài tính · ${c.name}${c.sup ? ' [Bổ sung]' : ''}`} />
       <div className="q">{P.q}</div>
       <div className="calc-in">

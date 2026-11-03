@@ -9,6 +9,7 @@ import { GRADE_VI, gradeForScore } from '../speech/score';
 import { useRecLifecycle } from '../speech/useRec';
 import { SayCheck } from './SayCheck';
 import { SpeakButton } from './SpeakButton';
+import { useFocusOnMount } from '../../../ui/useFocusOnMount';
 import '../speech.css';
 
 interface Done {
@@ -88,9 +89,10 @@ export function SayCard({
     onDone(g, best);
   };
   const g = best === null ? null : gradeForScore(best);
+  const cardRef = useFocusOnMount<HTMLDivElement>();
 
   return (
-    <div className="card en-card">
+    <div className="card en-card" ref={cardRef} tabIndex={-1}>
       <div className="kind">
         <span>Nói có chấm · {SAY_SOURCE_VI[it.src]}</span>
         <span className="say-label">{it.label}</span>

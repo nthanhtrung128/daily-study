@@ -180,8 +180,12 @@ export function ProgressPage() {
 
       <p className="hint">
         Lịch ôn theo hộp Leitner: nhớ rõ thì giãn 1 → 3 → 7 → 14 → 30 ngày; quên hoặc sai thì quay về hộp 1 và ôn lại ngay phiên sau.
-        Sao lưu hoặc chuyển tiến độ sang máy khác ở <a href="#cai-dat">Cài đặt → Dữ liệu</a>.
       </p>
+      <div className="row">
+        <a className="btn ghost link-btn" href="#cai-dat">
+          Sao lưu tiến độ (Cài đặt → Dữ liệu)
+        </a>
+      </div>
     </section>
   );
 }

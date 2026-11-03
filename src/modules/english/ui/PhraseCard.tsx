@@ -5,6 +5,7 @@ import { TOPIC_VI, type Phrase } from '../content';
 import type { CardDir } from '../plan';
 import { SpeakButton } from './SpeakButton';
 import { SayCheck } from './SayCheck';
+import { useFocusOnMount } from '../../../ui/useFocusOnMount';
 
 export interface PhraseCardProps {
   ph: Phrase;
@@ -22,6 +23,8 @@ export function PhraseCard({ ph, dir, state, note, onSaveNote, onGrade }: Phrase
   const [text, setText] = useState(note);
   const [saved, setSaved] = useState(false);
   const enFront = dir === 'en-vi';
+  const cardRef = useFocusOnMount<HTMLDivElement>();
+  const backRef = useFocusOnMount<HTMLDivElement>(open);
 
   const enBlock = (
     <div className="en-say">
@@ -31,7 +34,7 @@ export function PhraseCard({ ph, dir, state, note, onSaveNote, onGrade }: Phrase
   );
 
   return (
-    <div className="card en-card" data-dir={dir}>
+    <div className="card en-card" data-dir={dir} ref={cardRef} tabIndex={-1}>
       <div className="kind">
         <span>Thẻ từ · {enFront ? 'EN → VI' : 'VI → EN'}</span>
         <span>
@@ -51,7 +54,7 @@ export function PhraseCard({ ph, dir, state, note, onSaveNote, onGrade }: Phrase
         </>
       )}
       {open && (
-        <div className="back">
+        <div className="back" ref={backRef} tabIndex={-1}>
           {enFront ? <div className="en-mean">{ph.vi}</div> : enBlock}
           <div>
             <div className="eyebrow">Ví dụ</div>

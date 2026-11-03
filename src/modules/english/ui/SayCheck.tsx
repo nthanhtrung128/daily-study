@@ -139,6 +139,10 @@ export function SayCheck({ target, listen = true, onScored, onApply, onStart }: 
         )}
       </div>
 
+      <p className="say-sr" role="status" aria-live="polite" data-testid="say-announce">
+        {result && g !== null ? `Điểm ${result.score}%. ${GRADE_VI[g]}.` : ''}
+      </p>
+
       {err && (
         <p className="say-err" role="alert" data-testid="say-err">
           {REC_ERROR_VI[err]}

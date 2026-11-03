@@ -27,6 +27,21 @@ function cloudflareHeadersPreview(): Plugin {
 export default defineConfig({
   base: './',
   define: { __APP_VERSION__: JSON.stringify(pkg.version) },
+  build: {
+    rollupOptions: {
+      output: {
+        // Tách bundle 870 kB thành các phần tải song song (modulepreload) và cache riêng:
+        // nội dung JSON (TR101 + tiếng Anh, ít đổi) và thư viện (React, Dexie) không phải tải lại khi chỉ sửa code app.
+        // Không dùng dynamic import cho content: trang Hôm nay cần toàn bộ nội dung ngay để lập phiên và thống kê.
+        manualChunks(id) {
+          if (id.includes('/content/')) return 'content';
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react';
+          if (id.includes('node_modules/dexie')) return 'dexie';
+          return undefined;
+        },
+      },
+    },
+  },
   plugins: [
     react(),
     cloudflareHeadersPreview(),

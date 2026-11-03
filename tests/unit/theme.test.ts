@@ -23,4 +23,16 @@ describe('theme', () => {
     localStorage.setItem('ds.theme', 'tím');
     expect(loadTheme()).toBe('auto');
   });
+
+  it('theme-color của thanh trạng thái theo lựa chọn Sáng/Tối, về mặc định khi Theo máy', () => {
+    document.head.innerHTML =
+      '<meta name="theme-color" content="#EEF1F4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0E1318" media="(prefers-color-scheme: dark)">';
+    const colors = () => [...document.querySelectorAll('meta[name="theme-color"]')].map((m) => m.getAttribute('content'));
+    applyTheme('dark');
+    expect(colors()).toEqual(['#0E1318', '#0E1318']);
+    applyTheme('light');
+    expect(colors()).toEqual(['#EEF1F4', '#EEF1F4']);
+    applyTheme('auto');
+    expect(colors()).toEqual(['#EEF1F4', '#0E1318']);
+  });
 });

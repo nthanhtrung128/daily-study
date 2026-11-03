@@ -95,6 +95,14 @@ export class StudyDB extends Dexie {
 
 export const db = new StudyDB();
 
+/** Lỗi do hết dung lượng lưu trữ (Dexie bọc lỗi gốc trong `inner`). */
+export function isQuotaError(e: unknown): boolean {
+  for (let x = e as { name?: string; message?: string; inner?: unknown } | null | undefined, i = 0; x && i < 4; x = x.inner as typeof x, i++) {
+    if (x.name === 'QuotaExceededError' || /quota/i.test(x.message ?? '')) return true;
+  }
+  return false;
+}
+
 export async function getSetting<T>(key: string, fallback: T, store: StudyDB = db): Promise<T> {
   const row = await store.settings.get(key);
   return row === undefined ? fallback : (row.value as T);

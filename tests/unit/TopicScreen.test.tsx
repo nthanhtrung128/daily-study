@@ -52,14 +52,17 @@ describe('Đề nói 1 phút', () => {
     fireEvent.click(screen.getByRole('button', { name: '30 giây' }));
     fireEvent.click(screen.getByRole('button', { name: 'Bắt đầu ghi âm' }));
     await screen.findByText(/Đang ghi âm/);
+    expect(screen.getByTestId('rec-announce')).toHaveTextContent('Bắt đầu ghi âm, 30 giây');
     act(() => {
       vi.advanceTimersByTime(10_000);
     });
     expect(screen.getByTestId('rec-left')).toHaveTextContent('0:20');
+    expect(screen.getByTestId('rec-announce')).toHaveTextContent('Còn 20 giây.');
     act(() => {
       vi.advanceTimersByTime(20_200);
     });
-    await screen.findByText(/Đã lưu bản ghi 0:30/);
+    await waitFor(() => expect(screen.getByTestId('rec-status')).toHaveTextContent(/Đã lưu bản ghi 0:30/));
+    expect(screen.getByTestId('rec-announce')).toHaveTextContent(/Đã lưu bản ghi 0:30/);
     expect(streams[0]?.tracks[0]?.stopped).toBe(true);
     const rows = await db.recordings.toArray();
     expect(rows).toHaveLength(1);

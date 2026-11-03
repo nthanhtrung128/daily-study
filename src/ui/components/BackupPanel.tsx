@@ -11,6 +11,7 @@ import {
   type ParsedBackup,
 } from '../../core/backup';
 import { reloadDailyPrefs } from '../useDailyPrefs';
+import { isStandalone, shareFile } from '../mix/download';
 import { fmt } from '../../core/num';
 import { totals } from '../../modules/progress/stats';
 import { useProgress } from '../useProgress';
@@ -27,17 +28,43 @@ export function BackupPanel() {
   const [status, setStatus] = useState<Status>(null);
   const [paste, setPaste] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  /** File sao lưu đã tạo, chờ bấm lần nữa để mở bảng Chia sẻ (iOS đòi thao tác bấm mới). */
+  const [shareReady, setShareReady] = useState<File | null>(null);
   const legacyLocal = readLegacyLocal();
 
   let tracked = 0;
   for (const [, s] of p.entries()) if (s.box > 0) tracked++;
   const curReviews = totals(p.allDays()).n;
 
+  const share = async (file: File, okText: string) => {
+    const r = await shareFile(file);
+    if (r === 'shared') {
+      setShareReady(null);
+      setStatus({ kind: 'ok', text: okText });
+    } else if (r === 'cancelled') {
+      setShareReady(file);
+      setStatus({ kind: 'err', text: 'Chưa lưu file. Bấm “Lưu file sao lưu” rồi chọn “Lưu vào Tệp”.' });
+    } else if (r === 'needs-tap') {
+      setShareReady(file);
+      setStatus({ kind: 'ok', text: 'File sao lưu đã sẵn sàng. Bấm “Lưu file sao lưu” rồi chọn “Lưu vào Tệp”.' });
+    }
+    return r;
+  };
+
   const doExport = async () => {
     setStatus(null);
+    setShareReady(null);
     try {
       const data = await exportBackup();
-      const blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
+      const text = JSON.stringify(data, null, 1);
+      const s = summarize(data);
+      const okText = `Đã xuất ${s.items} mục, ${fmt(s.reviews)} lượt ôn, ${s.notes} ghi chú.`;
+      // App ở Màn hình chính trên iPhone: <a download> có thể không làm gì → dùng bảng Chia sẻ (Lưu vào Tệp).
+      if (isStandalone() && typeof File === 'function') {
+        const r = await share(new File([text], backupFileName(), { type: 'application/json' }), okText);
+        if (r !== 'unsupported') return;
+      }
+      const blob = new Blob([text], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -46,8 +73,7 @@ export function BackupPanel() {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 10_000);
-      const s = summarize(data);
-      setStatus({ kind: 'ok', text: `Đã xuất ${s.items} mục, ${fmt(s.reviews)} lượt ôn, ${s.notes} ghi chú.` });
+      setStatus({ kind: 'ok', text: okText });
     } catch {
       setStatus({ kind: 'err', text: 'Không đọc được dữ liệu trên máy để xuất.' });
     }
@@ -106,6 +132,11 @@ export function BackupPanel() {
         <button type="button" className="btn" onClick={() => void doExport()}>
           Xuất tiến độ (.json)
         </button>
+        {shareReady && (
+          <button type="button" className="btn" onClick={() => void share(shareReady, 'Đã mở bảng Chia sẻ để lưu file sao lưu.')}>
+            Lưu file sao lưu
+          </button>
+        )}
         <button type="button" className="btn ghost" onClick={() => fileRef.current?.click()}>
           Nhập từ file…
         </button>
