@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "dialogues.schema.json",
-  "title": "Hội thoại shadowing (content/english/dialogues.json — nội dung soạn ở S7)",
+  "title": "Hội thoại shadowing (content/english/dialogues.json)",
   "type": "object",
   "required": ["items"],
   "additionalProperties": false,
@@ -14,6 +14,15 @@
     }
   },
   "$defs": {
+    "role": {
+      "type": "object",
+      "required": ["speaker", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "speaker": { "type": "string", "pattern": "^[A-D]$" },
+        "name": { "description": "Vai người nói (tiếng Việt), ví dụ Chuyên viên C&B.", "type": "string", "minLength": 2, "maxLength": 60, "pattern": "^\\S(.*\\S)?$" }
+      }
+    },
     "line": {
       "type": "object",
       "required": ["speaker", "en", "vi"],
@@ -34,6 +43,13 @@
         "situation": { "$ref": "common.schema.json#/$defs/vi" },
         "topic": { "$ref": "common.schema.json#/$defs/topic" },
         "level": { "$ref": "common.schema.json#/$defs/level" },
+        "roles": {
+          "description": "Tùy chọn (thêm ở S7): vai của từng nhãn người nói; nếu có thì mọi speaker trong lines phải có vai.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/role" }
+        },
         "lines": { "type": "array", "minItems": 4, "maxItems": 20, "items": { "$ref": "#/$defs/line" } },
         "note": { "$ref": "common.schema.json#/$defs/note" }
       }
