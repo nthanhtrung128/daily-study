@@ -5,6 +5,7 @@ import { TOPIC_VI, type Pattern } from '../content';
 import { applySlots, optionText, segments } from '../slots';
 import { SpeakButton } from './SpeakButton';
 import { SayCheck } from './SayCheck';
+import { useFocusOnMount } from '../../../ui/useFocusOnMount';
 
 export interface PatternCardProps {
   pt: Pattern;
@@ -19,9 +20,11 @@ export function PatternCard({ pt, state, onGrade }: PatternCardProps) {
   const segs = segments(pt.en, pt.slots, step === 2 ? choice : []);
   const current = applySlots(pt.en, pt.slots, choice);
   const pick = (k: number, c: number) => setChoice((prev) => prev.map((x, i) => (i === k ? c : x)));
+  const cardRef = useFocusOnMount<HTMLDivElement>();
+  const slotsRef = useFocusOnMount<HTMLDivElement>(step === 2);
 
   return (
-    <div className="card en-card">
+    <div className="card en-card" ref={cardRef} tabIndex={-1}>
       <div className="kind">
         <span>Câu mẫu · {pt.situation}</span>
         <span>
@@ -61,7 +64,7 @@ export function PatternCard({ pt, state, onGrade }: PatternCardProps) {
         </>
       ) : (
         <>
-          <div className="en-slots">
+          <div className="en-slots" ref={slotsRef} tabIndex={-1} aria-label="Tự thay từ">
             {pt.slots.map((sl, k) => {
               const opts = [-1, ...sl.alts.map((_, i) => i)];
               return (

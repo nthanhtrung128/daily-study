@@ -4,6 +4,8 @@ import { TOPIC_VI, type Topic } from '../content';
 import { AudioRecorder, RecorderError, RECORDER_ERROR_VI } from '../speech/recorder';
 import { REC_ERROR_VI, speechRec, type RecOutcome } from '../speech/recognizer';
 import { saveRecording, fmtDur } from '../speech/recordings';
+import { isQuotaError } from '../../../core/db';
+import { useFocusOnMount } from '../../../ui/useFocusOnMount';
 import { DURATIONS, SPEAKING_TOPICS, USING_FALLBACK_TOPICS, defaultSeconds, type SpeakingTopic } from '../speech/topics';
 import { useRecLifecycle, useRecState } from '../speech/useRec';
 import { tts } from '../tts';
@@ -97,6 +99,10 @@ export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
   const [err, setErr] = useState<string | null>(null);
   const [saved, setSaved] = useState<string | null>(null);
   const [refresh, setRefresh] = useState(0);
+  // Đếm ngược cho trình đọc màn hình: chỉ báo các mốc (không đọc mỗi giây).
+  const [announce, setAnnounce] = useState('');
+  const lastMark = useRef(0);
+  const cardRef = useFocusOnMount<HTMLDivElement>();
   const rs = useRecState();
   const recorder = useMemo(() => new AudioRecorder(), []);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -124,25 +130,38 @@ export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
       const out = rp ? await rp : null;
       if (out?.error && out.error !== 'no-speech') setErr(`Đã ghi âm, nhưng không nhận được chữ: ${REC_ERROR_VI[out.error]}`);
       await saveRecording({ topicId: topic.id, title: topic.en, blob: res.blob, ms: res.ms, mime: res.mime, ...(out?.transcript ? { transcript: out.transcript } : {}) });
-      setSaved(`Đã lưu bản ghi ${fmtDur(res.ms)} trên máy.`);
+      const msg = `Đã lưu bản ghi ${fmtDur(res.ms)} trên máy.`;
+      setSaved(msg);
+      setAnnounce(msg);
       setRefresh((x) => x + 1);
-    } catch {
-      setErr('Không lưu được bản ghi (bộ nhớ đầy hoặc trình duyệt chặn lưu trữ).');
+    } catch (e) {
+      setErr(
+        isQuotaError(e)
+          ? 'Bộ nhớ máy đã đầy nên không lưu được bản ghi. Xóa bớt bản ghi cũ bên dưới hoặc giải phóng dung lượng iPhone rồi thử lại.'
+          : 'Không lưu được bản ghi (trình duyệt chặn lưu trữ, vd Duyệt web riêng tư).',
+      );
     }
     setP('idle');
   }, [recorder, topic]);
 
-  // Rời màn: dừng ghi, giải phóng micro. Ẩn app khi đang ghi (iOS cắt micro): lưu phần đã ghi.
+  // Ẩn app khi đang ghi (iOS cắt micro) hoặc rời màn (đổi tab, bấm Xong / Chọn đề): dừng ghi, giải phóng micro
+  // và lưu phần đã ghi. Đang chờ quyền micro thì hủy.
   useEffect(() => {
     const vis = () => {
       if (document.visibilityState === 'hidden') void finish();
     };
+    const hide = () => void finish();
     document.addEventListener('visibilitychange', vis);
+    window.addEventListener('pagehide', hide);
     return () => {
       document.removeEventListener('visibilitychange', vis);
+      window.removeEventListener('pagehide', hide);
       clearTick();
-      recorder.cancel();
-      speechRec.abort();
+      if (phaseRef.current === 'recording') void finish();
+      else if (phaseRef.current !== 'saving') {
+        recorder.cancel();
+        speechRec.abort();
+      }
     };
   }, [finish, recorder]);
 
@@ -151,16 +170,27 @@ export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
     setErr(null);
     setSaved(null);
     setLeft(secs * 1000);
+    lastMark.current = secs;
     // Cả hai gọi ngay trong handler bấm: getUserMedia (xin quyền micro) và nhận giọng (nếu bật).
     const p = recorder.start();
     recP.current = withText && speechRec.supported ? speechRec.start({ lang: 'en-US', keepAlive: true }) : null;
     setP('requesting');
     p.then(() => {
       setP('recording');
+      setAnnounce(`Bắt đầu ghi âm, ${secs} giây. Nói đi.`);
       timer.current = setInterval(() => {
         const l = secs * 1000 - recorder.elapsed();
         setLeft(Math.max(0, l));
-        if (l <= 0) void finish();
+        const s = Math.ceil(l / 1000);
+        const mark = [30, 20, 10, 5].find((m) => s <= m && m < lastMark.current);
+        if (mark !== undefined && l > 0) {
+          lastMark.current = mark;
+          setAnnounce(`Còn ${mark} giây.`);
+        }
+        if (l <= 0) {
+          setAnnounce('Hết giờ.');
+          void finish();
+        }
       }, 200);
     }).catch((e: unknown) => {
       speechRec.abort();
@@ -177,7 +207,7 @@ export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
 
   return (
     <div className="stack">
-      <div className="card en-card">
+      <div className="card en-card" ref={cardRef} tabIndex={-1}>
         <div className="kind">
           <span>
             Đề nói · {TOPIC_VI[topic.topic]} · {topic.level}
@@ -260,7 +290,10 @@ export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
               <MicIcon /> {phase === 'requesting' ? 'Đang mở micro…' : 'Bắt đầu ghi âm'}
             </button>
           )}
-          <p className="hint" aria-live="polite" data-testid="rec-status">
+          <p className="sr-only" role="status" aria-live="polite" data-testid="rec-announce">
+            {announce}
+          </p>
+          <p className="hint" data-testid="rec-status">
             {phase === 'recording' ? `Đang ghi âm — còn ${leftS} giây.` : phase === 'requesting' ? 'Cho phép dùng micro nếu máy hỏi.' : (saved ?? '')}
           </p>
           {live && (

@@ -176,7 +176,17 @@ test('/dang-nhap không lấy từ cache service worker (để Cloudflare Access
   await expect(page.goto('./dang-nhap')).rejects.toThrow();
   await context.setOffline(false);
 
-  const res = await page.goto('./dang-nhap');
+  // Nút ở Cài đặt (offline thì báo, không mở trang lỗi).
+  await context.setOffline(true);
+  await page.goto('./#cai-dat');
+  await page.getByRole('link', { name: 'Kiểm tra bản mới / đăng nhập lại' }).click();
+  await expect(page.getByText('Đang không có mạng', { exact: false })).toBeVisible();
+  await context.setOffline(false);
+  const [res] = await Promise.all([
+    page.waitForNavigation(),
+    page.getByRole('link', { name: 'Kiểm tra bản mới / đăng nhập lại' }).click(),
+  ]);
+  expect(page.url()).toMatch(/\/dang-nhap$/);
   expect(res?.fromServiceWorker()).toBe(false);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
   expect(await cspViolations(page)).toEqual([]);

@@ -22,6 +22,7 @@ export function SettingsPage() {
   const tp = useTtsPrefs();
   const p = useProgress();
   const [icsMsg, setIcsMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const [updMsg, setUpdMsg] = useState('');
 
   const choose = (t: Theme) => {
     setTheme(t);
@@ -218,6 +219,24 @@ export function SettingsPage() {
         </p>
         <p className="hint num" style={{ margin: 0 }}>
           Phiên bản {__APP_VERSION__}
+        </p>
+        <div className="row">
+          <a
+            className="btn ghost link-btn"
+            href="./dang-nhap"
+            onClick={(e) => {
+              // /dang-nhap luôn đi ra mạng (không lấy từ cache); offline thì app ở Màn hình chính sẽ kẹt ở trang lỗi.
+              if (navigator.onLine === false) {
+                e.preventDefault();
+                setUpdMsg('Đang không có mạng. Kết nối Wi‑Fi/4G rồi bấm lại.');
+              }
+            }}
+          >
+            Kiểm tra bản mới / đăng nhập lại
+          </a>
+        </div>
+        <p className="hint" role="status" style={{ margin: 0 }}>
+          {updMsg || 'Mở lại app qua mạng (đăng nhập Cloudflare Access nếu phiên đã hết hạn) để tải bản mới. Tiến độ không bị ảnh hưởng.'}
         </p>
         <BackupPanel />
       </div>

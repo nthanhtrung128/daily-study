@@ -37,7 +37,7 @@ export function ShadowPlayerView({ track }: { track: Track }) {
   const status = s.playing ? (s.phase === 'gap' ? 'Đến lượt bạn nhại lại…' : 'Đang đọc…') : s.ended ? 'Hết bài. Bấm phát để nghe lại từ đầu.' : 'Đã dừng.';
 
   return (
-    <div className="card en-card shadow" aria-label={`Shadowing: ${track.title}`}>
+    <div className="card en-card shadow" role="region" aria-label={`Shadowing: ${track.title}`}>
       <div className="kind">
         <span>Shadowing · {track.title}</span>
         <span className="num" data-testid="sh-count">
@@ -65,7 +65,6 @@ export function ShadowPlayerView({ track }: { track: Track }) {
       <p className="hint" aria-live="polite" data-testid="sh-status">
         {status}
       </p>
-
 
       <div className="sh-ctrl" role="group" aria-label="Điều khiển">
         <button type="button" className="btn ghost sh-btn" onClick={() => player.prev()} disabled={s.index === 0} aria-label="Câu trước">
