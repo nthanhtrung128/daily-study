@@ -31,6 +31,23 @@ describe('Progress (IndexedDB)', () => {
     expect(await store.reviews.count()).toBe(3);
   });
 
+  it('ghi chú rỗng thì xóa; load(true) đọc lại sau khi CSDL bị thay', async () => {
+    const p = new Progress(store, () => new Date(2026, 10, 3, 9));
+    await p.load();
+    p.setNote('tr:K001', 'tạm');
+    p.grade('tr:K002', 2);
+    await p.flush();
+    p.setNote('tr:K001', '   ');
+    await p.flush();
+    expect(p.note('tr:K001')).toBe('');
+    expect(await store.notes.count()).toBe(0);
+    await store.items.clear();
+    await store.items.put({ id: 'tr:K003', box: 4, due: '2026-11-20', wrong: 0, last: 0 });
+    await p.load(true);
+    expect(p.stateOf('tr:K002')).toBeUndefined();
+    expect(p.stateOf('tr:K003')?.box).toBe(4);
+  });
+
   it('nâng cấp từ CSDL v1 (S1) giữ dữ liệu cũ', async () => {
     const { default: Dexie } = await import('dexie');
     const old = new Dexie('test-upgrade');

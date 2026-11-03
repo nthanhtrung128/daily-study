@@ -179,16 +179,21 @@ export interface EnglishFileSpec {
   idPrefix: string;
   /** Các trường văn bản tiếng Anh không được trùng giữa các mục (so sau khi chuẩn hóa). */
   uniqueFields: string[];
-  /** Có bắt buộc file tồn tại không (dialogues / speaking-topics để S7). */
+  /** Có bắt buộc file tồn tại không. */
   required: boolean;
 }
 
 export const ENGLISH_FILES: EnglishFileSpec[] = [
   { file: 'phrases.json', schema: 'phrases.schema.json', idPrefix: 'ph', uniqueFields: ['en', 'example'], required: true },
   { file: 'patterns.json', schema: 'patterns.schema.json', idPrefix: 'pt', uniqueFields: ['en'], required: true },
-  { file: 'dialogues.json', schema: 'dialogues.schema.json', idPrefix: 'dl', uniqueFields: ['title'], required: false },
-  { file: 'speaking-topics.json', schema: 'speaking-topics.schema.json', idPrefix: 'st', uniqueFields: ['en'], required: false },
+  { file: 'dialogues.json', schema: 'dialogues.schema.json', idPrefix: 'dl', uniqueFields: ['title'], required: true },
+  { file: 'speaking-topics.json', schema: 'speaking-topics.schema.json', idPrefix: 'st', uniqueFields: ['en', 'opener'], required: true },
 ];
+
+export interface EnglishOptions {
+  /** Id khái niệm TR101 hợp lệ (content/tr101/data.json → concepts); có thì kiểm tra trConcept của đề nói. */
+  trConceptIds?: ReadonlySet<string>;
+}
 
 export interface EnglishReport {
   errors: string[];
@@ -203,8 +208,40 @@ function countSlotOccurrences(haystack: string, needle: string): number {
   return n;
 }
 
-/** Kiểm tra ngoài schema: id duy nhất, không trùng nội dung, slot của câu mẫu khớp câu. */
-function checkSemantics(spec: EnglishFileSpec, items: unknown[], errors: string[]) {
+/** Hội thoại: vai không trùng nhãn, mọi người nói trong lines có vai, có ít nhất 2 người nói. */
+function checkDialogue(raw: Obj, where: string, errors: string[]) {
+  if (!Array.isArray(raw.lines)) return;
+  const speakers = new Set(raw.lines.map((l) => (isObj(l) && typeof l.speaker === 'string' ? l.speaker : '')).filter(Boolean));
+  if (speakers.size < 2) errors.push(`${where}: hội thoại cần ít nhất 2 người nói`);
+  if (!Array.isArray(raw.roles)) return;
+  const roles = new Set<string>();
+  raw.roles.forEach((r, j) => {
+    if (!isObj(r) || typeof r.speaker !== 'string') return;
+    if (roles.has(r.speaker)) errors.push(`${where}: roles[${j}] trùng nhãn "${r.speaker}"`);
+    roles.add(r.speaker);
+  });
+  for (const sp of speakers) if (!roles.has(sp)) errors.push(`${where}: người nói "${sp}" chưa có trong roles`);
+  for (const r of roles) if (!speakers.has(r)) errors.push(`${where}: vai "${r}" không nói lượt nào`);
+}
+
+/** Đề nói: cụm nên dùng không trùng nhau (sau chuẩn hóa), trConcept có trong TR101. */
+function checkTopic(raw: Obj, where: string, errors: string[], opts: EnglishOptions) {
+  if (Array.isArray(raw.useful)) {
+    const seen = new Set<string>();
+    raw.useful.forEach((u, j) => {
+      if (typeof u !== 'string') return;
+      const k = normalizeEn(u);
+      if (seen.has(k)) errors.push(`${where}: useful[${j}] trùng cụm khác ("${u}")`);
+      seen.add(k);
+    });
+  }
+  if (typeof raw.trConcept === 'string' && opts.trConceptIds && !opts.trConceptIds.has(raw.trConcept)) {
+    errors.push(`${where}: trConcept "${raw.trConcept}" không có trong content/tr101/data.json`);
+  }
+}
+
+/** Kiểm tra ngoài schema: id duy nhất, không trùng nội dung, slot của câu mẫu khớp câu, vai hội thoại, khái niệm TR của đề nói. */
+function checkSemantics(spec: EnglishFileSpec, items: unknown[], errors: string[], opts: EnglishOptions) {
   const ids = new Set<string>();
   const seen: Record<string, Map<string, string>> = {};
   for (const f of spec.uniqueFields) seen[f] = new Map();
@@ -229,6 +266,9 @@ function checkSemantics(spec: EnglishFileSpec, items: unknown[], errors: string[
       else seen[f]?.set(key, id);
     }
 
+    if (spec.idPrefix === 'dl') checkDialogue(raw, where, errors);
+    if (spec.idPrefix === 'st') checkTopic(raw, where, errors, opts);
+
     // Câu mẫu: mỗi slot phải xuất hiện đúng một lần trong câu, phương án thay khác bản gốc, slot không chồng nhau.
     if (Array.isArray(raw.slots) && typeof raw.en === 'string') {
       const en = raw.en;
@@ -251,12 +291,12 @@ function checkSemantics(spec: EnglishFileSpec, items: unknown[], errors: string[
 }
 
 /** Kiểm tra một file nội dung tiếng Anh đã parse. */
-export function validateEnglishFile(spec: EnglishFileSpec, data: unknown, registry: SchemaRegistry): EnglishReport {
+export function validateEnglishFile(spec: EnglishFileSpec, data: unknown, registry: SchemaRegistry, opts: EnglishOptions = {}): EnglishReport {
   const errors = validateAgainstSchema(data, spec.schema, registry).map((e) => `${spec.file} ${e}`);
   const report: EnglishReport = { errors, count: 0, byTopic: {}, byLevel: {} };
   const items = isObj(data) && Array.isArray(data.items) ? data.items : [];
   report.count = items.length;
-  checkSemantics(spec, items, errors);
+  checkSemantics(spec, items, errors, opts);
   for (const it of items) {
     if (!isObj(it)) continue;
     if (typeof it.topic === 'string') report.byTopic[it.topic] = (report.byTopic[it.topic] ?? 0) + 1;

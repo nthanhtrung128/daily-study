@@ -1,0 +1,1200 @@
+{
+  "$schema": "./schema/dialogues.schema.json",
+  "items": [
+    {
+      "id": "dl-0001",
+      "title": "Kicking off the salary review meeting",
+      "situation": "Trưởng nhóm C&B mở đầu cuộc họp xét lương năm với các quản lý.",
+      "topic": "meetings",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Trưởng nhóm C&B"}, {"speaker": "B", "name": "Quản lý bán hàng"}, {"speaker": "C", "name": "Quản lý kho"}],
+      "lines": [
+        {"speaker": "A", "en": "Good morning, everyone. Thanks for coming.", "vi": "Chào buổi sáng mọi người. Cảm ơn đã đến."},
+        {"speaker": "A", "en": "Today we'll go through the timeline for the salary review.", "vi": "Hôm nay ta sẽ xem lịch trình xét lương."},
+        {"speaker": "B", "en": "How long will the meeting take?", "vi": "Cuộc họp kéo dài bao lâu?"},
+        {"speaker": "A", "en": "About forty-five minutes. There are three items on the agenda.", "vi": "Khoảng 45 phút. Có ba mục trong chương trình."},
+        {"speaker": "A", "en": "First, the timeline. Second, the budget. Third, the forms.", "vi": "Thứ nhất là lịch, thứ hai là ngân sách, thứ ba là biểu mẫu."},
+        {"speaker": "C", "en": "Will we get the forms today?", "vi": "Hôm nay chúng tôi có nhận biểu mẫu không?"},
+        {"speaker": "A", "en": "Yes, I'll send them right after the meeting.", "vi": "Có, tôi sẽ gửi ngay sau cuộc họp."},
+        {"speaker": "B", "en": "Great. When do you need them back?", "vi": "Tốt. Khi nào chị cần nhận lại?"},
+        {"speaker": "A", "en": "By the end of February, please.", "vi": "Trước cuối tháng Hai nhé."},
+        {"speaker": "A", "en": "Okay, let's start with the timeline.", "vi": "Được rồi, bắt đầu với lịch trình."}
+      ]
+    },
+    {
+      "id": "dl-0002",
+      "title": "Presenting survey results to the HR director",
+      "situation": "Chuyên viên C&B trình bày kết quả khảo sát lương thị trường cho Giám đốc nhân sự.",
+      "topic": "meetings",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Giám đốc nhân sự"}],
+      "lines": [
+        {"speaker": "A", "en": "I'd like to share the main findings from this year's salary survey.", "vi": "Tôi xin chia sẻ các kết quả chính của khảo sát lương năm nay."},
+        {"speaker": "A", "en": "Overall, our base pay is at about the 45th percentile.", "vi": "Nhìn chung, lương cơ bản của ta ở khoảng phân vị 45."},
+        {"speaker": "B", "en": "So we're slightly below the median.", "vi": "Vậy ta hơi thấp hơn trung vị."},
+        {"speaker": "A", "en": "That's right. But our allowances are well above the market.", "vi": "Đúng vậy. Nhưng phụ cấp của ta cao hơn hẳn thị trường."},
+        {"speaker": "B", "en": "Which roles are furthest behind?", "vi": "Vị trí nào tụt xa nhất?"},
+        {"speaker": "A", "en": "IT and finance. Some engineers are fifteen percent below the median.", "vi": "IT và tài chính. Một số kỹ sư thấp hơn trung vị 15%."},
+        {"speaker": "B", "en": "Is that why we're losing so many developers?", "vi": "Có phải vì vậy mà ta mất nhiều lập trình viên không?"},
+        {"speaker": "A", "en": "It's one reason. The exit interviews point the same way.", "vi": "Đó là một lý do. Phỏng vấn nghỉ việc cũng cho thấy vậy."},
+        {"speaker": "B", "en": "What do you recommend?", "vi": "Em đề xuất gì?"},
+        {"speaker": "A", "en": "A targeted market adjustment for those two job families.", "vi": "Điều chỉnh theo thị trường có trọng tâm cho hai nhóm công việc đó."},
+        {"speaker": "B", "en": "Okay. Send me the cost of that by Friday.", "vi": "Được. Gửi tôi chi phí của phương án đó trước thứ Sáu."}
+      ]
+    },
+    {
+      "id": "dl-0003",
+      "title": "Disagreeing politely about the merit budget",
+      "situation": "Chuyên viên C&B và Quản lý tài chính bàn về ngân sách tăng lương.",
+      "topic": "meetings",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý tài chính"}],
+      "lines": [
+        {"speaker": "B", "en": "Finance is suggesting a merit budget of four percent.", "vi": "Tài chính đề xuất ngân sách tăng lương 4%."},
+        {"speaker": "A", "en": "I see where that number comes from, but I'm a bit worried.", "vi": "Tôi hiểu con số đó từ đâu ra, nhưng tôi hơi lo."},
+        {"speaker": "B", "en": "Worried about what?", "vi": "Lo về điều gì?"},
+        {"speaker": "A", "en": "The market is moving at around six percent this year.", "vi": "Năm nay thị trường tăng khoảng 6%."},
+        {"speaker": "B", "en": "But our profit is lower than last year.", "vi": "Nhưng lợi nhuận ta thấp hơn năm ngoái."},
+        {"speaker": "A", "en": "That's a fair point. Could we look at a middle option?", "vi": "Ý đó hợp lý. Ta xem một phương án ở giữa được không?"},
+        {"speaker": "B", "en": "What do you have in mind?", "vi": "Anh nghĩ đến gì?"},
+        {"speaker": "A", "en": "Five percent, but focused on high performers and key roles.", "vi": "5%, nhưng tập trung vào người hiệu suất cao và vị trí chủ chốt."},
+        {"speaker": "B", "en": "I can take that to the CFO, if you send me the numbers.", "vi": "Tôi có thể trình lên Giám đốc tài chính nếu anh gửi số liệu."},
+        {"speaker": "A", "en": "Thanks. I'll prepare two scenarios today.", "vi": "Cảm ơn. Hôm nay tôi sẽ chuẩn bị hai kịch bản."}
+      ]
+    },
+    {
+      "id": "dl-0004",
+      "title": "Agreeing action items at the end of a meeting",
+      "situation": "Cuối cuộc họp, mọi người chốt việc cần làm và người phụ trách.",
+      "topic": "meetings",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Trưởng nhóm"}, {"speaker": "B", "name": "Chuyên viên C&B"}, {"speaker": "C", "name": "Chuyên viên tiền lương"}],
+      "lines": [
+        {"speaker": "A", "en": "Okay, we're almost out of time. Let's agree on the next steps.", "vi": "Sắp hết giờ rồi. Ta chốt các bước tiếp theo nhé."},
+        {"speaker": "A", "en": "Lan, can you update the allowance table?", "vi": "Lan cập nhật bảng phụ cấp được không?"},
+        {"speaker": "B", "en": "Sure. I'll have it ready by Wednesday.", "vi": "Được ạ. Em sẽ xong trước thứ Tư."},
+        {"speaker": "A", "en": "And Duc, could you check the overtime data?", "vi": "Còn Đức, kiểm tra dữ liệu làm thêm giờ giúp nhé?"},
+        {"speaker": "C", "en": "Yes. Do you need it for all branches?", "vi": "Vâng. Chị cần cho tất cả chi nhánh ạ?"},
+        {"speaker": "A", "en": "Just Hanoi and Hai Phong for now.", "vi": "Tạm thời chỉ Hà Nội và Hải Phòng."},
+        {"speaker": "C", "en": "Got it. I'll send it on Thursday.", "vi": "Rõ rồi. Em gửi vào thứ Năm."},
+        {"speaker": "A", "en": "Great. I'll send the minutes this afternoon.", "vi": "Tốt. Chiều nay chị gửi biên bản họp."},
+        {"speaker": "B", "en": "Thanks, everyone.", "vi": "Cảm ơn mọi người."}
+      ]
+    },
+    {
+      "id": "dl-0005",
+      "title": "Designing a sales bonus plan",
+      "situation": "Hội thảo thiết kế thưởng bán hàng giữa C&B và Giám đốc kinh doanh.",
+      "topic": "meetings",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Giám đốc kinh doanh"}],
+      "lines": [
+        {"speaker": "B", "en": "My team wants a bigger bonus when they beat their targets.", "vi": "Đội tôi muốn thưởng lớn hơn khi vượt chỉ tiêu."},
+        {"speaker": "A", "en": "That makes sense. We could add an accelerator above one hundred percent.", "vi": "Hợp lý. Ta có thể thêm hệ số gia tốc trên mức 100%."},
+        {"speaker": "B", "en": "What would that look like in practice?", "vi": "Thực tế sẽ thế nào?"},
+        {"speaker": "A", "en": "For every sale above quota, the commission rate goes up by half.", "vi": "Mỗi doanh số vượt chỉ tiêu, tỷ lệ hoa hồng tăng thêm một nửa."},
+        {"speaker": "B", "en": "Is there a limit?", "vi": "Có giới hạn không?"},
+        {"speaker": "A", "en": "I'd recommend a cap at two hundred percent of target.", "vi": "Tôi đề xuất trần ở mức 200% thưởng mục tiêu."},
+        {"speaker": "B", "en": "Won't a cap demotivate the top sellers?", "vi": "Có trần thì người bán giỏi nhất có mất động lực không?"},
+        {"speaker": "A", "en": "It might, but it protects us from windfall deals.", "vi": "Có thể, nhưng nó bảo vệ ta khỏi các hợp đồng trúng lớn bất ngờ."},
+        {"speaker": "B", "en": "And what about margin? Some reps discount too much.", "vi": "Còn biên lợi nhuận? Có người giảm giá quá nhiều."},
+        {"speaker": "A", "en": "We can add a margin gate, so deals below a certain margin don't count.", "vi": "Ta thêm ngưỡng biên lợi nhuận, hợp đồng dưới mức đó không được tính."},
+        {"speaker": "B", "en": "I like that. Let's model it with last year's data.", "vi": "Tôi thích ý đó. Hãy mô phỏng với số liệu năm ngoái."}
+      ]
+    },
+    {
+      "id": "dl-0006",
+      "title": "Calibrating performance ratings",
+      "situation": "Buổi hiệu chỉnh xếp loại: hai quản lý không đồng ý về một xếp loại; C&B điều phối.",
+      "topic": "meetings",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B (điều phối)"}, {"speaker": "B", "name": "Quản lý A"}, {"speaker": "C", "name": "Quản lý B"}],
+      "lines": [
+        {"speaker": "A", "en": "Let's look at the next name. Minh has been rated \"exceeds expectations.\"", "vi": "Xem tên tiếp theo. Minh được xếp \"vượt kỳ vọng\"."},
+        {"speaker": "B", "en": "Yes, he delivered the new system two weeks early.", "vi": "Đúng, cậu ấy bàn giao hệ thống mới sớm hai tuần."},
+        {"speaker": "C", "en": "I worked with him on that. The result was good, but he didn't share information.", "vi": "Tôi làm cùng cậu ấy. Kết quả tốt, nhưng cậu ấy không chia sẻ thông tin."},
+        {"speaker": "B", "en": "That's true, but it was a very tight deadline.", "vi": "Đúng vậy, nhưng hạn rất gấp."},
+        {"speaker": "A", "en": "Remember, we look at both what was achieved and how.", "vi": "Xin nhắc, ta xét cả kết quả đạt được và cách làm."},
+        {"speaker": "C", "en": "Then I'd say \"meets expectations\" is fairer.", "vi": "Vậy tôi nghĩ \"đạt kỳ vọng\" công bằng hơn."},
+        {"speaker": "A", "en": "How does he compare with others on the same rating?", "vi": "So với những người cùng xếp loại thì cậu ấy thế nào?"},
+        {"speaker": "B", "en": "Honestly, his results are stronger than most of them.", "vi": "Thật lòng, kết quả của cậu ấy tốt hơn phần lớn số đó."},
+        {"speaker": "A", "en": "Then let's keep \"exceeds,\" and add teamwork as a development goal.", "vi": "Vậy giữ \"vượt\", và thêm tinh thần đồng đội làm mục tiêu phát triển."},
+        {"speaker": "C", "en": "I can accept that.", "vi": "Tôi chấp nhận được."}
+      ]
+    },
+    {
+      "id": "dl-0007",
+      "title": "Weekly C&B team stand-up",
+      "situation": "Họp nhanh đầu tuần của nhóm C&B, mỗi người cập nhật việc của mình.",
+      "topic": "meetings",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Trưởng nhóm"}, {"speaker": "B", "name": "Chuyên viên phúc lợi"}, {"speaker": "C", "name": "Chuyên viên tiền lương"}],
+      "lines": [
+        {"speaker": "A", "en": "Morning, all. Let's keep it short. Ha, you first.", "vi": "Chào cả nhóm. Họp ngắn thôi. Hà nói trước nhé."},
+        {"speaker": "B", "en": "I'm finishing the insurance renewal. The vendor sends the quote today.", "vi": "Em đang hoàn tất gia hạn bảo hiểm. Hôm nay nhà cung cấp gửi báo giá."},
+        {"speaker": "A", "en": "Any problems?", "vi": "Có vướng gì không?"},
+        {"speaker": "B", "en": "Not yet. I'll tell you if the price goes up a lot.", "vi": "Chưa ạ. Nếu giá tăng nhiều em sẽ báo chị."},
+        {"speaker": "A", "en": "Thanks. Quang?", "vi": "Cảm ơn. Quang?"},
+        {"speaker": "C", "en": "Payroll is on track. I'm waiting for two timesheets from the factory.", "vi": "Lương đang đúng tiến độ. Em chờ hai bảng chấm công từ nhà máy."},
+        {"speaker": "A", "en": "Do you need me to chase them?", "vi": "Em có cần chị nhắc họ không?"},
+        {"speaker": "C", "en": "Maybe tomorrow, if they're still missing.", "vi": "Có lẽ mai, nếu vẫn chưa có."},
+        {"speaker": "A", "en": "Okay. Let's meet again on Friday.", "vi": "Được. Thứ Sáu gặp lại nhé."}
+      ]
+    },
+    {
+      "id": "dl-0008",
+      "title": "Asking for clarification in a meeting",
+      "situation": "Nhân viên mới hỏi lại khi chưa hiểu thuật ngữ trong cuộc họp.",
+      "topic": "meetings",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên mới"}, {"speaker": "B", "name": "Quản lý C&B"}],
+      "lines": [
+        {"speaker": "B", "en": "So the CR for this group is around point nine.", "vi": "Vậy CR của nhóm này khoảng 0,9."},
+        {"speaker": "A", "en": "Sorry, could I ask a quick question?", "vi": "Xin lỗi, cho em hỏi nhanh một câu?"},
+        {"speaker": "B", "en": "Of course. Go on.", "vi": "Tất nhiên. Em cứ hỏi."},
+        {"speaker": "A", "en": "What does CR stand for here?", "vi": "Ở đây CR là viết tắt của gì ạ?"},
+        {"speaker": "B", "en": "Compa-ratio. It's salary divided by the midpoint.", "vi": "Compa-ratio. Là lương chia cho điểm giữa."},
+        {"speaker": "A", "en": "So point nine means they're paid below the midpoint?", "vi": "Vậy 0,9 nghĩa là họ được trả dưới điểm giữa?"},
+        {"speaker": "B", "en": "Exactly. About ten percent below.", "vi": "Chính xác. Thấp hơn khoảng 10%."},
+        {"speaker": "A", "en": "Thanks, that's clear now.", "vi": "Cảm ơn, giờ em hiểu rồi."},
+        {"speaker": "B", "en": "Good question. Others may have wondered too.", "vi": "Câu hỏi hay. Người khác có thể cũng thắc mắc."}
+      ]
+    },
+    {
+      "id": "dl-0009",
+      "title": "Pushing back on a tight deadline",
+      "situation": "Quản lý dự án đề nghị hoàn thành khung cấp bậc trong một tuần; C&B thương lượng lại.",
+      "topic": "meetings",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý dự án"}],
+      "lines": [
+        {"speaker": "B", "en": "We need the new job levels by next Monday.", "vi": "Ta cần khung cấp bậc mới trước thứ Hai tới."},
+        {"speaker": "A", "en": "I understand it's urgent, but one week is very tight.", "vi": "Tôi hiểu là gấp, nhưng một tuần rất sát."},
+        {"speaker": "B", "en": "What's the problem?", "vi": "Vướng ở đâu?"},
+        {"speaker": "A", "en": "We still need input from six department heads.", "vi": "Ta vẫn cần ý kiến của sáu trưởng phòng."},
+        {"speaker": "A", "en": "If we rush it, we'll get mistakes in the grades.", "vi": "Nếu làm vội, xếp ngạch sẽ sai."},
+        {"speaker": "B", "en": "So what can you realistically deliver?", "vi": "Vậy thực tế anh có thể giao gì?"},
+        {"speaker": "A", "en": "I can give you a draft for three departments by Monday.", "vi": "Thứ Hai tôi có thể giao bản nháp cho ba phòng."},
+        {"speaker": "A", "en": "The full version would be ready two weeks later.", "vi": "Bản đầy đủ sẽ xong sau đó hai tuần."},
+        {"speaker": "B", "en": "Okay, that works. Let's put that in the plan.", "vi": "Được, như vậy ổn. Đưa vào kế hoạch nhé."}
+      ]
+    },
+    {
+      "id": "dl-0010",
+      "title": "Proposing a flexible benefits pilot",
+      "situation": "Chuyên viên phúc lợi đề xuất thử nghiệm phúc lợi linh hoạt với ban lãnh đạo.",
+      "topic": "meetings",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên phúc lợi"}, {"speaker": "B", "name": "Giám đốc nhân sự"}],
+      "lines": [
+        {"speaker": "A", "en": "Our survey shows that employees want more choice in their benefits.", "vi": "Khảo sát cho thấy nhân viên muốn được chọn phúc lợi nhiều hơn."},
+        {"speaker": "B", "en": "What kind of choice?", "vi": "Chọn kiểu gì?"},
+        {"speaker": "A", "en": "Young staff prefer training and gym. Older staff want better health cover.", "vi": "Người trẻ thích đào tạo và phòng gym. Người lớn tuổi muốn bảo hiểm sức khỏe tốt hơn."},
+        {"speaker": "A", "en": "So I'd like to propose a flexible benefits pilot.", "vi": "Vì vậy tôi đề xuất thử nghiệm phúc lợi linh hoạt."},
+        {"speaker": "B", "en": "How would it work?", "vi": "Nó vận hành thế nào?"},
+        {"speaker": "A", "en": "Each person gets points every year and chooses what to spend them on.", "vi": "Mỗi người nhận điểm hằng năm và tự chọn dùng vào đâu."},
+        {"speaker": "B", "en": "Will it cost more?", "vi": "Có tốn hơn không?"},
+        {"speaker": "A", "en": "No, the total budget stays the same. We just spend it differently.", "vi": "Không, tổng ngân sách giữ nguyên. Chỉ chi khác đi."},
+        {"speaker": "B", "en": "Where would you start?", "vi": "Anh định bắt đầu ở đâu?"},
+        {"speaker": "A", "en": "With the head office, about three hundred people, for one year.", "vi": "Ở văn phòng chính, khoảng 300 người, trong một năm."},
+        {"speaker": "B", "en": "Okay. Put together a short proposal and we'll discuss it.", "vi": "Được. Soạn một đề xuất ngắn rồi ta bàn."}
+      ]
+    },
+    {
+      "id": "dl-0011",
+      "title": "Fixing audio problems on a video call",
+      "situation": "Cuộc họp online bị lỗi âm thanh và hình ảnh.",
+      "topic": "meetings",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Đồng nghiệp chi nhánh"}],
+      "lines": [
+        {"speaker": "A", "en": "Hi Tuan, can you hear me?", "vi": "Chào Tuấn, nghe tôi không?"},
+        {"speaker": "B", "en": "Sorry, you're breaking up a bit.", "vi": "Xin lỗi, tiếng chị bị ngắt quãng."},
+        {"speaker": "A", "en": "Is that better? I've moved closer to the router.", "vi": "Giờ đỡ hơn chưa? Tôi đã lại gần bộ phát wifi."},
+        {"speaker": "B", "en": "Yes, much better. But your video is frozen.", "vi": "Vâng, tốt hơn nhiều. Nhưng hình chị bị đứng."},
+        {"speaker": "A", "en": "Let me turn my camera off. That should help.", "vi": "Để tôi tắt camera. Chắc sẽ đỡ hơn."},
+        {"speaker": "B", "en": "Okay, the sound is clear now.", "vi": "Được rồi, giờ tiếng rõ rồi."},
+        {"speaker": "A", "en": "Great. Can you see my screen?", "vi": "Tốt. Anh thấy màn hình của tôi không?"},
+        {"speaker": "B", "en": "Yes, I can see the payroll file.", "vi": "Có, tôi thấy file lương rồi."},
+        {"speaker": "A", "en": "Perfect. Let's start with the first tab.", "vi": "Tuyệt. Bắt đầu với sheet đầu tiên nhé."}
+      ]
+    },
+    {
+      "id": "dl-0012",
+      "title": "Scheduling a call across time zones",
+      "situation": "Sắp xếp cuộc họp online với nhóm Total Rewards khu vực ở Singapore.",
+      "topic": "meetings",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B Hà Nội"}, {"speaker": "B", "name": "Quản lý TR khu vực"}],
+      "lines": [
+        {"speaker": "B", "en": "Can we set up a call to review the bonus numbers?", "vi": "Ta hẹn một cuộc gọi để xem số thưởng nhé?"},
+        {"speaker": "A", "en": "Sure. Just a reminder, Singapore is one hour ahead of us.", "vi": "Được. Xin nhắc, Singapore sớm hơn bên tôi một tiếng."},
+        {"speaker": "B", "en": "Right. How about ten a.m. my time on Tuesday?", "vi": "Đúng rồi. Mười giờ sáng thứ Ba giờ bên tôi thì sao?"},
+        {"speaker": "A", "en": "That's nine here. It works for me.", "vi": "Bên tôi là chín giờ. Tôi được."},
+        {"speaker": "B", "en": "Should we invite the finance team as well?", "vi": "Có nên mời cả nhóm tài chính không?"},
+        {"speaker": "A", "en": "Yes, I think we'll need them for the budget questions.", "vi": "Có, tôi nghĩ ta sẽ cần họ cho câu hỏi ngân sách."},
+        {"speaker": "B", "en": "Okay. I'll send the invite with a Teams link.", "vi": "Được. Tôi sẽ gửi lời mời kèm link Teams."},
+        {"speaker": "A", "en": "Could you also attach the latest file? I'd like to prepare.", "vi": "Anh đính kèm file mới nhất được không? Tôi muốn chuẩn bị."},
+        {"speaker": "B", "en": "Of course. Talk to you on Tuesday.", "vi": "Tất nhiên. Hẹn thứ Ba nhé."}
+      ]
+    },
+    {
+      "id": "dl-0013",
+      "title": "Rescheduling a call by phone",
+      "situation": "Gọi điện cho nhà cung cấp bảo hiểm để dời lịch họp.",
+      "topic": "meetings",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên phúc lợi"}, {"speaker": "B", "name": "Lễ tân nhà cung cấp"}, {"speaker": "C", "name": "Đại diện nhà cung cấp"}],
+      "lines": [
+        {"speaker": "B", "en": "Good morning, Sunrise Insurance. How can I help you?", "vi": "Chào buổi sáng, Bảo hiểm Sunrise. Tôi giúp gì được ạ?"},
+        {"speaker": "A", "en": "Hi, this is Mai from the HR team at Lotus Foods.", "vi": "Chào chị, tôi là Mai, phòng nhân sự Lotus Foods."},
+        {"speaker": "A", "en": "Could you put me through to Mr Long, please?", "vi": "Chị nối máy giúp tôi tới anh Long được không?"},
+        {"speaker": "B", "en": "One moment, please.", "vi": "Xin chờ một chút."},
+        {"speaker": "C", "en": "Hello, Mai. This is Long.", "vi": "Chào Mai. Long đây."},
+        {"speaker": "A", "en": "Hi, Long. I'm afraid I need to move our meeting on Thursday.", "vi": "Chào anh. Tôi e là phải dời cuộc họp thứ Năm."},
+        {"speaker": "C", "en": "No problem. When are you free?", "vi": "Không sao. Khi nào chị rảnh?"},
+        {"speaker": "A", "en": "Would Friday morning suit you?", "vi": "Sáng thứ Sáu có tiện cho anh không?"},
+        {"speaker": "C", "en": "Friday at ten is fine.", "vi": "Mười giờ thứ Sáu được."},
+        {"speaker": "A", "en": "Great. I'll send you a new invite. Thanks a lot.", "vi": "Tốt quá. Tôi sẽ gửi lời mời mới. Cảm ơn anh nhiều."}
+      ]
+    },
+    {
+      "id": "dl-0014",
+      "title": "Handling a tough question from the leadership team",
+      "situation": "Trình bày kết quả đánh giá công việc; Tổng giám đốc đặt câu hỏi khó.",
+      "topic": "meetings",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Trưởng nhóm C&B"}, {"speaker": "B", "name": "Tổng giám đốc"}],
+      "lines": [
+        {"speaker": "A", "en": "Based on the job evaluation, eight roles will move up one grade.", "vi": "Theo đánh giá công việc, tám vị trí sẽ lên một ngạch."},
+        {"speaker": "B", "en": "Why does the marketing executive move up, but not the sales executive?", "vi": "Sao chuyên viên marketing lên ngạch mà chuyên viên bán hàng thì không?"},
+        {"speaker": "A", "en": "That's a fair question. We evaluated the job, not the person.", "vi": "Câu hỏi xác đáng. Chúng tôi đánh giá công việc, không phải con người."},
+        {"speaker": "A", "en": "The marketing role now manages a budget and two agencies.", "vi": "Vị trí marketing giờ quản lý ngân sách và hai agency."},
+        {"speaker": "B", "en": "But sales brings in the revenue.", "vi": "Nhưng bán hàng mới mang về doanh thu."},
+        {"speaker": "A", "en": "Absolutely, and that's rewarded through commission.", "vi": "Đúng vậy, và điều đó đã được thưởng qua hoa hồng."},
+        {"speaker": "A", "en": "Grades reflect the size of the job, while incentives reflect results.", "vi": "Ngạch phản ánh độ lớn công việc, còn khuyến khích phản ánh kết quả."},
+        {"speaker": "B", "en": "Will the sales team see it that way?", "vi": "Đội bán hàng có hiểu như vậy không?"},
+        {"speaker": "A", "en": "Not automatically. That's why we've prepared a short briefing for their managers.", "vi": "Không tự hiểu đâu. Vì vậy chúng tôi đã chuẩn bị bản hướng dẫn ngắn cho quản lý của họ."},
+        {"speaker": "B", "en": "Good. Let me see it before it goes out.", "vi": "Tốt. Cho tôi xem trước khi gửi."}
+      ]
+    },
+    {
+      "id": "dl-0015",
+      "title": "Weekly check-in with my manager",
+      "situation": "Buổi 1-1 hằng tuần với quản lý trực tiếp.",
+      "topic": "office",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý"}],
+      "lines": [
+        {"speaker": "B", "en": "So, how's everything going this week?", "vi": "Tuần này mọi việc thế nào?"},
+        {"speaker": "A", "en": "Pretty well. The allowance review is almost done.", "vi": "Khá ổn. Rà soát phụ cấp gần xong rồi."},
+        {"speaker": "B", "en": "Great. Anything you're stuck on?", "vi": "Tốt. Có chỗ nào em bị vướng không?"},
+        {"speaker": "A", "en": "Yes, I'm not sure how to treat the phone allowance.", "vi": "Có, em chưa rõ xử lý phụ cấp điện thoại thế nào."},
+        {"speaker": "B", "en": "Is it the tax treatment?", "vi": "Về thuế phải không?"},
+        {"speaker": "A", "en": "Exactly. Some branches pay it in cash and others reimburse it.", "vi": "Đúng ạ. Có chi nhánh trả tiền mặt, có nơi hoàn theo hóa đơn."},
+        {"speaker": "B", "en": "Let's ask the tax team. I'll introduce you to Hanh.", "vi": "Hỏi nhóm thuế đi. Chị sẽ giới thiệu em với Hạnh."},
+        {"speaker": "A", "en": "Thank you. That would help a lot.", "vi": "Cảm ơn chị. Như vậy giúp em nhiều."},
+        {"speaker": "B", "en": "Anything else?", "vi": "Còn gì nữa không?"},
+        {"speaker": "A", "en": "No, that's all for this week.", "vi": "Không ạ, tuần này vậy thôi."}
+      ]
+    },
+    {
+      "id": "dl-0016",
+      "title": "Asking for a stretch assignment",
+      "situation": "Xin quản lý cho tham gia dự án lớn để phát triển.",
+      "topic": "office",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý"}],
+      "lines": [
+        {"speaker": "A", "en": "Do you have a minute? I'd like to ask about the job evaluation project.", "vi": "Chị có chút thời gian không? Em muốn hỏi về dự án đánh giá công việc."},
+        {"speaker": "B", "en": "Sure. What about it?", "vi": "Được. Về chuyện gì?"},
+        {"speaker": "A", "en": "I'd really like to be part of the project team.", "vi": "Em rất muốn được vào nhóm dự án."},
+        {"speaker": "B", "en": "It's a lot of extra work. Why are you interested?", "vi": "Việc thêm nhiều lắm. Sao em quan tâm?"},
+        {"speaker": "A", "en": "I want to understand how grades are built, not just use them.", "vi": "Em muốn hiểu ngạch được xây thế nào, không chỉ dùng chúng."},
+        {"speaker": "A", "en": "It's also a skill I need for my next career step.", "vi": "Đó cũng là kỹ năng em cần cho bước nghề nghiệp tiếp theo."},
+        {"speaker": "B", "en": "What about your current work?", "vi": "Còn việc hiện tại của em?"},
+        {"speaker": "A", "en": "I've planned it. Lan can cover the benefits queries two days a week.", "vi": "Em đã tính rồi. Lan có thể trả lời câu hỏi phúc lợi hai ngày mỗi tuần."},
+        {"speaker": "B", "en": "Okay, I like that you've thought it through. Let me talk to the project lead.", "vi": "Được, chị thích là em đã suy nghĩ kỹ. Để chị nói với trưởng dự án."},
+        {"speaker": "A", "en": "Thank you. I really appreciate it.", "vi": "Cảm ơn chị. Em rất trân trọng."}
+      ]
+    },
+    {
+      "id": "dl-0017",
+      "title": "Receiving constructive feedback",
+      "situation": "Quản lý góp ý về bài thuyết trình; nhân viên đón nhận và hỏi thêm.",
+      "topic": "office",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý"}],
+      "lines": [
+        {"speaker": "B", "en": "Can I give you some feedback on yesterday's presentation?", "vi": "Chị góp ý về bài thuyết trình hôm qua được không?"},
+        {"speaker": "A", "en": "Of course. I'd appreciate it.", "vi": "Tất nhiên. Em rất cảm ơn."},
+        {"speaker": "B", "en": "The analysis was excellent. Very clear numbers.", "vi": "Phần phân tích rất tốt. Số liệu rõ ràng."},
+        {"speaker": "B", "en": "But you spoke very fast, and there was too much text on the slides.", "vi": "Nhưng em nói rất nhanh, và slide quá nhiều chữ."},
+        {"speaker": "A", "en": "That's fair. I was nervous because the CFO was there.", "vi": "Hợp lý ạ. Em hồi hộp vì có Giám đốc tài chính."},
+        {"speaker": "B", "en": "That's normal. Try to slow down and pause after each key point.", "vi": "Bình thường thôi. Cố nói chậm lại và ngừng sau mỗi ý chính."},
+        {"speaker": "A", "en": "Should I cut the text on the slides as well?", "vi": "Em có nên cắt bớt chữ trên slide không?"},
+        {"speaker": "B", "en": "Yes. One message per slide, and keep the details for the appendix.", "vi": "Có. Mỗi slide một thông điệp, chi tiết để ở phụ lục."},
+        {"speaker": "A", "en": "Thanks. Could I practise the next one with you first?", "vi": "Cảm ơn chị. Lần sau em tập trước với chị được không?"},
+        {"speaker": "B", "en": "Sure. Book thirty minutes in my calendar.", "vi": "Được. Đặt 30 phút trong lịch của chị nhé."}
+      ]
+    },
+    {
+      "id": "dl-0018",
+      "title": "Talking about my career path",
+      "situation": "Trao đổi với quản lý về lộ trình trở thành quản lý C&B.",
+      "topic": "office",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Trưởng phòng nhân sự"}],
+      "lines": [
+        {"speaker": "A", "en": "I'd like to talk about where I see myself in three years.", "vi": "Em muốn trao đổi về việc em thấy mình ở đâu sau ba năm."},
+        {"speaker": "B", "en": "Good. Where do you see yourself?", "vi": "Tốt. Em thấy mình ở đâu?"},
+        {"speaker": "A", "en": "I'd like to become a C&B manager, maybe for the whole country.", "vi": "Em muốn trở thành quản lý C&B, có thể cho cả nước."},
+        {"speaker": "B", "en": "That's a realistic goal. What do you think you need?", "vi": "Mục tiêu thực tế đấy. Em nghĩ mình cần gì?"},
+        {"speaker": "A", "en": "More experience with incentive design and with presenting to leaders.", "vi": "Thêm kinh nghiệm thiết kế khuyến khích và trình bày trước lãnh đạo."},
+        {"speaker": "B", "en": "I agree. And your English speaking, especially in regional meetings.", "vi": "Chị đồng ý. Thêm kỹ năng nói tiếng Anh, nhất là trong họp khu vực."},
+        {"speaker": "A", "en": "Yes, I'm working on that every day.", "vi": "Vâng, em đang luyện hằng ngày."},
+        {"speaker": "B", "en": "Then let's put three goals in your development plan.", "vi": "Vậy ta đưa ba mục tiêu vào kế hoạch phát triển của em."},
+        {"speaker": "A", "en": "Could we review them every quarter?", "vi": "Mình rà lại mỗi quý được không ạ?"},
+        {"speaker": "B", "en": "Definitely. That keeps us both honest.", "vi": "Chắc chắn. Như vậy cả hai đều có trách nhiệm."}
+      ]
+    },
+    {
+      "id": "dl-0019",
+      "title": "Saying I'm overloaded",
+      "situation": "Nhân viên báo quá tải và nhờ quản lý giúp sắp xếp ưu tiên.",
+      "topic": "office",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý"}],
+      "lines": [
+        {"speaker": "A", "en": "Can I be honest with you? I'm struggling with my workload.", "vi": "Em nói thật được không? Em đang quá tải."},
+        {"speaker": "B", "en": "Thanks for telling me. What's on your plate right now?", "vi": "Cảm ơn em đã nói. Hiện em đang làm những gì?"},
+        {"speaker": "A", "en": "The salary review, two survey submissions and the insurance renewal.", "vi": "Xét lương, nộp hai bộ khảo sát và gia hạn bảo hiểm."},
+        {"speaker": "A", "en": "All three have deadlines in the same week.", "vi": "Cả ba đều hạn trong cùng một tuần."},
+        {"speaker": "B", "en": "Which one is the most critical?", "vi": "Việc nào quan trọng nhất?"},
+        {"speaker": "A", "en": "The salary review. The managers are waiting for it.", "vi": "Xét lương. Các quản lý đang chờ."},
+        {"speaker": "B", "en": "Okay. Can the surveys move?", "vi": "Được. Khảo sát có lùi được không?"},
+        {"speaker": "A", "en": "One can. The vendor gave us an extra week.", "vi": "Một cái được. Nhà cung cấp cho thêm một tuần."},
+        {"speaker": "B", "en": "Then do that, and I'll ask Ha to help with the insurance.", "vi": "Vậy làm vậy, chị sẽ nhờ Hà hỗ trợ bảo hiểm."},
+        {"speaker": "A", "en": "That's a big relief. Thank you.", "vi": "Nhẹ cả người. Cảm ơn chị."}
+      ]
+    },
+    {
+      "id": "dl-0020",
+      "title": "Admitting a mistake in the payroll file",
+      "situation": "Nhân viên phát hiện mình làm sai file lương và báo ngay cho quản lý.",
+      "topic": "office",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên tiền lương"}, {"speaker": "B", "name": "Quản lý"}],
+      "lines": [
+        {"speaker": "A", "en": "I need to tell you something. I made a mistake in the payroll file.", "vi": "Em cần báo chị một việc. Em làm sai file lương."},
+        {"speaker": "B", "en": "Okay. What happened?", "vi": "Được. Chuyện gì vậy?"},
+        {"speaker": "A", "en": "I used the old allowance rate for the night shift.", "vi": "Em dùng mức phụ cấp ca đêm cũ."},
+        {"speaker": "B", "en": "How many people are affected?", "vi": "Bao nhiêu người bị ảnh hưởng?"},
+        {"speaker": "A", "en": "Forty-two workers. Each one is underpaid by about three hundred thousand.", "vi": "42 công nhân. Mỗi người bị thiếu khoảng 300 nghìn."},
+        {"speaker": "B", "en": "Has the payment gone out yet?", "vi": "Đã chi trả chưa?"},
+        {"speaker": "A", "en": "Yes, this morning. But I can prepare a correction run for Friday.", "vi": "Rồi ạ, sáng nay. Nhưng em có thể chạy bổ sung vào thứ Sáu."},
+        {"speaker": "B", "en": "Good. Let's also tell the plant manager before the workers notice.", "vi": "Tốt. Báo luôn quản lý nhà máy trước khi công nhân phát hiện."},
+        {"speaker": "A", "en": "I'll call him now. And I'll add a check to the template.", "vi": "Em gọi anh ấy ngay. Và em sẽ thêm bước kiểm tra vào mẫu."},
+        {"speaker": "B", "en": "Thanks for raising it quickly. That's what matters.", "vi": "Cảm ơn em đã báo nhanh. Điều đó mới quan trọng."}
+      ]
+    },
+    {
+      "id": "dl-0021",
+      "title": "Year-end performance conversation",
+      "situation": "Buổi đánh giá cuối năm: quản lý nói về xếp loại và mức tăng lương.",
+      "topic": "office",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Quản lý"}, {"speaker": "B", "name": "Chuyên viên C&B"}],
+      "lines": [
+        {"speaker": "A", "en": "Let's start with the big picture. Overall, you had a strong year.", "vi": "Bắt đầu với bức tranh chung. Nhìn chung, em có một năm tốt."},
+        {"speaker": "A", "en": "Your rating is \"exceeds expectations.\"", "vi": "Xếp loại của em là \"vượt kỳ vọng\"."},
+        {"speaker": "B", "en": "Thank you. That means a lot to me.", "vi": "Cảm ơn chị. Điều đó rất ý nghĩa với em."},
+        {"speaker": "A", "en": "The survey project was the highlight. The CEO mentioned it twice.", "vi": "Dự án khảo sát là điểm sáng. Tổng giám đốc nhắc đến hai lần."},
+        {"speaker": "B", "en": "Is there anything you'd like me to do differently next year?", "vi": "Năm tới chị muốn em làm khác điều gì không?"},
+        {"speaker": "A", "en": "Delegate more. You still try to do everything yourself.", "vi": "Giao việc nhiều hơn. Em vẫn cố tự làm hết."},
+        {"speaker": "B", "en": "That's true. I find it hard to let go of the details.", "vi": "Đúng vậy. Em thấy khó buông chi tiết."},
+        {"speaker": "A", "en": "As for pay, your increase is seven percent from April.", "vi": "Về lương, em được tăng 7% từ tháng Tư."},
+        {"speaker": "B", "en": "Can I ask how that was decided?", "vi": "Em hỏi mức đó được quyết định thế nào được không?"},
+        {"speaker": "A", "en": "It's based on the merit matrix: your rating and your position in the range.", "vi": "Theo ma trận tăng lương: xếp loại và vị trí của em trong dải."},
+        {"speaker": "B", "en": "That makes sense. Thanks for being transparent.", "vi": "Hợp lý ạ. Cảm ơn chị đã minh bạch."}
+      ]
+    },
+    {
+      "id": "dl-0022",
+      "title": "Asking to work from home",
+      "situation": "Xin quản lý làm việc ở nhà hai ngày mỗi tuần.",
+      "topic": "office",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý"}],
+      "lines": [
+        {"speaker": "A", "en": "Could I ask you about working from home?", "vi": "Em hỏi chị về việc làm ở nhà được không?"},
+        {"speaker": "B", "en": "Sure. What are you thinking?", "vi": "Được. Em định thế nào?"},
+        {"speaker": "A", "en": "I'd like to work from home on Tuesdays and Thursdays.", "vi": "Em muốn làm ở nhà thứ Ba và thứ Năm."},
+        {"speaker": "B", "en": "Why those days?", "vi": "Sao lại những ngày đó?"},
+        {"speaker": "A", "en": "There are no team meetings, and I do most of my analysis then.", "vi": "Không có họp nhóm, và em làm phần lớn việc phân tích vào hôm đó."},
+        {"speaker": "B", "en": "What about urgent payroll questions?", "vi": "Còn câu hỏi lương gấp thì sao?"},
+        {"speaker": "A", "en": "I'll be online all day, and I can come in if needed.", "vi": "Em online cả ngày và có thể lên văn phòng nếu cần."},
+        {"speaker": "B", "en": "Okay. Let's try it for one month and then review.", "vi": "Được. Thử một tháng rồi xem lại."},
+        {"speaker": "A", "en": "Great, thank you!", "vi": "Tuyệt, cảm ơn chị!"}
+      ]
+    },
+    {
+      "id": "dl-0023",
+      "title": "Monday morning in the pantry",
+      "situation": "Gặp đồng nghiệp ở phòng pha trà sáng thứ Hai.",
+      "topic": "office",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Đồng nghiệp phòng IT"}],
+      "lines": [
+        {"speaker": "A", "en": "Morning, Khanh! How was your weekend?", "vi": "Chào Khánh! Cuối tuần thế nào?"},
+        {"speaker": "B", "en": "Pretty relaxing, thanks. I went to Ba Vi with my family.", "vi": "Khá thư giãn, cảm ơn. Mình đi Ba Vì với gia đình."},
+        {"speaker": "A", "en": "Oh, nice. Was it crowded?", "vi": "Ồ, hay đấy. Có đông không?"},
+        {"speaker": "B", "en": "Not too bad. We left early in the morning.", "vi": "Không quá đông. Bọn mình đi từ sáng sớm."},
+        {"speaker": "B", "en": "What about you?", "vi": "Còn cậu?"},
+        {"speaker": "A", "en": "Nothing special. I mostly stayed home and caught up on sleep.", "vi": "Không có gì đặc biệt. Chủ yếu ở nhà ngủ bù."},
+        {"speaker": "B", "en": "Sounds like you needed it. Busy week ahead?", "vi": "Nghe như cậu cần thật. Tuần này bận không?"},
+        {"speaker": "A", "en": "Very. It's salary review season.", "vi": "Rất bận. Đang mùa xét lương."},
+        {"speaker": "B", "en": "Good luck! Let's grab lunch on Friday.", "vi": "Chúc may mắn! Thứ Sáu đi ăn trưa nhé."},
+        {"speaker": "A", "en": "Deal. See you later.", "vi": "Chốt. Gặp sau nhé."}
+      ]
+    },
+    {
+      "id": "dl-0024",
+      "title": "Welcoming a new colleague",
+      "situation": "Chào đón đồng nghiệp mới vào nhóm C&B.",
+      "topic": "office",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên mới"}],
+      "lines": [
+        {"speaker": "A", "en": "Hi, you must be Thao. I'm Ngoc, from the C&B team.", "vi": "Chào, chắc em là Thảo. Chị là Ngọc, nhóm C&B."},
+        {"speaker": "B", "en": "Nice to meet you, Ngoc. Today's my first day.", "vi": "Rất vui được gặp chị. Hôm nay là ngày đầu của em."},
+        {"speaker": "A", "en": "Welcome to the team! How are you finding it so far?", "vi": "Chào mừng em! Đến giờ em thấy thế nào?"},
+        {"speaker": "B", "en": "Everyone's very friendly, but there's a lot to learn.", "vi": "Mọi người rất thân thiện, nhưng nhiều thứ phải học quá."},
+        {"speaker": "A", "en": "Don't worry. It takes everyone a few weeks.", "vi": "Đừng lo. Ai cũng mất vài tuần."},
+        {"speaker": "A", "en": "Let me show you where everything is. The printer is over there.", "vi": "Để chị chỉ em mọi thứ. Máy in ở đằng kia."},
+        {"speaker": "B", "en": "Thanks. Where do people usually have lunch?", "vi": "Cảm ơn chị. Mọi người thường ăn trưa ở đâu?"},
+        {"speaker": "A", "en": "There's a canteen on the second floor. Why don't you join us today?", "vi": "Có căng tin ở tầng hai. Hôm nay em đi cùng bọn chị nhé?"},
+        {"speaker": "B", "en": "I'd love to. Thank you!", "vi": "Em rất muốn. Cảm ơn chị!"}
+      ]
+    },
+    {
+      "id": "dl-0025",
+      "title": "Chatting about Tet plans",
+      "situation": "Nói chuyện về kế hoạch nghỉ Tết trong giờ ăn trưa.",
+      "topic": "office",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Đồng nghiệp kế toán"}],
+      "lines": [
+        {"speaker": "A", "en": "Are you going back to your hometown for Tet?", "vi": "Tết này bạn có về quê không?"},
+        {"speaker": "B", "en": "Yes, I'm going to Nam Dinh for a week.", "vi": "Có, mình về Nam Định một tuần."},
+        {"speaker": "A", "en": "Lucky you! Have you booked your bus ticket?", "vi": "Sướng thế! Đặt vé xe chưa?"},
+        {"speaker": "B", "en": "Not yet. I need to do it soon, before they sell out.", "vi": "Chưa. Phải đặt sớm trước khi hết vé."},
+        {"speaker": "B", "en": "How about you?", "vi": "Còn bạn?"},
+        {"speaker": "A", "en": "My family lives in Hanoi, so we'll stay here.", "vi": "Nhà mình ở Hà Nội nên ở lại đây."},
+        {"speaker": "A", "en": "But we might go to Sa Pa for a couple of days after Tet.", "vi": "Nhưng có thể đi Sa Pa vài ngày sau Tết."},
+        {"speaker": "B", "en": "That sounds lovely. It'll be cold, though.", "vi": "Nghe hay đấy. Mà chắc lạnh lắm."},
+        {"speaker": "A", "en": "I know. I'll bring my warmest coat.", "vi": "Mình biết. Sẽ mang áo ấm nhất."}
+      ]
+    },
+    {
+      "id": "dl-0026",
+      "title": "Small talk in the lift with the CFO",
+      "situation": "Gặp Giám đốc tài chính trong thang máy, nói chuyện ngắn và lịch sự.",
+      "topic": "office",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Giám đốc tài chính"}],
+      "lines": [
+        {"speaker": "B", "en": "Morning. You're in HR, aren't you?", "vi": "Chào buổi sáng. Em ở phòng nhân sự phải không?"},
+        {"speaker": "A", "en": "Good morning. Yes, I'm in the C&B team. I'm Trang.", "vi": "Chào anh. Vâng, em ở nhóm C&B. Em là Trang."},
+        {"speaker": "B", "en": "Ah, so you're the one behind the new bonus dashboard.", "vi": "À, vậy em là người làm bảng điều khiển thưởng mới."},
+        {"speaker": "A", "en": "That's right. I hope it's been useful.", "vi": "Đúng ạ. Em mong nó hữu ích."},
+        {"speaker": "B", "en": "Very. I finally understand where the bonus pool goes.", "vi": "Rất hữu ích. Cuối cùng tôi hiểu quỹ thưởng đi đâu."},
+        {"speaker": "A", "en": "That's great to hear. We're adding a forecast view next month.", "vi": "Thật vui khi nghe vậy. Tháng sau bọn em thêm phần dự báo."},
+        {"speaker": "B", "en": "I'd like to see that before the budget meeting.", "vi": "Tôi muốn xem trước buổi họp ngân sách."},
+        {"speaker": "A", "en": "Of course. I'll send you a preview.", "vi": "Tất nhiên. Em sẽ gửi anh bản xem trước."},
+        {"speaker": "B", "en": "Thanks. This is my floor. Have a good day.", "vi": "Cảm ơn. Tầng tôi đây. Chúc một ngày tốt lành."},
+        {"speaker": "A", "en": "You too.", "vi": "Anh cũng vậy ạ."}
+      ]
+    },
+    {
+      "id": "dl-0027",
+      "title": "Leaving the office on a rainy evening",
+      "situation": "Nói chuyện với đồng nghiệp lúc tan làm, trời mưa và tắc đường.",
+      "topic": "office",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Đồng nghiệp"}],
+      "lines": [
+        {"speaker": "A", "en": "Are you heading home?", "vi": "Bạn về à?"},
+        {"speaker": "B", "en": "I'm trying, but look at the rain!", "vi": "Đang định về, mà nhìn mưa kìa!"},
+        {"speaker": "A", "en": "I know. The traffic on Nguyen Trai will be terrible.", "vi": "Ừ. Đường Nguyễn Trãi chắc tắc kinh khủng."},
+        {"speaker": "B", "en": "Maybe I'll wait for half an hour.", "vi": "Chắc mình đợi nửa tiếng."},
+        {"speaker": "A", "en": "Good idea. Do you want to get a quick bowl of pho downstairs?", "vi": "Ý hay. Xuống dưới ăn bát phở nhanh không?"},
+        {"speaker": "B", "en": "Why not? I'm starving.", "vi": "Sao không? Mình đói lắm."},
+        {"speaker": "A", "en": "Me too. I skipped lunch because of the payroll deadline.", "vi": "Mình cũng vậy. Bỏ bữa trưa vì hạn chốt lương."},
+        {"speaker": "B", "en": "You work too hard. Come on, let's go.", "vi": "Bạn làm việc nhiều quá. Đi thôi."}
+      ]
+    },
+    {
+      "id": "dl-0028",
+      "title": "Networking at a C&B event",
+      "situation": "Làm quen với người cùng nghề tại một hội thảo C&B.",
+      "topic": "office",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý Total Rewards công ty khác"}],
+      "lines": [
+        {"speaker": "A", "en": "Hi, I don't think we've met. I'm Hoa, from Lotus Foods.", "vi": "Chào anh, hình như ta chưa gặp. Tôi là Hoa, ở Lotus Foods."},
+        {"speaker": "B", "en": "Nice to meet you, Hoa. I'm Daniel. I lead Total Rewards at a logistics company.", "vi": "Rất vui được gặp. Tôi là Daniel, phụ trách Total Rewards ở một công ty logistics."},
+        {"speaker": "A", "en": "What did you think of the session on pay transparency?", "vi": "Anh thấy phiên về minh bạch lương thế nào?"},
+        {"speaker": "B", "en": "Really interesting. We're thinking about publishing our ranges internally.", "vi": "Rất thú vị. Bên tôi đang tính công bố dải lương nội bộ."},
+        {"speaker": "A", "en": "So are we. Our worry is that managers aren't ready for the questions.", "vi": "Bên tôi cũng vậy. Chúng tôi lo quản lý chưa sẵn sàng trả lời câu hỏi."},
+        {"speaker": "B", "en": "Same here. We're planning training for them first.", "vi": "Bên tôi cũng thế. Chúng tôi định đào tạo họ trước."},
+        {"speaker": "A", "en": "How long do you think that will take?", "vi": "Anh nghĩ việc đó mất bao lâu?"},
+        {"speaker": "B", "en": "Probably six months. Shall we stay in touch and compare notes?", "vi": "Có lẽ sáu tháng. Ta giữ liên lạc và trao đổi kinh nghiệm nhé?"},
+        {"speaker": "A", "en": "I'd like that. Here's my card.", "vi": "Rất sẵn lòng. Đây là danh thiếp của tôi."},
+        {"speaker": "B", "en": "Thanks. I'll connect with you on LinkedIn.", "vi": "Cảm ơn. Tôi sẽ kết nối với chị trên LinkedIn."}
+      ]
+    },
+    {
+      "id": "dl-0029",
+      "title": "Why is my net pay lower this month?",
+      "situation": "Nhân viên hỏi vì sao lương thực nhận tháng có thưởng lại bị trừ thuế nhiều.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên"}],
+      "lines": [
+        {"speaker": "B", "en": "Hi, I have a question about my payslip. The tax is much higher this month.", "vi": "Chào chị, em có câu hỏi về phiếu lương. Tháng này thuế cao hơn nhiều."},
+        {"speaker": "A", "en": "Let me check. Ah, you received your bonus this month.", "vi": "Để chị xem. À, tháng này em nhận thưởng."},
+        {"speaker": "B", "en": "Yes, but why is the tax so high?", "vi": "Vâng, nhưng sao thuế cao thế?"},
+        {"speaker": "A", "en": "The bonus is added to your salary, so your taxable income goes up.", "vi": "Thưởng được cộng vào lương nên thu nhập chịu thuế của em tăng."},
+        {"speaker": "A", "en": "Part of it falls into a higher tax bracket.", "vi": "Một phần rơi vào bậc thuế cao hơn."},
+        {"speaker": "B", "en": "So I'm paying a higher rate on everything?", "vi": "Vậy em bị tính thuế suất cao hơn cho tất cả?"},
+        {"speaker": "A", "en": "No, only on the part above each threshold. That's how progressive tax works.", "vi": "Không, chỉ phần vượt qua mỗi ngưỡng. Thuế lũy tiến là vậy."},
+        {"speaker": "B", "en": "Will I get any of it back?", "vi": "Em có được hoàn lại phần nào không?"},
+        {"speaker": "A", "en": "Possibly, at tax finalisation, if your total yearly tax is lower.", "vi": "Có thể, khi quyết toán thuế, nếu tổng thuế cả năm thấp hơn."},
+        {"speaker": "B", "en": "Okay, that makes sense now. Thanks.", "vi": "Vâng, giờ em hiểu rồi. Cảm ơn chị."}
+      ]
+    },
+    {
+      "id": "dl-0030",
+      "title": "Explaining the thirteenth-month salary to a new joiner",
+      "situation": "Nhân viên mới hỏi về lương tháng 13 khi vào làm giữa năm.",
+      "topic": "cb-hr",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên mới"}],
+      "lines": [
+        {"speaker": "B", "en": "Will I get the thirteenth-month salary this year?", "vi": "Năm nay em có được lương tháng 13 không?"},
+        {"speaker": "A", "en": "Yes, but it will be pro-rated.", "vi": "Có, nhưng tính theo tỷ lệ."},
+        {"speaker": "B", "en": "What does that mean?", "vi": "Nghĩa là sao ạ?"},
+        {"speaker": "A", "en": "It's based on how many months you work in the year.", "vi": "Tính theo số tháng em làm trong năm."},
+        {"speaker": "A", "en": "You started in July, so you'll get six-twelfths.", "vi": "Em vào tháng Bảy nên nhận sáu phần mười hai."},
+        {"speaker": "B", "en": "So half a month's salary?", "vi": "Vậy là nửa tháng lương?"},
+        {"speaker": "A", "en": "Exactly. And it's paid with the January salary, before Tet.", "vi": "Chính xác. Và được trả cùng lương tháng Một, trước Tết."},
+        {"speaker": "B", "en": "Do I need to pass probation first?", "vi": "Em có cần qua thử việc trước không?"},
+        {"speaker": "A", "en": "Yes, you need to pass probation and still be employed on the payment date.", "vi": "Có, em phải qua thử việc và vẫn còn làm vào ngày chi trả."},
+        {"speaker": "B", "en": "Great. Thanks for explaining.", "vi": "Tuyệt. Cảm ơn chị đã giải thích."}
+      ]
+    },
+    {
+      "id": "dl-0031",
+      "title": "Explaining compa-ratio to a line manager",
+      "situation": "Giải thích compa-ratio cho quản lý trực tiếp trước kỳ xét lương.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý kho"}],
+      "lines": [
+        {"speaker": "B", "en": "The report says Nam's compa-ratio is 0.85. Is that bad?", "vi": "Báo cáo ghi compa-ratio của Nam là 0,85. Vậy có tệ không?"},
+        {"speaker": "A", "en": "Not necessarily. It just compares his salary with the midpoint of his grade.", "vi": "Không hẳn. Nó chỉ so lương anh ấy với điểm giữa ngạch."},
+        {"speaker": "A", "en": "The midpoint is roughly what the market pays for a fully competent person.", "vi": "Điểm giữa xấp xỉ mức thị trường trả cho người làm việc thành thạo."},
+        {"speaker": "B", "en": "So he's fifteen percent below that.", "vi": "Vậy anh ấy thấp hơn mức đó 15%."},
+        {"speaker": "A", "en": "Right. For someone new in the role, that's normal.", "vi": "Đúng. Với người mới vào vị trí, như vậy là bình thường."},
+        {"speaker": "B", "en": "He's been here four years, and he's one of my best people.", "vi": "Cậu ấy làm bốn năm rồi, và là một trong những người giỏi nhất của tôi."},
+        {"speaker": "A", "en": "Then it's worth a closer look. He may be underpaid for his performance.", "vi": "Vậy nên xem kỹ. Có thể cậu ấy được trả thấp so với hiệu suất."},
+        {"speaker": "B", "en": "What can we do?", "vi": "Ta làm được gì?"},
+        {"speaker": "A", "en": "The merit matrix already gives him a higher increase.", "vi": "Ma trận tăng lương đã cho cậu ấy mức tăng cao hơn."},
+        {"speaker": "A", "en": "If that's not enough, we can request an equity adjustment.", "vi": "Nếu chưa đủ, ta có thể đề nghị điều chỉnh công bằng."},
+        {"speaker": "B", "en": "Let's do that. I don't want to lose him.", "vi": "Làm vậy đi. Tôi không muốn mất cậu ấy."}
+      ]
+    },
+    {
+      "id": "dl-0032",
+      "title": "Walking a manager through the merit matrix",
+      "situation": "Hướng dẫn quản lý cách đọc ma trận tăng lương và lý do của nó.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý marketing"}],
+      "lines": [
+        {"speaker": "B", "en": "Two of my people have the same rating, but different increases. Why?", "vi": "Hai người của tôi cùng xếp loại nhưng mức tăng khác nhau. Tại sao?"},
+        {"speaker": "A", "en": "Because the merit matrix looks at two things: performance and position in range.", "vi": "Vì ma trận tăng lương xét hai yếu tố: hiệu suất và vị trí trong dải."},
+        {"speaker": "A", "en": "Linh is in the first quartile, so she gets eight percent.", "vi": "Linh ở tứ phân vị thứ nhất nên được 8%."},
+        {"speaker": "A", "en": "Bao is in the fourth quartile, so he gets four percent.", "vi": "Bảo ở tứ phân vị thứ tư nên được 4%."},
+        {"speaker": "B", "en": "Isn't that unfair to Bao? He performs just as well.", "vi": "Như vậy không bất công với Bảo sao? Cậu ấy làm tốt không kém."},
+        {"speaker": "A", "en": "I understand the concern. But Bao is already paid well above the midpoint.", "vi": "Tôi hiểu băn khoăn. Nhưng Bảo đã được trả cao hơn hẳn điểm giữa."},
+        {"speaker": "A", "en": "Over time, people with the same performance should move towards the same pay level.", "vi": "Theo thời gian, người cùng hiệu suất nên tiến về cùng mức lương."},
+        {"speaker": "B", "en": "So the matrix closes gaps rather than widening them.", "vi": "Vậy ma trận thu hẹp khoảng cách chứ không nới rộng."},
+        {"speaker": "A", "en": "Exactly. It also keeps us within the merit budget.", "vi": "Chính xác. Nó cũng giữ ta trong ngân sách tăng lương."},
+        {"speaker": "B", "en": "How do I explain this to Bao?", "vi": "Tôi giải thích với Bảo thế nào?"},
+        {"speaker": "A", "en": "Focus on his total pay position, and remind him that his bonus reflects his results.", "vi": "Tập trung vào vị trí tổng thu nhập của cậu ấy, và nhắc rằng thưởng phản ánh kết quả."}
+      ]
+    },
+    {
+      "id": "dl-0033",
+      "title": "Why does my colleague earn more?",
+      "situation": "Nhân viên thắc mắc vì sao đồng nghiệp cùng chức danh có lương cao hơn.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên"}],
+      "lines": [
+        {"speaker": "B", "en": "I heard that my colleague earns more than me, and we have the same job.", "vi": "Em nghe nói đồng nghiệp lương cao hơn em, mà bọn em cùng công việc."},
+        {"speaker": "A", "en": "I understand why that's frustrating. I can't discuss other people's pay, though.", "vi": "Chị hiểu điều đó khó chịu. Nhưng chị không thể bàn về lương người khác."},
+        {"speaker": "B", "en": "But is it allowed for the same job to have different pay?", "vi": "Nhưng cùng công việc mà lương khác nhau có được không?"},
+        {"speaker": "A", "en": "Yes, within a range. Each grade has a minimum and a maximum.", "vi": "Có, trong một dải. Mỗi ngạch có mức tối thiểu và tối đa."},
+        {"speaker": "A", "en": "Where you sit depends on experience, skills and performance over time.", "vi": "Em ở đâu trong dải phụ thuộc kinh nghiệm, kỹ năng và hiệu suất qua thời gian."},
+        {"speaker": "B", "en": "So how can I move up in the range?", "vi": "Vậy làm sao em tiến lên trong dải?"},
+        {"speaker": "A", "en": "Mainly through strong ratings in the annual review.", "vi": "Chủ yếu nhờ xếp loại tốt trong kỳ xét lương năm."},
+        {"speaker": "A", "en": "I can show you where you are in your own range, if that helps.", "vi": "Chị có thể cho em xem em đang ở đâu trong dải của mình, nếu có ích."},
+        {"speaker": "B", "en": "Yes, please. That would help a lot.", "vi": "Vâng ạ. Như vậy giúp em nhiều."},
+        {"speaker": "A", "en": "And if you ever believe pay is unfair, you can raise it formally with us.", "vi": "Và nếu em thấy lương không công bằng, em có thể nêu chính thức với bọn chị."}
+      ]
+    },
+    {
+      "id": "dl-0034",
+      "title": "Explaining the health insurance deductible",
+      "situation": "Giải thích mức khấu trừ và đồng chi trả của bảo hiểm sức khỏe.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên phúc lợi"}, {"speaker": "B", "name": "Nhân viên"}],
+      "lines": [
+        {"speaker": "B", "en": "I went to the clinic, but the insurance didn't pay the full bill. Why?", "vi": "Em đi khám nhưng bảo hiểm không trả hết. Tại sao?"},
+        {"speaker": "A", "en": "Let me explain. Our plan has a deductible and a co-payment.", "vi": "Để chị giải thích. Gói của mình có mức khấu trừ và đồng chi trả."},
+        {"speaker": "A", "en": "The deductible is the first part you pay yourself, per visit.", "vi": "Mức khấu trừ là phần đầu em tự trả, cho mỗi lần khám."},
+        {"speaker": "B", "en": "How much is it?", "vi": "Là bao nhiêu ạ?"},
+        {"speaker": "A", "en": "For outpatient visits, it's one hundred thousand dong.", "vi": "Với khám ngoại trú là 100 nghìn đồng."},
+        {"speaker": "A", "en": "After that, the insurance pays eighty percent, and you pay twenty.", "vi": "Sau đó bảo hiểm trả 80%, em trả 20%."},
+        {"speaker": "B", "en": "So the twenty percent is the co-payment?", "vi": "Vậy 20% là phần đồng chi trả?"},
+        {"speaker": "A", "en": "Exactly. For hospital stays, the co-payment is zero.", "vi": "Chính xác. Với nằm viện thì đồng chi trả bằng 0."},
+        {"speaker": "B", "en": "That's good to know. Where can I see all the rules?", "vi": "Biết vậy tốt quá. Em xem toàn bộ quy định ở đâu?"},
+        {"speaker": "A", "en": "In the benefits guide on the intranet. I'll send you the link.", "vi": "Trong hướng dẫn phúc lợi trên intranet. Chị sẽ gửi link."}
+      ]
+    },
+    {
+      "id": "dl-0035",
+      "title": "Registering a dependant for tax",
+      "situation": "Hướng dẫn nhân viên đăng ký người phụ thuộc để được giảm trừ gia cảnh.",
+      "topic": "cb-hr",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên"}],
+      "lines": [
+        {"speaker": "B", "en": "My daughter was born last month. Can I get a tax deduction?", "vi": "Con gái em sinh tháng trước. Em có được giảm thuế không?"},
+        {"speaker": "A", "en": "Congratulations! Yes, you can register her as a dependant.", "vi": "Chúc mừng em! Có, em đăng ký bé là người phụ thuộc."},
+        {"speaker": "B", "en": "How much is the deduction?", "vi": "Giảm trừ bao nhiêu ạ?"},
+        {"speaker": "A", "en": "It's 6.2 million dong a month for each dependant.", "vi": "6,2 triệu đồng mỗi tháng cho mỗi người phụ thuộc."},
+        {"speaker": "B", "en": "What documents do I need?", "vi": "Em cần giấy tờ gì?"},
+        {"speaker": "A", "en": "Just her birth certificate and the registration form.", "vi": "Chỉ cần giấy khai sinh và mẫu đăng ký."},
+        {"speaker": "B", "en": "When will it start?", "vi": "Khi nào bắt đầu được tính?"},
+        {"speaker": "A", "en": "From the month she was born, if you send the documents this month.", "vi": "Từ tháng bé sinh, nếu em gửi giấy tờ trong tháng này."},
+        {"speaker": "B", "en": "Great. I'll bring them tomorrow.", "vi": "Tuyệt. Mai em mang đến."},
+        {"speaker": "A", "en": "Perfect. And don't forget to add her to your health insurance too.", "vi": "Tốt. Và đừng quên thêm bé vào bảo hiểm sức khỏe nữa nhé."}
+      ]
+    },
+    {
+      "id": "dl-0036",
+      "title": "How overtime is paid",
+      "situation": "Công nhân hỏi cách tính tiền làm thêm giờ ngày thường, cuối tuần và ngày lễ.",
+      "topic": "cb-hr",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên tiền lương"}, {"speaker": "B", "name": "Công nhân"}],
+      "lines": [
+        {"speaker": "B", "en": "Can you explain how overtime is paid?", "vi": "Chị giải thích cách trả tiền làm thêm giờ được không?"},
+        {"speaker": "A", "en": "Sure. On normal weekdays, you get one hundred and fifty percent.", "vi": "Được. Ngày thường, em được 150%."},
+        {"speaker": "B", "en": "And on Sundays?", "vi": "Còn Chủ nhật?"},
+        {"speaker": "A", "en": "Sunday is your weekly day off, so it's two hundred percent.", "vi": "Chủ nhật là ngày nghỉ hằng tuần nên là 200%."},
+        {"speaker": "B", "en": "What about public holidays?", "vi": "Còn ngày lễ?"},
+        {"speaker": "A", "en": "On public holidays, it's three hundred percent, plus your normal holiday pay.", "vi": "Ngày lễ là 300%, cộng tiền lương ngày lễ thông thường."},
+        {"speaker": "B", "en": "Wow. Is there a limit on overtime hours?", "vi": "Ồ. Giờ làm thêm có giới hạn không?"},
+        {"speaker": "A", "en": "Yes, there's a legal limit per month and per year. Your supervisor tracks it.", "vi": "Có, luật giới hạn theo tháng và theo năm. Tổ trưởng của em theo dõi."},
+        {"speaker": "B", "en": "Okay. Thank you very much.", "vi": "Vâng. Cảm ơn chị nhiều."}
+      ]
+    },
+    {
+      "id": "dl-0037",
+      "title": "Introducing flexible benefits to employees",
+      "situation": "Giới thiệu chương trình phúc lợi linh hoạt trong buổi họp toàn văn phòng.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên phúc lợi"}, {"speaker": "B", "name": "Nhân viên 1"}, {"speaker": "C", "name": "Nhân viên 2"}],
+      "lines": [
+        {"speaker": "A", "en": "From January, you'll be able to choose part of your benefits.", "vi": "Từ tháng Một, mọi người được tự chọn một phần phúc lợi."},
+        {"speaker": "A", "en": "Everyone gets ten million dong in points each year.", "vi": "Mỗi người nhận 10 triệu đồng bằng điểm mỗi năm."},
+        {"speaker": "B", "en": "What can we spend the points on?", "vi": "Bọn em dùng điểm vào gì?"},
+        {"speaker": "A", "en": "Things like extra health cover, training courses, gym or travel.", "vi": "Như thêm bảo hiểm sức khỏe, khóa học, phòng gym hoặc du lịch."},
+        {"speaker": "C", "en": "Can we take the points as cash?", "vi": "Có đổi điểm ra tiền mặt được không?"},
+        {"speaker": "A", "en": "No, I'm afraid not. The idea is to support your well-being.", "vi": "Rất tiếc là không. Mục đích là hỗ trợ sức khỏe và cuộc sống của mọi người."},
+        {"speaker": "B", "en": "What happens if we don't use all the points?", "vi": "Nếu không dùng hết điểm thì sao?"},
+        {"speaker": "A", "en": "Unused points expire at the end of the year, so plan ahead.", "vi": "Điểm không dùng sẽ hết hạn cuối năm, nên hãy lên kế hoạch trước."},
+        {"speaker": "C", "en": "Is the basic health insurance still included?", "vi": "Bảo hiểm sức khỏe cơ bản vẫn còn chứ?"},
+        {"speaker": "A", "en": "Yes, the core benefits stay the same. The points are on top.", "vi": "Có, phúc lợi cốt lõi giữ nguyên. Điểm là phần cộng thêm."}
+      ]
+    },
+    {
+      "id": "dl-0038",
+      "title": "Paying merit as a lump sum",
+      "situation": "Giải thích cho nhân viên vì sao mức tăng được trả một lần thay vì cộng vào lương.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên lâu năm"}],
+      "lines": [
+        {"speaker": "B", "en": "My manager said my increase will be a one-off payment this year. Why?", "vi": "Quản lý nói năm nay mức tăng của tôi là khoản trả một lần. Tại sao?"},
+        {"speaker": "A", "en": "Your salary is already at the maximum of your grade.", "vi": "Lương của anh đã ở mức tối đa của ngạch."},
+        {"speaker": "A", "en": "If we increased it further, you'd be above the range.", "vi": "Nếu tăng nữa, anh sẽ vượt dải."},
+        {"speaker": "B", "en": "But I had a strong rating. I feel I'm being punished.", "vi": "Nhưng tôi được xếp loại tốt. Tôi thấy như bị phạt."},
+        {"speaker": "A", "en": "I understand. That's why you still get the full amount, just as a lump sum.", "vi": "Tôi hiểu. Vì vậy anh vẫn nhận đủ số tiền, chỉ là trả một lần."},
+        {"speaker": "A", "en": "It recognises your performance without pushing your base above the market.", "vi": "Nó ghi nhận hiệu suất của anh mà không đẩy lương cơ bản vượt thị trường."},
+        {"speaker": "B", "en": "So how can my base salary grow again?", "vi": "Vậy làm sao lương cơ bản của tôi tăng lại được?"},
+        {"speaker": "A", "en": "Either the range moves up with the market, or you move to a bigger role.", "vi": "Hoặc dải lương dịch lên theo thị trường, hoặc anh chuyển sang vai trò lớn hơn."},
+        {"speaker": "B", "en": "Is there a bigger role for me here?", "vi": "Ở đây có vai trò lớn hơn cho tôi không?"},
+        {"speaker": "A", "en": "That's a great question for your manager. I'd suggest a career conversation.", "vi": "Câu hỏi đó nên hỏi quản lý của anh. Tôi gợi ý một buổi trao đổi nghề nghiệp."}
+      ]
+    },
+    {
+      "id": "dl-0039",
+      "title": "How the commission accelerator works",
+      "situation": "Nhân viên bán hàng hỏi cách tính hoa hồng khi vượt chỉ tiêu.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên bán hàng"}],
+      "lines": [
+        {"speaker": "B", "en": "If I sell more than my quota, do I earn more commission?", "vi": "Nếu em bán vượt chỉ tiêu, em có thêm hoa hồng không?"},
+        {"speaker": "A", "en": "Yes. Up to one hundred percent of quota, the rate is two percent.", "vi": "Có. Đến 100% chỉ tiêu, tỷ lệ là 2%."},
+        {"speaker": "A", "en": "Above that, the rate goes up to three percent.", "vi": "Trên mức đó, tỷ lệ tăng lên 3%."},
+        {"speaker": "B", "en": "Is it three percent on all my sales?", "vi": "Là 3% trên toàn bộ doanh số ạ?"},
+        {"speaker": "A", "en": "No, only on the sales above quota.", "vi": "Không, chỉ trên phần doanh số vượt chỉ tiêu."},
+        {"speaker": "B", "en": "Okay. And is there a maximum?", "vi": "Vâng. Có mức tối đa không?"},
+        {"speaker": "A", "en": "Yes, commission is capped at two times your target incentive.", "vi": "Có, hoa hồng tối đa gấp hai lần mức khuyến khích mục tiêu."},
+        {"speaker": "B", "en": "When is it paid?", "vi": "Khi nào được trả?"},
+        {"speaker": "A", "en": "Quarterly, after the customer has paid the invoice.", "vi": "Hằng quý, sau khi khách hàng thanh toán hóa đơn."},
+        {"speaker": "B", "en": "Got it. That's motivating!", "vi": "Rõ rồi. Có động lực hẳn!"}
+      ]
+    },
+    {
+      "id": "dl-0040",
+      "title": "Explaining the total rewards statement",
+      "situation": "Giải thích bảng tổng hợp đãi ngộ cá nhân cho nhân viên lần đầu nhận.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Nhân viên"}],
+      "lines": [
+        {"speaker": "B", "en": "I received a \"total rewards statement.\" What is it exactly?", "vi": "Em nhận được \"bảng tổng đãi ngộ\". Chính xác nó là gì ạ?"},
+        {"speaker": "A", "en": "It shows everything the company invests in you, not only your salary.", "vi": "Nó thể hiện mọi thứ công ty đầu tư cho em, không chỉ lương."},
+        {"speaker": "B", "en": "Like what?", "vi": "Ví dụ?"},
+        {"speaker": "A", "en": "Your bonus, allowances, insurance, training and leave days.", "vi": "Thưởng, phụ cấp, bảo hiểm, đào tạo và ngày nghỉ."},
+        {"speaker": "B", "en": "I didn't know the company paid so much for insurance.", "vi": "Em không biết công ty trả nhiều tiền bảo hiểm vậy."},
+        {"speaker": "A", "en": "Most people don't. The employer's statutory insurance alone is over twenty percent of your contribution salary.", "vi": "Phần lớn mọi người không biết. Riêng bảo hiểm bắt buộc phần công ty đã hơn 20% lương đóng bảo hiểm."},
+        {"speaker": "B", "en": "So my total package is much bigger than my take-home pay.", "vi": "Vậy tổng đãi ngộ của em lớn hơn nhiều so với lương thực nhận."},
+        {"speaker": "A", "en": "Exactly. That's the whole point of the statement.", "vi": "Chính xác. Đó là mục đích của bảng này."},
+        {"speaker": "B", "en": "Can I get it every year?", "vi": "Năm nào em cũng nhận được chứ?"},
+        {"speaker": "A", "en": "Yes, every March, after the salary review.", "vi": "Có, mỗi tháng Ba, sau kỳ xét lương."}
+      ]
+    },
+    {
+      "id": "dl-0041",
+      "title": "Kick-off call with a salary survey vendor",
+      "situation": "Cuộc gọi khởi động với công ty tư vấn khảo sát lương.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Tư vấn viên nhà cung cấp"}],
+      "lines": [
+        {"speaker": "B", "en": "Thanks for joining our survey again this year.", "vi": "Cảm ơn chị đã tiếp tục tham gia khảo sát năm nay."},
+        {"speaker": "A", "en": "Thank you. Can we go through the timeline first?", "vi": "Cảm ơn anh. Ta xem lịch trình trước được không?"},
+        {"speaker": "B", "en": "Of course. Data submission closes on the 30th of April.", "vi": "Tất nhiên. Hạn nộp dữ liệu là 30 tháng Tư."},
+        {"speaker": "A", "en": "And when will we receive the results?", "vi": "Khi nào chúng tôi nhận kết quả?"},
+        {"speaker": "B", "en": "The report comes out in early July.", "vi": "Báo cáo ra đầu tháng Bảy."},
+        {"speaker": "A", "en": "That's a bit late for us. Our review starts in June.", "vi": "Hơi muộn với chúng tôi. Kỳ xét lương bắt đầu tháng Sáu."},
+        {"speaker": "B", "en": "We can give you preliminary data in mid-June.", "vi": "Chúng tôi có thể gửi dữ liệu sơ bộ giữa tháng Sáu."},
+        {"speaker": "A", "en": "That would help. Has the job catalogue changed?", "vi": "Vậy sẽ giúp được. Danh mục công việc có thay đổi không?"},
+        {"speaker": "B", "en": "Yes, we've added twenty new digital roles. I'll send you the list.", "vi": "Có, chúng tôi thêm 20 vị trí mảng số. Tôi sẽ gửi danh sách."},
+        {"speaker": "A", "en": "Great. Could we also book a job-matching session?", "vi": "Tốt. Ta đặt luôn một buổi đối chiếu công việc nhé?"},
+        {"speaker": "B", "en": "Sure. How about next Wednesday?", "vi": "Được. Thứ Tư tuần sau nhé?"}
+      ]
+    },
+    {
+      "id": "dl-0042",
+      "title": "Job matching with a survey consultant",
+      "situation": "Đối chiếu một vị trí nội bộ với vị trí chuẩn trong khảo sát.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Tư vấn viên khảo sát"}],
+      "lines": [
+        {"speaker": "A", "en": "Our \"HR Executive\" role is hard to match. It covers both payroll and recruitment.", "vi": "Vị trí \"HR Executive\" của chúng tôi khó đối chiếu. Nó gồm cả lương và tuyển dụng."},
+        {"speaker": "B", "en": "How is the time split between the two?", "vi": "Thời gian chia giữa hai việc thế nào?"},
+        {"speaker": "A", "en": "Roughly sixty percent payroll and forty percent recruitment.", "vi": "Khoảng 60% lương và 40% tuyển dụng."},
+        {"speaker": "B", "en": "Then I'd match it to the payroll specialist job, since that's the main part.", "vi": "Vậy tôi sẽ khớp với vị trí chuyên viên lương, vì đó là phần chính."},
+        {"speaker": "A", "en": "Shouldn't we blend two benchmarks instead?", "vi": "Ta có nên trộn hai vị trí chuẩn không?"},
+        {"speaker": "B", "en": "You could, but blending often hides the real market rate.", "vi": "Có thể, nhưng trộn thường làm mờ mức giá thị trường thực."},
+        {"speaker": "A", "en": "What about the level? The role has no direct reports.", "vi": "Còn cấp bậc? Vị trí này không quản lý ai."},
+        {"speaker": "B", "en": "Then it's an experienced professional level, not a supervisor.", "vi": "Vậy là cấp chuyên viên có kinh nghiệm, không phải giám sát."},
+        {"speaker": "A", "en": "Okay. Let's note it as a partial match in the submission.", "vi": "Được. Ghi chú là khớp một phần trong bản nộp nhé."},
+        {"speaker": "B", "en": "Good idea. That way the analysis stays transparent.", "vi": "Ý hay. Như vậy phân tích vẫn minh bạch."}
+      ]
+    },
+    {
+      "id": "dl-0043",
+      "title": "Questioning survey data quality",
+      "situation": "Chuyên viên C&B chất vấn nhà cung cấp về chất lượng dữ liệu.",
+      "topic": "cb-hr",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Tư vấn viên khảo sát"}],
+      "lines": [
+        {"speaker": "A", "en": "I have some concerns about the data for the data engineer role.", "vi": "Tôi có vài băn khoăn về dữ liệu của vị trí kỹ sư dữ liệu."},
+        {"speaker": "B", "en": "Sure. What did you notice?", "vi": "Được. Chị thấy gì?"},
+        {"speaker": "A", "en": "The median jumped twenty-five percent from last year. That seems unusual.", "vi": "Trung vị tăng 25% so với năm ngoái. Có vẻ bất thường."},
+        {"speaker": "B", "en": "Let me check. There are only five companies in that cut.", "vi": "Để tôi xem. Lát cắt đó chỉ có năm công ty."},
+        {"speaker": "A", "en": "That explains it. One large tech company could skew the result.", "vi": "Vậy là rõ. Một công ty công nghệ lớn có thể làm lệch kết quả."},
+        {"speaker": "B", "en": "You're right. A new participant joined with very high pay levels.", "vi": "Chị nói đúng. Có một công ty mới tham gia với mức lương rất cao."},
+        {"speaker": "A", "en": "Can you show us the data without that company?", "vi": "Anh cho chúng tôi xem dữ liệu không có công ty đó được không?"},
+        {"speaker": "B", "en": "I can't remove one participant, but I can give you the all-industry cut.", "vi": "Tôi không thể loại một công ty, nhưng có thể đưa lát cắt toàn ngành."},
+        {"speaker": "A", "en": "That works. We'll use both and explain the range to management.", "vi": "Được. Chúng tôi dùng cả hai và giải thích khoảng chênh cho ban lãnh đạo."},
+        {"speaker": "B", "en": "Sensible. I'll also add a note on sample size to the report.", "vi": "Hợp lý. Tôi cũng thêm ghi chú về cỡ mẫu trong báo cáo."}
+      ]
+    },
+    {
+      "id": "dl-0044",
+      "title": "Discussing survey scope and fees",
+      "situation": "Trao đổi với nhà cung cấp về phạm vi và chi phí báo cáo tùy chỉnh.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Quản lý khách hàng của nhà cung cấp"}],
+      "lines": [
+        {"speaker": "A", "en": "We'd like a custom report with our own peer group.", "vi": "Chúng tôi muốn báo cáo tùy chỉnh theo nhóm công ty so sánh riêng."},
+        {"speaker": "B", "en": "No problem. How many companies would you like to include?", "vi": "Không vấn đề gì. Chị muốn đưa bao nhiêu công ty?"},
+        {"speaker": "A", "en": "About fifteen, mainly in food and beverage.", "vi": "Khoảng 15, chủ yếu ngành thực phẩm và đồ uống."},
+        {"speaker": "B", "en": "The fee for a custom cut is forty million dong.", "vi": "Phí cho lát cắt tùy chỉnh là 40 triệu đồng."},
+        {"speaker": "A", "en": "That's higher than we budgeted. Is there any flexibility?", "vi": "Cao hơn ngân sách chúng tôi dự kiến. Có linh hoạt được không?"},
+        {"speaker": "B", "en": "If you sign a two-year agreement, we can offer fifteen percent off.", "vi": "Nếu ký hợp đồng hai năm, chúng tôi giảm 15%."},
+        {"speaker": "A", "en": "That sounds reasonable. Does it include a results presentation?", "vi": "Nghe hợp lý. Có gồm buổi trình bày kết quả không?"},
+        {"speaker": "B", "en": "Yes, one presentation to your leadership team.", "vi": "Có, một buổi trình bày cho ban lãnh đạo."},
+        {"speaker": "A", "en": "Okay. Please send me a proposal in writing.", "vi": "Được. Anh gửi đề xuất bằng văn bản nhé."}
+      ]
+    },
+    {
+      "id": "dl-0045",
+      "title": "Asking for a submission deadline extension",
+      "situation": "Gọi cho nhà cung cấp xin lùi hạn nộp dữ liệu khảo sát.",
+      "topic": "cb-hr",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Điều phối viên khảo sát"}],
+      "lines": [
+        {"speaker": "A", "en": "Hi, it's Hoa from Lotus Foods. I'm calling about the survey deadline.", "vi": "Chào, tôi là Hoa ở Lotus Foods. Tôi gọi về hạn nộp khảo sát."},
+        {"speaker": "B", "en": "Hi, Hoa. How can I help?", "vi": "Chào chị Hoa. Tôi giúp gì được?"},
+        {"speaker": "A", "en": "We need a little more time. Our payroll system was down last week.", "vi": "Chúng tôi cần thêm chút thời gian. Hệ thống lương bị lỗi tuần trước."},
+        {"speaker": "B", "en": "I see. How much more time do you need?", "vi": "Tôi hiểu. Chị cần thêm bao lâu?"},
+        {"speaker": "A", "en": "Would one more week be possible?", "vi": "Thêm một tuần có được không?"},
+        {"speaker": "B", "en": "Let me check. Yes, we can accept your data until the 7th of May.", "vi": "Để tôi kiểm tra. Được, chúng tôi nhận dữ liệu đến ngày 7 tháng Năm."},
+        {"speaker": "A", "en": "Thank you so much. That really helps.", "vi": "Cảm ơn anh rất nhiều. Thật sự giúp được nhiều."},
+        {"speaker": "B", "en": "You're welcome. Just send it to the usual email.", "vi": "Không có gì. Chị gửi vào email như mọi khi nhé."},
+        {"speaker": "A", "en": "Will do. Have a good day.", "vi": "Tôi sẽ gửi. Chúc anh một ngày tốt lành."}
+      ]
+    },
+    {
+      "id": "dl-0046",
+      "title": "Reading the survey report with the vendor",
+      "situation": "Nhà cung cấp giải thích cách đọc báo cáo khảo sát lương.",
+      "topic": "cb-hr",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Tư vấn viên khảo sát"}],
+      "lines": [
+        {"speaker": "A", "en": "Before we present the results, could you walk me through the report?", "vi": "Trước khi trình bày kết quả, anh hướng dẫn tôi đọc báo cáo được không?"},
+        {"speaker": "B", "en": "Of course. Each job has the 25th, 50th and 75th percentiles.", "vi": "Tất nhiên. Mỗi công việc có phân vị 25, 50 và 75."},
+        {"speaker": "A", "en": "Which number should we compare our salaries with?", "vi": "Ta nên so lương của mình với số nào?"},
+        {"speaker": "B", "en": "That depends on your pay philosophy. Do you aim for the median?", "vi": "Tùy triết lý trả lương của chị. Bên chị nhắm trung vị phải không?"},
+        {"speaker": "A", "en": "Yes, for most roles. For critical roles we aim higher.", "vi": "Đúng, với hầu hết vị trí. Vị trí then chốt thì nhắm cao hơn."},
+        {"speaker": "B", "en": "Then use the 50th for most jobs and the 75th for the critical ones.", "vi": "Vậy dùng P50 cho phần lớn công việc và P75 cho vị trí then chốt."},
+        {"speaker": "A", "en": "What does \"number of organisations\" mean in this column?", "vi": "Cột \"số tổ chức\" này nghĩa là gì?"},
+        {"speaker": "B", "en": "It's how many companies reported that job. Fewer than five means be careful.", "vi": "Là số công ty báo cáo công việc đó. Dưới năm thì cần thận trọng."},
+        {"speaker": "A", "en": "That's useful. And the data is as of April, right?", "vi": "Hữu ích đấy. Và dữ liệu tính đến tháng Tư, đúng không?"},
+        {"speaker": "B", "en": "Correct. You'll need to age it to your review date.", "vi": "Đúng. Chị cần điều chỉnh theo thời gian đến ngày xét lương."}
+      ]
+    },
+    {
+      "id": "dl-0047",
+      "title": "Negotiating base salary with a candidate",
+      "situation": "Chuyên viên tuyển dụng / C&B đàm phán lương với ứng viên qua điện thoại.",
+      "topic": "negotiation",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "We'd like to offer you the position at thirty-two million gross a month.", "vi": "Chúng tôi muốn mời anh nhận vị trí với lương gộp 32 triệu mỗi tháng."},
+        {"speaker": "B", "en": "Thank you. I'm really excited about the role.", "vi": "Cảm ơn chị. Tôi rất hào hứng với vị trí này."},
+        {"speaker": "B", "en": "To be honest, I was hoping for something closer to thirty-six.", "vi": "Thật lòng, tôi mong mức gần 36 hơn."},
+        {"speaker": "A", "en": "I understand. Can I ask how you arrived at that number?", "vi": "Tôi hiểu. Anh cho hỏi con số đó từ đâu ra?"},
+        {"speaker": "B", "en": "My current base is thirty, and I'd also lose my annual bonus.", "vi": "Lương hiện tại của tôi là 30, và tôi còn mất thưởng năm."},
+        {"speaker": "A", "en": "That's helpful. Our offer also includes a target bonus of two months.", "vi": "Thông tin hữu ích. Đề nghị của chúng tôi cũng có thưởng mục tiêu hai tháng lương."},
+        {"speaker": "B", "en": "Is that guaranteed?", "vi": "Khoản đó có đảm bảo không?"},
+        {"speaker": "A", "en": "It depends on performance, but last year most people received the full target.", "vi": "Tùy hiệu suất, nhưng năm ngoái hầu hết mọi người nhận đủ mức mục tiêu."},
+        {"speaker": "A", "en": "The best I can do on base is thirty-four.", "vi": "Mức tốt nhất tôi có thể đưa cho lương cơ bản là 34."},
+        {"speaker": "B", "en": "Could you add a salary review after probation?", "vi": "Chị có thể thêm xét lại lương sau thử việc không?"},
+        {"speaker": "A", "en": "Yes, I can put that in the offer letter.", "vi": "Được, tôi có thể ghi vào thư mời."},
+        {"speaker": "B", "en": "Then I think we have a deal.", "vi": "Vậy tôi nghĩ ta đã thỏa thuận được."}
+      ]
+    },
+    {
+      "id": "dl-0048",
+      "title": "Asking for a better offer as a candidate",
+      "situation": "Bạn là ứng viên, lịch sự đề nghị tăng mức lương trong thư mời.",
+      "topic": "negotiation",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Ứng viên (bạn)"}, {"speaker": "B", "name": "Quản lý tuyển dụng"}],
+      "lines": [
+        {"speaker": "A", "en": "Thank you for the offer. I'd love to join the team.", "vi": "Cảm ơn anh vì lời mời. Tôi rất muốn gia nhập nhóm."},
+        {"speaker": "A", "en": "Before I accept, could we talk about the base salary?", "vi": "Trước khi nhận, ta trao đổi về lương cơ bản được không?"},
+        {"speaker": "B", "en": "Sure. What did you have in mind?", "vi": "Được. Chị nghĩ đến mức nào?"},
+        {"speaker": "A", "en": "Based on my research, the market median for this role is around forty million.", "vi": "Theo tìm hiểu của tôi, trung vị thị trường cho vị trí này khoảng 40 triệu."},
+        {"speaker": "A", "en": "And I bring five years of reward experience, including incentive design.", "vi": "Và tôi có năm năm kinh nghiệm đãi ngộ, kể cả thiết kế khuyến khích."},
+        {"speaker": "B", "en": "Our offer is thirty-seven. That's already at the midpoint of the grade.", "vi": "Đề nghị của chúng tôi là 37. Đó đã là điểm giữa của ngạch."},
+        {"speaker": "A", "en": "I understand. Would forty be possible if I take on the analytics work as well?", "vi": "Tôi hiểu. Nếu tôi đảm nhận cả phần phân tích dữ liệu thì 40 có được không?"},
+        {"speaker": "B", "en": "I'd need to check with HR. Thirty-nine might be realistic.", "vi": "Tôi cần hỏi nhân sự. 39 có thể khả thi."},
+        {"speaker": "A", "en": "Thirty-nine works for me if the start date is flexible.", "vi": "39 thì tôi đồng ý nếu ngày bắt đầu linh hoạt."},
+        {"speaker": "B", "en": "Let me confirm by tomorrow.", "vi": "Để tôi xác nhận trước ngày mai."}
+      ]
+    },
+    {
+      "id": "dl-0049",
+      "title": "Negotiating non-monetary benefits",
+      "situation": "Ngân sách lương đã kín, ứng viên thương lượng các phúc lợi khác.",
+      "topic": "negotiation",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Ứng viên"}, {"speaker": "B", "name": "Chuyên viên tuyển dụng"}],
+      "lines": [
+        {"speaker": "B", "en": "I'm sorry, but we really can't go higher on the salary.", "vi": "Rất tiếc, chúng tôi thật sự không thể tăng thêm lương."},
+        {"speaker": "A", "en": "I understand. Could we look at other parts of the package?", "vi": "Tôi hiểu. Ta xem các phần khác của gói được không?"},
+        {"speaker": "B", "en": "Of course. What's important to you?", "vi": "Tất nhiên. Điều gì quan trọng với chị?"},
+        {"speaker": "A", "en": "Flexibility. Would two days of working from home be possible?", "vi": "Sự linh hoạt. Làm ở nhà hai ngày có được không?"},
+        {"speaker": "B", "en": "Our policy allows one day, but I can ask the manager about two.", "vi": "Chính sách cho một ngày, nhưng tôi có thể hỏi quản lý về hai ngày."},
+        {"speaker": "A", "en": "Thank you. I'd also like a budget for a professional certificate.", "vi": "Cảm ơn. Tôi cũng muốn có ngân sách cho một chứng chỉ chuyên môn."},
+        {"speaker": "B", "en": "Which certificate?", "vi": "Chứng chỉ nào?"},
+        {"speaker": "A", "en": "The CCP, in compensation. It would help me in this role too.", "vi": "CCP, về lương thưởng. Nó cũng giúp tôi trong vai trò này."},
+        {"speaker": "B", "en": "That sounds reasonable. I'll include both in the revised offer.", "vi": "Nghe hợp lý. Tôi sẽ đưa cả hai vào thư mời sửa đổi."},
+        {"speaker": "A", "en": "That would make the offer much more attractive. Thank you.", "vi": "Như vậy lời mời hấp dẫn hơn nhiều. Cảm ơn anh."}
+      ]
+    },
+    {
+      "id": "dl-0050",
+      "title": "Responding to a competing offer",
+      "situation": "Ứng viên báo có lời mời khác; C&B cân nhắc cách phản hồi.",
+      "topic": "negotiation",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Ứng viên"}, {"speaker": "B", "name": "Quản lý C&B"}],
+      "lines": [
+        {"speaker": "A", "en": "I should be transparent with you. I've received another offer.", "vi": "Tôi nên minh bạch với chị. Tôi vừa nhận một lời mời khác."},
+        {"speaker": "B", "en": "Thanks for telling me. May I ask what it looks like?", "vi": "Cảm ơn anh đã cho biết. Tôi hỏi nó thế nào được không?"},
+        {"speaker": "A", "en": "The base is about ten percent higher than yours.", "vi": "Lương cơ bản cao hơn bên chị khoảng 10%."},
+        {"speaker": "B", "en": "I see. Is base pay the deciding factor for you?", "vi": "Tôi hiểu. Lương cơ bản có phải yếu tố quyết định với anh không?"},
+        {"speaker": "A", "en": "Not the only one. I prefer your company's projects and culture.", "vi": "Không phải duy nhất. Tôi thích dự án và văn hóa của bên chị hơn."},
+        {"speaker": "B", "en": "That's good to hear. Let me be clear about what we can do.", "vi": "Nghe vậy tôi rất vui. Để tôi nói rõ những gì chúng tôi làm được."},
+        {"speaker": "B", "en": "We can't match the base, but we can add a sign-on bonus.", "vi": "Chúng tôi không thể bằng mức lương cơ bản, nhưng có thể thêm thưởng ký hợp đồng."},
+        {"speaker": "B", "en": "Our long-term incentive also vests after three years, which they don't offer.", "vi": "Khuyến khích dài hạn của chúng tôi cũng được hưởng sau ba năm, bên kia không có."},
+        {"speaker": "A", "en": "Could you put the total package in writing, so I can compare properly?", "vi": "Chị gửi tổng gói đãi ngộ bằng văn bản để tôi so sánh kỹ được không?"},
+        {"speaker": "B", "en": "Certainly. You'll have it this afternoon.", "vi": "Chắc chắn. Chiều nay anh sẽ nhận được."}
+      ]
+    },
+    {
+      "id": "dl-0051",
+      "title": "Asking my manager for a raise",
+      "situation": "Nhân viên đề nghị quản lý tăng lương ngoài kỳ, dùng dữ liệu thị trường.",
+      "topic": "negotiation",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B"}, {"speaker": "B", "name": "Trưởng phòng nhân sự"}],
+      "lines": [
+        {"speaker": "A", "en": "Thanks for making time. I'd like to discuss my compensation.", "vi": "Cảm ơn chị đã dành thời gian. Em muốn trao đổi về lương của mình."},
+        {"speaker": "B", "en": "Sure. Go ahead.", "vi": "Được. Em nói đi."},
+        {"speaker": "A", "en": "Over the past year, my role has grown a lot.", "vi": "Trong một năm qua, vai trò của em đã mở rộng nhiều."},
+        {"speaker": "A", "en": "I now lead the survey work and support the regional team.", "vi": "Giờ em phụ trách khảo sát và hỗ trợ nhóm khu vực."},
+        {"speaker": "A", "en": "Based on the survey data, my pay is around the 30th percentile for that scope.", "vi": "Theo dữ liệu khảo sát, lương em ở khoảng phân vị 30 cho phạm vi đó."},
+        {"speaker": "B", "en": "You know the data better than anyone. What are you asking for?", "vi": "Em hiểu dữ liệu hơn ai hết. Em đề nghị gì?"},
+        {"speaker": "A", "en": "An adjustment to bring me to the midpoint of my grade.", "vi": "Một khoản điều chỉnh để đưa em lên điểm giữa ngạch."},
+        {"speaker": "B", "en": "The annual review is only four months away. Could it wait until then?", "vi": "Kỳ xét lương năm chỉ còn bốn tháng. Có đợi được không?"},
+        {"speaker": "A", "en": "I'd be open to that, if we agree now on the target and the timing.", "vi": "Em sẵn sàng, nếu ta thống nhất ngay mục tiêu và thời điểm."},
+        {"speaker": "B", "en": "That's fair. Let's put it in writing after I talk to the director.", "vi": "Hợp lý. Ta ghi lại bằng văn bản sau khi chị nói với giám đốc."}
+      ]
+    },
+    {
+      "id": "dl-0052",
+      "title": "Agreeing on a start date",
+      "situation": "Thống nhất ngày bắt đầu và thời gian báo trước với ứng viên.",
+      "topic": "negotiation",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Chuyên viên tuyển dụng"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "When would you be able to start?", "vi": "Khi nào anh có thể bắt đầu?"},
+        {"speaker": "B", "en": "My notice period is thirty days, so early next month.", "vi": "Thời gian báo trước của tôi là 30 ngày, nên đầu tháng sau."},
+        {"speaker": "A", "en": "Is there any way you could start earlier?", "vi": "Anh có cách nào bắt đầu sớm hơn không?"},
+        {"speaker": "B", "en": "I'm afraid not. I need to hand over my work properly.", "vi": "Tôi e là không. Tôi cần bàn giao công việc đầy đủ."},
+        {"speaker": "A", "en": "I understand. That's very professional.", "vi": "Tôi hiểu. Như vậy rất chuyên nghiệp."},
+        {"speaker": "B", "en": "Would the first of March work for you?", "vi": "Ngày 1 tháng Ba có được không?"},
+        {"speaker": "A", "en": "Yes, that works. I'll put it in the offer letter.", "vi": "Được. Tôi sẽ ghi vào thư mời."},
+        {"speaker": "B", "en": "Great. Thank you for being flexible.", "vi": "Tuyệt. Cảm ơn chị đã linh hoạt."}
+      ]
+    },
+    {
+      "id": "dl-0053",
+      "title": "Making a counter-offer to keep an employee",
+      "situation": "Nhân viên giỏi nộp đơn nghỉ; quản lý và C&B đưa ra đề nghị giữ chân.",
+      "topic": "negotiation",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Quản lý C&B"}, {"speaker": "B", "name": "Kỹ sư phần mềm"}],
+      "lines": [
+        {"speaker": "A", "en": "Thank you for coming in. We were very sorry to see your resignation.", "vi": "Cảm ơn em đã đến. Bọn chị rất tiếc khi nhận đơn nghỉ của em."},
+        {"speaker": "B", "en": "Thank you. It wasn't an easy decision.", "vi": "Cảm ơn chị. Đó không phải quyết định dễ dàng."},
+        {"speaker": "A", "en": "Can I ask what made you decide to leave?", "vi": "Chị hỏi điều gì khiến em quyết định nghỉ được không?"},
+        {"speaker": "B", "en": "Mainly the salary. The new company offers twenty percent more.", "vi": "Chủ yếu là lương. Công ty mới trả cao hơn 20%."},
+        {"speaker": "A", "en": "Is there anything else, apart from pay?", "vi": "Ngoài lương còn gì khác không?"},
+        {"speaker": "B", "en": "I'd like to work on more challenging projects.", "vi": "Em muốn làm những dự án thử thách hơn."},
+        {"speaker": "A", "en": "We'd like to make you a counter-offer: a fifteen percent increase.", "vi": "Bọn chị muốn đưa ra đề nghị giữ chân: tăng 15%."},
+        {"speaker": "A", "en": "And you'd lead the new data platform project.", "vi": "Và em sẽ dẫn dắt dự án nền tảng dữ liệu mới."},
+        {"speaker": "B", "en": "That's generous. Can I think about it?", "vi": "Rất hào phóng. Em suy nghĩ thêm được không?"},
+        {"speaker": "A", "en": "Of course. Please don't decide on money alone. Think about where you'll grow.", "vi": "Tất nhiên. Đừng quyết định chỉ vì tiền. Hãy nghĩ xem em sẽ phát triển ở đâu."},
+        {"speaker": "B", "en": "I will. I'll let you know by Monday.", "vi": "Em sẽ nghĩ. Thứ Hai em báo chị."}
+      ]
+    },
+    {
+      "id": "dl-0054",
+      "title": "Negotiating the merit budget with finance",
+      "situation": "Trưởng nhóm C&B thương lượng ngân sách tăng lương với Giám đốc tài chính.",
+      "topic": "negotiation",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Trưởng nhóm C&B"}, {"speaker": "B", "name": "Giám đốc tài chính"}],
+      "lines": [
+        {"speaker": "B", "en": "Three point five percent is all we can afford this year.", "vi": "3,5% là tất cả những gì ta chi được năm nay."},
+        {"speaker": "A", "en": "I understand the pressure on costs. Let me show you the risk.", "vi": "Tôi hiểu áp lực chi phí. Để tôi trình bày rủi ro."},
+        {"speaker": "A", "en": "Our turnover among engineers is already eighteen percent.", "vi": "Tỷ lệ nghỉ việc của kỹ sư đã là 18%."},
+        {"speaker": "A", "en": "Replacing one engineer costs us about six months of their salary.", "vi": "Thay một kỹ sư tốn khoảng sáu tháng lương của họ."},
+        {"speaker": "B", "en": "So you're saying a low budget could cost us more.", "vi": "Vậy anh nói ngân sách thấp có thể tốn hơn."},
+        {"speaker": "A", "en": "Exactly. I'm proposing four point five, but targeted.", "vi": "Chính xác. Tôi đề xuất 4,5%, nhưng có trọng tâm."},
+        {"speaker": "B", "en": "What do you mean by targeted?", "vi": "Có trọng tâm là sao?"},
+        {"speaker": "A", "en": "Critical roles and top performers get more. Others get the market rate or less.", "vi": "Vị trí then chốt và người giỏi nhất được nhiều hơn. Còn lại theo thị trường hoặc thấp hơn."},
+        {"speaker": "B", "en": "Could we meet at four, with a review in six months?", "vi": "Ta chốt ở 4%, xem lại sau sáu tháng được không?"},
+        {"speaker": "A", "en": "I can work with four, if we protect the engineers' share.", "vi": "Tôi làm được với 4%, nếu giữ phần dành cho kỹ sư."},
+        {"speaker": "B", "en": "Agreed. Send me the final split by Friday.", "vi": "Đồng ý. Gửi tôi phân bổ cuối cùng trước thứ Sáu."}
+      ]
+    },
+    {
+      "id": "dl-0055",
+      "title": "Tell me about yourself",
+      "situation": "Câu hỏi mở đầu phỏng vấn cho vị trí chuyên viên C&B.",
+      "topic": "interview",
+      "level": "B1",
+      "roles": [{"speaker": "A", "name": "Người phỏng vấn"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "Thanks for coming in. Could you start by telling me about yourself?", "vi": "Cảm ơn bạn đã đến. Bạn có thể bắt đầu bằng việc giới thiệu bản thân không?"},
+        {"speaker": "B", "en": "Sure. I've worked in HR for six years, mostly in C&B.", "vi": "Vâng. Tôi làm nhân sự sáu năm, chủ yếu mảng C&B."},
+        {"speaker": "B", "en": "I started in payroll, then moved into compensation.", "vi": "Tôi bắt đầu ở mảng lương, sau đó chuyển sang lương thưởng."},
+        {"speaker": "B", "en": "Right now, I'm responsible for salary reviews for about two thousand staff.", "vi": "Hiện tôi phụ trách xét lương cho khoảng 2.000 nhân viên."},
+        {"speaker": "A", "en": "What do you enjoy most about your work?", "vi": "Bạn thích nhất điều gì trong công việc?"},
+        {"speaker": "B", "en": "I enjoy turning data into clear recommendations for managers.", "vi": "Tôi thích biến dữ liệu thành đề xuất rõ ràng cho quản lý."},
+        {"speaker": "A", "en": "And why are you interested in this role?", "vi": "Và vì sao bạn quan tâm vị trí này?"},
+        {"speaker": "B", "en": "I'd like to work on reward strategy, not just the annual cycle.", "vi": "Tôi muốn làm chiến lược đãi ngộ, không chỉ chu kỳ hằng năm."},
+        {"speaker": "A", "en": "Great. Let's talk about that in more detail.", "vi": "Tốt. Ta nói chi tiết hơn về điều đó nhé."}
+      ]
+    },
+    {
+      "id": "dl-0056",
+      "title": "Handling a difficult employee situation",
+      "situation": "Câu hỏi hành vi: kể về một lần xử lý nhân viên khó tính (trả lời theo STAR).",
+      "topic": "interview",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Người phỏng vấn"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "Tell me about a time you dealt with an upset employee.", "vi": "Kể về một lần bạn xử lý một nhân viên đang bực bội."},
+        {"speaker": "B", "en": "Sure. Last year, a worker came to our office very angry about his bonus.", "vi": "Vâng. Năm ngoái, một công nhân đến văn phòng rất giận về khoản thưởng."},
+        {"speaker": "B", "en": "He thought we had calculated it wrongly.", "vi": "Anh ấy nghĩ chúng tôi tính sai."},
+        {"speaker": "A", "en": "What did you do?", "vi": "Bạn đã làm gì?"},
+        {"speaker": "B", "en": "First, I listened without interrupting. Then I invited him to sit down.", "vi": "Trước hết, tôi lắng nghe không ngắt lời. Sau đó mời anh ấy ngồi."},
+        {"speaker": "B", "en": "I showed him the calculation step by step.", "vi": "Tôi chỉ cho anh ấy cách tính từng bước."},
+        {"speaker": "B", "en": "In fact, there was an error. His attendance days were missing.", "vi": "Thực tế có lỗi. Thiếu ngày công của anh ấy."},
+        {"speaker": "A", "en": "How did it end?", "vi": "Kết quả thế nào?"},
+        {"speaker": "B", "en": "We paid the difference the same week and apologised.", "vi": "Chúng tôi trả phần chênh ngay trong tuần và xin lỗi."},
+        {"speaker": "B", "en": "I also added an attendance check to our bonus process.", "vi": "Tôi cũng thêm bước kiểm tra ngày công vào quy trình thưởng."},
+        {"speaker": "A", "en": "That's a good example. Thank you.", "vi": "Ví dụ tốt. Cảm ơn bạn."}
+      ]
+    },
+    {
+      "id": "dl-0057",
+      "title": "How would you build a salary structure?",
+      "situation": "Câu hỏi chuyên môn: các bước xây dựng cấu trúc lương.",
+      "topic": "interview",
+      "level": "C1",
+      "roles": [{"speaker": "A", "name": "Người phỏng vấn"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "If you joined us, how would you build a new salary structure?", "vi": "Nếu vào đây, bạn sẽ xây cấu trúc lương mới thế nào?"},
+        {"speaker": "B", "en": "I'd start with job analysis, to make sure the job descriptions are up to date.", "vi": "Tôi bắt đầu từ phân tích công việc, đảm bảo mô tả công việc được cập nhật."},
+        {"speaker": "B", "en": "Then I'd evaluate the jobs to build an internal hierarchy.", "vi": "Sau đó đánh giá công việc để xây thứ bậc nội bộ."},
+        {"speaker": "A", "en": "Which evaluation method would you use?", "vi": "Bạn dùng phương pháp đánh giá nào?"},
+        {"speaker": "B", "en": "Probably a point factor method, because it's more defensible than ranking.", "vi": "Có lẽ phương pháp chấm điểm yếu tố, vì dễ bảo vệ hơn xếp hạng."},
+        {"speaker": "B", "en": "Next, I'd price the benchmark jobs against the market.", "vi": "Tiếp theo, tôi định giá các công việc chuẩn theo thị trường."},
+        {"speaker": "B", "en": "That gives us a pay policy line, and from there we set grades and ranges.", "vi": "Từ đó có đường chính sách lương, rồi đặt ngạch và dải lương."},
+        {"speaker": "A", "en": "How wide would the ranges be?", "vi": "Dải lương rộng bao nhiêu?"},
+        {"speaker": "B", "en": "It depends on the level. Maybe forty percent for juniors and sixty for senior roles.", "vi": "Tùy cấp bậc. Có thể 40% cho cấp thấp và 60% cho cấp cao."},
+        {"speaker": "A", "en": "And the last step?", "vi": "Còn bước cuối?"},
+        {"speaker": "B", "en": "Cost the impact, then communicate it carefully to managers and employees.", "vi": "Tính chi phí tác động, rồi truyền thông cẩn thận cho quản lý và nhân viên."}
+      ]
+    },
+    {
+      "id": "dl-0058",
+      "title": "Asking questions at the end of an interview",
+      "situation": "Cuối buổi phỏng vấn, ứng viên đặt câu hỏi cho người phỏng vấn.",
+      "topic": "interview",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Người phỏng vấn"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "That's all from my side. Do you have any questions for me?", "vi": "Phía tôi vậy là xong. Bạn có câu hỏi nào không?"},
+        {"speaker": "B", "en": "Yes, a few. What would success look like in the first six months?", "vi": "Có, vài câu ạ. Thành công trong sáu tháng đầu sẽ trông như thế nào?"},
+        {"speaker": "A", "en": "Mainly, delivering the salary review and cleaning up the job catalogue.", "vi": "Chủ yếu là hoàn thành xét lương và rà soát lại danh mục công việc."},
+        {"speaker": "B", "en": "That's helpful. How does the C&B team work with the HR business partners?", "vi": "Hữu ích ạ. Nhóm C&B làm việc với HRBP thế nào?"},
+        {"speaker": "A", "en": "Very closely. They bring the business needs, and we design the solutions.", "vi": "Rất sát. Họ mang nhu cầu kinh doanh, còn chúng tôi thiết kế giải pháp."},
+        {"speaker": "B", "en": "And what's the biggest challenge for the team this year?", "vi": "Và thách thức lớn nhất của nhóm năm nay là gì?"},
+        {"speaker": "A", "en": "Honestly, explaining pay decisions to managers in a simple way.", "vi": "Thật lòng, giải thích quyết định lương cho quản lý một cách đơn giản."},
+        {"speaker": "B", "en": "That's something I really enjoy. What are the next steps in the process?", "vi": "Đó là việc tôi rất thích. Các bước tiếp theo của quy trình là gì?"},
+        {"speaker": "A", "en": "We'll get back to you within a week about the final round.", "vi": "Trong một tuần chúng tôi sẽ báo bạn về vòng cuối."},
+        {"speaker": "B", "en": "Thank you. I've enjoyed our conversation.", "vi": "Cảm ơn anh. Tôi rất thích buổi trao đổi hôm nay."}
+      ]
+    },
+    {
+      "id": "dl-0059",
+      "title": "What's your biggest weakness?",
+      "situation": "Trả lời câu hỏi về điểm yếu một cách trung thực và tích cực.",
+      "topic": "interview",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Người phỏng vấn"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "What would you say is your biggest weakness?", "vi": "Bạn cho rằng điểm yếu lớn nhất của mình là gì?"},
+        {"speaker": "B", "en": "I'd say public speaking, especially in English.", "vi": "Tôi nghĩ là nói trước đám đông, nhất là bằng tiếng Anh."},
+        {"speaker": "B", "en": "My written English is strong, but I used to freeze in big meetings.", "vi": "Tiếng Anh viết của tôi tốt, nhưng trước đây tôi hay đơ trong các cuộc họp lớn."},
+        {"speaker": "A", "en": "What have you done about it?", "vi": "Bạn đã làm gì để cải thiện?"},
+        {"speaker": "B", "en": "I practise speaking every day, and I volunteer to present our team's results.", "vi": "Tôi luyện nói mỗi ngày và xung phong trình bày kết quả của nhóm."},
+        {"speaker": "B", "en": "Last quarter, I presented the survey findings to the regional team.", "vi": "Quý trước, tôi trình bày kết quả khảo sát cho nhóm khu vực."},
+        {"speaker": "A", "en": "How did it go?", "vi": "Kết quả thế nào?"},
+        {"speaker": "B", "en": "Much better than I expected. I still prepare a lot, but I feel more confident.", "vi": "Tốt hơn tôi nghĩ nhiều. Tôi vẫn chuẩn bị kỹ, nhưng tự tin hơn."},
+        {"speaker": "A", "en": "That's a very honest answer. Thank you.", "vi": "Câu trả lời rất trung thực. Cảm ơn bạn."}
+      ]
+    },
+    {
+      "id": "dl-0060",
+      "title": "Interviewing a candidate for the C&B team",
+      "situation": "Bạn là người phỏng vấn, hỏi ứng viên về kỹ năng Excel và tính cẩn thận.",
+      "topic": "interview",
+      "level": "B2",
+      "roles": [{"speaker": "A", "name": "Chuyên viên C&B (phỏng vấn)"}, {"speaker": "B", "name": "Ứng viên"}],
+      "lines": [
+        {"speaker": "A", "en": "Could you tell me how you check a payroll file before it's paid?", "vi": "Bạn kể cách bạn kiểm tra file lương trước khi chi trả được không?"},
+        {"speaker": "B", "en": "I compare the totals with last month and look at every big change.", "vi": "Tôi so tổng với tháng trước và xem từng thay đổi lớn."},
+        {"speaker": "A", "en": "What counts as a big change for you?", "vi": "Với bạn thế nào là thay đổi lớn?"},
+        {"speaker": "B", "en": "Anything over ten percent, or any new allowance.", "vi": "Bất cứ thay đổi nào trên 10%, hoặc phụ cấp mới."},
+        {"speaker": "A", "en": "Which Excel functions do you use most?", "vi": "Bạn dùng hàm Excel nào nhiều nhất?"},
+        {"speaker": "B", "en": "XLOOKUP, SUMIFS and pivot tables. I've started using Power Query too.", "vi": "XLOOKUP, SUMIFS và pivot table. Tôi cũng bắt đầu dùng Power Query."},
+        {"speaker": "A", "en": "Have you ever found a serious error?", "vi": "Bạn đã bao giờ phát hiện lỗi nghiêm trọng chưa?"},
+        {"speaker": "B", "en": "Yes. Once, a manager's salary was entered with an extra zero.", "vi": "Rồi. Một lần, lương một quản lý bị nhập thừa một số 0."},
+        {"speaker": "A", "en": "Good catch! What happened next?", "vi": "Phát hiện hay! Rồi sao nữa?"},
+        {"speaker": "B", "en": "I fixed it, told my manager, and we added a validation rule.", "vi": "Tôi sửa, báo quản lý, và chúng tôi thêm quy tắc kiểm tra dữ liệu."}
+      ]
+    }
+  ]
+}
