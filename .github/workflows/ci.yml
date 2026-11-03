@@ -40,8 +40,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      # Chromium + WebKit (engine của Safari); PW_WEBKIT=1 bật thêm 2 project WebKit trong playwright.config.ts.
+      - run: npx playwright install --with-deps webkit chromium
       - run: npm run test:e2e
+        env:
+          PW_WEBKIT: '1'
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
