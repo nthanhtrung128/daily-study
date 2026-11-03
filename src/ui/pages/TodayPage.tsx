@@ -8,6 +8,8 @@ import { BAI_KEYS, BAI_SHORT } from '../../modules/tr/data';
 import { titleOf, type TrItem } from '../../modules/tr/items';
 import { DEFAULT_PREFS, DURATIONS, MODES, countBy, homeStats, modeOf, planSession, type Prefs } from '../../modules/tr/plan';
 import { Explain, TrCard } from '../../modules/tr/cards/TrCard';
+import { EnglishHome } from '../../modules/english/ui/EnglishHome';
+import { EnglishScreen, type EnView } from '../../modules/english/ui/EnglishScreen';
 
 const PREFS_KEY = 'tr.prefs';
 
@@ -31,6 +33,7 @@ export function TodayPage() {
   const p = useProgress();
   const [prefs, setPrefs] = useState<Prefs>(DEFAULT_PREFS);
   const [view, setView] = useState<View>({ kind: 'home' });
+  const [en, setEn] = useState<EnView | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -53,6 +56,7 @@ export function TodayPage() {
     if (list.length) setView({ kind: 'session', list, t0: Date.now() });
   };
 
+  if (en) return <EnglishScreen view={en} onExit={() => setEn(null)} />;
   if (view.kind === 'session') {
     return (
       <Session
@@ -164,8 +168,9 @@ export function TodayPage() {
             {plan.length ? `${plan.length} mục · ${countBy(plan)}` : 'Không còn mục đến hạn hay câu sai trong phạm vi đã chọn.'}
           </span>
         </div>
-        <p className="hint">Phần tiếng Anh giao tiếp sẽ được trộn vào phiên hằng ngày ở các bước sau (TR 40% · tiếng Anh 60%).</p>
       </div>
+
+      <EnglishHome onStart={setEn} />
     </section>
   );
 }
