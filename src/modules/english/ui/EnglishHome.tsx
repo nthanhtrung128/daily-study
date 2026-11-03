@@ -63,13 +63,15 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
         </div>
         <div className="stat">
           <b className="num">
-            {ph.learned}/{ph.total}
+            {ph.learned}
+            <small>/{ph.total}</small>
           </b>
           <span>cụm từ đã thuộc</span>
         </div>
         <div className="stat">
           <b className="num">
-            {pt.learned}/{pt.total}
+            {pt.learned}
+            <small>/{pt.total}</small>
           </b>
           <span>câu mẫu đã thuộc</span>
         </div>

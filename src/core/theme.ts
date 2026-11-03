@@ -17,9 +17,18 @@ export function loadTheme(): Theme {
   }
 }
 
+/** Màu thanh trạng thái (meta theme-color) — khớp --bg sáng/tối trong styles.css. */
+export const THEME_COLOR = { light: '#EEF1F4', dark: '#0E1318' } as const;
+
 export function applyTheme(theme: Theme, root: HTMLElement = document.documentElement): void {
   if (theme === 'auto') root.removeAttribute('data-theme');
   else root.setAttribute('data-theme', theme);
+  // Chọn tay Sáng/Tối thì thanh trạng thái (Safari, app ở Màn hình chính) cũng theo, không theo máy.
+  const doc = root.ownerDocument;
+  for (const m of doc.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')) {
+    const own: keyof typeof THEME_COLOR = /dark/.test(m.getAttribute('media') ?? '') ? 'dark' : 'light';
+    m.content = THEME_COLOR[theme === 'auto' ? own : theme];
+  }
 }
 
 export function saveTheme(theme: Theme): void {

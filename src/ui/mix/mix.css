@@ -40,6 +40,10 @@ input[type='time'].remind-time {
   border-radius: 8px; padding: 8px 12px; min-height: 44px; min-width: 120px;
 }
 .days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+/* Màn hẹp: 7 nút ngày không đủ chỗ cho vùng chạm 44 px → 2 hàng (T2–T5, T6–CN). */
+@media (max-width: 400px) {
+  .days { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
 .days .chip { padding: 8px 0; text-align: center; }
 .set-ok { color: var(--good); }
 .set-err { color: var(--bad); }
