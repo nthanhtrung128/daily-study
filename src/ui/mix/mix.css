@@ -1,49 +1,49 @@
 /* ==== Phiên hằng ngày trộn TR + EN và Cài đặt (S8) ====
    File riêng để không đụng src/ui/styles.css. Chỉ dùng design token trên :root (tự theo sáng/tối). Vùng chạm ≥ 44px. */
 
-.daily .chip, .settings .chip, .mix-screen .chip, .settings .btn.small, .mix-screen .btn.small { min-height: 44px; }
-.daily-go { width: 100%; min-height: 52px; font-size: 16.5px; }
+.daily .chip, .settings .chip, .mix-screen .chip, .settings .btn.small, .mix-screen .btn.small { min-height: var(--tap); }
+.daily-go { width: 100%; min-height: max(52px, calc(52rem / 15)); font-size: calc(16.5rem / 15); }
 .daily-sum { display: flex; flex-wrap: wrap; gap: 6px; }
-.daily-sum .tag { font-size: 12.5px; padding: 3px 10px; }
+.daily-sum .tag { font-size: calc(12.5rem / 15); padding: calc(3rem / 15) 10px; }
 .daily-sum .tag[data-lane='tr'] { background: var(--accent-soft); color: var(--accent); }
 .daily-sum .tag[data-lane='en'] { background: var(--good-soft); color: var(--good); }
 .daily-sum .tag[data-lane='speak'] { background: var(--warn-soft); color: var(--warn); }
 
 /* Nhãn phần đang ôn trong phiên trộn */
 .mix-lane {
-  align-self: flex-start; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+  align-self: flex-start; font-size: calc(12rem / 15); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: calc(3rem / 15) 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent);
 }
 .mix-lane[data-lane='en'] { background: var(--good-soft); color: var(--good); }
 .mix-lane[data-lane='speak'] { background: var(--warn-soft); color: var(--warn); }
 
 /* Bảng kết quả theo phần */
-.mix-table { width: 100%; border-collapse: collapse; font-size: 14px; table-layout: fixed; }
+.mix-table { width: 100%; border-collapse: collapse; font-size: calc(14rem / 15); table-layout: fixed; }
 .mix-table caption { text-align: left; margin-bottom: 6px; }
-.mix-table th, .mix-table td { padding: 8px 4px; border-bottom: 1px solid var(--line); text-align: right; overflow-wrap: anywhere; }
+.mix-table th, .mix-table td { padding: calc(8rem / 15) 4px; border-bottom: 1px solid var(--line); text-align: right; overflow-wrap: anywhere; }
 .mix-table th:first-child { text-align: left; width: 34%; }
-.mix-table thead th { font-size: 12px; color: var(--muted); font-weight: 600; }
-.mix-table small { color: var(--muted); font-size: 11.5px; }
+.mix-table thead th { font-size: calc(12rem / 15); color: var(--muted); font-weight: 600; }
+.mix-table small { color: var(--muted); font-size: calc(11.5rem / 15); }
 .mix-result details.item summary { flex-wrap: wrap; }
 
 /* Cài đặt */
 .settings .set-group { display: flex; flex-direction: column; gap: 8px; }
 .settings .set-group > .eyebrow { margin-bottom: 0; }
 .share-row { display: flex; align-items: center; gap: 10px; }
-.share-row span { flex: 0 0 auto; font-size: 12.5px; color: var(--muted); }
+.share-row span { flex: 0 0 auto; font-size: calc(12.5rem / 15); color: var(--muted); }
 input[type='range'].share {
   flex: 1 1 auto; min-width: 0; height: 44px; margin: 0; accent-color: var(--accent); background: transparent;
 }
 .share-val { font-weight: 600; }
 input[type='time'].remind-time {
-  font: inherit; font-size: 16px; color: var(--ink); background: var(--surface); border: 1px solid var(--line);
-  border-radius: 8px; padding: 8px 12px; min-height: 44px; min-width: 120px;
+  font: inherit; font-size: calc(16rem / 15); color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: calc(8rem / 15) 12px; min-height: var(--tap); min-width: calc(120rem / 15);
 }
 .days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
 /* Màn hẹp: 7 nút ngày không đủ chỗ cho vùng chạm 44 px → 2 hàng (T2–T5, T6–CN). */
 @media (max-width: 400px) {
   .days { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
-.days .chip { padding: 8px 0; text-align: center; }
+.days .chip { padding: calc(8rem / 15) 0; text-align: center; }
 .set-ok { color: var(--good); }
 .set-err { color: var(--bad); }

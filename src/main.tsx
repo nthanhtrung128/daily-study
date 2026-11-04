@@ -20,8 +20,10 @@ import './ui/styles.css';
 
 import { App } from './App';
 import { applyTheme, loadTheme } from './core/theme';
+import { applyFontSize, loadFontSize } from './core/fontsize';
 
 applyTheme(loadTheme());
+applyFontSize(loadFontSize());
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   registerSW({ immediate: true });

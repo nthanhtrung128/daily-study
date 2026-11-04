@@ -27,6 +27,7 @@ Hợp nhất Sổ ôn TR101 (`legacy/so-on-template.html` + `content/tr101/data.
 | S8 | Phiên hằng ngày trộn TR + EN, cài đặt, file nhắc lịch .ics | S3, S6 | ✅ Xong (#9) |
 | S9a | docs/DEPLOY.md (Cloudflare Pages + Access), `public/_headers`, Playwright WebKit, kiểm tra PWA/offline | S8 | ✅ Xong (#7) |
 | S9b | Rà soát toàn app trên iPhone (audit e2e sáng/tối, 320/375 px, a11y, offline), sửa lỗi, docs, ảnh chụp | S9a | ✅ Xong (PR S9b) |
+| Thêm | Cỡ chữ: Dynamic Type trên iOS (`-apple-system-body`), CSS theo rem, lựa chọn Cỡ chữ trong Cài đặt, audit e2e ở chữ lớn | S9b | ✅ Xong (PR cỡ chữ) |
 
 ## Việc còn lại
 Chỉ kiểm được trên iPhone thật — làm theo [docs/DEPLOY.md § 10](DEPLOY.md#10-danh-sách-kiểm-tra-trên-iphone-thật):
@@ -37,7 +38,6 @@ Chỉ kiểm được trên iPhone thật — làm theo [docs/DEPLOY.md § 10](D
 Có thể làm thêm (nhỏ, không bắt buộc):
 - Sao lưu kèm bản ghi âm (hiện file .json chưa gồm ghi âm).
 - Nhắc người dùng xuất sao lưu định kỳ (vd mỗi 2 tuần) ngay trong app.
-- Hỗ trợ cỡ chữ hệ thống (Dynamic Type) — hiện cỡ chữ cố định theo px.
 
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
 - Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.

@@ -215,7 +215,9 @@ Test tự động (Playwright giả lập iPhone 14 / iPhone SE, cả WebKit) đ
 ### G. Giao diện tối, cỡ chữ, chuyển động
 - ☐ Cài đặt iPhone → Màn hình & Độ sáng → **Tối**: app (chế độ *Theo máy*) chuyển tối, thanh trạng thái tối theo; chữ, nút đỏ (Thay thế, đang ghi âm), thẻ xanh/vàng đều đọc rõ.
 - ☐ Trong app chọn **Sáng** khi máy đang tối (và ngược lại): app và thanh trạng thái theo lựa chọn trong app; thoát mở lại vẫn giữ.
-- ☐ **Cỡ chữ lớn** (Cài đặt → Màn hình & Độ sáng → Cỡ chữ): app dùng cỡ chữ cố định nên không đổi — dùng thu phóng 2 ngón nếu cần; không có chữ bị che.
+- ☐ **Cỡ chữ theo máy (Dynamic Type)**: trong app để Cài đặt → Cỡ chữ = **Theo máy**. Cài đặt iPhone → Màn hình & Độ sáng → **Cỡ chữ**, kéo thanh trượt lên/xuống → quay lại app (không cần mở lại): chữ trong app to/nhỏ theo. Ở mức mặc định chữ app khoảng 17 pt (bằng chữ của app Cài đặt), hơi to hơn bản cũ (15 px) — muốn như cũ thì chọn **Vừa**.
+- ☐ **Chữ rất lớn**: Cài đặt iPhone → Trợ năng → Màn hình & Cỡ chữ → **Chữ lớn hơn** → bật *Cỡ chữ lớn hơn*, kéo tới 2–3 nấc cuối. Đi qua Hôm nay, một phiên ôn (thẻ lật, nút Quên/Mơ hồ/Nhớ rõ), Shadowing, Tra cứu, Tiến độ, Cài đặt: không phải cuộn ngang, chữ không bị cắt hay che, thanh tab xuống 2 hàng và bấm được (thanh trên thôi dính đầu màn khi chữ quá to), ô thống kê tự xuống hàng. Tắt lại sau khi thử.
+- ☐ Trong app chọn **Rất lớn** (rồi **Nhỏ**): chữ đổi ngay; thoát hẳn app mở lại vẫn giữ cỡ đã chọn, không thấy nháy cỡ chữ lúc mở. Chọn tay thì app bỏ qua cỡ chữ của máy; chọn lại **Theo máy** để theo máy.
 - ☐ Bật **Trợ năng → Chuyển động → Giảm chuyển động**: thẻ mới hiện ngay, không trượt.
 
 ### H. Dữ liệu, cập nhật

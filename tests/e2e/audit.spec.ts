@@ -61,7 +61,7 @@ test('giao diện Tối chọn tay (máy đang sáng): đủ tương phản, the
   await page.emulateMedia({ colorScheme: 'light' });
   const found: string[] = [];
   await openTab(page, 'cai-dat');
-  await page.getByRole('button', { name: 'Tối', exact: true }).click();
+  await page.getByRole('group', { name: 'Giao diện' }).getByRole('button', { name: 'Tối', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   const colors = await page.locator('meta[name="theme-color"]').evaluateAll((els) => els.map((e) => e.getAttribute('content')));
   expect(new Set(colors)).toEqual(new Set(['#0E1318']));
@@ -70,7 +70,7 @@ test('giao diện Tối chọn tay (máy đang sáng): đủ tương phản, the
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await audit(page, `tối-tay #${hash}`, found);
   }
-  await page.getByRole('button', { name: 'Theo máy', exact: true }).click();
+  await page.getByRole('group', { name: 'Giao diện' }).getByRole('button', { name: 'Theo máy', exact: true }).click();
   const back = await page.locator('meta[name="theme-color"]').evaluateAll((els) => els.map((e) => e.getAttribute('content')));
   expect(back).toEqual(['#EEF1F4', '#0E1318']);
   expect(found, found.join('\n')).toEqual([]);
