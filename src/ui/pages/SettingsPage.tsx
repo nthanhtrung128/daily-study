@@ -3,6 +3,7 @@ import { loadTheme, saveTheme, type Theme } from '../../core/theme';
 import { ICS_FILENAME, appUrl, buildIcs } from '../../core/ics';
 import { DAILY_DURATIONS, DAY_SHORT_VI, MAX_NEW_CHOICES, WEEK_ORDER, isTime, shareLabel } from '../../core/prefs';
 import { BackupPanel } from '../components/BackupPanel';
+import { StorageInfo } from '../components/StorageInfo';
 import { setDailyPrefs, useDailyPrefs } from '../useDailyPrefs';
 import { useProgress } from '../useProgress';
 import { downloadText } from '../mix/download';
@@ -217,6 +218,7 @@ export function SettingsPage() {
         <p className="hint" style={{ margin: 0 }}>
           Tiến độ, cài đặt và ghi âm chỉ lưu trên máy này (IndexedDB). App không gửi dữ liệu đi đâu và chạy được khi không có mạng.
         </p>
+        <StorageInfo />
         <p className="hint num" style={{ margin: 0 }}>
           Phiên bản {__APP_VERSION__}
         </p>

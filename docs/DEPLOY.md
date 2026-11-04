@@ -129,7 +129,9 @@ Trước khi xóa app hoặc đổi máy:
 2. Trong **app ở Màn hình chính**: app mở **bảng Chia sẻ** → chọn **Lưu vào Tệp** → *iCloud Drive* (hoặc *Trên iPhone*). Nếu app hiện thêm nút **Lưu file sao lưu** (iOS đòi bấm thêm một lần) thì bấm nút đó. Trong **Safari**: iPhone hỏi tải file → **Tải về**, file nằm trong Tệp → *Tải về*. Giữ lại vài bản gần nhất. Nếu vẫn không thấy gì xảy ra: **đừng xóa app**, báo lại để sửa (mở link trong Safari không lấy được tiến độ này, vì Safari có bộ nhớ riêng).
 3. Ở máy/app mới: **Cài đặt** → **Nhập từ file…** → chọn file → xác nhận.
 
-Nên xuất định kỳ, vd mỗi tuần một lần. File có tiến độ ôn của bạn; không gửi lên chỗ công khai. (File sao lưu hiện chưa gồm bản ghi âm luyện nói.)
+Nên xuất định kỳ. App tự nhắc trên trang **Hôm nay** khi đã quá **14 ngày** chưa xuất (đổi 7 / 14 / 30 ngày hoặc tắt ở **Cài đặt → Nhắc sao lưu**; bấm **Để sau** thì ẩn 3 ngày). Cài đặt hiện **Lần sao lưu gần nhất** trên máy này. File có tiến độ ôn của bạn; không gửi lên chỗ công khai.
+
+**Bản ghi âm:** khi trên máy có ghi âm “Đề nói 1 phút”, bấm nút **Kèm bản ghi âm (≈ X MB)** trước khi xuất để đưa ghi âm vào file (âm thanh mã hóa base64 trong cùng file JSON, file lớn hơn khoảng 1/3 so với dung lượng ghi âm). Khi nhập: **Thay thế** dùng đúng các bản ghi trong file, **Gộp** chỉ thêm bản chưa có. File không kèm ghi âm (kể cả file cũ) thì ghi âm trên máy được giữ nguyên. App cảnh báo khi file trên 50 MB: nên xóa bớt bản ghi cũ trước khi xuất.
 
 ## 8. Cách thay thế: deploy bằng lệnh
 
@@ -209,6 +211,8 @@ Test tự động (Playwright giả lập iPhone 14 / iPhone SE, cả WebKit) đ
 ### F. Sao lưu / khôi phục
 - ☐ Trong app ở Màn hình chính: Cài đặt → **Xuất tiến độ (.json)** → bảng Chia sẻ hiện ra (hoặc nút **Lưu file sao lưu** → bấm) → **Lưu vào Tệp** (iCloud Drive). Mở file trong Tệp xem được nội dung JSON.
 - ☐ **Nhập từ file…** → chọn file vừa lưu → bảng xác nhận hiện đúng số mục / lượt ôn → **Gộp** → báo thành công, số liệu Tiến độ không đổi.
+- ☐ Có ghi âm: bật **Kèm bản ghi âm** → xuất → nhập lại file đó bằng **Gộp** → số bản ghi không tăng; nghe lại được bản ghi trong “Đề nói 1 phút”.
+- ☐ Sau khi xuất: Cài đặt hiện **Lần sao lưu gần nhất: <ngày giờ hôm nay>**; trang Hôm nay không còn dải nhắc sao lưu.
 - ☐ (Một lần, khi đổi máy) Thử **Thay thế** trên app mới cài → tiến độ giống máy cũ.
 - ☐ Nếu còn Sổ ôn bản cũ: dán state cũ (**Dán JSON**) → xác nhận → tiến độ cũ hiện trong Tiến độ.
 
