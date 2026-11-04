@@ -2,7 +2,7 @@
    File riêng, chỉ dùng design token có sẵn trên :root nên tự theo light/dark. Vùng chạm ≥ 44px. */
 
 .say-check { display: flex; flex-direction: column; gap: 10px; border-top: 1px dashed var(--line); padding-top: 12px; min-width: 0; }
-.say-check .btn, .say-check .chip, .rec-list .btn { min-height: 44px; }
+.say-check .btn, .say-check .chip, .rec-list .btn { min-height: var(--tap); }
 .say-mic, .rec-btn { display: inline-flex; align-items: center; gap: 8px; }
 .say-mic.on, .rec-btn.on { background: var(--bad); color: var(--bad-ink); }
 .say-mic svg, .rec-btn svg { flex: 0 0 auto; }
@@ -14,16 +14,16 @@
 }
 @keyframes say-pulse { 50% { opacity: 0.25; } }
 .on .say-dot { background: var(--bad-ink); }
-.say-err { font-size: 13.5px; color: var(--bad); background: var(--bad-soft); border-radius: 8px; padding: 10px 12px; overflow-wrap: anywhere; }
+.say-err { font-size: calc(13.5rem / 15); color: var(--bad); background: var(--bad-soft); border-radius: 8px; padding: calc(10rem / 15) 12px; overflow-wrap: anywhere; }
 .say-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .say-result { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; min-width: 0; }
 .say-score { display: flex; align-items: center; gap: 12px; }
-.say-score > b { font-size: 30px; font-weight: 500; line-height: 1; }
+.say-score > b { font-size: calc(30rem / 15); font-weight: 500; line-height: 1; }
 .say-score > b[data-grade='2'] { color: var(--good); }
 .say-score > b[data-grade='1'] { color: var(--warn); }
 .say-score > b[data-grade='0'] { color: var(--bad); }
-.say-diff { font-family: var(--f-card); font-size: 18px; line-height: 2.1; overflow-wrap: anywhere; margin: 0; }
+.say-diff { font-family: var(--f-card); font-size: calc(18rem / 15); line-height: 2.1; overflow-wrap: anywhere; margin: 0; }
 .say-wd { white-space: normal; }
 .say-diff [data-status] { position: relative; border-radius: 4px; padding: 1px 3px; }
 .w-ok { color: var(--good); }
@@ -31,31 +31,31 @@
 .w-missing { color: var(--warn); background: var(--warn-soft); text-decoration: line-through; }
 ins.w-extra { color: var(--muted); font-style: italic; text-decoration: none; background: var(--sunk); border-radius: 4px; padding: 1px 4px; margin-right: 3px; }
 .w-heard {
-  display: inline-block; font-family: var(--f-body); font-size: 11.5px; line-height: 1.2; color: var(--muted);
+  display: inline-block; font-family: var(--f-body); font-size: calc(11.5rem / 15); line-height: 1.2; color: var(--muted);
   margin-left: 4px; vertical-align: super;
 }
 .say-legend { display: flex; gap: 8px; flex-wrap: wrap; }
 .say-legend > * { border-radius: 4px; padding: 0 4px; }
-.say-type summary { cursor: pointer; font-size: 13.5px; color: var(--accent); min-height: 44px; display: flex; align-items: center; }
+.say-type summary { cursor: pointer; font-size: calc(13.5rem / 15); color: var(--accent); min-height: var(--tap); display: flex; align-items: center; }
 .say-type textarea { min-height: 70px; }
 .say-label { min-width: 0; overflow-wrap: anywhere; text-align: right; }
 .say-next { justify-content: flex-start; }
 
 /* Đề nói 1 phút */
-.topic-hints { margin: 6px 0 0; padding-left: 20px; font-family: var(--f-card); font-size: 16px; display: flex; flex-direction: column; gap: 4px; }
+.topic-hints { margin: 6px 0 0; padding-left: 20px; font-family: var(--f-card); font-size: calc(16rem / 15); display: flex; flex-direction: column; gap: 4px; }
 .rec-box { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px; border-radius: 10px; background: var(--sunk); }
-.rec-clock { font-size: 40px; line-height: 1; letter-spacing: 0.02em; }
+.rec-clock { font-size: calc(40rem / 15); line-height: 1; letter-spacing: 0.02em; }
 .rec-box[data-phase='recording'] .rec-clock { color: var(--bad); }
 .rec-bar { width: 100%; }
-.rec-btn { min-height: 52px; padding: 12px 22px; font-size: 16px; }
+.rec-btn { min-height: max(52px, calc(52rem / 15)); padding: calc(12rem / 15) 22px; font-size: calc(16rem / 15); }
 .rec-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .rec-item { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.rec-meta { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; }
-.rec-title { font-size: 14px; overflow-wrap: anywhere; margin: 0; }
+.rec-meta { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: calc(13.5rem / 15); }
+.rec-title { font-size: calc(14rem / 15); overflow-wrap: anywhere; margin: 0; }
 .rec-item audio { width: 100%; max-width: 100%; height: 44px; }
-.rec-tr { font-family: var(--f-card); font-size: 15px; overflow-wrap: anywhere; }
+.rec-tr { font-family: var(--f-card); font-size: calc(15rem / 15); overflow-wrap: anywhere; }
 .rec-item a.btn { text-decoration: none; display: inline-flex; align-items: center; }
 .rec-danger { color: var(--bad); border-color: var(--bad); }
 .rec-bar { height: 6px; border-radius: 3px; background: var(--surface); overflow: hidden; }
 .rec-bar i { display: block; height: 100%; background: var(--bad); width: 0; transition: width 0.2s linear; }
-.topic-useful .tag { font-size: 13.5px; padding: 4px 10px; background: var(--accent-soft); color: var(--ink); overflow-wrap: anywhere; max-width: 100%; }
+.topic-useful .tag { font-size: calc(13.5rem / 15); padding: calc(4rem / 15) 10px; background: var(--accent-soft); color: var(--ink); overflow-wrap: anywhere; max-width: 100%; }

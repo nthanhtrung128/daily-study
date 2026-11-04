@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { loadTheme, saveTheme, type Theme } from '../../core/theme';
+import { FONT_SIZES, FONT_SIZE_LABELS, loadFontSize, saveFontSize, type FontSize } from '../../core/fontsize';
 import { ICS_FILENAME, appUrl, buildIcs } from '../../core/ics';
 import { DAILY_DURATIONS, DAY_SHORT_VI, MAX_NEW_CHOICES, WEEK_ORDER, isTime, shareLabel } from '../../core/prefs';
 import { BackupPanel } from '../components/BackupPanel';
@@ -19,6 +20,7 @@ const rateLabel = (r: number) => `${String(r).replace('.', ',')}×`;
 
 export function SettingsPage() {
   const [theme, setTheme] = useState<Theme>(loadTheme);
+  const [fontSize, setFontSize] = useState<FontSize>(loadFontSize);
   const prefs = useDailyPrefs();
   const tp = useTtsPrefs();
   const p = useProgress();
@@ -28,6 +30,11 @@ export function SettingsPage() {
   const choose = (t: Theme) => {
     setTheme(t);
     saveTheme(t);
+  };
+
+  const chooseSize = (s: FontSize) => {
+    setFontSize(s);
+    saveFontSize(s);
   };
 
   const toggleDay = (d: number) =>
@@ -68,6 +75,22 @@ export function SettingsPage() {
               </button>
             ))}
           </div>
+        </div>
+        <div className="set-group">
+          <div className="eyebrow" id="lbl-fs">
+            Cỡ chữ
+          </div>
+          <div className="row" role="group" aria-labelledby="lbl-fs">
+            {FONT_SIZES.map((s) => (
+              <button key={s} type="button" className="chip" aria-pressed={fontSize === s} onClick={() => chooseSize(s)}>
+                {FONT_SIZE_LABELS[s]}
+              </button>
+            ))}
+          </div>
+          <p className="hint">
+            “Theo máy”: trên iPhone theo Cài đặt → Màn hình &amp; Độ sáng → Cỡ chữ (và Trợ năng → Màn hình &amp; Cỡ chữ → Chữ lớn hơn). Chọn tay thì
+            dùng cỡ của app, không theo máy.
+          </p>
         </div>
       </div>
 

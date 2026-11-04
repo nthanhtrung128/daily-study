@@ -55,7 +55,16 @@ describe('iPhone', () => {
   it('tắt chuyển động khi bật Giảm chuyển động', () => {
     expect(s).toMatch(/@media \(prefers-reduced-motion: reduce\)[^}]*animation-duration/);
   });
-  it('ô nhập chữ ≥ 16px để Safari không tự phóng to', () => {
-    expect(s).toMatch(/textarea \{[^}]*font-size: 16px/);
+  it('ô nhập chữ ≥ 16px (kể cả khi cỡ chữ nhỏ) để Safari không tự phóng to', () => {
+    expect(s).toMatch(/textarea \{[^}]*font-size: max\(16px, /);
+  });
+});
+
+describe('cỡ chữ theo rem (Dynamic Type)', () => {
+  it.each(css.map((f) => [f.slice(ROOT.length + 1), f]))('%s: không còn font-size cố định bằng px', (_, f) => {
+    const bad = readFileSync(f, 'utf8')
+      .split('\n')
+      .filter((l) => /font-size:\s*[\d.]+px/.test(l) && !/:root\[data-fs=|^html \{/.test(l.trim()));
+    expect(bad).toEqual([]);
   });
 });
