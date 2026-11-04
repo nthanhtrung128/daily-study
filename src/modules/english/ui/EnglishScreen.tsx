@@ -104,7 +104,7 @@ function CardSession({ list, type, t0, minutes, onFinish }: { list: EnItem[]; ty
 }
 
 function ShadowScreen({ onExit }: { onExit: () => void }) {
-  const tracks = useMemo(allTracks, []);
+  const tracks = useMemo(() => allTracks(), []);
   const [track, setTrack] = useState<Track | null>(null);
   return (
     <section className="stack en-screen" aria-labelledby="h-shadow">

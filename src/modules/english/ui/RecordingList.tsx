@@ -33,6 +33,9 @@ export function RecordingList({ topicId, refresh = 0, showTitle = false, limit }
     if (!rows || typeof URL.createObjectURL !== 'function') return;
     const map: Record<number, string> = {};
     for (const r of rows) if (r.id !== undefined) map[r.id] = URL.createObjectURL(recordingBlob(r));
+    // Object URL là tài nguyên bên ngoài React (phải thu hồi khi dọn) nên tạo trong effect;
+    // tạo bằng useMemo sẽ bị StrictMode thu hồi rồi không tạo lại.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setUrls(map);
     return () => {
       for (const u of Object.values(map)) URL.revokeObjectURL(u);

@@ -30,7 +30,7 @@ export function ShadowPlayerView({ track }: { track: Track }) {
   const s = useSyncExternalStore(player.subscribe, player.getState, player.getState);
   useEffect(() => () => player.destroy(), [player]);
   useEffect(() => {
-    player.accent = prefs.accent;
+    player.setAccent(prefs.accent);
   }, [player, prefs.accent]);
 
   const line = player.line(s.index);
