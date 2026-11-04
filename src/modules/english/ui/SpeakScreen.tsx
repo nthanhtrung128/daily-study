@@ -30,6 +30,7 @@ export function SpeakScreen({ list, t0, onExit }: { list: SayItem[]; t0: number;
   const [i, setI] = useState(0);
   const [hide, setHide] = useState(false);
   const [done, setDone] = useState<Done[] | null>(null);
+  const [secs, setSecs] = useState(0);
   const results = useRef<Done[]>([]);
   const it = list[i];
 
@@ -37,15 +38,20 @@ export function SpeakScreen({ list, t0, onExit }: { list: SayItem[]; t0: number;
     window.scrollTo?.({ top: 0 });
   }, [i]);
 
-  if (done) return <SpeakResult results={done} secs={Math.round((Date.now() - t0) / 1000)} onHome={() => onExit(done.length)} />;
+  if (done) return <SpeakResult results={done} secs={secs} onHome={() => onExit(done.length)} />;
   if (!it) return null;
+
+  const finish = () => {
+    setSecs(Math.round((Date.now() - t0) / 1000));
+    setDone(results.current);
+  };
 
   const next = (g: Grade | null, best: number | null) => {
     if (g !== null) {
       p.grade(it.id, g);
       results.current.push({ it, score: best, g });
     }
-    if (i + 1 >= list.length) setDone(results.current);
+    if (i + 1 >= list.length) finish();
     else setI(i + 1);
   };
 
@@ -58,7 +64,7 @@ export function SpeakScreen({ list, t0, onExit }: { list: SayItem[]; t0: number;
         <div className="bar" role="progressbar" aria-label="Tiến độ phiên" aria-valuemin={0} aria-valuemax={list.length} aria-valuenow={i}>
           <i style={{ width: `${(i / list.length) * 100}%` }} />
         </div>
-        <button type="button" className="btn ghost small" onClick={() => setDone(results.current)}>
+        <button type="button" className="btn ghost small" onClick={finish}>
           Kết thúc
         </button>
       </div>

@@ -77,6 +77,11 @@ export class ShadowPlayer {
     for (const l of lines) if (l.speaker && !this.speakerRank.has(l.speaker)) this.speakerRank.set(l.speaker, this.speakerRank.size);
   }
 
+  /** Đổi giọng (US/UK) cho các câu phát sau. */
+  setAccent(accent: Accent): void {
+    this.accent = accent;
+  }
+
   get length(): number {
     return this.lines.length;
   }
