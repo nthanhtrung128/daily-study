@@ -126,3 +126,38 @@ test('Cài đặt › Cỡ chữ: đổi ngay, lưu lại, áp dụng trước l
   await expect(page.locator('html')).not.toHaveAttribute('data-fs', /.*/);
   expect(await rootPxNow()).toBeCloseTo(base, 1);
 });
+
+test('chữ lớn — dải nhắc sao lưu trên Hôm nay và phần sao lưu trong Cài đặt', async ({ page }) => {
+  test.slow();
+  const DAY = 86_400_000;
+  const T0 = new Date('2026-11-01T09:00:00+07:00').getTime();
+  const btn = (name: string | RegExp) => page.getByRole('button', { name, exact: typeof name === 'string' });
+  await page.clock.setFixedTime(T0);
+  // Có một ngày ôn, rồi 15 ngày sau chưa sao lưu → dải nhắc hiện.
+  await page.goto('./#hom-nay');
+  await page.getByRole('button', { name: /^Thẻ từ/ }).click();
+  await btn('Lật thẻ').click();
+  await btn(/^Nhớ rõ/).click();
+  await btn('Kết thúc').click();
+  await page.clock.setFixedTime(T0 + 15 * DAY);
+  const found: string[] = [];
+  for (const [label, init] of [
+    ['Rất lớn', () => localStorage.setItem('ds.fontSize', 'xl')],
+    ['28 px', () => document.documentElement.style.setProperty('font-size', '28px', 'important')],
+  ] as const) {
+    await page.addInitScript(init);
+    await page.reload();
+    await expect(page.getByTestId('backup-nudge')).toBeVisible();
+    for (const scheme of ['light', 'dark'] as const) {
+      await page.emulateMedia({ colorScheme: scheme });
+      await page.getByTestId('backup-nudge').scrollIntoViewIfNeeded();
+      await check(page, `nhắc sao lưu ${label} ${scheme}`, found);
+    }
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.getByRole('link', { name: 'Sao lưu ngay' }).click();
+    await expect(page).toHaveURL(/#cai-dat$/);
+    await check(page, `cài đặt sao lưu ${label}`, found);
+    await openTab(page, 'hom-nay');
+  }
+  expect(found, found.join('\n')).toEqual([]);
+});

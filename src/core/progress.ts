@@ -2,6 +2,7 @@ import { db as defaultDb, isQuotaError, type DayStat, type ItemState, type Note,
 import { dayKey } from './date';
 import { applyGrade, type Grade, type LeitnerState } from './leitner';
 import { streakCount } from './streak';
+import { requestPersistOnce } from './persist';
 
 /**
  * Sự cố lưu trữ để báo người dùng: `unavailable` = không mở được IndexedDB (chế độ riêng tư cũ, bị chặn),
@@ -138,6 +139,8 @@ export class Progress {
   }
 
   grade(id: string, g: Grade): LeitnerState {
+    // Lượt chấm đầu tiên: xin trình duyệt giữ dữ liệu lâu dài (không có API thì bỏ qua).
+    requestPersistOnce();
     const t = this.today();
     const at = this.now().getTime();
     let out: LeitnerState | undefined;

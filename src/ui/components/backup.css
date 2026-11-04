@@ -1,0 +1,14 @@
+/* Sao lưu kèm ghi âm + nhắc sao lưu định kỳ (file riêng, không đụng styles.css). */
+.backup-nudge {
+  border: 1px solid var(--warn);
+  background: var(--warn-soft);
+  border-radius: 8px;
+  padding: calc(12rem / 15) 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-wrap: anywhere;
+}
+.backup-nudge .nudge-text { margin: 0; font-size: calc(14.5rem / 15); line-height: 1.45; color: var(--ink); }
+.backup .bk-last { margin: 0; }
+.backup .bk-warn { margin: 0; color: var(--ink); background: var(--warn-soft); border-radius: 8px; padding: calc(9rem / 15) 12px; font-size: calc(14rem / 15); }
