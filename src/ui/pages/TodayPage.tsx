@@ -3,6 +3,7 @@ import { getSetting, setSetting } from '../../core/db';
 import type { Grade } from '../../core/leitner';
 import { fmt } from '../../core/num';
 import { RangeBar } from '../components/RangeBar';
+import { BackupNudge } from '../components/BackupNudge';
 import { useProgress } from '../useProgress';
 import { BAI_KEYS, BAI_SHORT } from '../../modules/tr/data';
 import { titleOf, type TrItem } from '../../modules/tr/items';
@@ -124,6 +125,7 @@ export function TodayPage() {
 
   return (
     <section className="stack" aria-labelledby="h-today">
+      <BackupNudge />
       <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
 
       <div className="panel stack">

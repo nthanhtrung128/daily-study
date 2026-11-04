@@ -1,4 +1,5 @@
-import { db as defaultDb, type DayStat, type ItemState, type Note, type ReviewLog, type Setting, type StudyDB } from './db';
+import { db as defaultDb, type DayStat, type ItemState, type Note, type Recording, type ReviewLog, type Setting, type StudyDB } from './db';
+import { LOCAL_ONLY_KEYS } from './backupReminder';
 import { LEARNED_BOX, MAX_BOX } from './leitner';
 
 /**
@@ -7,6 +8,10 @@ import { LEARNED_BOX, MAX_BOX } from './leitner';
  * vốn lưu ở localStorage["tr101.state.v1"] dạng
  *   { srs: { K001: [hộp, hạn "YYYY-MM-DD", số lần sai, ngày ôn cuối "YYYY-MM-DD"] , … },
  *     days: { "YYYY-MM-DD": { n, ok, s } }, notes: { K001: "…" }, prefs: { min, mode, bai }, updatedAt }.
+ *
+ * Bản ghi âm (tùy chọn khi xuất): thêm trường `recordings` — mảng { topicId, title, at, ms, mime, size, transcript?, data },
+ * `data` là âm thanh mã hóa base64. Vẫn là `format: 1`: file không có `recordings` (file cũ, hoặc xuất không kèm ghi âm)
+ * nhập như trước; app bản cũ đọc file mới thì bỏ qua trường lạ.
  */
 export const APP_ID = 'daily-study';
 export const BACKUP_FORMAT = 1;
@@ -23,7 +28,23 @@ export interface Backup {
   notes: Note[];
   reviews: ReviewLog[];
   settings: Setting[];
+  recordings?: BackupRecording[];
 }
+
+/** Bản ghi âm trong file sao lưu: như `Recording` nhưng âm thanh là chuỗi base64, không có id. */
+export interface BackupRecording {
+  topicId: string;
+  title: string;
+  at: number;
+  ms: number;
+  mime: string;
+  size: number;
+  transcript?: string;
+  data: string;
+}
+
+/** Bản ghi âm đọc từ file, đã giải mã (chưa có id). */
+export type ImportedRecording = Omit<Recording, 'id'>;
 
 export interface ParsedBackup {
   source: 'app' | 'legacy';
@@ -32,6 +53,8 @@ export interface ParsedBackup {
   notes: Note[];
   reviews: ReviewLog[];
   settings: Setting[];
+  /** `undefined` = file không có trường ghi âm (khi thay thế sẽ giữ nguyên ghi âm trên máy). */
+  recordings?: ImportedRecording[];
   /** Số dòng bị bỏ vì sai định dạng. */
   skipped: number;
 }
@@ -64,6 +87,58 @@ function cleanDay(day: string, v: unknown): DayStat | null {
   const nw = int(v.nw);
   return { day, n, ok: Math.min(n, int(v.ok) ?? 0), s: int(v.s) ?? 0, ...(nw ? { nw: Math.min(n, nw) } : {}) };
 }
+
+const MIME_RE = /^audio\/[\w.+-]+(\s*;.*)?$/i;
+
+function cleanRecording(x: unknown): ImportedRecording | null {
+  if (!isObj(x) || typeof x.topicId !== 'string' || !x.topicId || typeof x.data !== 'string') return null;
+  const at = int(x.at);
+  if (at === null) return null;
+  let data: ArrayBuffer;
+  try {
+    data = fromBase64(x.data);
+  } catch {
+    return null;
+  }
+  if (!data.byteLength) return null;
+  const mime = typeof x.mime === 'string' && MIME_RE.test(x.mime) ? x.mime : 'audio/mp4';
+  const r: ImportedRecording = {
+    topicId: x.topicId,
+    title: typeof x.title === 'string' ? x.title : '',
+    at,
+    ms: int(x.ms) ?? 0,
+    mime,
+    size: data.byteLength,
+    data,
+  };
+  if (typeof x.transcript === 'string' && x.transcript.trim()) r.transcript = x.transcript.trim();
+  return r;
+}
+
+/** Base64 ← byte. Cắt khúc (bội số của 3) để không vượt giới hạn tham số của String.fromCharCode. */
+export function toBase64(buf: ArrayBuffer | Uint8Array): string {
+  const u8 = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
+  const CHUNK = 0x6000;
+  const parts: string[] = [];
+  for (let i = 0; i < u8.length; i += CHUNK) {
+    parts.push(btoa(String.fromCharCode.apply(null, u8.subarray(i, i + CHUNK) as unknown as number[])));
+  }
+  return parts.join('');
+}
+
+/** Byte ← base64 (bỏ khoảng trắng); chuỗi sai → lỗi. */
+export function fromBase64(b64: string): ArrayBuffer {
+  const bin = atob(b64.replace(/\s+/g, ''));
+  const u8 = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+  return u8.buffer;
+}
+
+/** Dung lượng base64 của n byte. */
+export const b64Len = (n: number) => Math.ceil(n / 3) * 4;
+
+/** Khóa nhận dạng bản ghi trùng khi gộp. */
+const recKey = (r: Pick<Recording, 'topicId' | 'at' | 'size'>) => `${r.topicId}|${r.at}|${r.size}`;
 
 /** Thêm tiền tố "tr:" cho id bản cũ (K001, F01, Q001, M01, G001, C-mid…). */
 export const legacyId = (id: string) => (/^(tr|en):/.test(id) ? id : `tr:${id}`);
@@ -136,8 +211,10 @@ function fromApp(raw: Record<string, unknown>): ParsedBackup {
     .filter(keep);
   const settings = arr(raw.settings)
     .map((x): Setting | null => (isObj(x) && typeof x.key === 'string' && 'value' in x ? { key: x.key, value: x.value } : null))
-    .filter(keep);
-  return { source: 'app', items, days, notes, reviews, settings, skipped };
+    .filter(keep)
+    .filter((x) => !LOCAL_ONLY_KEYS.has(x.key));
+  const recordings = Array.isArray(raw.recordings) ? raw.recordings.map(cleanRecording).filter(keep) : undefined;
+  return { source: 'app', items, days, notes, reviews, settings, skipped, ...(recordings ? { recordings } : {}) };
 }
 
 /** Đọc nội dung file JSON: tự nhận dạng file của app hay state bản cũ. */
@@ -155,15 +232,21 @@ export function parseBackup(input: string | unknown): ParsedBackup {
   throw new BackupError('Không nhận ra định dạng: cần file xuất từ app này hoặc state của Sổ ôn bản cũ.');
 }
 
-export async function exportBackup(store: StudyDB = defaultDb, now = new Date()): Promise<Backup> {
-  const [items, days, notes, reviews, settings] = await Promise.all([
+export interface ExportOptions {
+  /** Kèm bản ghi âm (base64). */
+  recordings?: boolean;
+}
+
+export async function exportBackup(store: StudyDB = defaultDb, now = new Date(), opts: ExportOptions = {}): Promise<Backup> {
+  const [items, days, notes, reviews, settings, recs] = await Promise.all([
     store.items.toArray(),
     store.days.toArray(),
     store.notes.toArray(),
     store.reviews.toArray(),
     store.settings.toArray(),
+    opts.recordings ? store.recordings.orderBy('at').toArray() : Promise.resolve([]),
   ]);
-  return {
+  const out: Backup = {
     app: APP_ID,
     format: BACKUP_FORMAT,
     exportedAt: now.toISOString(),
@@ -172,9 +255,56 @@ export async function exportBackup(store: StudyDB = defaultDb, now = new Date())
     notes,
     // Bỏ khóa tự tăng để nhập lại không đụng id.
     reviews: reviews.map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })),
-    settings,
+    // Thời điểm sao lưu / hoãn nhắc là của riêng máy này, không mang theo.
+    settings: settings.filter((x) => !LOCAL_ONLY_KEYS.has(x.key)),
   };
+  if (opts.recordings) {
+    out.recordings = recs.map((r) => ({
+      topicId: r.topicId,
+      title: r.title,
+      at: r.at,
+      ms: r.ms,
+      mime: r.mime,
+      size: r.data.byteLength,
+      ...(r.transcript ? { transcript: r.transcript } : {}),
+      data: toBase64(r.data),
+    }));
+  }
+  return out;
 }
+
+/**
+ * Nội dung file sao lưu, cắt thành nhiều đoạn cho `new Blob(parts)` / `new File(parts)`:
+ * mỗi bản ghi âm một đoạn, tránh dựng một chuỗi khổng lồ (đỡ tốn bộ nhớ trên iPhone).
+ */
+export function backupParts(b: Backup): string[] {
+  const { recordings, ...rest } = b;
+  const head = JSON.stringify(rest, null, 1);
+  if (!recordings) return [head];
+  const parts = [head.replace(/\n?}$/, ''), ',\n "recordings": ['];
+  recordings.forEach((r, i) => parts.push(`${i ? ',' : ''}\n  ${JSON.stringify(r)}`));
+  parts.push('\n ]\n}');
+  return parts;
+}
+
+/** Ước tính dung lượng (byte) phần ghi âm trong file sao lưu. */
+export function estimateRecordingsBytes(rows: Pick<Recording, 'size' | 'title' | 'transcript'>[]): number {
+  return rows.reduce((s, r) => s + b64Len(r.size) + 160 + r.title.length * 2 + (r.transcript?.length ?? 0) * 2, 0);
+}
+
+/** Thống kê ghi âm trên máy (để hiện "Kèm bản ghi âm (≈ X MB)"). */
+export async function recordingStats(store: StudyDB = defaultDb): Promise<{ count: number; bytes: number }> {
+  let count = 0;
+  let bytes = 0;
+  await store.recordings.each((r) => {
+    count++;
+    bytes += estimateRecordingsBytes([r]);
+  });
+  return { count, bytes };
+}
+
+/** Ngưỡng cảnh báo file lớn (byte): trên iPhone, đọc / lưu file cỡ này có thể chậm hoặc làm Safari tải lại trang. */
+export const LARGE_FILE_BYTES = 50 * 1024 * 1024;
 
 export function backupFileName(now = new Date()): string {
   const p = (n: number) => String(n).padStart(2, '0');
@@ -188,11 +318,12 @@ export interface BackupSummary {
   days: number;
   reviews: number;
   notes: number;
+  recordings: number;
   firstDay: string;
   lastDay: string;
 }
 
-export function summarize(d: Pick<ParsedBackup, 'items' | 'days' | 'notes'>): BackupSummary {
+export function summarize(d: Pick<ParsedBackup, 'items' | 'days' | 'notes'> & { recordings?: unknown[] | undefined }): BackupSummary {
   const days = d.days.filter((x) => x.n > 0).map((x) => x.day).sort();
   return {
     items: d.items.filter((i) => i.box > 0).length,
@@ -201,6 +332,7 @@ export function summarize(d: Pick<ParsedBackup, 'items' | 'days' | 'notes'>): Ba
     days: days.length,
     reviews: d.days.reduce((s, x) => s + x.n, 0),
     notes: d.notes.length,
+    recordings: d.recordings?.length ?? 0,
     firstDay: days[0] ?? '',
     lastDay: days[days.length - 1] ?? '',
   };
@@ -211,16 +343,36 @@ export function summarize(d: Pick<ParsedBackup, 'items' | 'days' | 'notes'>): Ba
  * - replace: xóa tiến độ, nhật ký, ghi chú hiện có rồi ghi dữ liệu mới (cài đặt có trong file thì ghi đè).
  * - merge: mỗi mục giữ bản ôn gần nhất; thống kê ngày lấy số lớn hơn; ghi chú giữ bản mới hơn;
  *   nhật ký ôn thêm các lượt chưa có.
+ * Ghi âm (chỉ khi file có trường `recordings`): thay thế → xóa ghi âm trên máy rồi ghi bản trong file;
+ * gộp → thêm bản chưa có (trùng = cùng đề, cùng thời điểm, cùng dung lượng). File không có ghi âm → giữ nguyên ghi âm trên máy.
  */
 export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: StudyDB = defaultDb): Promise<void> {
-  await store.transaction('rw', [store.items, store.days, store.notes, store.reviews, store.settings], async () => {
+  const tables = [store.items, store.days, store.notes, store.reviews, store.settings, store.recordings];
+  await store.transaction('rw', tables, async () => {
+    const recs = data.recordings;
+    if (recs) {
+      if (mode === 'replace') {
+        await store.recordings.clear();
+        await store.recordings.bulkAdd(recs.map((r) => ({ ...r })));
+      } else {
+        const have = new Set<string>();
+        await store.recordings.each((r) => have.add(recKey({ ...r, size: r.data.byteLength })));
+        const add = recs.filter((r) => {
+          const k = recKey(r);
+          if (have.has(k)) return false;
+          have.add(k);
+          return true;
+        });
+        await store.recordings.bulkAdd(add.map((r) => ({ ...r })));
+      }
+    }
     if (mode === 'replace') {
       await Promise.all([store.items.clear(), store.days.clear(), store.notes.clear(), store.reviews.clear()]);
       await store.items.bulkPut(data.items);
       await store.days.bulkPut(data.days);
       await store.notes.bulkPut(data.notes);
       await store.reviews.bulkAdd(data.reviews.map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })));
-      await store.settings.bulkPut(data.settings);
+      await store.settings.bulkPut(data.settings.filter((x) => !LOCAL_ONLY_KEYS.has(x.key)));
       return;
     }
     const [items, days, notes, reviews] = await Promise.all([
@@ -258,7 +410,7 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
     );
     // Gộp: chỉ thêm cài đặt chưa có, không đè lựa chọn hiện tại.
     const keys = new Set((await store.settings.toArray()).map((s) => s.key));
-    await store.settings.bulkPut(data.settings.filter((s) => !keys.has(s.key)));
+    await store.settings.bulkPut(data.settings.filter((s) => !keys.has(s.key) && !LOCAL_ONLY_KEYS.has(s.key)));
   });
 }
 
