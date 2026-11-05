@@ -310,3 +310,36 @@ details.item .body { overflow-wrap: anywhere; min-width: 0; }
 }
 a.link-btn { text-decoration: none; display: inline-flex; align-items: center; }
 
+
+/* ===== UI polish (iPhone): vùng hành động dưới cùng, phản hồi khi bấm, chữ dài ===== */
+/* Trong phiên ôn: thanh trên (tên app + 4 tab) thôi dính đầu màn để thẻ có thêm chỗ; thanh tiến độ phiên dính thay. */
+body:has(main .sess-top) .top { position: static; }
+.sess-top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 4; background: var(--bg);
+  padding-block: 6px; margin-block: -6px;
+}
+/* Nút chính của thẻ (Lật thẻ / Kiểm tra / Câu tiếp / 3 nút chấm): dính đáy màn khi thẻ dài, trong tầm ngón cái. */
+.card-act, .card .say-next {
+  position: sticky; z-index: 3; bottom: 0;
+  margin: 0 -8px -8px; padding: 10px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to bottom, transparent, var(--surface) 10px);
+}
+.card-act > .btn { width: 100%; min-height: max(48px, var(--tap)); }
+/* Chữ lớn: vùng dính đáy chiếm quá nhiều màn → cuộn theo như thường. */
+.card-act, .card .say-next { bottom: clamp(-100vh, var(--big-gap) * -999, 0px); }
+/* Phản hồi khi bấm (iOS không có hover): nhấn xuống hơi lún + tối nhẹ. */
+.btn, .chip, .opt, .grade button, nav.tabs a { transition: transform 0.08s ease-out, filter 0.08s ease-out, background-color 0.15s; touch-action: manipulation; }
+.btn:not([disabled]):active, .chip:active, .opt:not([disabled]):active, .grade button:active, nav.tabs a:active { transform: scale(0.97); filter: brightness(0.94); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .btn:not([disabled]):active, :root:not([data-theme='light']) .chip:active, :root:not([data-theme='light']) .opt:not([disabled]):active, :root:not([data-theme='light']) .grade button:active { filter: brightness(1.15); } }
+:root[data-theme='dark'] :is(.btn:not([disabled]), .chip, .opt:not([disabled]), .grade button):active { filter: brightness(1.15); }
+@media (hover: hover) {
+  .opt:not([disabled]):hover, .grade button:hover, .chip:hover { border-color: var(--accent); }
+}
+.btn[disabled] { filter: saturate(0.4); }
+/* Ba nút chấm: viền màu nhạt theo nghĩa, dễ phân biệt bằng mắt hơn chỉ màu chữ. */
+.grade .g0 { border-color: color-mix(in srgb, var(--bad) 45%, var(--line)); }
+.grade .g1 { border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.grade .g2 { border-color: color-mix(in srgb, var(--good) 45%, var(--line)); }
+/* Chữ tiếng Việt dài: ngắt dòng cân đối, không để một chữ lẻ cuối đoạn. */
+p, .hint, .fb, .opt, .card .q, .eyebrow, li, dd { text-wrap: pretty; }
+.opt { line-height: 1.4; }

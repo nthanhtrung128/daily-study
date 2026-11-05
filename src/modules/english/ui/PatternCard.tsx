@@ -56,7 +56,7 @@ export function PatternCard({ pt, state, onGrade }: PatternCardProps) {
           </div>
           <p className="hint">Nghe rồi nhại lại 2–3 lần, bắt chước nhịp và ngữ điệu. Phần tô màu là chỗ sẽ tự thay từ.</p>
           <SayCheck target={pt.en} listen={false} />
-          <div>
+          <div className="card-act">
             <button type="button" className="btn" onClick={() => setStep(2)}>
               Đã nhại · sang tự thay từ
             </button>
@@ -84,7 +84,9 @@ export function PatternCard({ pt, state, onGrade }: PatternCardProps) {
           {pt.note && <p className="hint">{pt.note}</p>}
           <p className="hint">Nói to câu đã thay (bấm “Nói thử” để máy chấm), rồi tự chấm: bạn nói câu này đã trôi chảy chưa?</p>
           <SayCheck key={current} target={current} listen={false} onApply={onGrade} />
-          <GradeRow onPick={onGrade} />
+          <div className="card-act">
+            <GradeRow onPick={onGrade} />
+          </div>
         </>
       )}
     </div>

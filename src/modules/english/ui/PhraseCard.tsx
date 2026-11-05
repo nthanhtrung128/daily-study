@@ -100,7 +100,7 @@ export function PhraseCard({ ph, dir, state, note, onSaveNote, onGrade }: Phrase
           </div>
         </div>
       )}
-      <div>
+      <div className="card-act">
         {open ? (
           <GradeRow onPick={onGrade} />
         ) : (
