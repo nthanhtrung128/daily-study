@@ -321,7 +321,7 @@ body:has(main .sess-top) .top { position: static; }
 /* Nút chính của thẻ (Lật thẻ / Kiểm tra / Câu tiếp / 3 nút chấm): dính đáy màn khi thẻ dài, trong tầm ngón cái. */
 .card-act, .card .say-next {
   position: sticky; z-index: 3; bottom: 0;
-  margin: 0 -8px -8px; padding: 10px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  margin-bottom: -8px; padding: 10px 0 calc(8px + env(safe-area-inset-bottom, 0px));
   background: linear-gradient(to bottom, transparent, var(--surface) 10px);
 }
 .card-act > .btn { width: 100%; min-height: max(48px, var(--tap)); }
