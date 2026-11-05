@@ -38,7 +38,7 @@ Chỉ kiểm được trên iPhone thật — làm theo [docs/DEPLOY.md § 10](D
 - Theo dõi sau 1–2 tuần dùng: số mục mới/ngày và tỉ lệ 40/60 có hợp lý không; độ khó các đề nói; câu chấm sai do nhận giọng.
 
 Có thể làm thêm (nhỏ, không bắt buộc):
-- (Chưa có.)
+- C. Ôn "lỗi hay gặp"; D. Tổng kết tuần — xem docs/HANDOFF.md.
 
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
 - Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.

@@ -1,0 +1,45 @@
+# Bàn giao (cập nhật 05/11/2026)
+
+## Hiện trạng
+App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest, build, Playwright iPhone 14 / iPhone SE trên Chromium và WebKit). **Chưa deploy**, chưa thử trên iPhone thật.
+
+| PR | Nội dung |
+|---|---|
+| #1 | S1: khung Vite + React + TS strict, PWA, Dexie, CI, 4 trang (điều hướng hash) |
+| #2 | S2: lõi TR: Leitner, lập phiên, chuỗi ngày, `parseNums`, 19 bài tính |
+| #3 | S4: nội dung EN gói 1: schema, 300 cụm từ, 150 câu mẫu |
+| #4 | S5: UI tiếng Anh: thẻ từ + TTS, câu mẫu đổi từ, trình phát shadowing |
+| #5 | S3: Tra cứu, Tiến độ, ghi chú, xuất/nhập (đọc state Sổ ôn bản cũ) |
+| #6 | S7: nội dung EN gói 2: 60 hội thoại, 100 đề nói, +300 cụm |
+| #7 | S9a: `docs/DEPLOY.md`, `public/_headers` (CSP), Playwright WebKit |
+| #8 | S6: nhận giọng, chấm từng từ, đề nói 1 phút có ghi âm |
+| #9 | S8: phiên trộn TR 40% / EN 60%, cài đặt, file nhắc lịch `.ics` |
+| #10 | S9b: rà soát toàn app, sửa lỗi, a11y, test audit sáng/tối |
+| #11 | Nâng Vitest 5, ESLint 10, react-hooks 7; vá `npm audit` (còn 4 mức thấp do `deepmerge`, chưa có bản vá) |
+| #12 | Sao lưu kèm ghi âm, nhắc sao lưu định kỳ, `navigator.storage.persist()` |
+| #13 | Cỡ chữ theo hệ thống (Dynamic Type) + lựa chọn cỡ chữ trong app |
+| #14 | Hỏi trước khi cập nhật bản mới (`registerType: 'prompt'`), tiếp tục phiên dở |
+
+## Bản đồ code
+- `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
+- `src/modules/tr/`: thẻ, trắc nghiệm, 19 bài tính (`calc.ts`), câu mở.
+- `src/modules/english/`: TTS, thẻ từ, câu mẫu, shadowing, `speech/` (nhận giọng, chấm điểm, ghi âm).
+- `src/ui/`: các trang, phiên trộn (`mix/`), component chung.
+- `content/english/`: JSON + `schema/`; kiểm bằng `npm run validate:content`.
+- `tests/unit/` (Vitest), `tests/e2e/` (Playwright; `audit.spec.ts` quét tràn ngang, vùng chạm 44px, tương phản, lỗi console ở sáng/tối).
+
+## Quy ước đã chốt
+- Dexie: khi nâng version chỉ **thêm** bảng/chỉ mục, không đổi bảng cũ; có test nâng cấp (`tests/unit/db-upgrade.test.ts`).
+- Id mục: `tr:<id>` cho TR, `en:ph-xxxx` / `en:pt-xxxx` / … cho EN.
+- Âm thanh, micro, nhận giọng chỉ bắt đầu sau thao tác bấm (iOS). Nút ≥ 44px; không cuộn ngang ở 320–375px; cỡ chữ dùng `rem`.
+- CSP trong `public/_headers` chặt (`'self'`); `vite preview` và Playwright cũng đọc file này.
+- Trong `tests/e2e`, chỉ được skip kịch bản chụp ảnh (`PW_SHOTS`) và kịch bản 375px chạy một lần.
+- Môi trường e2e cục bộ: `npx playwright install chromium webkit`.
+
+## Việc còn lại
+1. **Người dùng tự làm:** deploy Cloudflare Pages + Access (`docs/DEPLOY.md` §1–3), kiểm tra trên iPhone thật (§10).
+2. **Sau 1–2 tuần dùng, nếu người dùng chọn:**
+   - C. Chế độ ôn "lỗi hay gặp": câu TR hay sai + từ EN bị chấm sai nhiều khi nói.
+   - D. Tổng kết tuần ở trang Tiến độ: số phút, mục mới thuộc, điểm nói trung bình, so với tuần trước.
+   - Chỉnh tỉ lệ 40/60, số mục mới/ngày, độ khó đề nói theo phản hồi.
+3. Giai đoạn 4 (cần người dùng quyết định, có chi phí): xem `docs/PLAN.md`.
