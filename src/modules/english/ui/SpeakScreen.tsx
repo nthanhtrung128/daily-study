@@ -10,13 +10,15 @@ import { useRecLifecycle } from '../speech/useRec';
 import { SayCheck } from './SayCheck';
 import { SpeakButton } from './SpeakButton';
 import { useFocusOnMount } from '../../../ui/useFocusOnMount';
+import { beginSession, endSession, stepSession, useInSessionMark } from '../../../ui/activeSession';
 import '../speech.css';
 
-interface Done {
+export interface SpeakDone {
   it: SayItem;
   score: number | null;
   g: Grade;
 }
+type Done = SpeakDone;
 
 const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
@@ -24,15 +26,34 @@ const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${St
  * Luyện nói có chấm: lần lượt từng câu (câu mẫu / ví dụ / hội thoại) → nói → so từng từ → điểm.
  * Bấm "Tiếp" thì chấm Leitner theo điểm cao nhất của các lần thử (≥90 Nhớ rõ, 60–89 Mơ hồ, <60 Quên).
  */
-export function SpeakScreen({ list, t0, onExit }: { list: SayItem[]; t0: number; onExit: (graded: number) => void }) {
+export function SpeakScreen({
+  list,
+  t0,
+  onExit,
+  start = 0,
+  initial = [],
+}: {
+  list: SayItem[];
+  t0: number;
+  onExit: (graded: number) => void;
+  /** Tiếp tục phiên dở. */
+  start?: number;
+  initial?: Done[];
+}) {
   useRecLifecycle();
   const p = useProgress();
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(start);
   const [hide, setHide] = useState(false);
   const [done, setDone] = useState<Done[] | null>(null);
   const [secs, setSecs] = useState(0);
-  const results = useRef<Done[]>([]);
+  useInSessionMark(!done);
+  const results = useRef<Done[]>(initial);
   const it = list[i];
+
+  useEffect(() => {
+    const saved = results.current.map((r) => ({ i: list.indexOf(r.it), g: r.g, score: r.score })).filter((r) => r.i >= 0);
+    beginSession('speak', list.map((x) => ({ id: x.id })), t0, 0, start, saved);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     window.scrollTo?.({ top: 0 });
@@ -42,6 +63,7 @@ export function SpeakScreen({ list, t0, onExit }: { list: SayItem[]; t0: number;
   if (!it) return null;
 
   const finish = () => {
+    endSession();
     setSecs(Math.round((Date.now() - t0) / 1000));
     setDone(results.current);
   };
@@ -52,7 +74,10 @@ export function SpeakScreen({ list, t0, onExit }: { list: SayItem[]; t0: number;
       results.current.push({ it, score: best, g });
     }
     if (i + 1 >= list.length) finish();
-    else setI(i + 1);
+    else {
+      stepSession(i + 1, g !== null ? { i, g, score: best } : undefined);
+      setI(i + 1);
+    }
   };
 
   return (

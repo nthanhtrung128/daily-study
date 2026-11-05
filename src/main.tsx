@@ -21,12 +21,14 @@ import './ui/styles.css';
 import { App } from './App';
 import { applyTheme, loadTheme } from './core/theme';
 import { applyFontSize, loadFontSize } from './core/fontsize';
+import { markNeedRefresh, setUpdater } from './ui/swUpdate';
 
 applyTheme(loadTheme());
 applyFontSize(loadFontSize());
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
-  registerSW({ immediate: true });
+  // Bản mới tải xong thì chờ; dải "Có bản mới" hỏi người dùng (updateSW(true) = kích hoạt + tải lại).
+  setUpdater(registerSW({ immediate: true, onNeedRefresh: markNeedRefresh }));
 }
 
 const root = document.getElementById('root');

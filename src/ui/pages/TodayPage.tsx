@@ -18,6 +18,10 @@ import { DailyResultView } from '../mix/DailyResultView';
 import { useDailyPrefs } from '../useDailyPrefs';
 import type { DailyEntry } from '../../modules/mix/plan';
 import type { DailyResult } from '../../modules/mix/result';
+import { beginSession, endSession, stepSession, useInSessionMark } from '../activeSession';
+import { ResumePanel } from '../mix/ResumePanel';
+import { resolveActive, type Resumable } from '../mix/resumeTarget';
+import { clearActive, loadActive } from '../../core/resume';
 
 const PREFS_KEY = 'tr.prefs';
 
@@ -27,9 +31,9 @@ interface Result {
 }
 type View =
   | { kind: 'home' }
-  | { kind: 'session'; list: TrItem[]; t0: number }
+  | { kind: 'session'; list: TrItem[]; t0: number; minutes?: number; pos?: number; done?: Result[] }
   | { kind: 'result'; results: Result[]; secs: number }
-  | { kind: 'mix'; entries: DailyEntry[]; t0: number; minutes: number }
+  | { kind: 'mix'; entries: DailyEntry[]; t0: number; minutes: number; pos?: number; done?: DailyResult[] }
   | { kind: 'mix-result'; results: DailyResult[]; secs: number };
 
 const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
@@ -47,7 +51,41 @@ export function TodayPage() {
   const daily = useDailyPrefs();
   const [prefs, setPrefs] = useState<Prefs>(DEFAULT_PREFS);
   const [view, setView] = useState<View>({ kind: 'home' });
-  const [en, setEn] = useState<EnView | null>(null);
+  const [en, setEnView] = useState<EnView | null>(null);
+  const [resume, setResume] = useState<Resumable | null>(null);
+  const setEn = (v: EnView | null) => {
+    if (v) setResume(null);
+    setEnView(v);
+  };
+
+  // Phiên dở (iOS tắt app khi chạy nền): hiện khối "Tiếp tục" nếu chưa quá 12 giờ.
+  useEffect(() => {
+    let live = true;
+    void loadActive(Date.now())
+      .then((s) => {
+        if (!live || !s) return;
+        const r = resolveActive(s, Date.now());
+        if (r) setResume(r);
+        else void clearActive().catch(() => undefined);
+      })
+      .catch(() => undefined);
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  const continueResume = () => {
+    if (!resume) return;
+    const t = resume.target;
+    setResume(null);
+    if (t.kind === 'mix') setView({ kind: 'mix', entries: t.entries, t0: t.t0, minutes: t.minutes, pos: t.pos, done: t.results });
+    else if (t.kind === 'tr') setView({ kind: 'session', list: t.list, t0: t.t0, minutes: t.minutes, pos: t.pos, done: t.results });
+    else setEnView(t.view);
+  };
+  const dropResume = () => {
+    setResume(null);
+    void clearActive().catch(() => undefined);
+  };
 
   useEffect(() => {
     let live = true;
@@ -67,11 +105,15 @@ export function TodayPage() {
 
   const start = (pr: Prefs = prefs) => {
     const list = planSession(pr, p.stateOf, p.today());
-    if (list.length) setView({ kind: 'session', list, t0: Date.now() });
+    if (!list.length) return;
+    setResume(null);
+    setView({ kind: 'session', list, t0: Date.now() });
   };
 
   const startMix = (minutes: number, entries: DailyEntry[] = planToday(p, daily, minutes).entries) => {
-    if (entries.length) setView({ kind: 'mix', entries, t0: Date.now(), minutes });
+    if (!entries.length) return;
+    setResume(null);
+    setView({ kind: 'mix', entries, t0: Date.now(), minutes });
   };
 
   if (en) return <EnglishScreen view={en} onExit={() => setEn(null)} />;
@@ -81,6 +123,8 @@ export function TodayPage() {
         entries={view.entries}
         t0={view.t0}
         minutes={view.minutes}
+        {...(view.pos !== undefined ? { start: view.pos } : {})}
+        {...(view.done ? { initial: view.done } : {})}
         onFinish={(results, secs) => {
           if (results.length) p.addSeconds(secs);
           setView({ kind: 'mix-result', results, secs });
@@ -96,7 +140,9 @@ export function TodayPage() {
       <Session
         list={view.list}
         t0={view.t0}
-        minutes={prefs.min}
+        minutes={view.minutes ?? prefs.min}
+        {...(view.pos !== undefined ? { start: view.pos } : {})}
+        {...(view.done ? { initial: view.done } : {})}
         onFinish={(results, secs) => {
           if (results.length) p.addSeconds(secs);
           setView({ kind: 'result', results, secs });
@@ -125,6 +171,7 @@ export function TodayPage() {
 
   return (
     <section className="stack" aria-labelledby="h-today">
+      {resume && <ResumePanel done={resume.done} total={resume.total} onResume={continueResume} onDrop={dropResume} />}
       <BackupNudge />
       <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
 
@@ -215,12 +262,32 @@ export function TodayPage() {
   );
 }
 
-function Session({ list, t0, minutes, onFinish }: { list: TrItem[]; t0: number; minutes: number; onFinish: (r: Result[], secs: number) => void }) {
+function Session({
+  list,
+  t0,
+  minutes,
+  onFinish,
+  start = 0,
+  initial,
+}: {
+  list: TrItem[];
+  t0: number;
+  minutes: number;
+  onFinish: (r: Result[], secs: number) => void;
+  start?: number;
+  initial?: Result[];
+}) {
+  useInSessionMark();
   const p = useProgress();
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(start);
   const [now, setNow] = useState(() => Date.now());
-  const results = useRef<Result[]>([]);
+  const results = useRef<Result[]>(initial ?? []);
   const graded = useRef(false);
+
+  useEffect(() => {
+    const saved = results.current.map((r) => ({ i: list.indexOf(r.it), g: r.g })).filter((r) => r.i >= 0);
+    beginSession('tr', list.map((x) => ({ id: x.id })), t0, minutes, start, saved);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 1000);
@@ -231,7 +298,10 @@ function Session({ list, t0, minutes, onFinish }: { list: TrItem[]; t0: number; 
   }, [i]);
 
   const it = list[i];
-  const finish = () => onFinish(results.current, Math.round((Date.now() - t0) / 1000));
+  const finish = () => {
+    endSession();
+    onFinish(results.current, Math.round((Date.now() - t0) / 1000));
+  };
   const secs = Math.max(0, Math.floor((now - t0) / 1000));
   if (!it) return null;
 
@@ -270,11 +340,15 @@ function Session({ list, t0, minutes, onFinish }: { list: TrItem[]; t0: number; 
           graded.current = true;
           p.grade(it.id, g);
           results.current.push({ it, g });
+          stepSession(i + 1, { i, g });
         }}
         onNext={() => {
           graded.current = false;
           if (i + 1 >= list.length) finish();
-          else setI(i + 1);
+          else {
+            stepSession(i + 1);
+            setI(i + 1);
+          }
         }}
       />
     </section>

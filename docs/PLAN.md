@@ -29,6 +29,7 @@ Hợp nhất Sổ ôn TR101 (`legacy/so-on-template.html` + `content/tr101/data.
 | S9b | Rà soát toàn app trên iPhone (audit e2e sáng/tối, 320/375 px, a11y, offline), sửa lỗi, docs, ảnh chụp | S9a | ✅ Xong (PR S9b) |
 | Thêm | Sao lưu kèm bản ghi âm; nhắc sao lưu định kỳ trong app (7 / 14 / 30 ngày / tắt) | S9b | ✅ Xong (PR sao lưu) |
 | Thêm | Cỡ chữ: Dynamic Type trên iOS (`-apple-system-body`), CSS theo rem, lựa chọn Cỡ chữ trong Cài đặt, audit e2e ở chữ lớn | S9b | ✅ Xong (PR cỡ chữ) |
+| Thêm | Hỏi trước khi cập nhật bản mới (không tự tải lại giữa phiên); tiếp tục phiên dở khi iOS tắt app (lưu vị trí 12 giờ) | S9b | ✅ Xong (PR cập nhật + tiếp tục phiên) |
 
 ## Việc còn lại
 Chỉ kiểm được trên iPhone thật — làm theo [docs/DEPLOY.md § 10](DEPLOY.md#10-danh-sách-kiểm-tra-trên-iphone-thật):
