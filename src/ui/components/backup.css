@@ -12,3 +12,4 @@
 .backup-nudge .nudge-text { margin: 0; font-size: calc(14.5rem / 15); line-height: 1.45; color: var(--ink); }
 .backup .bk-last { margin: 0; }
 .backup .bk-warn { margin: 0; color: var(--ink); background: var(--warn-soft); border-radius: 8px; padding: calc(9rem / 15) 12px; font-size: calc(14rem / 15); }
+.update-bar { margin-bottom: 12px; }

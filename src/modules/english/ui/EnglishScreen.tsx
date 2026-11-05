@@ -10,21 +10,23 @@ import { useTtsLifecycle } from '../useTts';
 import { PatternCard } from './PatternCard';
 import { PhraseCard } from './PhraseCard';
 import { ShadowPlayerView } from './ShadowPlayerView';
-import { SpeakScreen } from './SpeakScreen';
+import { SpeakScreen, type SpeakDone } from './SpeakScreen';
 import { TopicScreen } from './TopicScreen';
 import type { SayItem } from '../speech/sayItems';
+import { beginSession, endSession, stepSession, useInSessionMark } from '../../../ui/activeSession';
 import '../english.css';
 
 export type EnView =
-  | { kind: 'cards'; type: EnType; list: EnItem[]; t0: number; minutes: number }
+  | { kind: 'cards'; type: EnType; list: EnItem[]; t0: number; minutes: number; pos?: number; done?: EnCardResult[] }
   | { kind: 'shadow'; t0: number }
-  | { kind: 'speak'; list: SayItem[]; t0: number }
+  | { kind: 'speak'; list: SayItem[]; t0: number; pos?: number; done?: SpeakDone[] }
   | { kind: 'topics'; t0: number };
 
-interface Result {
+export interface EnCardResult {
   it: EnItem;
   g: Grade;
 }
+type Result = EnCardResult;
 
 const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
@@ -46,17 +48,45 @@ export function EnglishScreen({ view, onExit }: { view: EnView; onExit: () => vo
       if (count > 0 || view.kind === 'topics') p.addSeconds(Math.round((Date.now() - view.t0) / 1000));
       onExit();
     };
-    return view.kind === 'speak' ? <SpeakScreen list={view.list} t0={view.t0} onExit={leave} /> : <TopicScreen onExit={() => leave(0)} />;
+    return view.kind === 'speak' ? <SpeakScreen list={view.list} t0={view.t0} onExit={leave} start={view.pos ?? 0} initial={view.done ?? []} /> : <TopicScreen onExit={() => leave(0)} />;
   }
   if (view.kind === 'shadow') return <ShadowScreen onExit={() => finish([])} />;
-  return <CardSession list={view.list} type={view.type} t0={view.t0} minutes={view.minutes} onFinish={finish} />;
+  return (
+    <CardSession list={view.list} type={view.type} t0={view.t0} minutes={view.minutes} onFinish={finish} start={view.pos ?? 0} initial={view.done ?? []} />
+  );
 }
 
-function CardSession({ list, type, t0, minutes, onFinish }: { list: EnItem[]; type: EnType; t0: number; minutes: number; onFinish: (r: Result[]) => void }) {
+function CardSession({
+  list,
+  type,
+  t0,
+  minutes,
+  onFinish,
+  start,
+  initial,
+}: {
+  list: EnItem[];
+  type: EnType;
+  t0: number;
+  minutes: number;
+  onFinish: (r: Result[]) => void;
+  start: number;
+  initial: Result[];
+}) {
+  useInSessionMark();
   const p = useProgress();
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(start);
   const [now, setNow] = useState(() => Date.now());
-  const results = useRef<Result[]>([]);
+  const results = useRef<Result[]>(initial);
+
+  useEffect(() => {
+    const saved = results.current.map((r) => ({ i: list.indexOf(r.it), g: r.g })).filter((r) => r.i >= 0);
+    beginSession(type === 'phrase' ? 'en-phrase' : 'en-pattern', list.map((x) => ({ id: x.id })), t0, minutes, start, saved);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const end = (r: Result[]) => {
+    endSession();
+    onFinish(r);
+  };
   const it = list[i];
   // Chiều thẻ chốt một lần cho mỗi thẻ (không đổi khi chấm làm state thay đổi).
   const dir = useMemo(() => (it ? cardDir(p.stateOf(it.id), defaultRng) : 'en-vi'), [it]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -73,8 +103,11 @@ function CardSession({ list, type, t0, minutes, onFinish }: { list: EnItem[]; ty
   const grade = (g: Grade) => {
     p.grade(it.id, g);
     results.current.push({ it, g });
-    if (i + 1 >= list.length) onFinish(results.current);
-    else setI(i + 1);
+    if (i + 1 >= list.length) end(results.current);
+    else {
+      stepSession(i + 1, { i, g });
+      setI(i + 1);
+    }
   };
 
   return (
@@ -90,7 +123,7 @@ function CardSession({ list, type, t0, minutes, onFinish }: { list: EnItem[]; ty
           {mmss(Math.max(0, Math.floor((now - t0) / 1000)))}
           <span className="sess-total"> / {minutes}:00</span>
         </span>
-        <button type="button" className="btn ghost small" onClick={() => onFinish(results.current)}>
+        <button type="button" className="btn ghost small" onClick={() => end(results.current)}>
           Kết thúc
         </button>
       </div>

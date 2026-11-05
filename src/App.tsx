@@ -7,6 +7,7 @@ import { ProgressPage } from './ui/pages/ProgressPage';
 import { SettingsPage } from './ui/pages/SettingsPage';
 import { useProgress } from './ui/useProgress';
 import { StorageAlert } from './ui/components/StorageAlert';
+import { UpdateBar } from './ui/components/UpdateBar';
 import { tts } from './modules/english/tts';
 import { speechRec } from './modules/english/speech/recognizer';
 
@@ -64,6 +65,7 @@ export function App() {
       </header>
       <main className="wrap" id="app">
         <StorageAlert />
+        <UpdateBar />
         <Page key={route} />
       </main>
     </>

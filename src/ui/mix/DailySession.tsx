@@ -16,6 +16,7 @@ import type { DailyEntry } from '../../modules/mix/plan';
 import { LANE_VI, type DailyResult } from '../../modules/mix/result';
 import '../../modules/english/english.css';
 import '../../modules/english/speech.css';
+import { beginSession, endSession, stepSession, useInSessionMark } from '../activeSession';
 import './mix.css';
 
 const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
@@ -29,21 +30,39 @@ export function DailySession({
   t0,
   minutes,
   onFinish,
+  start = 0,
+  initial,
 }: {
   entries: DailyEntry[];
   t0: number;
   minutes: number;
   onFinish: (r: DailyResult[], secs: number) => void;
+  /** Tiếp tục phiên dở: vị trí và kết quả đã có. */
+  start?: number;
+  initial?: DailyResult[];
 }) {
   useTtsLifecycle();
   useRecLifecycle();
+  useInSessionMark();
   const p = useProgress();
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(start);
   const [now, setNow] = useState(() => Date.now());
   const [hideSay, setHideSay] = useState(false);
-  const results = useRef<DailyResult[]>([]);
+  const results = useRef<DailyResult[]>(initial ?? []);
   const graded = useRef(false);
   const e = entries[i];
+
+  useEffect(() => {
+    const saved = results.current.map((r) => ({ i: entries.indexOf(r.entry), g: r.g, ...(r.score !== undefined ? { score: r.score } : {}) }));
+    beginSession(
+      'mix',
+      entries.map((x) => ({ id: x.item.id, lane: x.lane, tier: x.tier, secs: x.secs })),
+      t0,
+      minutes,
+      start,
+      saved.filter((r) => r.i >= 0),
+    );
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   // Chiều thẻ từ chốt một lần cho mỗi mục.
   const dir = useMemo(() => (e && e.lane === 'en' && e.tier !== 'extra' ? cardDir(p.stateOf(e.item.id), defaultRng) : 'en-vi'), [e]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -56,6 +75,7 @@ export function DailySession({
   }, [i]);
 
   const finish = () => {
+    endSession();
     tts.cancel();
     speechRec.abort();
     onFinish(results.current, Math.round((Date.now() - t0) / 1000));
@@ -63,7 +83,10 @@ export function DailySession({
   const next = () => {
     graded.current = false;
     if (i + 1 >= entries.length) finish();
-    else setI(i + 1);
+    else {
+      stepSession(i + 1);
+      setI(i + 1);
+    }
   };
   const record = (g: Grade | null, score?: number | null) => {
     if (!e || graded.current) return;
@@ -71,6 +94,7 @@ export function DailySession({
     if (g !== null && e.tier !== 'extra') p.grade(e.item.id, g);
     else if (g !== null && e.tier === 'extra' && e.item.kind === 'say') p.grade(e.item.item.id, g);
     results.current.push({ entry: e, g, ...(score !== undefined ? { score } : {}) });
+    stepSession(i + 1, { i, g, ...(score !== undefined ? { score } : {}) });
   };
   const gradeNext = (g: Grade) => {
     record(g);

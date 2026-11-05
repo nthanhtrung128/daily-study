@@ -191,3 +191,37 @@ test('Cài đặt: đổi tỉ lệ, mục mới, giọng đọc → lưu sau kh
   await expect(page.getByText(/TR 70% · Tiếng Anh 30%/)).toBeVisible();
   await expect(page.getByText(/còn 10\/10 mục mới/)).toBeVisible();
 });
+
+test('tiếp tục phiên dở: tải lại trang giữa phiên trộn → "Tiếp tục" mở đúng câu tiếp theo', async ({ page }) => {
+  await page.goto('./#hom-nay');
+  await page.getByRole('group', { name: 'Thời lượng phiên hôm nay' }).getByRole('button', { name: '10 phút' }).click();
+  await page.getByRole('button', { name: 'Bắt đầu ôn hôm nay' }).click();
+  const count = page.getByTestId('sess-count');
+  await expect(count).toHaveText(/^1\/\d+$/);
+  const total = Number((await count.textContent())?.split('/')[1]);
+  for (let k = 0; k < 3; k++) {
+    await expect(count).toHaveText(`${k + 1}/${total}`);
+    await answer(page, k);
+  }
+  await expect(count).toHaveText(`4/${total}`);
+  const lane = await page.getByTestId('mix-lane').getAttribute('data-lane');
+  const card = await page.locator('.card').first().innerText();
+
+  await page.reload();
+  const panel = page.getByTestId('resume-panel');
+  await expect(panel).toContainText(`Bạn đang ôn dở (3/${total})`);
+  await noHScroll(page);
+  await panel.getByRole('button', { name: 'Tiếp tục' }).click();
+  await expect(count).toHaveText(`4/${total}`);
+  await expect(page.getByTestId('mix-lane')).toHaveAttribute('data-lane', lane ?? '');
+  expect((await page.locator('.card').first().innerText()).slice(0, 40)).toBe(card.slice(0, 40));
+  await answer(page, 3);
+  await expect(count).toHaveText(`5/${total}`);
+
+  // Kết thúc → xóa phiên dở.
+  await page.getByRole('button', { name: 'Kết thúc' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Xong phiên hôm nay');
+  await page.reload();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
+  await expect(page.getByTestId('resume-panel')).toHaveCount(0);
+});

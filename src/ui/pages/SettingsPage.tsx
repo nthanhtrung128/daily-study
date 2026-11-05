@@ -11,6 +11,7 @@ import { downloadText } from '../mix/download';
 import { ACCENTS, RATES } from '../../modules/english/tts';
 import { setTtsPrefs, useTtsPrefs } from '../../modules/english/useTts';
 import { SpeakButton } from '../../modules/english/ui/SpeakButton';
+import { applyUpdate, useSwUpdate } from '../swUpdate';
 import '../mix/mix.css';
 
 const THEME_LABELS: Record<Theme, string> = { auto: 'Theo máy', light: 'Sáng', dark: 'Tối' };
@@ -26,6 +27,7 @@ export function SettingsPage() {
   const p = useProgress();
   const [icsMsg, setIcsMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [updMsg, setUpdMsg] = useState('');
+  const sw = useSwUpdate();
 
   const choose = (t: Theme) => {
     setTheme(t);
@@ -246,6 +248,11 @@ export function SettingsPage() {
           Phiên bản {__APP_VERSION__}
         </p>
         <div className="row">
+          {sw.need && (
+            <button type="button" className="btn" onClick={applyUpdate}>
+              Cập nhật ngay
+            </button>
+          )}
           <a
             className="btn ghost link-btn"
             href="./dang-nhap"
@@ -261,7 +268,7 @@ export function SettingsPage() {
           </a>
         </div>
         <p className="hint" role="status" style={{ margin: 0 }}>
-          {updMsg || 'Mở lại app qua mạng (đăng nhập Cloudflare Access nếu phiên đã hết hạn) để tải bản mới. Tiến độ không bị ảnh hưởng.'}
+          {updMsg || (sw.need ? 'Đã tải bản mới. Bấm Cập nhật ngay để dùng bản mới; tiến độ không bị ảnh hưởng.' : '') || 'Mở lại app qua mạng (đăng nhập Cloudflare Access nếu phiên đã hết hạn) để tải bản mới; khi tải xong, app hỏi trước khi cập nhật. Tiến độ không bị ảnh hưởng.'}
         </p>
         <BackupPanel />
       </div>

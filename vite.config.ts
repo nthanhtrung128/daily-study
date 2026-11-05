@@ -46,7 +46,7 @@ export default defineConfig({
     react(),
     cloudflareHeadersPreview(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt', // hỏi trước khi cập nhật, không tự tải lại giữa phiên ôn
       injectRegister: false, // tự đăng ký trong src/main.tsx
       // <link rel="manifest" crossorigin="use-credentials">: sau Cloudflare Access, tải manifest cần cookie.
       useCredentials: true,
