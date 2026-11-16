@@ -92,7 +92,9 @@ export function DailySession({
     if (!e || graded.current) return;
     graded.current = true;
     if (g !== null && e.tier !== 'extra') p.grade(e.item.id, g);
-    else if (g !== null && e.tier === 'extra' && e.item.kind === 'say') p.grade(e.item.item.id, g);
+    else if (g !== null && e.tier === 'extra' && e.item.kind === 'say') p.grade(e.item.item.id, g, { speak: true, score: score ?? null });
+    // Bước không chấm Leitner (đề nói, câu nói bỏ qua): vẫn tính thời gian đã bỏ ra.
+    else p.lap(e.tier === 'extra' ? 'speak' : e.lane, score);
     results.current.push({ entry: e, g, ...(score !== undefined ? { score } : {}) });
     stepSession(i + 1, { i, g, ...(score !== undefined ? { score } : {}) });
   };

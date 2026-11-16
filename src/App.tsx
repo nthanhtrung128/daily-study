@@ -6,6 +6,7 @@ import { LookupPage } from './ui/pages/LookupPage';
 import { ProgressPage } from './ui/pages/ProgressPage';
 import { SettingsPage } from './ui/pages/SettingsPage';
 import { useProgress } from './ui/useProgress';
+import { useDailyPrefs } from './ui/useDailyPrefs';
 import { StorageAlert } from './ui/components/StorageAlert';
 import { UpdateBar } from './ui/components/UpdateBar';
 import { tts } from './modules/english/tts';
@@ -21,7 +22,7 @@ const PAGES: Record<RouteId, () => ReactElement> = {
 export function App() {
   const route = useHashRoute();
   const Page = PAGES[route];
-  const streak = useProgress().streak();
+  const streak = useProgress().streak(useDailyPrefs().restDays);
 
   // Ẩn app / rời trang: dừng đọc và nhận giọng ở mọi màn (kể cả nút Nghe thử ở Cài đặt, màn kết quả).
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { useEffect, useSyncExternalStore } from 'react';
+import { progress } from '../core/progress';
 import { advance, clearActive, saveActive, type ActiveKind, type ActiveSession, type SavedItem, type SavedResult } from '../core/resume';
 
 /**
@@ -13,6 +14,8 @@ const persist = () => void (cur ? saveActive(cur) : clearActive()).catch(() => u
 
 export function beginSession(kind: ActiveKind, items: SavedItem[], t0: number, minutes: number, pos = 0, results: SavedResult[] = []) {
   cur = { kind, items, pos, results, t0, minutes, savedAt: Date.now() };
+  // Mốc đo thời gian học: lượt chấm đầu tiên của phiên tính từ lúc mở phiên.
+  progress.touch();
   persist();
 }
 

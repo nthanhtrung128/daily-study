@@ -80,12 +80,20 @@ function cleanItem(id: string, box: unknown, due: unknown, wrong: unknown, last:
   return { id, box: b, due, wrong: int(wrong) ?? 0, last: l };
 }
 
+const EXTRA_DAY_FIELDS = ['st', 'se', 'sk', 'ks', 'kn', 'm'] as const;
+
 function cleanDay(day: string, v: unknown): DayStat | null {
   if (!isDay(day) || !isObj(v)) return null;
   const n = int(v.n);
   if (n === null) return null;
   const nw = int(v.nw);
-  return { day, n, ok: Math.min(n, int(v.ok) ?? 0), s: int(v.s) ?? 0, ...(nw ? { nw: Math.min(n, nw) } : {}) };
+  const out: DayStat = { day, n, ok: Math.min(n, int(v.ok) ?? 0), s: int(v.s) ?? 0, ...(nw ? { nw: Math.min(n, nw) } : {}) };
+  // Trường thời gian học / điểm nói / mục mới thuộc: tùy chọn, file cũ không có thì bỏ trống.
+  for (const k of EXTRA_DAY_FIELDS) {
+    const x = int(v[k]);
+    if (x !== null) out[k] = x;
+  }
+  return out;
 }
 
 const MIME_RE = /^audio\/[\w.+-]+(\s*;.*)?$/i;
@@ -392,7 +400,15 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
     await store.days.bulkPut(
       data.days.map((d) => {
         const c = curDay.get(d.day);
-        return c ? { day: d.day, n: Math.max(c.n, d.n), ok: Math.max(c.ok, d.ok), s: Math.max(c.s, d.s) } : d;
+        if (!c) return d;
+        // Gộp: lấy số lớn hơn theo từng trường; riêng điểm nói lấy cả cặp (tổng, số lần) của bên có nhiều lần hơn.
+        const out: DayStat = { day: d.day, n: Math.max(c.n, d.n), ok: Math.max(c.ok, d.ok), s: Math.max(c.s, d.s) };
+        for (const k of ['nw', 'st', 'se', 'sk', 'm'] as const) {
+          if (c[k] !== undefined || d[k] !== undefined) out[k] = Math.max(c[k] ?? 0, d[k] ?? 0);
+        }
+        const k = (d.kn ?? 0) > (c.kn ?? 0) ? d : c;
+        if (k.kn !== undefined) Object.assign(out, { ks: k.ks ?? 0, kn: k.kn });
+        return out;
       }),
     );
     const curNote = new Map(notes.map((n) => [n.id, n]));

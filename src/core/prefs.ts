@@ -3,6 +3,8 @@
  * Hàm `normalizePrefs` thuần: dữ liệu hỏng / thiếu / từ bản sao lưu cũ đều về giá trị hợp lệ.
  */
 export const DAILY_DURATIONS = [10, 15, 20, 30] as const;
+/** Mục tiêu phút học mỗi ngày. */
+export const GOAL_CHOICES = [5, 10, 15, 20, 30] as const;
 export const MAX_NEW_CHOICES = [0, 5, 10, 20, 30, 50] as const;
 /** 0 = Chủ nhật … 6 = Thứ bảy (như Date.getDay). Thứ tự hiển thị T2 → CN. */
 export const WEEK_ORDER = [1, 2, 3, 4, 5, 6, 0] as const;
@@ -21,6 +23,10 @@ export interface DailyPrefs {
   remindAt: string;
   /** Các ngày nhắc trong tuần (0 = CN). */
   remindDays: number[];
+  /** Mục tiêu phút học mỗi ngày. */
+  goalMin: number;
+  /** Ngày nghỉ trong tuần (0 = CN): không ôn cũng không đứt chuỗi. Tối đa 6 ngày. */
+  restDays: number[];
 }
 
 export const DEFAULT_DAILY: DailyPrefs = {
@@ -30,6 +36,8 @@ export const DEFAULT_DAILY: DailyPrefs = {
   speak: true,
   remindAt: '20:30',
   remindDays: [1, 2, 3, 4, 5, 6, 0],
+  goalMin: 15,
+  restDays: [],
 };
 
 export const DAILY_KEY = 'daily.prefs';
@@ -49,11 +57,15 @@ export function normalizePrefs(raw: unknown): DailyPrefs {
   const maxNew = Math.round(num(r.maxNew, 0, 200, DEFAULT_DAILY.maxNew));
   const speak = typeof r.speak === 'boolean' ? r.speak : DEFAULT_DAILY.speak;
   const remindAt = isTime(r.remindAt) ? r.remindAt : DEFAULT_DAILY.remindAt;
-  const days = Array.isArray(r.remindDays)
-    ? [...new Set(r.remindDays.filter((d): d is number => Number.isInteger(d) && d >= 0 && d <= 6))]
-    : DEFAULT_DAILY.remindDays;
-  const remindDays = WEEK_ORDER.filter((d) => days.includes(d));
-  return { min, trShare, maxNew, speak, remindAt, remindDays };
+  const dayList = (v: unknown, d: number[]) => {
+    const days = Array.isArray(v) ? v.filter((x): x is number => Number.isInteger(x) && x >= 0 && x <= 6) : d;
+    return WEEK_ORDER.filter((x) => days.includes(x));
+  };
+  const remindDays = dayList(r.remindDays, DEFAULT_DAILY.remindDays);
+  const goalMin = (GOAL_CHOICES as readonly number[]).includes(r.goalMin as number) ? (r.goalMin as number) : DEFAULT_DAILY.goalMin;
+  // Không cho nghỉ cả 7 ngày (chuỗi sẽ vô nghĩa): giữ tối đa 6.
+  const restDays = dayList(r.restDays, DEFAULT_DAILY.restDays).slice(0, 6);
+  return { min, trShare, maxNew, speak, remindAt, remindDays, goalMin, restDays };
 }
 
 /** "TR 40% · Tiếng Anh 60%". */

@@ -1,8 +1,9 @@
 import { db as defaultDb, isQuotaError, type DayStat, type ItemState, type Note, type StudyDB } from './db';
 import { dayKey } from './date';
-import { applyGrade, type Grade, type LeitnerState } from './leitner';
+import { applyGrade, LEARNED_BOX, type Grade, type LeitnerState } from './leitner';
 import { streakCount } from './streak';
 import { requestPersistOnce } from './persist';
+import { addStudy, lapSecs, type StudyCat } from './studytime';
 
 /**
  * Sự cố lưu trữ để báo người dùng: `unavailable` = không mở được IndexedDB (chế độ riêng tư cũ, bị chặn),
@@ -25,6 +26,8 @@ export class Progress {
   private loadP: Promise<void> | null = null;
   /** Thay đổi làm trước khi đọc xong IndexedDB (xem `run`). */
   private early: (() => () => Promise<unknown>)[] = [];
+  /** Mốc thời gian của lượt chấm gần nhất (hoặc lúc bắt đầu phiên), để đo thời gian học. */
+  private lastAt: number | null = null;
   loaded = false;
   problem: StorageProblem | null = null;
 
@@ -134,23 +137,58 @@ export class Progress {
     return this.dayStat(this.today()).nw ?? 0;
   }
 
-  streak(): number {
-    return streakCount((d) => this.days.get(d)?.n ?? 0, this.today());
+  streak(restDays: readonly number[] = []): number {
+    return streakCount((d) => this.days.get(d)?.n ?? 0, this.today(), restDays);
   }
 
-  grade(id: string, g: Grade): LeitnerState {
+  /** Đặt mốc đo thời gian (gọi khi bắt đầu / tiếp tục một phiên). */
+  touch(): void {
+    this.lastAt = this.now().getTime();
+  }
+
+  /** Giây tính từ mốc trước tới giờ (bỏ khoảng nghỉ > 2 phút), rồi dời mốc. */
+  private lapTo(at: number): number {
+    const secs = lapSecs(this.lastAt, at);
+    this.lastAt = at;
+    return secs;
+  }
+
+  /** Ghi thời gian cho một bước không chấm Leitner (vd đề nói trong phiên trộn). */
+  lap(cat: StudyCat, score?: number | null): void {
+    this.addStudy(cat, this.lapTo(this.now().getTime()), score);
+  }
+
+  /** Cộng thẳng số giây học vào hôm nay (màn không có lượt chấm: shadowing, đề nói). */
+  addStudy(cat: StudyCat, secs: number, score?: number | null): void {
+    if (secs <= 0 && typeof score !== 'number') return;
+    const t = this.today();
+    this.run(() => {
+      const d = addStudy(this.dayStat(t), cat, secs, score);
+      this.days.set(t, d);
+      return () => this.store.days.put(d);
+    });
+  }
+
+  /**
+   * Chấm một mục. Thời gian từ lượt chấm trước được cộng vào nhóm TR / EN theo id,
+   * hoặc nhóm nói khi `opts.speak` (kèm điểm nói nếu có).
+   */
+  grade(id: string, g: Grade, opts: { speak?: boolean; score?: number | null } = {}): LeitnerState {
     // Lượt chấm đầu tiên: xin trình duyệt giữ dữ liệu lâu dài (không có API thì bỏ qua).
     requestPersistOnce();
     const t = this.today();
     const at = this.now().getTime();
+    const secs = this.lapTo(at);
+    const cat: StudyCat = opts.speak ? 'speak' : id.startsWith('tr:') ? 'tr' : 'en';
     let out: LeitnerState | undefined;
     this.run(() => {
       const prev = this.states.get(id);
       const next = applyGrade(prev, g, t, at);
       out ??= next;
       this.states.set(id, next);
-      const d = { ...this.dayStat(t) };
+      const d = addStudy(this.dayStat(t), cat, secs, opts.score);
       d.n++;
+      if ((prev?.box ?? 0) < LEARNED_BOX && next.box >= LEARNED_BOX) d.m = (d.m ?? 0) + 1;
       if (g === 2) d.ok++;
       if (!prev?.box) d.nw = (d.nw ?? 0) + 1;
       this.days.set(t, d);

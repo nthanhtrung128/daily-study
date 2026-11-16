@@ -70,6 +70,8 @@ describe('cài đặt phiên hằng ngày', () => {
       speak: false,
       remindAt: '07:05',
       remindDays: [1, 6, 0],
+      goalMin: 15,
+      restDays: [],
     });
     expect(normalizePrefs({ min: 'x', trShare: 7, maxNew: -3, speak: 1, remindAt: '25:00', remindDays: 'mon' })).toEqual({
       ...DEFAULT_DAILY,

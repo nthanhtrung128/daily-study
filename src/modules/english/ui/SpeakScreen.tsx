@@ -70,7 +70,7 @@ export function SpeakScreen({
 
   const next = (g: Grade | null, best: number | null) => {
     if (g !== null) {
-      p.grade(it.id, g);
+      p.grade(it.id, g, { speak: true, score: best });
       results.current.push({ it, score: best, g });
     }
     if (i + 1 >= list.length) finish();
