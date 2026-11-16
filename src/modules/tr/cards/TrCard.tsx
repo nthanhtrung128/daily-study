@@ -83,7 +83,7 @@ function FlipCard({ head, front, back, flipLabel, grade, extra }: { head: ReactN
           {back}
         </div>
       )}
-      <div>
+      <div className="card-act">
         {open ? (
           <GradeRow onPick={grade} />
         ) : (
@@ -98,7 +98,7 @@ function FlipCard({ head, front, back, flipLabel, grade, extra }: { head: ReactN
 
 function NextBtn({ onNext }: { onNext: () => void }) {
   return (
-    <div style={{ marginTop: 10 }}>
+    <div className="card-act" style={{ marginTop: 10 }}>
       <button type="button" className="btn" onClick={onNext} autoFocus>
         Câu tiếp
       </button>
@@ -184,7 +184,7 @@ function CalcCard({ it, state, onGrade, onNext }: CardProps & { it: Extract<TrIt
         {P.dec ? `Làm tròn ${P.dec} chữ số thập phân; dùng dấu phẩy hoặc dấu chấm đều được.` : 'Nhập số tròn, có thể viết 1.530.000 hoặc 1530000.'}
       </div>
       {res === null && (
-        <div>
+        <div className="card-act">
           <button type="button" className="btn" onClick={check}>
             Kiểm tra
           </button>
