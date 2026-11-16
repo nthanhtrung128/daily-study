@@ -150,11 +150,11 @@ describe('Progress: chấm trước khi đọc xong IndexedDB', () => {
     p.setNote('tr:Q001', 'sai vì nhầm');
     await loading;
     expect(p.stateOf('tr:K001')).toMatchObject({ box: 4 }); // tính lại từ hộp 3 trong máy
-    expect(p.dayStat('2026-11-03')).toEqual({ day: '2026-11-03', n: 5, ok: 3, s: 90, nw: 3 });
+    expect(p.dayStat('2026-11-03')).toEqual({ day: '2026-11-03', n: 5, ok: 3, s: 90, nw: 3, m: 1 });
     await p.flush();
     const q = new Progress(store, now);
     await q.load();
-    expect(q.dayStat('2026-11-03')).toEqual({ day: '2026-11-03', n: 5, ok: 3, s: 90, nw: 3 });
+    expect(q.dayStat('2026-11-03')).toEqual({ day: '2026-11-03', n: 5, ok: 3, s: 90, nw: 3, m: 1 });
     expect(q.stateOf('tr:K001')?.box).toBe(4);
     expect(q.note('tr:Q001')).toBe('sai vì nhầm');
     expect(await store.reviews.count()).toBe(2);

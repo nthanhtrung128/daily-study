@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { loadTheme, saveTheme, type Theme } from '../../core/theme';
 import { FONT_SIZES, FONT_SIZE_LABELS, loadFontSize, saveFontSize, type FontSize } from '../../core/fontsize';
 import { ICS_FILENAME, appUrl, buildIcs } from '../../core/ics';
-import { DAILY_DURATIONS, DAY_SHORT_VI, MAX_NEW_CHOICES, WEEK_ORDER, isTime, shareLabel } from '../../core/prefs';
+import { GOAL_CHOICES, DAILY_DURATIONS, DAY_SHORT_VI, MAX_NEW_CHOICES, WEEK_ORDER, isTime, shareLabel } from '../../core/prefs';
 import { BackupPanel } from '../components/BackupPanel';
 import { StorageInfo } from '../components/StorageInfo';
 import { setDailyPrefs, useDailyPrefs } from '../useDailyPrefs';
@@ -163,6 +163,49 @@ export function SettingsPage() {
             </button>
           </div>
           <p className="hint">Phiên 10–14 phút: 1 câu nói có chấm; từ 15 phút: 1 đề nói 1 phút có ghi âm. Micro chỉ bật khi bạn bấm.</p>
+        </div>
+      </div>
+
+      <div className="panel stack" aria-labelledby="h-set-goal">
+        <h2 id="h-set-goal" className="h-page">
+          Mục tiêu ngày
+        </h2>
+        <div className="set-group">
+          <div className="eyebrow" id="lbl-goal">
+            Số phút học mỗi ngày
+          </div>
+          <div className="row" role="group" aria-labelledby="lbl-goal">
+            {GOAL_CHOICES.map((m) => (
+              <button key={m} type="button" className="chip" data-testid={`goal-${m}`} aria-pressed={prefs.goalMin === m} onClick={() => setDailyPrefs({ goalMin: m })}>
+                {`${m} phút`}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="set-group">
+          <div className="eyebrow" id="lbl-rest">
+            Ngày nghỉ trong tuần
+          </div>
+          <div className="days" role="group" aria-labelledby="lbl-rest">
+            {WEEK_ORDER.map((d) => (
+              <button
+                key={d}
+                type="button"
+                className="chip"
+                data-testid={`rest-${d}`}
+                aria-pressed={prefs.restDays.includes(d)}
+                aria-label={`Nghỉ ${DAY_LONG_VI[d]}`}
+                disabled={!prefs.restDays.includes(d) && prefs.restDays.length >= 6}
+                onClick={() => setDailyPrefs({ restDays: prefs.restDays.includes(d) ? prefs.restDays.filter((x) => x !== d) : [...prefs.restDays, d] })}
+              >
+                {DAY_SHORT_VI[d]}
+              </button>
+            ))}
+          </div>
+          <p className="hint">
+            Thời gian học tính theo khoảng giữa các lượt chấm, bỏ khoảng nghỉ trên 2 phút. Ngày nghỉ không ôn cũng không làm đứt chuỗi ngày; chuỗi vẫn
+            tính theo ngày có ít nhất 1 lượt ôn.
+          </p>
         </div>
       </div>
 

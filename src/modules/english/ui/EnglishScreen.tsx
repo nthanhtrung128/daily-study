@@ -14,6 +14,7 @@ import { SpeakScreen, type SpeakDone } from './SpeakScreen';
 import { TopicScreen } from './TopicScreen';
 import type { SayItem } from '../speech/sayItems';
 import { beginSession, endSession, stepSession, useInSessionMark } from '../../../ui/activeSession';
+import { SCREEN_CAP_SECS } from '../../../core/studytime';
 import '../english.css';
 
 export type EnView =
@@ -38,6 +39,8 @@ export function EnglishScreen({ view, onExit }: { view: EnView; onExit: () => vo
   const finish = (results: Result[]) => {
     const secs = Math.round((Date.now() - view.t0) / 1000);
     if (results.length || view.kind === 'shadow') p.addSeconds(secs);
+    // Shadowing không có lượt chấm: tính theo thời gian mở màn (tối đa 30 phút/lần).
+    if (view.kind === 'shadow') p.addStudy('en', Math.min(secs, SCREEN_CAP_SECS));
     if (view.kind === 'shadow') onExit();
     else setDone({ results, secs });
   };
@@ -46,6 +49,7 @@ export function EnglishScreen({ view, onExit }: { view: EnView; onExit: () => vo
   if (view.kind === 'speak' || view.kind === 'topics') {
     const leave = (count: number) => {
       if (count > 0 || view.kind === 'topics') p.addSeconds(Math.round((Date.now() - view.t0) / 1000));
+      if (view.kind === 'topics') p.addStudy('speak', Math.min(Math.round((Date.now() - view.t0) / 1000), SCREEN_CAP_SECS));
       onExit();
     };
     return view.kind === 'speak' ? <SpeakScreen list={view.list} t0={view.t0} onExit={leave} start={view.pos ?? 0} initial={view.done ?? []} /> : <TopicScreen onExit={() => leave(0)} />;

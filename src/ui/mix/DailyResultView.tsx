@@ -3,6 +3,7 @@ import { Explain } from '../../modules/tr/cards/TrCard';
 import { SpeakButton } from '../../modules/english/ui/SpeakButton';
 import { LANE_VI, tally, titleOfEntry, type DailyResult, type LaneTally } from '../../modules/mix/result';
 import { useProgress } from '../useProgress';
+import { useDailyPrefs } from '../useDailyPrefs';
 
 const mmss = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 const pct = (l: LaneTally) => (l.n ? `${fmt((l.ok / l.n) * 100)}%` : '–');
@@ -10,6 +11,7 @@ const pct = (l: LaneTally) => (l.n ? `${fmt((l.ok / l.n) * 100)}%` : '–');
 /** Màn kết quả phiên hằng ngày: đúng/sai theo TR/EN, bài nói, chuỗi ngày, mục cần ôn lại. */
 export function DailyResultView({ results, secs, onMore, onHome }: { results: DailyResult[]; secs: number; onMore: () => void; onHome: () => void }) {
   const p = useProgress();
+  const { restDays } = useDailyPrefs();
   const t = tally(results);
   const n = t.tr.n + t.en.n;
   const ok = t.tr.ok + t.en.ok;
@@ -66,7 +68,7 @@ export function DailyResultView({ results, secs, onMore, onHome }: { results: Da
           </p>
         )}
         <p className="hint">
-          Chuỗi <b className="num">{p.streak()}</b> ngày ·{' '}
+          Chuỗi <b className="num">{p.streak(restDays)}</b> ngày ·{' '}
           {t.review.length
             ? `${t.review.length} mục quên / mơ hồ được xếp lịch ôn lại (quên: ngay phiên sau, mơ hồ: ngày mai).`
             : 'Không có mục nào sai. Các mục nhớ rõ được giãn lịch ôn.'}

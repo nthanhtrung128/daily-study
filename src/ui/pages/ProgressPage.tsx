@@ -8,6 +8,8 @@ import { DEFAULT_PREFS, type Prefs } from '../../modules/tr/plan';
 import { entryById, titleOfId } from '../../modules/lookup';
 import { baiRows, extraRows, hardest, heatCells, learnedCount, totals, type BarRow } from '../../modules/progress/stats';
 import { useProgress } from '../useProgress';
+import { useDailyPrefs } from '../useDailyPrefs';
+import { WeekPanel } from '../components/WeekPanel';
 
 const EXTRA_LABEL: Record<string, string> = { term: 'Thuật ngữ TR', phrase: 'Cụm từ EN', pattern: 'Câu mẫu EN' };
 const baiName = (k: string) => (k === 'Bổ sung' ? 'Pháp lý VN' : `Buổi ${BAI_SHORT[k] ?? k}`);
@@ -39,7 +41,8 @@ export function ProgressPage() {
   const today = p.today();
   const tot = totals(p.allDays());
   const learned = learnedCount(p.entries());
-  const streak = p.streak();
+  const daily = useDailyPrefs();
+  const streak = p.streak(daily.restDays);
   const heat = heatCells((d) => p.dayStat(d).n, today);
   const hard = hardest(p.entries(), (id) => ITEM_BY_ID.has(id) || !!entryById(id));
 
@@ -74,6 +77,8 @@ export function ProgressPage() {
           </div>
         </div>
       </div>
+
+      <WeekPanel p={p} goalMin={daily.goalMin} />
 
       <div className="panel stack">
         <h2 className="h-sec">Tiến độ theo buổi</h2>

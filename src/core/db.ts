@@ -39,6 +39,15 @@ export interface DayStat {
   s: number;
   /** Số mục mới (lần đầu chấm) trong ngày — dùng cho giới hạn mục mới/ngày (S8). Bản cũ không có → 0. */
   nw?: number;
+  /** Giây học thực tế (bỏ khoảng nghỉ > 2 phút), tách TR / tiếng Anh / nói. Bản cũ không có → dùng `s`. */
+  st?: number;
+  se?: number;
+  sk?: number;
+  /** Điểm nói: tổng điểm (%) và số lần chấm trong ngày, để tính trung bình. */
+  ks?: number;
+  kn?: number;
+  /** Số lượt mục lên mức "Đã thuộc" (hộp < 4 → ≥ 4) trong ngày. */
+  m?: number;
 }
 
 export interface Note {

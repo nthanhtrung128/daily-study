@@ -3,6 +3,7 @@ import { getSetting, setSetting } from '../../core/db';
 import type { Grade } from '../../core/leitner';
 import { fmt } from '../../core/num';
 import { RangeBar } from '../components/RangeBar';
+import { GoalBar } from '../components/GoalBar';
 import { BackupNudge } from '../components/BackupNudge';
 import { useProgress } from '../useProgress';
 import { BAI_KEYS, BAI_SHORT } from '../../modules/tr/data';
@@ -173,6 +174,7 @@ export function TodayPage() {
     <section className="stack" aria-labelledby="h-today">
       {resume && <ResumePanel done={resume.done} total={resume.total} onResume={continueResume} onDrop={dropResume} />}
       <BackupNudge />
+      <GoalBar p={p} prefs={daily} />
       <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
 
       <div className="panel stack">
