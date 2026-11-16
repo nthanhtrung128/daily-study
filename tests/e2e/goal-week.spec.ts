@@ -95,7 +95,8 @@ test('ôn vài câu → Hôm nay hiện tiến độ mục tiêu → Tiến đ�
     const tag = info.project.name === 'iPhone SE' ? 'se-' : '';
     await page.goto('./#hom-nay');
     await expect(page.getByTestId('goal-done')).toBeVisible();
-    await page.clock.runFor(1500); // đồng hồ giả: cho hiệu ứng chuyển trang chạy xong
+    await page.clock.runFor(1500);
+    await page.waitForTimeout(800); // cho hiệu ứng chuyển trang chạy xong
     await page.screenshot({ path: `docs/screenshots/goal-${tag}hom-nay-dat.png` });
     await page.evaluate(seedDays, [
       { day: '2026-11-10', n: 18, ok: 11, s: 540 },
