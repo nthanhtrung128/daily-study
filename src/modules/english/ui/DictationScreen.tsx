@@ -132,7 +132,7 @@ function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; onDone: (
       {!result ? (
         <>
           <div className="row">
-            <button type="button" className="chip" aria-pressed={hint} disabled={hint} onClick={() => setHint(true)}>
+            <button type="button" className="chip" aria-pressed={hint} onClick={() => setHint(true)}>
               Hiện chữ cái đầu mỗi từ (−{HINT_PENALTY} điểm)
             </button>
           </div>
