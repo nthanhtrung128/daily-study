@@ -59,3 +59,10 @@ ins.w-extra { color: var(--muted); font-style: italic; text-decoration: none; ba
 .rec-bar { height: 6px; border-radius: 3px; background: var(--surface); overflow: hidden; }
 .rec-bar i { display: block; height: 100%; background: var(--bad); width: 0; transition: width 0.2s linear; }
 .topic-useful .tag { font-size: calc(13.5rem / 15); padding: calc(4rem / 15) 10px; background: var(--accent-soft); color: var(--ink); overflow-wrap: anywhere; max-width: 100%; }
+
+/* Nghe chép chính tả */
+.dict-card .kind { flex-wrap: wrap; gap: 4px 12px; }
+.dict-hint { font-family: var(--f-mono, monospace); font-size: calc(15rem / 15); letter-spacing: 0.06em; line-height: 1.9; color: var(--muted); overflow-wrap: anywhere; margin: 0; }
+.dict-act { display: flex; flex-direction: column; gap: 8px; }
+.dict-missed { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 0; }
+.dict-missed .tag { font-size: calc(13.5rem / 15); padding: 3px 10px; color: var(--ink); }

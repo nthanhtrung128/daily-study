@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getSetting, setSetting } from '../../../core/db';
 import { useProgress } from '../../../ui/useProgress';
 import { EN_DURATIONS, enStats, planEnglish } from '../plan';
+import { DICT_COUNT, planDictation } from '../dictation';
 import { SAY_ITEMS, planSpeaking } from '../speech/sayItems';
 import { SPEAKING_TOPICS } from '../speech/topics';
 import { isDue } from '../../../core/leitner';
@@ -39,6 +40,11 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
   const startSpeak = () => {
     const list = planSpeaking(p.stateOf, today, { count: prefs.min });
     if (list.length) onStart({ kind: 'speak', list, t0: Date.now() });
+  };
+
+  const startDictation = () => {
+    const list = planDictation(p.stateOf, today);
+    if (list.length) onStart({ kind: 'dictation', list, t0: Date.now() });
   };
 
   const start = (type: 'phrase' | 'pattern') => {
@@ -109,6 +115,10 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
         <button type="button" className="btn en-go-btn" onClick={startSpeak}>
           Luyện nói
           <small>{`${prefs.min} câu · máy chấm từng từ${sayDue ? ` · ${sayDue} đến hạn` : ''}`}</small>
+        </button>
+        <button type="button" className="btn en-go-btn" onClick={startDictation}>
+          Nghe chép
+          <small>{`${DICT_COUNT} câu · nghe rồi gõ lại`}</small>
         </button>
         <button type="button" className="btn ghost en-go-btn" onClick={() => onStart({ kind: 'topics', t0: Date.now() })}>
           Đề nói 1 phút
