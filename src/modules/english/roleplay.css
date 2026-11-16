@@ -16,6 +16,8 @@
 .rp-b.them { align-self: flex-start; border-bottom-left-radius: 4px; }
 .rp-b.me { align-self: flex-end; border-bottom-right-radius: 4px; background: var(--accent-soft); }
 .rp-b.cur { max-width: 100%; align-self: stretch; border: 2px solid var(--accent); font-size: calc(19rem / 15); }
+/* Lượt hiện tại cuộn vào giữa thanh tiến độ (dính đầu) và hàng nút (dính đáy), không bị che. */
+.rp-b.cur { scroll-margin: 5rem 0 13rem; }
 .rp-b .hint, .rp-who { font-family: var(--f-body); }
 .rp-who { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: calc(12rem / 15); font-weight: 600; color: var(--muted); }
 .rp-b.me .tag { background: var(--surface); }

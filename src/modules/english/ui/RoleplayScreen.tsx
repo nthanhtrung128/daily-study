@@ -217,7 +217,7 @@ function Play({
     [],
   );
   useEffect(() => {
-    if (phase !== 'setup') endRef.current?.scrollIntoView?.({ block: 'end' });
+    if (phase !== 'setup') endRef.current?.scrollIntoView?.({ block: 'nearest' });
   }, [pos, phase]);
 
   const finish = () => {
@@ -341,7 +341,7 @@ function Play({
         </ol>
         {cur && !cur.mine && (
           <>
-            <div className="rp-b them cur" data-testid="rp-current" aria-live="polite">
+            <div className="rp-b them cur" data-testid="rp-current" aria-live="polite" ref={endRef}>
               <span className="rp-who">
                 {cur.name}
                 {phase === 'speaking' && (
@@ -353,7 +353,7 @@ function Play({
               <span lang="en">{cur.en}</span>
               <span className="hint">{cur.vi}</span>
             </div>
-            <div className="card-act rp-act" ref={endRef}>
+            <div className="card-act rp-act">
               {phase === 'paused' ? (
                 <button type="button" className="btn" onClick={() => run(pos)}>
                   Nghe tiếp
@@ -420,7 +420,7 @@ function MyTurn({
     [],
   );
   useEffect(() => {
-    endRef.current?.scrollIntoView?.({ block: 'end' });
+    endRef.current?.scrollIntoView?.({ block: 'nearest' });
   }, [result, selfErr, endRef]);
 
   const listening = mine && s.status !== 'idle';
@@ -466,7 +466,7 @@ function MyTurn({
 
   return (
     <>
-      <div className="rp-b me cur" data-testid="rp-current">
+      <div className="rp-b me cur" data-testid="rp-current" ref={endRef}>
         <span className="rp-who">Lượt của bạn · {turn.name}</span>
         {result ? (
           <WordDiff r={result} />
@@ -506,7 +506,7 @@ function MyTurn({
           <p className="say-err" role="alert" data-testid="rp-self">
             {REC_ERROR_VI[selfErr]} Hãy nói to câu của bạn, xem câu mẫu rồi tự đánh giá.
           </p>
-          <div className="card-act rp-act" ref={endRef}>
+          <div className="card-act rp-act">
             <GradeRow onPick={(g) => done(g)} />
             {!show.en ? (
               <button type="button" className="btn ghost" onClick={() => setPeek(true)}>
@@ -526,7 +526,7 @@ function MyTurn({
           </div>
         </>
       ) : result ? (
-        <div className="card-act rp-act" ref={endRef}>
+        <div className="card-act rp-act">
           <button type="button" className="btn" onClick={() => done(null)}>
             {last ? 'Xem kết quả' : 'Tiếp'} ·{' '}
             <span className="num" data-testid="rp-score">
@@ -540,7 +540,7 @@ function MyTurn({
           {listen}
         </div>
       ) : (
-        <div className="card-act rp-act" ref={endRef}>
+        <div className="card-act rp-act">
           <button type="button" className={`btn say-mic rp-mic${listening ? ' on' : ''}`} onClick={toggle} disabled={s.status === 'stopping'} aria-pressed={listening}>
             <MicIcon />
             <span>{listening ? (s.status === 'stopping' ? 'Đang chấm…' : 'Dừng') : best === null ? 'Bấm để nói' : 'Nói lại'}</span>
