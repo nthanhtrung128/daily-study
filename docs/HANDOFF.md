@@ -19,7 +19,7 @@ App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest,
 | #12 | Sao lưu kèm ghi âm, nhắc sao lưu định kỳ, `navigator.storage.persist()` |
 | #13 | Cỡ chữ theo hệ thống (Dynamic Type) + lựa chọn cỡ chữ trong app |
 | #14 | Hỏi trước khi cập nhật bản mới (`registerType: 'prompt'`), tiếp tục phiên dở |
-| Nghe chép | Nghe chép chính tả (`dictation.ts`, `ui/DictationScreen.tsx`): nghe TTS → gõ → chấm từng từ bằng `speech/score.ts`, chấm Leitner cho câu mẫu / ví dụ cụm từ |
+| #17 | Nghe chép chính tả (`dictation.ts`, `ui/DictationScreen.tsx`): nghe TTS → gõ → chấm từng từ bằng `speech/score.ts`, chấm Leitner cho câu mẫu / ví dụ cụm từ |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
