@@ -30,6 +30,8 @@ export function DictationScreen({ list, t0, onExit }: { list: DictItem[]; t0: nu
   useInSessionMark(!done);
   const it = list[i];
 
+  // Mốc đo thời gian học: câu đầu tiên tính từ lúc mở phiên nghe chép.
+  useEffect(() => p.touch(), [p]);
   useEffect(() => {
     window.scrollTo?.({ top: 0 });
   }, [i]);
@@ -46,6 +48,8 @@ export function DictationScreen({ list, t0, onExit }: { list: DictItem[]; t0: nu
     if (r) {
       const g = dictGrade(it, r.score);
       if (it.id && g !== null) p.grade(it.id, g);
+      // Câu hội thoại (không có id Leitner): vẫn tính thời gian vào nhóm tiếng Anh.
+      else p.lap('en');
       results.current.push({ it, r });
     }
     if (i + 1 >= list.length) finish();
