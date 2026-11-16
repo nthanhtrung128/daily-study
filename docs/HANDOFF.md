@@ -20,6 +20,7 @@ App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest,
 | #13 | Cỡ chữ theo hệ thống (Dynamic Type) + lựa chọn cỡ chữ trong app |
 | #14 | Hỏi trước khi cập nhật bản mới (`registerType: 'prompt'`), tiếp tục phiên dở |
 | #17 | Nghe chép chính tả (`dictation.ts`, `ui/DictationScreen.tsx`): nghe TTS → gõ → chấm từng từ bằng `speech/score.ts`, chấm Leitner cho câu mẫu / ví dụ cụm từ |
+| #18 | Mục tiêu ngày (phút/ngày, ngày nghỉ) + tổng kết tuần ở trang Tiến độ; ghi giây học theo ngày tách TR / EN / nói (`core/studytime.ts`, `modules/progress/week.ts`) |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
@@ -37,10 +38,11 @@ App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest,
 - Trong `tests/e2e`, chỉ được skip kịch bản chụp ảnh (`PW_SHOTS`) và kịch bản 375px chạy một lần.
 - Môi trường e2e cục bộ: `npx playwright install chromium webkit`.
 
+- Thống kê ngày (`days`): trường tùy chọn `st`/`se`/`sk` (giây học TR / EN / nói, đo giữa các lượt chấm, bỏ khoảng nghỉ > 2 phút), `ks`/`kn` (tổng điểm nói, số lần), `m` (mục mới thuộc). Không đánh chỉ mục nên không tăng version Dexie; ngày cũ không có thì dùng `s`. Phiên mới phải gọi `progress.touch()` lúc bắt đầu (`beginSession` đã gọi sẵn).
+
 ## Việc còn lại
 1. **Người dùng tự làm:** deploy Cloudflare Pages + Access (`docs/DEPLOY.md` §1–3), kiểm tra trên iPhone thật (§10).
 2. **Sau 1–2 tuần dùng, nếu người dùng chọn:**
    - C. Chế độ ôn "lỗi hay gặp": câu TR hay sai + từ EN bị chấm sai nhiều khi nói.
-   - D. Tổng kết tuần ở trang Tiến độ: số phút, mục mới thuộc, điểm nói trung bình, so với tuần trước.
    - Chỉnh tỉ lệ 40/60, số mục mới/ngày, độ khó đề nói theo phản hồi.
 3. Giai đoạn 4 (cần người dùng quyết định, có chi phí): xem `docs/PLAN.md`.
