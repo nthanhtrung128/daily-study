@@ -7,6 +7,8 @@ import { PhraseCard } from '../../modules/english/ui/PhraseCard';
 import { PatternCard } from '../../modules/english/ui/PatternCard';
 import { SayCard } from '../../modules/english/ui/SpeakScreen';
 import { TopicRecorder } from '../../modules/english/ui/TopicScreen';
+import { DictCard } from '../../modules/english/ui/DictationScreen';
+import { dictGrade } from '../../modules/english/dictation';
 import { cardDir } from '../../modules/english/plan';
 import { useTtsLifecycle } from '../../modules/english/useTts';
 import { useRecLifecycle } from '../../modules/english/speech/useRec';
@@ -32,7 +34,10 @@ export function DailySession({
   onFinish,
   start = 0,
   initial,
+  kind = 'mix',
 }: {
+  /** `weak` = phiên Ôn điểm yếu (cùng thẻ và luồng chấm, lưu phiên dở riêng kiểu). */
+  kind?: 'mix' | 'weak';
   entries: DailyEntry[];
   t0: number;
   minutes: number;
@@ -55,7 +60,7 @@ export function DailySession({
   useEffect(() => {
     const saved = results.current.map((r) => ({ i: entries.indexOf(r.entry), g: r.g, ...(r.score !== undefined ? { score: r.score } : {}) }));
     beginSession(
-      'mix',
+      kind,
       entries.map((x) => ({ id: x.item.id, lane: x.lane, tier: x.tier, secs: x.secs })),
       t0,
       minutes,
@@ -91,7 +96,11 @@ export function DailySession({
   const record = (g: Grade | null, score?: number | null) => {
     if (!e || graded.current) return;
     graded.current = true;
-    if (g !== null && e.tier !== 'extra') p.grade(e.item.id, g);
+    if (e.tier === 'extra' && e.item.kind === 'dict') {
+      // Câu nghe chép: chấm vào lịch của thẻ gốc; câu hội thoại (không id) / bỏ qua chỉ tính thời gian tiếng Anh.
+      if (g !== null && e.item.item.id) p.grade(e.item.item.id, g);
+      else p.lap('en');
+    } else if (g !== null && e.tier !== 'extra') p.grade(e.item.id, g);
     else if (g !== null && e.tier === 'extra' && e.item.kind === 'say') p.grade(e.item.item.id, g, { speak: true, score: score ?? null });
     // Bước không chấm Leitner (đề nói, câu nói bỏ qua): vẫn tính thời gian đã bỏ ra.
     else p.lap(e.tier === 'extra' ? 'speak' : e.lane, score);
@@ -105,10 +114,11 @@ export function DailySession({
 
   if (!e) return null;
   const secs = Math.max(0, Math.floor((now - t0) / 1000));
-  const laneLabel = e.tier === 'extra' ? 'Luyện nói' : LANE_VI[e.lane];
+  const isDict = e.tier === 'extra' && e.item.kind === 'dict';
+  const laneLabel = isDict ? 'Nghe chép' : e.tier === 'extra' ? 'Luyện nói' : LANE_VI[e.lane];
 
   return (
-    <section className="stack en-screen mix-screen" aria-label="Phiên ôn hôm nay">
+    <section className="stack en-screen mix-screen" aria-label={kind === 'weak' ? 'Phiên ôn điểm yếu' : 'Phiên ôn hôm nay'}>
       <div className="sess-top">
         <span className="num" data-testid="sess-count">
           {i + 1}/{entries.length}
@@ -124,7 +134,7 @@ export function DailySession({
           Kết thúc
         </button>
       </div>
-      <div className="mix-lane" data-lane={e.tier === 'extra' ? 'speak' : e.lane} data-testid="mix-lane">
+      <div className="mix-lane" data-lane={e.tier === 'extra' && !isDict ? 'speak' : e.lane} data-testid="mix-lane">
         {laneLabel}
       </div>
       {e.lane === 'tr' ? (
@@ -143,6 +153,17 @@ export function DailySession({
         ) : (
           <PatternCard key={i} pt={e.item.pt} state={p.stateOf(e.item.id)} onGrade={gradeNext} />
         )
+      ) : e.item.kind === 'dict' ? (
+        <DictCard
+          key={i}
+          it={e.item.item}
+          last={i + 1 >= entries.length}
+          onDone={(r) => {
+            if (r) record(e.tier === 'extra' && e.item.kind === 'dict' ? dictGrade(e.item.item, r.score) : null, r.score);
+            else record(null);
+            next();
+          }}
+        />
       ) : e.item.kind === 'say' ? (
         <SayCard
           key={i}

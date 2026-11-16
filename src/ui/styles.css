@@ -275,6 +275,10 @@ details.item .body { overflow-wrap: anywhere; min-width: 0; }
 .heat-scale { display: inline-flex; gap: 3px; }
 .heat-scale i { width: 12px; height: 12px; margin: 0; }
 .tbl-wrap { overflow-x: auto; }
+/* Từ hay sai (trang Tiến độ): từ · số lần · nút nghe; tự xuống dòng khi chữ lớn. */
+.miss-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.miss-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.miss-list b { flex: 1 1 6rem; min-width: 0; overflow-wrap: anywhere; }
 .tbl { border-collapse: collapse; width: 100%; font-size: calc(14rem / 15); }
 .tbl th, .tbl td { text-align: left; padding: calc(7rem / 15) 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .tbl th { font-size: calc(12.5rem / 15); color: var(--muted); font-weight: 600; }

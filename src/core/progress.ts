@@ -81,6 +81,11 @@ export class Progress {
     this.emit();
   }
 
+  /** Thời điểm hiện tại (ms) theo đồng hồ của kho tiến độ. */
+  nowMs(): number {
+    return this.now().getTime();
+  }
+
   today(): string {
     return dayKey(this.now());
   }

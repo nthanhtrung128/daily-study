@@ -1,3 +1,4 @@
+import { missStore } from '../../core/misswords';
 import { useEffect, useRef, useState } from 'react';
 import {
   BackupError,
@@ -139,6 +140,7 @@ export function BackupPanel() {
     try {
       await applyBackup(pending.data, mode);
       await p.load(true);
+      await missStore.load();
       reloadDailyPrefs();
       reloadReminder();
       void loadRecs();

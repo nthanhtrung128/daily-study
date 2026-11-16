@@ -13,6 +13,7 @@ import { Explain, TrCard } from '../../modules/tr/cards/TrCard';
 import { EnglishHome } from '../../modules/english/ui/EnglishHome';
 import { EnglishScreen, type EnView } from '../../modules/english/ui/EnglishScreen';
 import { DailyPanel } from '../mix/DailyPanel';
+import { WeakPanel } from '../mix/WeakPanel';
 import { planToday } from '../mix/planToday';
 import { DailySession } from '../mix/DailySession';
 import { DailyResultView } from '../mix/DailyResultView';
@@ -34,8 +35,8 @@ type View =
   | { kind: 'home' }
   | { kind: 'session'; list: TrItem[]; t0: number; minutes?: number; pos?: number; done?: Result[] }
   | { kind: 'result'; results: Result[]; secs: number }
-  | { kind: 'mix'; entries: DailyEntry[]; t0: number; minutes: number; pos?: number; done?: DailyResult[] }
-  | { kind: 'mix-result'; results: DailyResult[]; secs: number };
+  | { kind: 'mix'; weak?: boolean; entries: DailyEntry[]; t0: number; minutes: number; pos?: number; done?: DailyResult[] }
+  | { kind: 'mix-result'; weak?: boolean; results: DailyResult[]; secs: number };
 
 const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
@@ -79,7 +80,7 @@ export function TodayPage() {
     if (!resume) return;
     const t = resume.target;
     setResume(null);
-    if (t.kind === 'mix') setView({ kind: 'mix', entries: t.entries, t0: t.t0, minutes: t.minutes, pos: t.pos, done: t.results });
+    if (t.kind === 'mix') setView({ kind: 'mix', ...(t.weak ? { weak: true } : {}), entries: t.entries, t0: t.t0, minutes: t.minutes, pos: t.pos, done: t.results });
     else if (t.kind === 'tr') setView({ kind: 'session', list: t.list, t0: t.t0, minutes: t.minutes, pos: t.pos, done: t.results });
     else setEnView(t.view);
   };
@@ -117,10 +118,18 @@ export function TodayPage() {
     setView({ kind: 'mix', entries, t0: Date.now(), minutes });
   };
 
+  const startWeak = (entries: DailyEntry[]) => {
+    if (!entries.length) return;
+    setResume(null);
+    const minutes = Math.max(1, Math.round(entries.reduce((a, e) => a + e.secs, 0) / 60));
+    setView({ kind: 'mix', weak: true, entries, t0: Date.now(), minutes });
+  };
+
   if (en) return <EnglishScreen view={en} onExit={() => setEn(null)} />;
   if (view.kind === 'mix') {
     return (
       <DailySession
+        kind={view.weak ? 'weak' : 'mix'}
         entries={view.entries}
         t0={view.t0}
         minutes={view.minutes}
@@ -128,13 +137,20 @@ export function TodayPage() {
         {...(view.done ? { initial: view.done } : {})}
         onFinish={(results, secs) => {
           if (results.length) p.addSeconds(secs);
-          setView({ kind: 'mix-result', results, secs });
+          setView({ kind: 'mix-result', ...(view.weak ? { weak: true } : {}), results, secs });
         }}
       />
     );
   }
   if (view.kind === 'mix-result') {
-    return <DailyResultView {...view} onMore={() => startMix(5)} onHome={() => setView({ kind: 'home' })} />;
+    return (
+      <DailyResultView
+        results={view.results}
+        secs={view.secs}
+        {...(view.weak ? { title: 'Xong phiên ôn điểm yếu' } : { onMore: () => startMix(5) })}
+        onHome={() => setView({ kind: 'home' })}
+      />
+    );
   }
   if (view.kind === 'session') {
     return (
@@ -176,6 +192,7 @@ export function TodayPage() {
       <BackupNudge />
       <GoalBar p={p} prefs={daily} />
       <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
+      <WeakPanel onStart={startWeak} />
 
       <div className="panel stack">
         <div>

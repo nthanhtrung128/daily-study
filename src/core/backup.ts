@@ -1,6 +1,7 @@
 import { db as defaultDb, type DayStat, type ItemState, type Note, type Recording, type ReviewLog, type Setting, type StudyDB } from './db';
 import { LOCAL_ONLY_KEYS } from './backupReminder';
 import { LEARNED_BOX, MAX_BOX } from './leitner';
+import { MISS_KEY, mergeMiss, normalizeMiss } from './misswords';
 
 /**
  * Xuất / nhập tiến độ dạng JSON — chỉ qua file trên máy, không gửi đi đâu.
@@ -380,6 +381,8 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
       await store.days.bulkPut(data.days);
       await store.notes.bulkPut(data.notes);
       await store.reviews.bulkAdd(data.reviews.map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })));
+      // "Từ hay sai" là tiến độ: file không có (bản sao lưu cũ) thì xóa bản trên máy cho khớp tiến độ vừa thay.
+      if (!data.settings.some((x) => x.key === MISS_KEY)) await store.settings.delete(MISS_KEY);
       await store.settings.bulkPut(data.settings.filter((x) => !LOCAL_ONLY_KEYS.has(x.key)));
       return;
     }
@@ -424,6 +427,10 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
         .filter((r) => !seen.has(`${r.itemId}|${r.at}|${r.grade}`))
         .map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })),
     );
+    // "Từ hay sai": gộp theo từ, lấy số lần lớn hơn.
+    const inMiss = data.settings.find((s) => s.key === MISS_KEY);
+    const curMiss = inMiss && (await store.settings.get(MISS_KEY));
+    if (inMiss && curMiss) await store.settings.put({ key: MISS_KEY, value: mergeMiss(normalizeMiss(curMiss.value), normalizeMiss(inMiss.value)) });
     // Gộp: chỉ thêm cài đặt chưa có, không đè lựa chọn hiện tại.
     const keys = new Set((await store.settings.toArray()).map((s) => s.key));
     await store.settings.bulkPut(data.settings.filter((s) => !keys.has(s.key) && !LOCAL_ONLY_KEYS.has(s.key)));
