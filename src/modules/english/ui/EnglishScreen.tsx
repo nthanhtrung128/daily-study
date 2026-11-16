@@ -12,6 +12,8 @@ import { PhraseCard } from './PhraseCard';
 import { ShadowPlayerView } from './ShadowPlayerView';
 import { SpeakScreen, type SpeakDone } from './SpeakScreen';
 import { TopicScreen } from './TopicScreen';
+import { DictationScreen } from './DictationScreen';
+import type { DictItem } from '../dictation';
 import type { SayItem } from '../speech/sayItems';
 import { beginSession, endSession, stepSession, useInSessionMark } from '../../../ui/activeSession';
 import { SCREEN_CAP_SECS } from '../../../core/studytime';
@@ -21,7 +23,8 @@ export type EnView =
   | { kind: 'cards'; type: EnType; list: EnItem[]; t0: number; minutes: number; pos?: number; done?: EnCardResult[] }
   | { kind: 'shadow'; t0: number }
   | { kind: 'speak'; list: SayItem[]; t0: number; pos?: number; done?: SpeakDone[] }
-  | { kind: 'topics'; t0: number };
+  | { kind: 'topics'; t0: number }
+  | { kind: 'dictation'; list: DictItem[]; t0: number };
 
 export interface EnCardResult {
   it: EnItem;
@@ -46,12 +49,13 @@ export function EnglishScreen({ view, onExit }: { view: EnView; onExit: () => vo
   };
 
   if (done) return <EnResult {...done} onHome={onExit} />;
-  if (view.kind === 'speak' || view.kind === 'topics') {
+  if (view.kind === 'speak' || view.kind === 'topics' || view.kind === 'dictation') {
     const leave = (count: number) => {
       if (count > 0 || view.kind === 'topics') p.addSeconds(Math.round((Date.now() - view.t0) / 1000));
       if (view.kind === 'topics') p.addStudy('speak', Math.min(Math.round((Date.now() - view.t0) / 1000), SCREEN_CAP_SECS));
       onExit();
     };
+    if (view.kind === 'dictation') return <DictationScreen list={view.list} t0={view.t0} onExit={leave} />;
     return view.kind === 'speak' ? <SpeakScreen list={view.list} t0={view.t0} onExit={leave} start={view.pos ?? 0} initial={view.done ?? []} /> : <TopicScreen onExit={() => leave(0)} />;
   }
   if (view.kind === 'shadow') return <ShadowScreen onExit={() => finish([])} />;

@@ -60,9 +60,9 @@ export function useSpeaking(): boolean {
   return useSyncExternalStore(tts.subscribe, getSpeaking, getSpeaking);
 }
 
-/** Đọc một câu theo cài đặt hiện tại. Gọi trực tiếp trong onClick (iOS). */
-export function say(text: string): void {
+/** Đọc một câu theo cài đặt hiện tại (`rate` ghi đè tốc độ, vd nghe chậm). Gọi trực tiếp trong onClick (iOS). */
+export function say(text: string, rate?: number): void {
   // Đang nhận giọng thì hủy, để micro không thu tiếng máy đọc.
   speechRec.abort();
-  void tts.speak(text, { rate: prefs.rate, accent: prefs.accent });
+  void tts.speak(text, { rate: rate ?? prefs.rate, accent: prefs.accent });
 }
