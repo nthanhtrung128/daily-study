@@ -35,6 +35,7 @@ test('ôn vài câu → Hôm nay hiện tiến độ mục tiêu → Tiến đ�
   await expect(page.getByTestId('rest-0')).toHaveAttribute('aria-pressed', 'true');
   await noHScroll(page);
   if (SHOTS) await page.getByTestId('goal-5').scrollIntoViewIfNeeded();
+  if (SHOTS) await page.clock.runFor(1500);
   if (SHOTS) await page.screenshot({ path: `docs/screenshots/goal-${info.project.name === 'iPhone SE' ? 'se-' : ''}cai-dat.png` });
 
   await page.goto('./#hom-nay');
@@ -94,6 +95,7 @@ test('ôn vài câu → Hôm nay hiện tiến độ mục tiêu → Tiến đ�
     const tag = info.project.name === 'iPhone SE' ? 'se-' : '';
     await page.goto('./#hom-nay');
     await expect(page.getByTestId('goal-done')).toBeVisible();
+    await page.clock.runFor(1500); // đồng hồ giả: cho hiệu ứng chuyển trang chạy xong
     await page.screenshot({ path: `docs/screenshots/goal-${tag}hom-nay-dat.png` });
     await page.evaluate(seedDays, [
       { day: '2026-11-10', n: 18, ok: 11, s: 540 },
@@ -103,8 +105,12 @@ test('ôn vài câu → Hôm nay hiện tiến độ mục tiêu → Tiến đ�
     ]);
     await page.goto('./#tien-do');
     await page.reload();
-    await page.getByTestId('week').scrollIntoViewIfNeeded();
     await expect(page.getByTestId('week-min')).toHaveText('18');
+    await page.clock.runFor(1500);
+    await page.evaluate(() => {
+      document.querySelector('[data-testid="week"]')?.scrollIntoView();
+      window.scrollBy(0, -120);
+    });
     await page.screenshot({ path: `docs/screenshots/goal-${tag}tong-ket-tuan.png` });
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.screenshot({ path: `docs/screenshots/goal-${tag}tong-ket-tuan-toi.png` });

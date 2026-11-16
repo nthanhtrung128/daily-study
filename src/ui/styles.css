@@ -361,13 +361,14 @@ p, .hint, .fb, .opt, .card .q, .eyebrow, li, dd { text-wrap: pretty; }
 .wk-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .wk-nav { display: flex; gap: 8px; }
 .wk-range { margin: 0; font-size: calc(14rem / 15); }
-.wk-chart { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; height: 120px; padding-top: calc(18rem / 15); border-bottom: 1px solid var(--line); }
+.wk-chart { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; height: 120px; padding-top: min(calc(18rem / 15), 5vw); border-bottom: 1px solid var(--line); }
 .wk-col { display: flex; align-items: flex-end; justify-content: center; min-width: 0; }
-.wk-bar { position: relative; display: block; width: 100%; max-width: 32px; min-height: 0; background: var(--accent); border-radius: 4px 4px 0 0; }
+.wk-stack { position: relative; display: block; width: 100%; max-width: 32px; min-height: 0; }
+.wk-bar { display: block; height: 100%; background: var(--accent); border-radius: 4px 4px 0 0; }
 .wk-col.met .wk-bar { background: var(--good); }
-.wk-val { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); font-size: calc(11.5rem / 15); color: var(--ink); line-height: 1.4; }
+.wk-val { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); font-size: min(calc(11.5rem / 15), 3.2vw); color: var(--ink); line-height: 1.4; }
 .wk-goal { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed var(--muted); pointer-events: none; }
-.wk-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: calc(12rem / 15); color: var(--muted); }
+.wk-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: min(calc(12rem / 15), 3.4vw); color: var(--muted); }
 .wk-days .today { color: var(--ink); font-weight: 600; }
 .legend .wk-goal-key { width: 14px; height: 0; border-top: 1px dashed var(--muted); border-radius: 0; vertical-align: 3px; }
 .wk-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.5rem), 1fr)); gap: 10px; }

@@ -12,11 +12,8 @@ function Diff({ d, unit = '' }: { d: Delta | null; unit?: string }) {
     <span className="wk-diff" data-dir={d.dir}>
       <span aria-hidden="true">{d.dir === 'up' ? '↑' : '↓'} </span>
       <span className="sr-only">{d.dir === 'up' ? 'tăng' : 'giảm'} </span>
-      <span className="num">
-        {fmt(d.by)}
-        {unit}
-      </span>{' '}
-      so với tuần trước
+      <span className="num">{fmt(d.by)}</span>
+      {unit} so với tuần trước
     </span>
   );
 }
@@ -68,8 +65,9 @@ export function WeekPanel({ p, goalMin }: { p: Progress; goalMin: number }) {
             <i className="wk-goal" style={{ bottom: `${(goalSecs / top) * 100}%` }} />
             {w.days.map((d) => (
               <div key={d.day} className={`wk-col${d.met ? ' met' : ''}${d.day === today ? ' today' : ''}`} aria-hidden="true">
-                <span className="wk-bar" style={{ height: `${(d.secs / top) * 100}%` }}>
+                <span className="wk-stack" style={{ height: `${(d.secs / top) * 100}%` }}>
                   {d.secs > 0 && <span className="wk-val num">{mins(d.secs)}</span>}
+                  <span className="wk-bar" />
                 </span>
               </div>
             ))}
@@ -117,7 +115,7 @@ export function WeekPanel({ p, goalMin }: { p: Progress; goalMin: number }) {
             <div className="stat">
               <b className="num" data-testid="week-reviews">{fmt(w.n)}</b>
               <span>lượt ôn{w.recall !== null ? ` · nhớ ${fmt(w.recall * 100)}%` : ''}</span>
-              {cmp && <Diff d={delta(pct(w.recall), pct(pv.recall))} unit=" điểm %" />}
+              {cmp && <Diff d={delta(pct(w.recall), pct(pv.recall))} unit=" điểm" />}
             </div>
             <div className="stat">
               <b className="num" data-testid="week-speak">{w.speakAvg === null ? '–' : `${fmt(w.speakAvg)}%`}</b>
