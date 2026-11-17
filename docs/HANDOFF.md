@@ -21,6 +21,7 @@ App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest,
 | #14 | Hỏi trước khi cập nhật bản mới (`registerType: 'prompt'`), tiếp tục phiên dở |
 | #17 | Nghe chép chính tả (`dictation.ts`, `ui/DictationScreen.tsx`): nghe TTS → gõ → chấm từng từ bằng `speech/score.ts`, chấm Leitner cho câu mẫu / ví dụ cụm từ |
 | #18 | Mục tiêu ngày (phút/ngày, ngày nghỉ) + tổng kết tuần ở trang Tiến độ; ghi giây học theo ngày tách TR / EN / nói (`core/studytime.ts`, `modules/progress/week.ts`) |
+| #19 | Hội thoại nhập vai (`roleplay.ts`, `ui/RoleplayScreen.tsx`): chọn hội thoại + vai, app đọc lượt vai kia (TTS), người học nói → chấm từng từ; không có nhận giọng thì tự đánh giá; kết quả mỗi bài lưu ở `settings` khóa `en.roleplay` |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

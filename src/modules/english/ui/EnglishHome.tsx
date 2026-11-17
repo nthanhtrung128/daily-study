@@ -3,6 +3,7 @@ import { getSetting, setSetting } from '../../../core/db';
 import { useProgress } from '../../../ui/useProgress';
 import { EN_DURATIONS, enStats, planEnglish } from '../plan';
 import { DICT_COUNT, planDictation } from '../dictation';
+import { RP_DIALOGUES } from '../roleplay';
 import { SAY_ITEMS, planSpeaking } from '../speech/sayItems';
 import { SPEAKING_TOPICS } from '../speech/topics';
 import { isDue } from '../../../core/leitner';
@@ -115,6 +116,10 @@ export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
         <button type="button" className="btn en-go-btn" onClick={startSpeak}>
           Luyện nói
           <small>{`${prefs.min} câu · máy chấm từng từ${sayDue ? ` · ${sayDue} đến hạn` : ''}`}</small>
+        </button>
+        <button type="button" className="btn en-go-btn" onClick={() => onStart({ kind: 'roleplay', t0: Date.now() })}>
+          Nhập vai
+          <small>{`${RP_DIALOGUES.length} hội thoại · app đọc vai kia, bạn nói vai mình`}</small>
         </button>
         <button type="button" className="btn en-go-btn" onClick={startDictation}>
           Nghe chép
