@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { watchCsp } from './helpers/stubs';
 
 test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp', async ({ page }, info) => {
   await page.goto('./');
@@ -33,6 +34,7 @@ test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp',
 });
 
 test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page }, info) => {
+  await page.addInitScript(watchCsp);
   await page.goto('./#lo-trinh');
   const module = page.getByRole('region', { name: 'Hiệu suất và trả lương theo thành tích' });
   await module.getByRole('button', { name: 'Thiết kế ma trận merit' }).click();
@@ -48,7 +50,9 @@ test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page 
   await expect(result).toHaveCount(0);
   await month.fill('3');
   await expect(result).toContainText('135,00 triệu/3 tháng');
-  await page.getByLabel('Ô trong ma trận').selectOption('1');
+  const band = page.getByRole('group', { name: 'Vùng compa' }).getByRole('button', { name: '90–110%', exact: true });
+  await band.click();
+  await expect(band).toHaveAttribute('aria-pressed', 'true');
   await page.getByLabel('Quỹ ô (triệu đồng/tháng)').fill('200');
   await expect(result).toContainText('45,90 triệu/tháng');
   await page.getByRole('button', { name: 'Khôi phục số liệu mẫu' }).click();
@@ -61,11 +65,13 @@ test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page 
   }
   await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
+  expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
   await page.reload();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
 });
 
 test('đọc M09 và so sánh lương theo FTE, grade và họ nghề', async ({ page }, info) => {
+  await page.addInitScript(watchCsp);
   await page.goto('./#lo-trinh');
   const module = page.getByRole('region', { name: 'Phân tích dữ liệu đãi ngộ' });
   await module.getByRole('button', { name: 'Đọc phân bố và nguyên nhân' }).click();
@@ -75,10 +81,11 @@ test('đọc M09 và so sánh lương theo FTE, grade và họ nghề', async ({
   await expect(coverage).toContainText('12/12 hồ sơ đủ dữ liệu tính compa');
   await expect(group).toContainText('100,86%');
   await expect(group).toContainText('99,57%');
-  await page.getByRole('combobox', { name: 'Grade', exact: true }).selectOption('G1');
+  await page.getByRole('group', { name: 'Grade', exact: true }).getByRole('button', { name: 'G1', exact: true }).click();
   await expect(coverage).toContainText('4/4 hồ sơ đủ dữ liệu tính compa');
   await expect(group).toContainText('91,25%');
-  await page.getByRole('combobox', { name: 'Hồ sơ mẫu', exact: true }).selectOption('NV04');
+  await page.getByText(/^Hồ sơ mẫu · NV01/).click();
+  await page.getByRole('button', { name: /^NV04 ·/ }).click();
   await expect(page.getByTestId('salary-detail')).toContainText('20,00 triệu');
   if (process.env.PW_SHOTS === 'roadmap' && info.project.name === 'iPhone SE') {
     await group.evaluate((el) => el.scrollIntoView({ block: 'center' }));
@@ -87,11 +94,13 @@ test('đọc M09 và so sánh lương theo FTE, grade và họ nghề', async ({
   await page.getByLabel('Midpoint tại 1 FTE').fill('');
   await expect(coverage).toContainText('3/4 hồ sơ đủ dữ liệu tính compa');
   await expect(group).toContainText('88,33%');
-  await page.getByRole('combobox', { name: 'Họ nghề', exact: true }).selectOption('Kinh doanh');
+  await page.getByRole('group', { name: 'Họ nghề', exact: true }).getByRole('button', { name: 'Kinh doanh', exact: true }).click();
   await expect(page.getByText(/Tổ hợp grade và họ nghề này chưa có hồ sơ/)).toBeVisible();
   await page.getByRole('button', { name: 'Khôi phục bảng mẫu' }).click();
   await expect(coverage).toContainText('12/12 hồ sơ đủ dữ liệu tính compa');
   await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+  await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
+  expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
   await page.reload();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
 });

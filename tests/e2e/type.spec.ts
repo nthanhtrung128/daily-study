@@ -161,3 +161,32 @@ test('chữ lớn — dải nhắc sao lưu trên Hôm nay và phần sao lưu t
   }
   expect(found, found.join('\n')).toEqual([]);
 });
+
+test('đáp án trắc nghiệm có từ dài xuống dòng ở màn 320px và cỡ chữ 23px', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.addInitScript(rootPx, 23);
+  await page.goto('./#hom-nay');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await page.evaluate(() => new Promise<void>((resolve, reject) => {
+    const request = indexedDB.open('daily-study');
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const store = request.result;
+      const write = store.transaction('settings', 'readwrite');
+      write.oncomplete = () => { store.close(); resolve(); };
+      write.onerror = () => { store.close(); reject(write.error); };
+      const at = Date.now();
+      write.objectStore('settings').put({
+        key: 'session.active',
+        value: { kind: 'tr', items: [{ id: 'tr:Q088' }], pos: 0, results: [], t0: at, minutes: 5, savedAt: at },
+      });
+    };
+  }));
+  await page.reload();
+  await page.getByTestId('resume-panel').getByRole('button', { name: 'Tiếp tục' }).click();
+  const answer = page.getByRole('button', { name: /Person\/competency assessment/ });
+  await expect(answer).toBeVisible();
+  expect(await answer.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(0);
+  await answer.click();
+  expect(await answer.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(0);
+});

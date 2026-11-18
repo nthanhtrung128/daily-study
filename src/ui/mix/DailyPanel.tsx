@@ -34,6 +34,7 @@ export function DailyPanel({ onStart }: { onStart: (plan: DailyPlan, minutes: nu
             <span className="tag" data-lane="tr">{`${s.tr} mục TR`}</span>
             <span className="tag" data-lane="en">{`${s.en} mục tiếng Anh`}</span>
             {s.speak && <span className="tag" data-lane="speak">{s.speak === 'topic' ? '1 đề nói 1 phút' : '1 câu nói có chấm'}</span>}
+            {s.dict > 0 && <span className="tag" data-lane="en">{`${s.dict} câu nghe chép`}</span>}
             <span className="tag num">{`≈ ${s.minutes} phút`}</span>
           </>
         ) : (

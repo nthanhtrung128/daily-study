@@ -12,7 +12,7 @@ import { PhraseCard } from './PhraseCard';
 import { ShadowPlayerView } from './ShadowPlayerView';
 import { SpeakScreen, type SpeakDone } from './SpeakScreen';
 import { TopicScreen } from './TopicScreen';
-import { DictationScreen } from './DictationScreen';
+import { DictationScreen, type DictDone } from './DictationScreen';
 import { RoleplayScreen } from './RoleplayScreen';
 import type { DictItem } from '../dictation';
 import type { SayItem } from '../speech/sayItems';
@@ -25,7 +25,7 @@ export type EnView =
   | { kind: 'shadow'; t0: number }
   | { kind: 'speak'; list: SayItem[]; t0: number; pos?: number; done?: SpeakDone[] }
   | { kind: 'topics'; t0: number }
-  | { kind: 'dictation'; list: DictItem[]; t0: number }
+  | { kind: 'dictation'; list: DictItem[]; t0: number; pos?: number; done?: DictDone[] }
   | { kind: 'roleplay'; t0: number };
 
 export interface EnCardResult {
@@ -58,7 +58,7 @@ export function EnglishScreen({ view, onExit }: { view: EnView; onExit: () => vo
       onExit();
     };
     if (view.kind === 'roleplay') return <RoleplayScreen onExit={leave} />;
-    if (view.kind === 'dictation') return <DictationScreen list={view.list} t0={view.t0} onExit={leave} />;
+    if (view.kind === 'dictation') return <DictationScreen list={view.list} t0={view.t0} onExit={leave} start={view.pos ?? 0} initial={view.done ?? []} />;
     return view.kind === 'speak' ? <SpeakScreen list={view.list} t0={view.t0} onExit={leave} start={view.pos ?? 0} initial={view.done ?? []} /> : <TopicScreen onExit={() => leave(0)} />;
   }
   if (view.kind === 'shadow') return <ShadowScreen onExit={() => finish([])} />;

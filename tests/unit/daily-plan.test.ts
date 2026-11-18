@@ -68,6 +68,7 @@ describe('cài đặt phiên hằng ngày', () => {
       trShare: 0.35,
       maxNew: 5,
       speak: false,
+      dict: false,
       remindAt: '07:05',
       remindDays: [1, 6, 0],
       goalMin: 15,

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { missStore } from '../../../core/misswords';
 import { fmt } from '../../../core/num';
-import { useInSessionMark } from '../../../ui/activeSession';
+import { beginSession, endSession, stepSession, useInSessionMark } from '../../../ui/activeSession';
 import { useFocusOnMount } from '../../../ui/useFocusOnMount';
 import { useProgress } from '../../../ui/useProgress';
 import { DICT_SOURCE_VI, HINT_PENALTY, dictGrade, firstLetters, missedWords, scoreDictation, type DictItem } from '../dictation';
@@ -16,18 +17,38 @@ export const SLOW_FACTOR = 0.75;
 
 const mmss = (s: number) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
-interface Done {
+/** Một câu đã chép. `r` (chi tiết từng từ) không có với câu chép trước khi phiên bị gián đoạn. */
+export interface DictDone {
   it: DictItem;
-  r: ScoreResult;
+  score: number;
+  r?: ScoreResult;
 }
+type Done = DictDone;
 
 /** Phiên nghe chép: từng câu → nghe → gõ → Kiểm tra → tô từ đúng / sai / thiếu / thừa → kết quả cuối phiên. */
-export function DictationScreen({ list, t0, onExit }: { list: DictItem[]; t0: number; onExit: (count: number) => void }) {
+export function DictationScreen({
+  list,
+  t0,
+  onExit,
+  start = 0,
+  initial,
+}: {
+  list: DictItem[];
+  t0: number;
+  onExit: (count: number) => void;
+  /** Tiếp tục phiên dở: vị trí và các câu đã chép. */
+  start?: number;
+  initial?: DictDone[];
+}) {
   const p = useProgress();
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(start);
   const [done, setDone] = useState<{ results: Done[]; secs: number } | null>(null);
-  const results = useRef<Done[]>([]);
+  const results = useRef<Done[]>(initial ?? []);
   useInSessionMark(!done);
+  useEffect(() => {
+    const saved = results.current.map((r) => ({ i: list.indexOf(r.it), g: dictGrade(r.it, r.score), score: r.score })).filter((r) => r.i >= 0);
+    beginSession('dict', list.map((x) => ({ id: x.key })), t0, 0, start, saved);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const it = list[i];
 
   // Mốc đo thời gian học: câu đầu tiên tính từ lúc mở phiên nghe chép.
@@ -40,20 +61,24 @@ export function DictationScreen({ list, t0, onExit }: { list: DictItem[]; t0: nu
   if (!it) return null;
 
   const finish = () => {
+    endSession();
     tts.cancel();
     setDone({ results: results.current, secs: Math.round((Date.now() - t0) / 1000) });
   };
-  const next = (r: ScoreResult | null) => {
+  const record = (r: ScoreResult) => {
+    const g = dictGrade(it, r.score);
+    if (it.id && g !== null) p.grade(it.id, g);
+    else p.lap('en');
+    results.current.push({ it, score: r.score, r });
+    stepSession(i + 1, { i, g, score: r.score });
+  };
+  const next = () => {
     tts.cancel();
-    if (r) {
-      const g = dictGrade(it, r.score);
-      if (it.id && g !== null) p.grade(it.id, g);
-      // Câu hội thoại (không có id Leitner): vẫn tính thời gian vào nhóm tiếng Anh.
-      else p.lap('en');
-      results.current.push({ it, r });
-    }
     if (i + 1 >= list.length) finish();
-    else setI(i + 1);
+    else {
+      stepSession(i + 1);
+      setI(i + 1);
+    }
   };
 
   return (
@@ -69,7 +94,7 @@ export function DictationScreen({ list, t0, onExit }: { list: DictItem[]; t0: nu
           Kết thúc
         </button>
       </div>
-      <DictCard key={it.key} it={it} last={i + 1 >= list.length} onDone={next} />
+      <DictCard key={it.key} it={it} last={i + 1 >= list.length} onScore={record} onNext={next} />
       <p className="hint">
         Không phân biệt hoa/thường, dấu câu, viết tắt (I’m = I am), số (15 = fifteen). Dùng gợi ý trừ {HINT_PENALTY} điểm. ≥ 90% → Nhớ rõ, 60–89% → Mơ hồ, dưới
         60% → Quên.
@@ -78,13 +103,17 @@ export function DictationScreen({ list, t0, onExit }: { list: DictItem[]; t0: nu
   );
 }
 
-function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; onDone: (r: ScoreResult | null) => void }) {
+/** Thẻ một câu nghe chép (dùng cả trong phiên hằng ngày và Ôn điểm yếu). */
+export function DictCard({ it, last, onScore, onNext }: {
+  it: DictItem; last: boolean; onScore: (r: ScoreResult) => void; onNext: (scored: boolean) => void;
+}) {
   const prefs = useTtsPrefs();
   const [plays, setPlays] = useState(0);
   const [hint, setHint] = useState(false);
   const [typed, setTyped] = useState('');
   const [result, setResult] = useState<ScoreResult | null>(null);
   const cardRef = useFocusOnMount<HTMLDivElement>();
+  const checked = useRef(false);
   const actRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLTextAreaElement>(null);
 
@@ -105,10 +134,15 @@ function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; onDone: (
     setPlays((n) => n + 1);
   };
   const check = () => {
-    if (!typed.trim()) return;
+    if (!typed.trim() || checked.current) return;
+    checked.current = true;
     tts.cancel();
     boxRef.current?.blur();
-    setResult(scoreDictation(it.en, typed, hint));
+    const r = scoreDictation(it.en, typed, hint);
+    // Đếm từ nghe sai / thiếu cho "Từ hay sai" (chép đúng thì giảm).
+    missStore.record(r.words);
+    onScore(r);
+    setResult(r);
   };
   const g = result ? gradeForScore(result.score) : null;
   const ok = tts.supported;
@@ -171,7 +205,7 @@ function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; onDone: (
             <button type="button" className="btn" disabled={!typed.trim()} onClick={check}>
               Kiểm tra
             </button>
-            <button type="button" className="btn ghost" onClick={() => onDone(null)}>
+            <button type="button" className="btn ghost" onClick={() => onNext(false)}>
               Bỏ qua
             </button>
           </div>
@@ -205,7 +239,7 @@ function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; onDone: (
             </p>
           </div>
           <div className="card-act dict-act">
-            <button type="button" className="btn" onClick={() => onDone(result)}>
+            <button type="button" className="btn" onClick={() => onNext(true)}>
               {last ? 'Xem kết quả' : 'Câu tiếp'}
             </button>
           </div>
@@ -217,8 +251,8 @@ function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; onDone: (
 
 function DictResult({ results, secs, onHome }: { results: Done[]; secs: number; onHome: () => void }) {
   const n = results.length;
-  const avg = n ? results.reduce((a, x) => a + x.r.score, 0) / n : null;
-  const missed = missedWords(results.map((x) => x.r));
+  const avg = n ? results.reduce((a, x) => a + x.score, 0) / n : null;
+  const missed = missedWords(results.flatMap((x) => (x.r ? [x.r] : [])));
   return (
     <section className="stack en-screen" aria-labelledby="h-dict-result">
       <div className="panel stack">
@@ -266,11 +300,11 @@ function DictResult({ results, secs, onHome }: { results: Done[]; secs: number; 
             <details key={k} className="item">
               <summary>
                 <b lang="en">{x.it.en}</b>
-                <span className="tag">{x.r.score}%</span>
+                <span className="tag">{x.score}%</span>
               </summary>
               <div className="body">
                 <div>{x.it.vi}</div>
-                <WordDiff r={x.r} />
+                {x.r && <WordDiff r={x.r} />}
               </div>
             </details>
           ))}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { fmt } from '../../core/num';
 import { module09 } from './roadmap';
 import { analyzeSalary, summarizeSalary } from './salaryAnalysis';
@@ -15,6 +15,7 @@ export function SalaryAnalysisPractice() {
   const [grade, setGrade] = useState('');
   const [family, setFamily] = useState('');
   const [selectedId, setSelectedId] = useState('');
+  const picker = useRef<HTMLDetailsElement>(null);
   const [edits, setEdits] = useState<Edits>({});
   const rows = sample.filter((row) => (!grade || row.grade === grade) && (!family || row.family === family))
     .map((row) => analyzeSalary({
@@ -33,22 +34,8 @@ export function SalaryAnalysisPractice() {
     <section className="stack roadmap-review" aria-labelledby="salary-analysis-title">
       <h2 className="h-sec" id="salary-analysis-title">Phân tích bảng lương mẫu</h2>
       <p>Lọc 12 hồ sơ giả định theo grade hoặc họ nghề. Mở NV04 để thấy lương 10 triệu ở 0,5 FTE được quy đổi thành 20 triệu ở 1 FTE. Có thể sửa FTE hoặc xóa midpoint để thử ảnh hưởng lên tập tính compa.</p>
-      <div className="roadmap-fields">
-        <label className="field">
-          Grade
-          <select value={grade} onChange={(e) => setGrade(e.target.value)}>
-            <option value="">Mọi grade</option>
-            {grades.map((value) => <option key={value}>{value}</option>)}
-          </select>
-        </label>
-        <label className="field">
-          Họ nghề
-          <select value={family} onChange={(e) => setFamily(e.target.value)}>
-            <option value="">Mọi họ nghề</option>
-            {families.map((value) => <option key={value}>{value}</option>)}
-          </select>
-        </label>
-      </div>
+      <SalaryFilter label="Grade" all="Mọi grade" values={grades} selected={grade} onSelect={setGrade} />
+      <SalaryFilter label="Họ nghề" all="Mọi họ nghề" values={families} selected={family} onSelect={setFamily} />
       <div className="stack" aria-live="polite">
         <p data-testid="salary-coverage">
           {summary.eligible}/{rows.length} hồ sơ đủ dữ liệu tính compa · {summary.below} dưới min · {summary.above} trên max
@@ -60,12 +47,19 @@ export function SalaryAnalysisPractice() {
       </div>
       {selected ? (
         <>
-          <label className="field roadmap-fields">
-            Hồ sơ mẫu
-            <select value={selected.id} onChange={(e) => setSelectedId(e.target.value)}>
-              {rows.map((row) => <option key={row.id} value={row.id}>{row.id} · {row.grade} · {row.family}</option>)}
-            </select>
-          </label>
+          <details className="salary-picker" ref={picker}>
+            <summary>Hồ sơ mẫu · {selected.id} · {selected.grade} · {selected.family}</summary>
+            <div className="row" role="group" aria-label="Chọn hồ sơ mẫu">
+              {rows.map((row) => (
+                <button className="chip" key={row.id} type="button" aria-pressed={row.id === selected.id}
+                  onClick={() => {
+                    setSelectedId(row.id);
+                    if (picker.current) picker.current.open = false;
+                    picker.current?.querySelector('summary')?.focus();
+                  }}>{row.id} · {row.grade} · {row.family}</button>
+              ))}
+            </div>
+          </details>
           <p className="hint">Đơn vị lương và dải là triệu đồng/tháng. FTE hợp lệ lớn hơn 0 và tối đa 1 trong bài mẫu.</p>
           <div className="roadmap-fields">
             <label className="field">
@@ -101,6 +95,27 @@ export function SalaryAnalysisPractice() {
         }}>Khôi phục bảng mẫu</button>
       </div>
     </section>
+  );
+}
+
+function SalaryFilter({ label, all, values, selected, onSelect }: {
+  label: string;
+  all: string;
+  values: string[];
+  selected: string;
+  onSelect: (value: string) => void;
+}) {
+  return (
+    <div className="field" role="group" aria-label={label}>
+      <span>{label}</span>
+      <div className="row">
+        <button className="chip" type="button" aria-pressed={!selected} onClick={() => onSelect('')}>{all}</button>
+        {values.map((value) => (
+          <button className="chip" key={value} type="button" aria-pressed={value === selected}
+            onClick={() => onSelect(value)}>{value}</button>
+        ))}
+      </div>
+    </div>
   );
 }
 

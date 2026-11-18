@@ -10,6 +10,9 @@ import { baiRows, extraRows, hardest, heatCells, learnedCount, totals, type BarR
 import { useProgress } from '../useProgress';
 import { useDailyPrefs } from '../useDailyPrefs';
 import { WeekPanel } from '../components/WeekPanel';
+import { topMissed } from '../../core/misswords';
+import { SpeakButton } from '../../modules/english/ui/SpeakButton';
+import { useMissWords } from '../useMissWords';
 
 const EXTRA_LABEL: Record<string, string> = { term: 'Thuật ngữ TR', phrase: 'Cụm từ EN', pattern: 'Câu mẫu EN' };
 const baiName = (k: string) => (k === 'Bổ sung' ? 'Pháp lý VN' : `Buổi ${BAI_SHORT[k] ?? k}`);
@@ -44,6 +47,7 @@ export function ProgressPage() {
   const daily = useDailyPrefs();
   const streak = p.streak(daily.restDays);
   const heat = heatCells((d) => p.dayStat(d).n, today);
+  const missed = topMissed(useMissWords(), 10);
   const hard = hardest(p.entries(), (id) => ITEM_BY_ID.has(id) || !!entryById(id));
 
   const reviewNow = async () => {
@@ -153,6 +157,26 @@ export function ProgressPage() {
           </>
         ) : (
           <p className="hint">Chưa có mục nào sai. Làm vài phiên trắc nghiệm hoặc bài tính để danh sách này có dữ liệu.</p>
+        )}
+      </div>
+
+      <div className="panel stack">
+        <h2 className="h-sec">Từ hay sai</h2>
+        {missed.length ? (
+          <>
+            <ul className="miss-list" data-testid="miss-list">
+              {missed.map((m) => (
+                <li key={m.word}>
+                  <b lang="en">{m.word}</b>
+                  <span className="tag num">{`×${m.n}`}</span>
+                  <SpeakButton text={m.word} what={m.word} />
+                </li>
+              ))}
+            </ul>
+            <p className="hint">Từ tiếng Anh bạn nói hoặc nghe chép sai nhiều nhất. Luyện lại trong “Ôn điểm yếu” ở trang Hôm nay; nói / chép đúng thì số lần giảm.</p>
+          </>
+        ) : (
+          <p className="hint">Chưa có từ nào. Danh sách có dữ liệu sau khi bạn luyện nói có chấm hoặc nghe chép.</p>
         )}
       </div>
 

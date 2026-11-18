@@ -1,7 +1,7 @@
-# Bàn giao (cập nhật 05/11/2026)
+# Bàn giao (cập nhật 16/11/2026)
 
 ## Hiện trạng
-App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest, build, Playwright iPhone 14 / iPhone SE trên Chromium và WebKit). **Chưa deploy**, chưa thử trên iPhone thật.
+App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Playwright trên cấu hình iPhone 14 / iPhone SE với Chromium và WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
 
 | PR | Nội dung |
 |---|---|
@@ -22,6 +22,11 @@ App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest,
 | #17 | Nghe chép chính tả (`dictation.ts`, `ui/DictationScreen.tsx`): nghe TTS → gõ → chấm từng từ bằng `speech/score.ts`, chấm Leitner cho câu mẫu / ví dụ cụm từ |
 | #18 | Mục tiêu ngày (phút/ngày, ngày nghỉ) + tổng kết tuần ở trang Tiến độ; ghi giây học theo ngày tách TR / EN / nói (`core/studytime.ts`, `modules/progress/week.ts`) |
 | #19 | Hội thoại nhập vai (`roleplay.ts`, `ui/RoleplayScreen.tsx`): chọn hội thoại + vai, app đọc lượt vai kia (TTS), người học nói → chấm từng từ; không có nhận giọng thì tự đánh giá; kết quả mỗi bài lưu ở `settings` khóa `en.roleplay` |
+| #20 | Ôn điểm yếu (`core/weak.ts`, `core/misswords.ts`, `modules/mix/weak.ts`, `ui/mix/WeakPanel.tsx`): mục TR/EN hay sai + câu chứa từ hay nói / nghe sai; khối "Từ hay sai" ở Tiến độ; nghe chép trong phiên hằng ngày (công tắc ở Cài đặt, mặc định tắt); tiếp tục phiên dở cho nghe chép và Ôn điểm yếu |
+| #21 | M05: bốn bài Cấu trúc lương cơ bản, bài tính compa-ratio và vị trí trong dải, lưu trạng thái học |
+| #22 | Kho đọc M05/M06: tám bài có bối cảnh, ví dụ và câu tự ôn, kèm bài thực hành cân ma trận merit |
+| #23 | M09: bốn bài phân tích dữ liệu đãi ngộ, lọc và chuẩn hóa FTE trên 12 hồ sơ giả định |
+| #24 | Dùng nút chọn mức hiệu suất và vùng compa trong ma trận merit để WebKit không kích hoạt vi phạm CSP khi tạo ô chọn |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
@@ -40,10 +45,11 @@ App chạy được đầy đủ trên `main`, CI xanh (lint, typecheck, Vitest,
 - Môi trường e2e cục bộ: `npx playwright install chromium webkit`.
 
 - Thống kê ngày (`days`): trường tùy chọn `st`/`se`/`sk` (giây học TR / EN / nói, đo giữa các lượt chấm, bỏ khoảng nghỉ > 2 phút), `ks`/`kn` (tổng điểm nói, số lần), `m` (mục mới thuộc). Không đánh chỉ mục nên không tăng version Dexie; ngày cũ không có thì dùng `s`. Phiên mới phải gọi `progress.touch()` lúc bắt đầu (`beginSession` đã gọi sẵn).
+- Từ hay sai: một khóa `settings` (`en.missWords`, `{ từ: { n, at } }`), không thêm bảng nên không tăng version Dexie; tự nằm trong file sao lưu (gộp: lấy số lớn hơn; thay thế bằng file cũ không có khóa này: xóa). Mọi lượt chấm nói (`SayCheck`) và nghe chép (`DictCard`) gọi `missStore.record`.
+- Độ yếu của mục: `wrong × (4 − hộp)/3 + 2 (nếu hộp 1 và ôn ≤ 3 ngày)`, yếu khi ≥ 2 (`core/weak.ts`). Phiên Ôn điểm yếu và câu nghe chép trong phiên hằng ngày đều là `DailyEntry` chạy bằng `DailySession` (mục thêm kiểu `dict`, id `dict:<khóa câu>`); phiên dở lưu kiểu `weak` / `dict` trong `core/resume.ts`.
 
 ## Việc còn lại
-1. **Người dùng tự làm:** deploy Cloudflare Pages + Access (`docs/DEPLOY.md` §1–3), kiểm tra trên iPhone thật (§10).
+1. Kiểm tra các khả năng riêng của iPhone bằng danh sách trong `docs/DEPLOY.md` §10.
 2. **Sau 1–2 tuần dùng, nếu người dùng chọn:**
-   - C. Chế độ ôn "lỗi hay gặp": câu TR hay sai + từ EN bị chấm sai nhiều khi nói.
    - Chỉnh tỉ lệ 40/60, số mục mới/ngày, độ khó đề nói theo phản hồi.
 3. Giai đoạn 4 (cần người dùng quyết định, có chi phí): xem `docs/PLAN.md`.

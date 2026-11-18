@@ -122,7 +122,7 @@ test('luyện nói: nói đúng → 100% + Nhớ rõ; nói thiếu → tô từ 
   expect(await win<number>(page, '__recStarts')).toBe(0);
 
   const target = (await page.getByTestId('say-target').textContent()) ?? '';
-  await setSay(page, target.replace(/[.,!?]/g, '').toLowerCase());
+  await setSay(page, target);
   await page.getByRole('button', { name: 'Nói thử' }).click();
   await expect(page.getByTestId('say-score')).toHaveText('100%');
   await noHScroll(page);
