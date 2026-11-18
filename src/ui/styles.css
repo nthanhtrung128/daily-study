@@ -385,6 +385,12 @@ p, .hint, .fb, .opt, .card .q, .eyebrow, li, dd { text-wrap: pretty; }
 .roadmap-lessons button { width: 100%; text-align: start; }
 
 .roadmap-intro { background: var(--sunk); }
+.course-outline { border-top: 1px solid var(--line); }
+.course-outline summary { padding-block: 12px; min-height: var(--tap); cursor: pointer; font-weight: 600; }
+.course-outline ol { margin: 0; padding: 0; list-style: none; }
+.course-outline li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 10px; padding-block: 10px; border-top: 1px solid var(--line); }
+.course-module-link { display: flex; align-items: center; min-height: var(--tap); color: var(--accent); font-weight: 600; }
+.course-outline li p { margin: 0; }
 .roadmap-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 16px; }
 body:has(main .roadmap-reader) .top { position: static; }
 .roadmap-reader { max-width: 66ch; margin-inline: auto; gap: 24px; }

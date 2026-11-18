@@ -32,6 +32,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #27 | M05: Học tiếp từ Hôm nay và mở bài theo liên kết hash, giữ đúng bài khi tải lại hoặc dùng nút Back |
 | #28 | Trang Tiến độ hiển thị số bài đọc đã đánh dấu hoàn thành trên tổng số bài của từng mô-đun M05, M06 và M09. |
 | #29 | Cập nhật hướng dẫn triển khai cho domain Pages đang dùng, menu Cloudflare Access và luồng hỏi trước khi cập nhật PWA trên iPhone. |
+| #30 | Lộ trình Total Rewards theo thứ tự 17 mô-đun của Excel. Hôm nay và Lộ trình gợi ý bài chưa học, cuối bài chuyển tiếp qua M05, M06 và M09. Tiến độ tính trên 12 bài đang mở. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
