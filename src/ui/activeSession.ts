@@ -10,25 +10,25 @@ let cur: ActiveSession | null = null;
 let mounted = 0;
 const subs = new Set<() => void>();
 const emit = () => subs.forEach((f) => f());
-const persist = () => void (cur ? saveActive(cur) : clearActive()).catch(() => undefined);
+const persist = () => (cur ? saveActive(cur) : clearActive()).catch(() => undefined);
 
 export function beginSession(kind: ActiveKind, items: SavedItem[], t0: number, minutes: number, pos = 0, results: SavedResult[] = []) {
   cur = { kind, items, pos, results, t0, minutes, savedAt: Date.now() };
   // Mốc đo thời gian học: lượt chấm đầu tiên của phiên tính từ lúc mở phiên.
   progress.touch();
-  persist();
+  void persist();
 }
 
 /** Sau mỗi lượt chấm / chuyển câu: `pos` = chỉ số mục tiếp theo. */
 export function stepSession(pos: number, result?: SavedResult) {
   if (!cur) return;
   cur = advance(cur, pos, Date.now(), result);
-  persist();
+  return persist();
 }
 
 export function endSession() {
   cur = null;
-  persist();
+  return persist();
 }
 
 /** Màn phiên đang mở (dùng để hoãn dải cập nhật). */

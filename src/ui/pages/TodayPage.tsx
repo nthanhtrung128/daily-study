@@ -196,7 +196,7 @@ export function TodayPage() {
 
       <div className="panel stack">
         <h2 className="h-sec">Tự ôn bằng cách đọc</h2>
-        <p>Đọc về cấu trúc lương và merit, xem ví dụ rồi tự kiểm tra.</p>
+        <p>Đọc về cấu trúc lương, merit và phân tích dữ liệu đãi ngộ. Thử tính với số liệu mẫu rồi tự kiểm tra.</p>
         <div className="row">
           <a className="btn ghost roadmap-link" href="#lo-trinh">Mở lộ trình Total Rewards</a>
         </div>

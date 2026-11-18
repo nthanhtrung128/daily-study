@@ -280,6 +280,9 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await btn('Về kho kiến thức').click();
   await btn('Thiết kế ma trận merit').click();
   await at('lo-trinh-merit');
+  await btn('Về kho kiến thức').click();
+  await btn('Đọc phân bố và nguyên nhân').click();
+  await at('lo-trinh-phan-tich-luong');
 
   await openTab(page, 'tien-do');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();

@@ -70,7 +70,7 @@ export function DictationScreen({
     if (it.id && g !== null) p.grade(it.id, g);
     else p.lap('en');
     results.current.push({ it, score: r.score, r });
-    stepSession(i + 1, { i, g, score: r.score });
+    return Promise.all([p.flush(), stepSession(i + 1, { i, g, score: r.score })]);
   };
   const next = () => {
     tts.cancel();
@@ -105,13 +105,14 @@ export function DictationScreen({
 
 /** Thẻ một câu nghe chép (dùng cả trong phiên hằng ngày và Ôn điểm yếu). */
 export function DictCard({ it, last, onScore, onNext }: {
-  it: DictItem; last: boolean; onScore: (r: ScoreResult) => void; onNext: (scored: boolean) => void;
+  it: DictItem; last: boolean; onScore: (r: ScoreResult) => Promise<unknown> | null; onNext: (scored: boolean) => void;
 }) {
   const prefs = useTtsPrefs();
   const [plays, setPlays] = useState(0);
   const [hint, setHint] = useState(false);
   const [typed, setTyped] = useState('');
   const [result, setResult] = useState<ScoreResult | null>(null);
+  const [checking, setChecking] = useState(false);
   const cardRef = useFocusOnMount<HTMLDivElement>();
   const checked = useRef(false);
   const actRef = useRef<HTMLDivElement>(null);
@@ -133,15 +134,16 @@ export function DictCard({ it, last, onScore, onNext }: {
     say(it.en, slow ? prefs.rate * SLOW_FACTOR : undefined);
     setPlays((n) => n + 1);
   };
-  const check = () => {
+  const check = async () => {
     if (!typed.trim() || checked.current) return;
     checked.current = true;
+    setChecking(true);
     tts.cancel();
     boxRef.current?.blur();
     const r = scoreDictation(it.en, typed, hint);
     // Đếm từ nghe sai / thiếu cho "Từ hay sai" (chép đúng thì giảm).
     missStore.record(r.words);
-    onScore(r);
+    await Promise.all([missStore.flush(), onScore(r)]);
     setResult(r);
   };
   const g = result ? gradeForScore(result.score) : null;
@@ -170,7 +172,7 @@ export function DictCard({ it, last, onScore, onNext }: {
       {!result ? (
         <>
           <div className="row">
-            <button type="button" className="chip" aria-pressed={hint} onClick={() => setHint(true)}>
+            <button type="button" className="chip" aria-pressed={hint} disabled={checking} onClick={() => setHint(true)}>
               Hiện chữ cái đầu mỗi từ (−{HINT_PENALTY} điểm)
             </button>
           </div>
@@ -191,6 +193,7 @@ export function DictCard({ it, last, onScore, onNext }: {
               enterKeyHint="done"
               aria-label="Gõ lại câu bạn nghe được"
               placeholder="Gõ lại câu bạn nghe được…"
+              readOnly={checking}
               value={typed}
               onChange={(e) => setTyped(e.target.value)}
               onKeyDown={(e) => {
@@ -202,10 +205,10 @@ export function DictCard({ it, last, onScore, onNext }: {
             />
           </div>
           <div className="card-act dict-act" ref={actRef}>
-            <button type="button" className="btn" disabled={!typed.trim()} onClick={check}>
+            <button type="button" className="btn" disabled={checking || !typed.trim()} onClick={check}>
               Kiểm tra
             </button>
-            <button type="button" className="btn ghost" onClick={() => onNext(false)}>
+            <button type="button" className="btn ghost" disabled={checking} onClick={() => onNext(false)}>
               Bỏ qua
             </button>
           </div>

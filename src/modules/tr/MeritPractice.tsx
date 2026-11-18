@@ -56,7 +56,7 @@ export function MeritPractice() {
           ))}
         </div>
       </div>
-      <div className="merit-inputs">
+      <div className="roadmap-fields">
         <label className="field">
           Quỹ ô (triệu đồng/tháng)
           <input type="text" inputMode="decimal" value={selected?.payroll ?? ''} onChange={(e) => change('payroll', e.target.value)} />

@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { wordKey } from '../../src/core/misswords';
 import { audit, openTab } from './helpers/audit';
 import { stubMedia } from './helpers/stubs';
 
@@ -9,7 +10,6 @@ const spoken = (page: Page) => page.evaluate(() => (window as unknown as { __spo
 const shot = async (page: Page, project: string, name: string) => {
   if (process.env.PW_SHOTS === 'weak' && project === 'iPhone 14') await page.screenshot({ path: `docs/screenshots/weak-${name}.png` });
 };
-const plain = (s: string) => s.replace(/[.,!?;:]/g, '');
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(stubMedia);
@@ -31,9 +31,9 @@ test('ôn điểm yếu: chấm sai vài mục → Hôm nay hiện "Ôn điểm 
   const missed: string[] = [];
   for (let k = 0; k < 2; k++) {
     await btn('Nghe câu').click();
-    const words = plain((await spoken(page)).at(-1) as string).split(/\s+/);
-    const long = words.reduce((a, w) => (w.length > a.length ? w : a), '');
-    missed.push(long.toLowerCase());
+    const words = ((await spoken(page)).at(-1) ?? '').trim().split(/\s+/);
+    const long = words.reduce((a, w) => (wordKey(w).length > wordKey(a).length ? w : a), '');
+    missed.push(wordKey(long));
     await box.fill(words.map((w) => (w === long ? 'zzzz' : w)).join(' '));
     await btn('Kiểm tra').click();
     await expect(page.getByTestId('dict-score')).not.toHaveText('100%');
@@ -80,7 +80,7 @@ test('ôn điểm yếu: chấm sai vài mục → Hôm nay hiện "Ôn điểm 
     await expect(count).toHaveText(`${k + 1}/${total}`);
     if ((await box.count()) > 0) {
       await btn('Nghe câu').click();
-      await box.fill(plain((await spoken(page)).at(-1) as string));
+      await box.fill((await spoken(page)).at(-1) ?? '');
       if (!kinds.includes('dict')) {
         await audit(page, 'diem-yeu-nghe-chep', found);
         await shot(page, P, '3-nghe-chep');
@@ -91,7 +91,7 @@ test('ôn điểm yếu: chấm sai vài mục → Hôm nay hiện "Ôn điểm 
       kinds.push('dict');
     } else if ((await page.getByTestId('say-target').count()) > 0) {
       const target = (await page.getByTestId('say-target').textContent()) ?? '';
-      await page.evaluate((s) => ((window as unknown as { __nextSay: string }).__nextSay = s), plain(target));
+      await page.evaluate((s) => ((window as unknown as { __nextSay: string }).__nextSay = s), target);
       await btn('Nói thử').click();
       await btn(/^Tiếp · /).click();
       kinds.push('say');

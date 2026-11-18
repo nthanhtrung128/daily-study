@@ -117,9 +117,10 @@ export class Progress {
     this.emit();
   }
 
-  /** Chờ các lần ghi IndexedDB xong (dùng trong test). */
-  flush(): Promise<unknown> {
-    return this.pending;
+  /** Chờ cả các lượt chấm phát sinh trước khi tải xong tiến độ. */
+  async flush(): Promise<void> {
+    if (!this.loaded) await this.load();
+    await this.pending;
   }
 
   stateOf = (id: string): LeitnerState | undefined => this.states.get(id);
