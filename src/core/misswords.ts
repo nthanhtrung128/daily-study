@@ -46,7 +46,7 @@ export function applyMarks(map: MissMap, words: readonly { text: string; status:
   for (const w of words) {
     const k = wordKey(w.text);
     if (!k || SKIP.has(k)) continue;
-    const cur = out[k];
+    const cur = Object.hasOwn(out, k) ? out[k] : undefined;
     if (w.status !== 'ok') out[k] = { n: (cur?.n ?? 0) + 1, at: now };
     else if (cur) {
       if (cur.n <= 1) delete out[k];
@@ -73,7 +73,7 @@ export function topMissed(map: MissMap, top = 10): { word: string; n: number }[]
 export function mergeMiss(a: MissMap, b: MissMap): MissMap {
   const out: MissMap = { ...a };
   for (const [k, v] of Object.entries(b)) {
-    const c = out[k];
+    const c = Object.hasOwn(out, k) ? out[k] : undefined;
     out[k] = c ? { n: Math.max(c.n, v.n), at: Math.max(c.at, v.at) } : v;
   }
   return out;
@@ -113,12 +113,18 @@ export class MissStore {
   private map: MissMap = {};
   private listeners = new Set<() => void>();
   private pending: Promise<unknown> = Promise.resolve();
+  private loading: Promise<void> | undefined;
   private early: { words: readonly { text: string; status: string }[]; at: number }[] = [];
   loaded = false;
 
   constructor(private store: StudyDB = defaultDb) {}
 
-  async load(): Promise<void> {
+  load(): Promise<void> {
+    this.loading ??= this.read().finally(() => { this.loading = undefined; });
+    return this.loading;
+  }
+
+  private async read(): Promise<void> {
     let saved: MissMap = {};
     try {
       saved = normalizeMiss(await getSetting<unknown>(MISS_KEY, null, this.store));
@@ -154,8 +160,9 @@ export class MissStore {
     this.pending = this.pending.then(() => setSetting(MISS_KEY, snap, this.store)).catch(() => undefined);
   }
 
-  flush(): Promise<unknown> {
-    return this.pending;
+  async flush(): Promise<void> {
+    if (!this.loaded || this.loading) await this.load();
+    await this.pending;
   }
 }
 

@@ -35,7 +35,7 @@ export function WeakPanel({ onStart }: { onStart: (entries: DailyEntry[]) => voi
           <button type="button" className="btn daily-go" onClick={() => onStart(entries)}>
             {`Ôn điểm yếu (${entries.length} mục)`}
           </button>
-          <p className="hint">Mục sai nhiều hoặc vừa quên lên trước; câu có từ bạn hay nói / nghe sai để luyện lại. Chấm đúng thì mục rời danh sách.</p>
+          <p className="hint">Mục sai nhiều hoặc vừa quên lên trước; câu có từ bạn hay nói / nghe sai để luyện lại. Chấm đúng giúp điểm yếu giảm dần.</p>
         </>
       ) : (
         <p className="hint" data-testid="weak-empty">

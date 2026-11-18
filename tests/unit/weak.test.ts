@@ -117,7 +117,7 @@ describe('lưu Dexie + sao lưu', () => {
     await setSetting(MISS_KEY, { salary: { n: 2, at: 1 } }, d);
     const s = new MissStore(d);
     s.record([{ text: 'Salary', status: 'wrong' }], NOW);
-    await s.load();
+    await Promise.all([s.load(), s.load()]);
     s.record([{ text: 'bonus.', status: 'missing' }], NOW);
     await s.flush();
     expect(s.get()).toEqual({ salary: { n: 3, at: NOW }, bonus: { n: 1, at: NOW } });
@@ -222,6 +222,11 @@ describe('phiên trộn có nghe chép', () => {
     expect([...ids].every((id) => id?.startsWith('en:'))).toBe(true);
     expect(plan.entries.some((e) => e.tier !== 'extra' && ids.has(e.item.id))).toBe(false);
     expect(plan.secs.en).toBeGreaterThanOrEqual(2 * DICT_SECS);
+    const limited = planDaily({ ...DEFAULT_DAILY, dict: true, speak: false, maxNew: 5 }, none, T, { newToday: 4, rng: seeded(5) });
+    expect(limited.fresh).toBe(1);
+    expect(summarize(limited).dict).toBe(1);
+    const exhausted = planDaily({ ...DEFAULT_DAILY, dict: true, speak: false, maxNew: 5 }, none, T, { newToday: 5, rng: seeded(5) });
+    expect(exhausted.entries).toHaveLength(0);
     // Chỉ TR (tỉ lệ 100%) thì không chèn.
     expect(planDaily({ ...DEFAULT_DAILY, trShare: 1, dict: true }, none, T, { rng: seeded(5) }).entries.some((e) => e.tier === 'extra')).toBe(false);
   });

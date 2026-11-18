@@ -104,6 +104,13 @@ test('ôn điểm yếu: chấm sai vài mục → Hôm nay hiện "Ôn điểm 
       await btn(/^Nhớ rõ/).click();
       kinds.push('card');
     }
+    if (k === 0) {
+      await expect(count).toHaveText(`2/${total}`);
+      await page.reload();
+      const resume = page.getByTestId('resume-panel');
+      await expect(resume).toContainText(`(1/${total})`);
+      await resume.getByRole('button', { name: 'Tiếp tục' }).click();
+    }
   }
   expect(kinds.filter((x) => x === 'card')).toHaveLength(2);
   expect(kinds).toContain('dict');

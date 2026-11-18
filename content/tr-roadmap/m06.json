@@ -1,0 +1,136 @@
+{
+  "code": "M06",
+  "title": "Hiệu suất và trả lương theo thành tích",
+  "goal": "Từ mục tiêu và bằng chứng hiệu suất đến ma trận merit, ngân sách và trao đổi kết quả.",
+  "source": "Lộ trình Total Rewards · M01–M06, Ma trận merit, Tự kiểm tra và Trắc nghiệm",
+  "lessons": [
+    {
+      "id": "trm-06-01",
+      "title": "Xây mục tiêu có thể đánh giá",
+      "explanation": "Mỗi mục tiêu cần kết quả mong muốn, nguồn dữ liệu, kỳ đo, người xác nhận và điều kiện điều chỉnh khi bối cảnh thay đổi. Dùng cả lượng và chất lượng khi lượng dễ tạo hành vi lệch. Mức mục tiêu cần xét nguồn lực và phạm vi kiểm soát. Trao đổi đầu kỳ giúp hai bên hiểu kỳ vọng và tránh tranh luận khi đã có kết quả.",
+      "example": "Ví dụ quản lý dự án có chỉ tiêu hoàn tất mốc tiến độ và điều kiện chất lượng. Định nghĩa thế nào là hoàn tất, nghiệm thu bởi ai và xử lý việc khách hàng đổi phạm vi. Nếu ghi đơn giản đạt 100% tiến độ, người đánh giá có thể áp các chuẩn khác nhau.",
+      "context": "Quyết định merit bắt đầu từ cách tổ chức xác định hiệu suất. Nếu chỉ tiêu mơ hồ, hai quản lý có thể cho hai mức đánh giá khác nhau trước khi C&B áp cùng một ma trận.",
+      "steps": [
+        "Ghi kết quả, kỳ đo và nguồn kiểm chứng. Chỉ định người xác nhận và mốc phản hồi giữa kỳ.",
+        "Thêm điều kiện chất lượng khi chỉ tiêu sản lượng có thể dẫn tới làm nhanh nhưng lỗi nhiều.",
+        "Ghi quy tắc đổi mục tiêu khi phạm vi, nguồn lực hoặc điều kiện bên ngoài thay đổi. Thống nhất lại trước khi chốt kết quả."
+      ],
+      "takeaway": "Một mục tiêu dùng được để đánh giá phải cho biết đo gì, đo khi nào và ai xác nhận.",
+      "review": {
+        "question": "Hãy viết lại mục tiêu “hoàn thành dự án đúng hạn” để hai quản lý cùng chấm được.",
+        "answer": "Ví dụ: đến 30/09, hoàn thành 4 mốc đã duyệt, có biên bản nghiệm thu của chủ dự án và không còn lỗi nghiêm trọng. Phạm vi thay đổi phải có biên bản, mốc mới và ngày phê duyệt."
+      }
+    },
+    {
+      "id": "trm-06-02",
+      "title": "Thu bằng chứng và hiệu chỉnh",
+      "explanation": "Lưu bằng chứng trong kỳ để giảm lệ thuộc vào sự kiện gần nhất. Cho nhân viên tự đánh giá, quản lý đánh giá và hội đồng so chuẩn giữa các đơn vị. Khi rating khác nhau, thảo luận kết quả, bối cảnh và mức đóng góp. Ghi rõ lý do đổi. Một phân bố đẹp không tự chứng minh hệ thống đánh giá công bằng.",
+      "example": "Bài tập. Hai người đạt 110% chỉ tiêu, một người có địa bàn dễ và một người khắc phục dự án khó. Liệt kê dữ liệu cần dùng để đánh giá mức đóng góp. Điều chỉnh chỉ tiêu hoặc đánh giá phải theo quy tắc đã thống nhất, tránh đổi chuẩn chỉ vì kết quả không như dự kiến.",
+      "context": "Hiệu chỉnh đánh giá, hay calibration, là lúc các quản lý áp cùng một chuẩn cho những công việc và bối cảnh khác nhau. Hồ sơ của nhân viên nên có dữ liệu cả kỳ để một sự kiện gần đây không chi phối kết quả.",
+      "steps": [
+        "Tổng hợp mục tiêu đã duyệt, kết quả đo được, phản hồi liên quan và những thay đổi phạm vi trong kỳ.",
+        "So từng trường hợp với tiêu chí rating. Thảo luận chênh lệch giữa quản lý và giữa đơn vị bằng bằng chứng.",
+        "Ghi lại mức chốt, lý do thay đổi, người duyệt và cách nhân viên bổ sung thông tin nếu phát hiện sai."
+      ],
+      "takeaway": "Hiệu chỉnh cần bằng chứng và tiêu chí nhất quán. Tỷ lệ phân bố chỉ là tín hiệu để đặt câu hỏi.",
+      "review": {
+        "question": "Hai nhóm cùng có 20% nhân viên được đánh giá Vượt. Kết quả đã công bằng chưa?",
+        "answer": "Cần đối chiếu tiêu chuẩn và bằng chứng từng nhóm. Cùng tỷ lệ Vượt vẫn có thể che chênh lệch về kết quả hoặc cách quản lý áp tiêu chí."
+      }
+    },
+    {
+      "id": "trm-06-03",
+      "title": "Thiết kế ma trận merit",
+      "explanation": "Chọn trục rating và vị trí lương, đặt tỷ lệ theo chủ đích trả lương, rồi tính chi phí có trọng số. Các mức trong ma trận cần xét giới hạn dải và quyền duyệt. Tách tỷ lệ tăng theo năm hóa khỏi khoản tăng chi trong năm theo ngày hiệu lực. Nếu dùng hệ số cân ngân sách, kiểm tra nó có làm thay đổi các cam kết tối thiểu hoặc tối đa.",
+      "example": "Bộ số liệu mẫu có quỹ 1.000 triệu đồng/tháng. Ma trận gốc cần 51,2 triệu, còn ngân sách 5% cho phép 50 triệu. Hệ số cân là 50 ÷ 51,2 = 0,9765625. Ô Vượt / dưới 90% từ 9% còn khoảng 8,79%, tương ứng 10,55 triệu trên quỹ 120 triệu. Tổng sau cân là 50 triệu/tháng, tương ứng 600 triệu nếu đủ 12 tháng hoặc 300 triệu nếu hiệu lực trọn 6 tháng.",
+      "context": "Merit là khoản điều chỉnh lương cơ bản gắn với thành tích. Trong mô hình này, mỗi nhân viên đủ điều kiện thuộc một ô dựa trên mức đánh giá hiệu suất và compa-ratio trước điều chỉnh. Mỗi ô chứa tổng lương cơ bản tháng và một tỷ lệ tăng gợi ý.",
+      "steps": [
+        "Tính tiền tăng gốc của từng ô bằng quỹ lương ô × tỷ lệ gốc. Cộng tiền tăng rồi chia tổng quỹ để biết tỷ lệ bình quân có trọng số.",
+        "Tính tiền tăng mục tiêu bằng tổng quỹ × ngân sách %. Lấy mục tiêu chia tổng tiền tăng gốc để ra hệ số cân. Nhân từng tỷ lệ gốc với hệ số đó.",
+        "Tính lại từng người sau khi áp trần dải, điều kiện đủ kỳ, mức sàn hoặc làm tròn. Đối chiếu với ngân sách trước khi chốt.",
+        "Tách tiền tăng theo tháng, chi phí đủ 12 tháng và chi phí kể từ ngày hiệu lực. Mô hình bên dưới giả định hiệu lực trọn tháng và quỹ không đổi."
+      ],
+      "takeaway": "Cân theo tiền tăng có trọng số rồi rà từng người. Phần trăm ngân sách và tỷ lệ tăng của từng ô có đơn vị khác nhau.",
+      "review": {
+        "question": "Nhóm A có quỹ 400 triệu đồng/tháng, tăng 7%. Nhóm B có quỹ 600 triệu, tăng 4%. Tỷ lệ tăng chung là bao nhiêu?",
+        "answer": "A tăng 28 triệu và B tăng 24 triệu. Tổng tăng 52 triệu trên quỹ 1.000 triệu, tức 5,2%. Trung bình số học 5,5% bỏ qua quy mô hai quỹ."
+      }
+    },
+    {
+      "id": "trm-06-04",
+      "title": "Phản hồi và theo dõi",
+      "explanation": "Buổi trao đổi nên bắt đầu từ kết quả và bằng chứng, sau đó giải thích liên hệ giữa rating, vị trí lương và ngân sách. Cho nhân viên trình bày thông tin còn thiếu. Kết thúc bằng hành động, người hỗ trợ và mốc xem lại. Câu hỏi về dữ liệu sai phải có đường xử lý rõ.",
+      "example": "Đầu ra bài học là kịch bản 15 phút cho một nhân viên đạt hiệu suất cao nhưng gần max dải. Giải thích được chính sách phát triển lương, cơ hội nhận trách nhiệm mới và điều kiện cần có để thay đổi vai trò. Tránh hứa thăng chức chỉ để kết thúc cuộc họp.",
+      "context": "Khi trao đổi kết quả, quản lý cần giải thích được cả căn cứ đánh giá, mức đề xuất và bước tiếp theo. Trường hợp hiệu suất cao gần max dải thường cần thêm giải thích về chính sách và cơ hội phát triển.",
+      "steps": [
+        "Mở đầu bằng kết quả công việc cụ thể và bằng chứng đã xác nhận. Dành thời gian nghe thông tin còn thiếu.",
+        "Giải thích vị trí lương trong dải, nguyên tắc merit và tác động của giới hạn chính sách. Giữ bảo mật thông tin cá nhân của đồng nghiệp.",
+        "Chốt việc cần làm, người hỗ trợ, ngày phản hồi và cách rà soát nếu có dữ liệu sai."
+      ],
+      "takeaway": "Kết thúc cuộc trao đổi bằng hành động có người phụ trách và mốc xem lại.",
+      "review": {
+        "question": "Một nhân viên được đánh giá Vượt nhưng tăng thấp vì gần max. Quản lý nên nói gì?",
+        "answer": "Nêu đóng góp cụ thể, giải thích giới hạn dải theo chính sách, xác nhận điều kiện để xem xét phạm vi vai trò và thống nhất mốc trao đổi tiếp theo. Kiểm lại dữ liệu hoặc chuyển C&B nếu có khiếu nại."
+      }
+    }
+  ],
+  "merit": {
+    "budget": 5.0,
+    "cells": [
+      {
+        "rating": "Vượt",
+        "compa": "Dưới 90%",
+        "payroll": 120,
+        "rate": 9.0
+      },
+      {
+        "rating": "Vượt",
+        "compa": "90–110%",
+        "payroll": 180,
+        "rate": 7
+      },
+      {
+        "rating": "Vượt",
+        "compa": "Trên 110%",
+        "payroll": 100,
+        "rate": 5.0
+      },
+      {
+        "rating": "Đạt",
+        "compa": "Dưới 90%",
+        "payroll": 180,
+        "rate": 6.0
+      },
+      {
+        "rating": "Đạt",
+        "compa": "90–110%",
+        "payroll": 250,
+        "rate": 4.0
+      },
+      {
+        "rating": "Đạt",
+        "compa": "Trên 110%",
+        "payroll": 100,
+        "rate": 2.0
+      },
+      {
+        "rating": "Chưa đạt",
+        "compa": "Dưới 90%",
+        "payroll": 30,
+        "rate": 0
+      },
+      {
+        "rating": "Chưa đạt",
+        "compa": "90–110%",
+        "payroll": 30,
+        "rate": 0
+      },
+      {
+        "rating": "Chưa đạt",
+        "compa": "Trên 110%",
+        "payroll": 10,
+        "rate": 0
+      }
+    ]
+  }
+}

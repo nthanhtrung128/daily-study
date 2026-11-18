@@ -1,0 +1,35 @@
+/* ==== Hội thoại nhập vai: bong bóng chat hai phía. Chỉ dùng design token trên :root (tự theo sáng/tối), cỡ chữ rem. ==== */
+.rp-grow { flex: 1; min-width: 0; }
+.rp-chips .chip { max-width: 100%; overflow-wrap: anywhere; text-align: left; }
+.rp-chips .chip[disabled] { opacity: 0.7; }
+.rp-opt { justify-content: space-between; flex-wrap: wrap; width: 100%; }
+.rp-opt-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 12rem; overflow-wrap: anywhere; }
+.rp-done { background: var(--good-soft); color: var(--good); flex: 0 0 auto; }
+.rp-card { min-height: 0; }
+.rp-chat { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.rp-chat:empty { display: none; }
+.rp-b {
+  display: flex; flex-direction: column; gap: 4px; max-width: 88%; min-width: 0; padding: calc(9rem / 15) 12px;
+  border-radius: 14px; border: 1px solid var(--line); background: var(--sunk); overflow-wrap: anywhere;
+  font-family: var(--f-card); font-size: calc(16rem / 15); line-height: 1.4;
+}
+.rp-b.them { align-self: flex-start; border-bottom-left-radius: 4px; }
+.rp-b.me { align-self: flex-end; border-bottom-right-radius: 4px; background: var(--accent-soft); }
+.rp-b.cur { max-width: 100%; align-self: stretch; border: 2px solid var(--accent); font-size: calc(19rem / 15); }
+/* Lượt hiện tại cuộn vào giữa thanh tiến độ (dính đầu) và hàng nút (dính đáy), không bị che. */
+.rp-b.cur { scroll-margin: 5rem 0 13rem; }
+.rp-b .hint, .rp-who { font-family: var(--f-body); }
+.rp-who { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: calc(12rem / 15); font-weight: 600; color: var(--muted); }
+.rp-b.me .tag { background: var(--surface); }
+.rp-now { display: inline-flex; align-items: center; gap: 4px; color: var(--accent); font-weight: 600; }
+.rp-vi { font-family: var(--f-card); }
+.rp-b .say-diff { font-size: inherit; }
+/* Nút dính đáy: nút chính trọn hàng, hai nút phụ chia đôi. */
+.rp-act { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.rp-act > :first-child, .rp-act > :only-child, .rp-act > .rp-wide, .rp-act > .grade { grid-column: 1 / -1; }
+.rp-act > .btn { justify-content: center; display: inline-flex; align-items: center; gap: 8px; }
+.rp-act > .btn:not(:first-child) { min-height: var(--tap); }
+.rp-mic { font-size: calc(16rem / 15); }
+.rp-result-act { display: flex; flex-direction: column; gap: 8px; }
+.rp-result-act .btn { width: 100%; min-height: max(48px, var(--tap)); }
+@media (max-width: 340px) { .rp-act { grid-template-columns: minmax(0, 1fr); } }

@@ -87,6 +87,7 @@ export function BackupPanel() {
     setShareReady(null);
     try {
       const rec = withRec && !!recs?.count;
+      await missStore.flush();
       const data = await exportBackup(db, new Date(), { recordings: rec });
       // Nhiều đoạn (mỗi bản ghi âm một đoạn) thay vì một chuỗi lớn: đỡ tốn bộ nhớ trên iPhone.
       const parts = backupParts(data);
@@ -138,6 +139,7 @@ export function BackupPanel() {
     if (!pending) return;
     setBusy(true);
     try {
+      await missStore.flush();
       await applyBackup(pending.data, mode);
       await p.load(true);
       await missStore.load();

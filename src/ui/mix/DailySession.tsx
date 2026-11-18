@@ -158,9 +158,11 @@ export function DailySession({
           key={i}
           it={e.item.item}
           last={i + 1 >= entries.length}
-          onDone={(r) => {
-            if (r) record(e.tier === 'extra' && e.item.kind === 'dict' ? dictGrade(e.item.item, r.score) : null, r.score);
-            else record(null);
+          onScore={(r) => {
+            if (e.item.kind === 'dict') record(dictGrade(e.item.item, r.score), r.score);
+          }}
+          onNext={(scored) => {
+            if (!scored) record(null);
             next();
           }}
         />

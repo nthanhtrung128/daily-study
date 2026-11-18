@@ -5,7 +5,7 @@ import { defaultRng, pick, type Rng } from '../../core/rng';
 import { EN_ITEMS, type EnItem } from '../english/content';
 import { DICT_ITEMS, planDictation, type DictItem } from '../english/dictation';
 import { EN_TIME } from '../english/plan';
-import { SAY_ITEMS, planSpeaking, type SayItem } from '../english/speech/sayItems';
+import { SAY_ITEMS, planSpeaking, sayId, type SayItem } from '../english/speech/sayItems';
 import { SPEAKING_TOPICS, type SpeakingTopic } from '../english/speech/topics';
 import { ITEMS, type TrItem } from '../tr/items';
 import { TIME, modeOf } from '../tr/plan';
@@ -83,14 +83,26 @@ export function planDaily(
   const rng = o.rng ?? defaultRng;
   const minutes = o.minutes ?? prefs.min;
   const extra = prefs.speak && prefs.trShare < 1 ? pickSpeak(minutes, stateOf, today, rng, o.topics, o.sayItems) : null;
-  const dicts =
-    prefs.dict && prefs.trShare < 1
-      ? planDictation(stateOf, today, { count: minutes >= DICT_TWO_FROM_MIN ? 2 : 1, items: o.dictItems ?? DICT_GRADED, rng })
-      : [];
+  const maxNew = Math.max(0, prefs.maxNew - (o.newToday ?? 0));
+  let newDicts = 0;
+  const dicts: DictItem[] = [];
+  if (prefs.dict && prefs.trShare < 1) {
+    const pool = o.dictItems ?? DICT_GRADED;
+    const ranked = planDictation(stateOf, today, { count: pool.length, items: pool, rng });
+    const limit = minutes >= DICT_TWO_FROM_MIN ? 2 : 1;
+    for (const item of ranked) {
+      if (extra?.item.kind === 'say' && extra.item.id === sayId(item.key)) continue;
+      const isNew = !!item.id && !stateOf(item.id)?.box;
+      if (isNew && newDicts >= maxNew) continue;
+      if (isNew) newDicts++;
+      dicts.push(item);
+      if (dicts.length >= limit) break;
+    }
+  }
   // Thẻ gốc của câu nghe chép không xuất hiện lần nữa trong làn EN (tránh chấm một thẻ hai lần trong phiên).
   const taken = new Set(dicts.map((d) => d.id));
   const enItems = o.enItems ?? EN_ITEMS;
-  return planMix<TrItem, EnItem, SpeakExtra>({
+  const plan = planMix<TrItem, EnItem, SpeakExtra>({
     tr: { items: o.trItems ?? ITEMS, weights: TR_LANE_WEIGHTS, time: TIME },
     en: { items: taken.size ? enItems.filter((x) => !taken.has(x.id)) : enItems, weights: EN_LANE_WEIGHTS, time: EN_TIME },
     extras: dicts.map((d, k) => ({ item: dictExtra(d), secs: DICT_SECS, at: DICT_AT[k] ?? 0.9 })),
@@ -98,10 +110,13 @@ export function planDaily(
     today,
     budget: minutes * 60,
     trShare: prefs.trShare,
-    maxNew: Math.max(0, prefs.maxNew - (o.newToday ?? 0)),
+    maxNew: maxNew - newDicts,
     extra,
     rng,
   });
+  const freshDicts = plan.entries.filter((entry) => entry.tier === 'extra' && entry.item.kind === 'dict'
+    && entry.item.item.id && !stateOf(entry.item.item.id)?.box).length;
+  return { ...plan, fresh: plan.fresh + freshDicts };
 }
 
 /** Tóm tắt kế hoạch: "12 mục · TR 5 · EN 7 · 1 đề nói". */

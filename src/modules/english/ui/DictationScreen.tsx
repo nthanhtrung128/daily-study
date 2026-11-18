@@ -65,18 +65,18 @@ export function DictationScreen({
     tts.cancel();
     setDone({ results: results.current, secs: Math.round((Date.now() - t0) / 1000) });
   };
-  const next = (r: ScoreResult | null) => {
+  const record = (r: ScoreResult) => {
+    const g = dictGrade(it, r.score);
+    if (it.id && g !== null) p.grade(it.id, g);
+    else p.lap('en');
+    results.current.push({ it, score: r.score, r });
+    stepSession(i + 1, { i, g, score: r.score });
+  };
+  const next = () => {
     tts.cancel();
-    if (r) {
-      const g = dictGrade(it, r.score);
-      if (it.id && g !== null) p.grade(it.id, g);
-      // Câu hội thoại (không có id Leitner): vẫn tính thời gian vào nhóm tiếng Anh.
-      else p.lap('en');
-      results.current.push({ it, score: r.score, r });
-    }
     if (i + 1 >= list.length) finish();
     else {
-      stepSession(i + 1, r ? { i, g: dictGrade(it, r.score), score: r.score } : undefined);
+      stepSession(i + 1);
       setI(i + 1);
     }
   };
@@ -94,7 +94,7 @@ export function DictationScreen({
           Kết thúc
         </button>
       </div>
-      <DictCard key={it.key} it={it} last={i + 1 >= list.length} onDone={next} />
+      <DictCard key={it.key} it={it} last={i + 1 >= list.length} onScore={record} onNext={next} />
       <p className="hint">
         Không phân biệt hoa/thường, dấu câu, viết tắt (I’m = I am), số (15 = fifteen). Dùng gợi ý trừ {HINT_PENALTY} điểm. ≥ 90% → Nhớ rõ, 60–89% → Mơ hồ, dưới
         60% → Quên.
@@ -104,13 +104,16 @@ export function DictationScreen({
 }
 
 /** Thẻ một câu nghe chép (dùng cả trong phiên hằng ngày và Ôn điểm yếu). */
-export function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; onDone: (r: ScoreResult | null) => void }) {
+export function DictCard({ it, last, onScore, onNext }: {
+  it: DictItem; last: boolean; onScore: (r: ScoreResult) => void; onNext: (scored: boolean) => void;
+}) {
   const prefs = useTtsPrefs();
   const [plays, setPlays] = useState(0);
   const [hint, setHint] = useState(false);
   const [typed, setTyped] = useState('');
   const [result, setResult] = useState<ScoreResult | null>(null);
   const cardRef = useFocusOnMount<HTMLDivElement>();
+  const checked = useRef(false);
   const actRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLTextAreaElement>(null);
 
@@ -131,12 +134,14 @@ export function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; on
     setPlays((n) => n + 1);
   };
   const check = () => {
-    if (!typed.trim()) return;
+    if (!typed.trim() || checked.current) return;
+    checked.current = true;
     tts.cancel();
     boxRef.current?.blur();
     const r = scoreDictation(it.en, typed, hint);
     // Đếm từ nghe sai / thiếu cho "Từ hay sai" (chép đúng thì giảm).
     missStore.record(r.words);
+    onScore(r);
     setResult(r);
   };
   const g = result ? gradeForScore(result.score) : null;
@@ -200,7 +205,7 @@ export function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; on
             <button type="button" className="btn" disabled={!typed.trim()} onClick={check}>
               Kiểm tra
             </button>
-            <button type="button" className="btn ghost" onClick={() => onDone(null)}>
+            <button type="button" className="btn ghost" onClick={() => onNext(false)}>
               Bỏ qua
             </button>
           </div>
@@ -234,7 +239,7 @@ export function DictCard({ it, last, onDone }: { it: DictItem; last: boolean; on
             </p>
           </div>
           <div className="card-act dict-act">
-            <button type="button" className="btn" onClick={() => onDone(result)}>
+            <button type="button" className="btn" onClick={() => onNext(true)}>
               {last ? 'Xem kết quả' : 'Câu tiếp'}
             </button>
           </div>

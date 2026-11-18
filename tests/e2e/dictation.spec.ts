@@ -41,7 +41,10 @@ test('nghe chép: nghe → gõ → Kiểm tra → tô từ sai + điểm → h�
   await noHScroll(page);
   await page.getByRole('button', { name: 'Kiểm tra' }).click();
   await expect(page.getByTestId('dict-score')).toHaveText('100%');
-  await page.getByRole('button', { name: 'Câu tiếp' }).click();
+  await page.reload();
+  const resume = page.getByTestId('resume-panel');
+  await expect(resume).toContainText('(1/8)');
+  await resume.getByRole('button', { name: 'Tiếp tục' }).click();
   await expect(page.getByTestId('sess-count')).toHaveText('2/8');
 
   // Câu 2: dùng gợi ý, gõ sai từ đầu + thiếu từ cuối → tô từ sai / thiếu, điểm < 100.

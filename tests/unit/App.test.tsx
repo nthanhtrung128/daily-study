@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../src/App';
 import { clamp01 } from '../../src/core/num';
@@ -8,11 +8,11 @@ describe('App', () => {
     window.location.hash = '';
   });
 
-  it('mở mặc định ở Hôm nay, có đủ 4 tab', () => {
+  it('mở mặc định ở Hôm nay, có đủ 5 tab', () => {
     render(<App />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Hôm nay ôn bao lâu?');
-    const tabs = screen.getAllByRole('link');
-    expect(tabs.map((t) => t.textContent)).toEqual(['Hôm nay', 'Tra cứu', 'Tiến độ', 'Cài đặt']);
+    const tabs = within(screen.getByRole('navigation')).getAllByRole('link');
+    expect(tabs.map((t) => t.textContent)).toEqual(['Hôm nay', 'Tra cứu', 'Lộ trình', 'Tiến độ', 'Cài đặt']);
     expect(screen.getByRole('link', { name: 'Hôm nay' })).toHaveAttribute('aria-current', 'page');
   });
 
