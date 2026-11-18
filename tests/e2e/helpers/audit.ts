@@ -120,7 +120,7 @@ export function trackErrors(page: Page): string[] {
   return errs;
 }
 
-const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
+const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'lo-trinh': 'Lộ trình', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
 export type TabId = keyof typeof TABS;
 
 /**
@@ -271,6 +271,12 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await page.getByRole('searchbox').fill('zzzzqqq');
   await expect(page.getByText('Không có mục nào khớp', { exact: false })).toBeVisible();
   await at('tra-cuu-rong');
+
+  await openTab(page, 'lo-trinh');
+  await at('lo-trinh');
+  await btn('Diễn giải compa và penetration').click();
+  await btn('Xem compa-ratio').click();
+  await at('lo-trinh-bai-tinh');
 
   await openTab(page, 'tien-do');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();

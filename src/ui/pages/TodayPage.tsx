@@ -178,10 +178,17 @@ export function TodayPage() {
       <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
 
       <div className="panel stack">
+        <h2 className="h-sec">Cấu trúc lương cơ bản</h2>
+        <div className="row">
+          <a className="btn ghost roadmap-link" href="#lo-trinh">Mở lộ trình Total Rewards</a>
+        </div>
+      </div>
+
+      <div className="panel stack">
         <div>
           <RangeBar value={st.pen} />
           <p className="hint" style={{ marginTop: 8 }}>
-            Range penetration kiến thức: <span className="num">{fmt(st.pen * 100, 1)}%</span> · {st.learned}/{st.tracked} mục đã
+            Mục đã nhớ vững <span className="num">{fmt(st.pen * 100, 1)}%</span> · {st.learned}/{st.tracked} mục đã
             thuộc (hộp Leitner 4–5).
           </p>
         </div>

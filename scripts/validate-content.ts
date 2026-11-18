@@ -113,7 +113,21 @@ function validateEnglish() {
   }
 }
 
+function validateRoadmap() {
+  const file = 'content/tr-roadmap/m05.json';
+  const data = readJson(file);
+  if (!isObj(data)) return err(`${file}: gốc phải là object`);
+  if (!nonEmpty(data.title) || !nonEmpty(data.goal)) err(`${file}: thiếu tên hoặc mục tiêu mô-đun`);
+  checkList(file, 'lessons', data.lessons, ['id', 'title', 'explanation', 'example'], 'id', (row, where) => {
+    if (typeof row.id === 'string' && !/^trm-05-\d{2}$/.test(row.id)) err(`${where}: mã bài không hợp lệ`);
+  });
+  if (!isObj(data.scenario) || !nonEmpty(data.scenario.question) || !nonEmpty(data.scenario.answer)) {
+    err(`${file}: tình huống cần câu hỏi và lời giải`);
+  }
+}
+
 validateTr101();
+validateRoadmap();
 validateEnglish();
 
 if (errors.length) {

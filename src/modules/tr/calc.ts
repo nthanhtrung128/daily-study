@@ -52,6 +52,14 @@ export function progressiveTax(ti: number): number {
 
 const tr = (n: number) => fmt(n / 1e6, 2);
 
+export function compaRatio(salary: number, midpoint: number): number {
+  return salary / midpoint;
+}
+
+export function rangePenetration(salary: number, min: number, max: number): number {
+  return ((salary - min) / (max - min)) * 100;
+}
+
 export const CALC: readonly CalcDef[] = [
   {
     id: 'C-mid', bai: '2', name: 'Midpoint',
@@ -100,7 +108,7 @@ export const CALC: readonly CalcDef[] = [
     id: 'C-cr', bai: '3', name: 'Compa-ratio',
     gen(r) {
       const mid = rnd(r, 100, 400) * 1e5, sal = Math.round((mid * rnd(r, 80, 120)) / 100 / 1e5) * 1e5;
-      const a = sal / mid;
+      const a = compaRatio(sal, mid);
       return { q: `Midpoint ${fmt(mid)} đ, lương nhân viên ${fmt(sal)} đ. Compa-ratio là bao nhiêu?`, ans: a, unit: '(VD 0,95)', dec: 2, tol: 0.006, sol: `CR = Lương/Mid = ${fmt(sal)}/${fmt(mid)} = ${fmt(a, 2)} (${a >= 1 ? 'trên' : 'dưới'} midpoint).`, v: { mid, sal } };
     },
   },
@@ -109,7 +117,7 @@ export const CALC: readonly CalcDef[] = [
     gen(r) {
       const min = rnd(r, 70, 200) * 1e5, max = Math.round((min * 1.5) / 1e5) * 1e5;
       const sal = Math.round((min + ((max - min) * rnd(r, 5, 95)) / 100) / 1e5) * 1e5;
-      const a = ((sal - min) / (max - min)) * 100;
+      const a = rangePenetration(sal, min, max);
       return { q: `Dải ${fmt(min)} – ${fmt(max)} đ, lương ${fmt(sal)} đ. Range penetration là bao nhiêu %?`, ans: a, unit: '%', dec: 1, tol: 0.15, sol: `RP = (Lương − Min)/(Max − Min) = (${fmt(sal)} − ${fmt(min)})/(${fmt(max)} − ${fmt(min)}) = ${fmt(a, 1)}%.`, v: { min, max, sal } };
     },
   },
