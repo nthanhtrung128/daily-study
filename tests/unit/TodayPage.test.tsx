@@ -21,11 +21,12 @@ describe('Trang Hôm nay – phiên ôn TR', () => {
     expect(count).toHaveTextContent(`1/${total}`);
     fireEvent.click(screen.getByRole('button', { name: 'Lật thẻ' }));
     fireEvent.click(screen.getByRole('button', { name: /Nhớ rõ/ }));
-    expect(screen.getByTestId('sess-count')).toHaveTextContent(`2/${total}`);
+    await waitFor(() => expect(screen.getByTestId('sess-count')).toHaveTextContent(`2/${total}`));
     expect(screen.getByRole('progressbar', { name: 'Tiến độ phiên' })).toHaveAttribute('aria-valuenow', '1');
 
     fireEvent.click(screen.getByRole('button', { name: 'Lật thẻ' }));
     fireEvent.click(screen.getByRole('button', { name: /Quên/ }));
+    await waitFor(() => expect(screen.getByTestId('sess-count')).toHaveTextContent(`3/${total}`));
     fireEvent.click(screen.getByRole('button', { name: 'Kết thúc' }));
     expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent('Xong phiên ôn hôm nay');
     expect(screen.getByText('Xem lại mục quên / sai')).toBeInTheDocument();

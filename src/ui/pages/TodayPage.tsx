@@ -8,7 +8,8 @@ import { BackupNudge } from '../components/BackupNudge';
 import { useProgress } from '../useProgress';
 import { BAI_KEYS, BAI_SHORT } from '../../modules/tr/data';
 import { titleOf, type TrItem } from '../../modules/tr/items';
-import { DEFAULT_PREFS, DURATIONS, MODES, countBy, homeStats, modeOf, planSession, type Prefs } from '../../modules/tr/plan';
+import { DEFAULT_PREFS, DURATIONS, MODES, TIME, countBy, homeStats, modeOf, planSession, type Prefs } from '../../modules/tr/plan';
+import { useRoadmapReview } from '../../modules/tr/roadmapCards';
 import { Explain, TrCard } from '../../modules/tr/cards/TrCard';
 import { EnglishHome } from '../../modules/english/ui/EnglishHome';
 import { EnglishScreen, type EnView } from '../../modules/english/ui/EnglishScreen';
@@ -50,6 +51,7 @@ function Chip({ pressed, onClick, children }: { pressed: boolean; onClick: () =>
 
 export function TodayPage() {
   const p = useProgress();
+  const readingReview = useRoadmapReview(p);
   const daily = useDailyPrefs();
   const [prefs, setPrefs] = useState<Prefs>(DEFAULT_PREFS);
   const [view, setView] = useState<View>({ kind: 'home' });
@@ -199,6 +201,15 @@ export function TodayPage() {
         <p>Đọc về cấu trúc lương, merit và phân tích dữ liệu đãi ngộ. Thử tính với số liệu mẫu rồi tự kiểm tra.</p>
         <div className="row">
           <a className="btn ghost roadmap-link" href="#lo-trinh">Mở lộ trình Total Rewards</a>
+          {!!readingReview?.length && (
+            <button type="button" className="btn" onClick={() => {
+              setResume(null);
+              const seconds = readingReview.reduce((sum, item) => sum + TIME[item.type], 0);
+              setView({ kind: 'session', list: readingReview, t0: Date.now(), minutes: Math.ceil(seconds / 60) });
+            }}>
+              Ôn {readingReview.length} thẻ từ bài đọc
+            </button>
+          )}
         </div>
       </div>
 
@@ -309,7 +320,8 @@ function Session({
   const [i, setI] = useState(start);
   const [now, setNow] = useState(() => Date.now());
   const results = useRef<Result[]>(initial ?? []);
-  const graded = useRef(false);
+  const savedStep = useRef<Promise<unknown> | null>(null);
+  const advancing = useRef(false);
 
   useEffect(() => {
     const saved = results.current.map((r) => ({ i: list.indexOf(r.it), g: r.g })).filter((r) => r.i >= 0);
@@ -321,12 +333,16 @@ function Session({
     return () => clearInterval(t);
   }, []);
   useEffect(() => {
+    savedStep.current = null;
+    advancing.current = false;
     window.scrollTo?.({ top: 0 });
   }, [i]);
 
   const it = list[i];
-  const finish = () => {
-    endSession();
+  const finish = async () => {
+    if (advancing.current) return;
+    advancing.current = true;
+    await Promise.all([savedStep.current, endSession()]);
     onFinish(results.current, Math.round((Date.now() - t0) / 1000));
   };
   const secs = Math.max(0, Math.floor((now - t0) / 1000));
@@ -363,19 +379,17 @@ function Session({
         note={it.type === 'open' ? p.note(it.id) : ''}
         onSaveNote={(text) => p.setNote(it.id, text)}
         onGrade={(g) => {
-          if (graded.current) return;
-          graded.current = true;
+          if (advancing.current || savedStep.current) return;
           p.grade(it.id, g);
           results.current.push({ it, g });
-          stepSession(i + 1, { i, g });
+          savedStep.current = Promise.all([p.flush(), stepSession(i + 1, { i, g })]);
         }}
-        onNext={() => {
-          graded.current = false;
-          if (i + 1 >= list.length) finish();
-          else {
-            stepSession(i + 1);
-            setI(i + 1);
-          }
+        onNext={async () => {
+          if (advancing.current) return;
+          if (i + 1 >= list.length) return finish();
+          advancing.current = true;
+          await (savedStep.current ?? stepSession(i + 1));
+          setI(i + 1);
         }}
       />
     </section>

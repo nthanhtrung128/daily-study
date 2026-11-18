@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { fmt } from '../../core/num';
 import { compaRatio, rangePenetration } from '../../modules/tr/calc';
 import { completeLesson, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
+import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
+import { RoadmapRelatedCards } from '../components/RoadmapRelatedCards';
 
 export function RoadmapPage() {
   const completed = useRoadmapProgress();
@@ -88,6 +90,7 @@ function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
   const [revealed, setRevealed] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(false);
+  const related = relatedCardIds(lesson.id);
 
   async function finish() {
     setSaving(true);
@@ -137,6 +140,7 @@ function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
         </div>
         {revealed && <p>{lesson.review.answer}</p>}
       </section>
+      {related.length > 0 && <RoadmapRelatedCards ids={related} />}
       <p className="hint">Nguồn biên soạn · {source}</p>
       {error && <p role="alert">Chưa lưu được tiến độ. Hãy thử lại.</p>}
       <div className="row">

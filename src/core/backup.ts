@@ -2,6 +2,7 @@ import { db as defaultDb, type DayStat, type ItemState, type Note, type Recordin
 import { LOCAL_ONLY_KEYS } from './backupReminder';
 import { LEARNED_BOX, MAX_BOX } from './leitner';
 import { MISS_KEY, mergeMiss, normalizeMiss } from './misswords';
+import { ROADMAP_REVIEW_PREFIX, readReviewChoice } from './roadmapReview';
 
 /**
  * Xuất / nhập tiến độ dạng JSON — chỉ qua file trên máy, không gửi đi đâu.
@@ -383,6 +384,7 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
       await store.reviews.bulkAdd(data.reviews.map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })));
       // "Từ hay sai" là tiến độ: file không có (bản sao lưu cũ) thì xóa bản trên máy cho khớp tiến độ vừa thay.
       if (!data.settings.some((x) => x.key === MISS_KEY)) await store.settings.delete(MISS_KEY);
+      await store.settings.where('key').startsWith(ROADMAP_REVIEW_PREFIX).delete();
       await store.settings.bulkPut(data.settings.filter((x) => !LOCAL_ONLY_KEYS.has(x.key)));
       return;
     }
@@ -431,9 +433,17 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
     const inMiss = data.settings.find((s) => s.key === MISS_KEY);
     const curMiss = inMiss && (await store.settings.get(MISS_KEY));
     if (inMiss && curMiss) await store.settings.put({ key: MISS_KEY, value: mergeMiss(normalizeMiss(curMiss.value), normalizeMiss(inMiss.value)) });
-    // Gộp: chỉ thêm cài đặt chưa có, không đè lựa chọn hiện tại.
-    const keys = new Set((await store.settings.toArray()).map((s) => s.key));
-    await store.settings.bulkPut(data.settings.filter((s) => !keys.has(s.key) && !LOCAL_ONLY_KEYS.has(s.key)));
+    const currentSettings = new Map((await store.settings.toArray()).map((s) => [s.key, s.value]));
+    await store.settings.bulkPut(data.settings.filter((s) => {
+      if (LOCAL_ONLY_KEYS.has(s.key)) return false;
+      if (s.key.startsWith(ROADMAP_REVIEW_PREFIX)) {
+        const incoming = readReviewChoice(s.value);
+        const current = readReviewChoice(currentSettings.get(s.key));
+        return !!incoming && incoming.at > (current?.at ?? 0);
+      }
+      // Giữ cài đặt hiện có. Lịch ôn ở trên là tiến độ nên lấy thao tác mới nhất.
+      return !currentSettings.has(s.key);
+    }));
   });
 }
 
