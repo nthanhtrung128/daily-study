@@ -30,7 +30,7 @@ export function MeritPractice() {
     <section className="stack roadmap-review" aria-labelledby="merit-title">
       <h2 className="h-sec" id="merit-title">Thử cân ma trận merit</h2>
       <p>Chọn từng ô để chỉnh quỹ hoặc tỷ lệ gốc. Các số tiền dùng triệu đồng. Mô hình áp dụng cùng hệ số cho mọi ô và giả định chi đủ tháng.</p>
-      <div className="merit-inputs">
+      <div className="roadmap-fields">
         <label className="field">
           Ô trong ma trận
           <select value={index} onChange={(e) => setIndex(Number(e.target.value))}>

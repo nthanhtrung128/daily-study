@@ -1,0 +1,210 @@
+{
+  "code": "M09",
+  "title": "Phân tích dữ liệu đãi ngộ",
+  "goal": "Chuẩn hóa FTE, đọc chỉ số theo nhóm và biến phát hiện thành việc cần kiểm tra.",
+  "source": "Lộ trình Total Rewards · M07–M12, Phân tích lương, Tự kiểm tra và Trắc nghiệm",
+  "lessons": [
+    {
+      "id": "trm-09-01",
+      "title": "Tạo bộ dữ liệu phân tích",
+      "explanation": "Xác định mỗi dòng là một người tại một ngày chốt hay một giao dịch trong kỳ. Dùng mã ổn định và trường ngày hiệu lực. Khi nối dữ liệu, kiểm tra khóa trùng vì một mã có hai lịch sử lương có thể nhân đôi quỹ. FTE, tiền tệ, cấu phần và kỳ phải thống nhất trước khi tính.",
+      "example": "Bảng kiểm gồm số dòng nguồn, số mã duy nhất, số dòng sau nối, tổng quỹ trước và sau, số trường thiếu. Chênh lệch cần giải thích. Với mã có nhiều dòng, chọn quy tắc theo ngày hoặc tổng hợp theo loại khoản trước khi nối.",
+      "context": "Trước kỳ merit, C&B thường phải nối bảng lương với danh sách nhân sự, lịch sử grade và dải lương. Chọn một ngày chốt và mô tả rõ mỗi dòng. Trong bảng mẫu, một dòng đại diện cho một người ở ngày chốt. FTE là tỷ lệ thời gian làm việc quy đổi so với một vị trí toàn thời gian.",
+      "steps": [
+        "Chọn ngày chốt, tiêu chí đủ điều kiện và khóa nhân sự. Lọc lịch sử lương và grade về bản ghi có hiệu lực tại ngày chốt.",
+        "So số dòng, số mã duy nhất và tổng lương trước/sau khi nối. Ghi số dòng thiếu dải, thiếu midpoint, FTE bằng 0 hoặc sai đơn vị.",
+        "Giữ cả lương thực trả và lương quy đổi 1 FTE. So lương quy đổi với dải 1 FTE. Dùng lương thực trả khi đối chiếu quỹ thực chi."
+      ],
+      "takeaway": "Kiểm tra khóa và đơn vị trước khi tin chỉ số. Một mã khớp hai bản ghi lịch sử có thể nhân đôi lương sau khi nối.",
+      "review": {
+        "question": "NV04 thực nhận 10 triệu/tháng ở 0,5 FTE. Midpoint toàn thời gian là 20 triệu. Cần lấy số nào để tính compa?",
+        "answer": "Quy đổi 10 ÷ 0,5 = 20 triệu/tháng ở 1 FTE. Compa-ratio bằng 100%. Khi đối chiếu quỹ chi thực tế, NV04 vẫn đóng góp 10 triệu/tháng."
+      }
+    },
+    {
+      "id": "trm-09-02",
+      "title": "Tổng hợp có trọng số",
+      "explanation": "Một tỷ lệ gộp thường phải tính từ tổng tử và tổng mẫu trên cùng tập người. Trung bình compa cá nhân thể hiện người điển hình theo trọng số mỗi người. Tổng lương chia tổng midpoint thể hiện vị trí của quỹ so với cấu trúc. Ghi tên chỉ số rõ để hai báo cáo không bị hiểu là mâu thuẫn.",
+      "example": "Hai người 10/20 và 30/30 có compa cá nhân 50% và 100%. Bình quân cá nhân 75%, compa theo quỹ 80%. Nếu một người thiếu midpoint, cả lương và midpoint của người đó phải được loại khỏi phép tính có so sánh, kèm số trường hợp thiếu.",
+      "context": "Chọn chỉ số theo câu hỏi. Trung bình compa cá nhân cho mỗi người trọng số bằng nhau. Compa theo quỹ trong bài này chia tổng lương quy đổi cho tổng midpoint quy đổi, nên người có midpoint lớn tác động nhiều hơn. Mẫu số phải dùng đúng tập người đã dùng cho tử số.",
+      "steps": [
+        "Tính lương quy đổi 1 FTE và compa cá nhân cho từng dòng có FTE và midpoint hợp lệ.",
+        "Tính trung bình cộng các compa cá nhân. Tách riêng phép chia tổng lương quy đổi cho tổng midpoint.",
+        "Khi một dòng thiếu FTE hoặc midpoint hợp lệ, loại cả lương và midpoint của dòng đó khỏi phép chia gộp. Báo số người được tính và tổng số người trong mẫu."
+      ],
+      "takeaway": "Trong báo cáo ghi rõ đang tính trung bình cá nhân hay tỷ lệ trên tổng lương quy đổi, kèm số người hợp lệ.",
+      "review": {
+        "question": "Hai người có lương/midpoint lần lượt 10/20 và 30/30. Bình quân cá nhân và compa theo quỹ là bao nhiêu?",
+        "answer": "Bình quân cá nhân là (50% + 100%) ÷ 2 = 75%. Compa theo quỹ là (10 + 30) ÷ (20 + 30) = 80%."
+      }
+    },
+    {
+      "id": "trm-09-03",
+      "title": "Đọc phân bố và nguyên nhân",
+      "explanation": "Xem trung vị, tứ phân vị, khoảng phân bố và số ngoài dải theo grade hoặc họ nghề. Kiểm tra dữ liệu bất thường trước khi loại ngoại lệ. Tách biến động của người cũ, người vào ra, tăng lương và đổi dải. Đây là cách giải thích vì sao bình quân lương tăng dù nhiều cá nhân không tăng.",
+      "example": "Trong bảng giả định, NV01 ở G1 có lương 15 triệu và min 16 triệu, nên nằm dưới min. NV07 ở G2 và NV11 ở G3 đều vượt max 1 triệu. Khi lọc theo G1, báo cáo còn 4 người với compa nhóm 91,25%. Dùng bộ lọc để đối chiếu từng kết quả.",
+      "context": "Chỉ số tổng hợp có thể gần 100% trong khi vẫn có người ở ngoài dải. Khi rà soát, lọc theo grade hoặc họ nghề, so phân bố và kiểm từng hồ sơ khác thường. Grade là ngạch dùng để phân nhóm các vai trò theo giá trị công việc.",
+      "steps": [
+        "So lương 1 FTE với min và max để gắn trạng thái. Tính range penetration bằng (lương 1 FTE − min) ÷ (max − min). Giữ giá trị âm hoặc trên 100% để thấy độ lệch.",
+        "Tính market ratio bằng lương 1 FTE chia mức thị trường 1 FTE. Chỉ so khi nguồn thị trường cùng phạm vi công việc, địa bàn và kỳ.",
+        "Đọc trung vị, tứ phân vị và số ngoài dải bên cạnh trung bình. Đối chiếu grade, FTE và ngày hiệu lực trước khi gắn nguyên nhân."
+      ],
+      "takeaway": "Dưới min hoặc trên max là tín hiệu kiểm tra hồ sơ. Một nhóm nhỏ cần nêu số người bên cạnh tỷ lệ.",
+      "review": {
+        "question": "NV07 có lương 33 triệu, FTE 1 và dải 22–32 triệu. Range penetration và việc kiểm tra đầu tiên là gì?",
+        "answer": "Range penetration = (33 − 22) ÷ (32 − 22) = 110%, lương cao hơn max 1 triệu. Kiểm tra grade, kỳ hiệu lực của dải và lịch sử quyết định lương."
+      }
+    },
+    {
+      "id": "trm-09-04",
+      "title": "Trình bày để ra quyết định",
+      "explanation": "Mỗi biểu hoặc bảng nên có câu hỏi, tập mẫu, ngày chốt và hành động. Dùng cùng thước đo giữa các nhóm, tránh trục hoặc tỷ lệ làm phóng đại khác biệt. Phân biệt kết quả mô tả, giả thuyết và bằng chứng đã kiểm tra. Đề xuất cần có chi phí, người chịu trách nhiệm và mốc xem lại.",
+      "example": "Bài thực hành. Viết ba nhận xét từ dữ liệu mẫu, mỗi nhận xét gồm số liệu, cách hiểu và việc cần kiểm tra. Một nhận xét đạt yêu cầu là quản lý có thể giao việc cụ thể mà không phải đoán nguyên nhân bạn muốn nói.",
+      "context": "Một quản lý cần biết mình phải làm gì với phát hiện trong báo cáo. Trình bày theo thứ tự câu hỏi, kết quả thực tế, giả thuyết có thể kiểm tra và người phụ trách. Với mẫu nhỏ, giữ bảo mật chi tiết cá nhân khi trình bày ngoài nhóm có quyền.",
+      "steps": [
+        "Mở bằng câu hỏi và mẫu. Ghi ngày chốt, đơn vị, số người hợp lệ và cách quy đổi FTE.",
+        "Phân biệt quan sát và nguyên nhân đã kiểm chứng. Đưa vào một bảng ngắn theo grade với số người, số ngoài dải và chỉ số phù hợp.",
+        "Đề nghị bước kiểm tra hoặc chi phí ước tính, người chịu trách nhiệm và mốc báo lại. Dùng cùng mẫu giữa các kỳ để phân biệt biến động nhân sự và điều chỉnh lương."
+      ],
+      "takeaway": "Một nhận xét tốt nêu được số liệu, cách hiểu và việc cần kiểm tra.",
+      "review": {
+        "question": "Viết một nhận xét để trưởng bộ phận giao việc từ kết quả G1 có 1/4 người dưới min.",
+        "answer": "Ví dụ: G1 có 1/4 người dưới min tại ngày chốt, chênh 1 triệu/tháng quy đổi 1 FTE. C&B đối chiếu grade, FTE và phiên bản dải trước kỳ duyệt và báo chi phí điều chỉnh nếu dữ liệu đúng."
+      }
+    }
+  ],
+  "sample": [
+    {
+      "id": "NV01",
+      "family": "Kỹ thuật",
+      "grade": "G1",
+      "fte": 1,
+      "salary": 15,
+      "min": 16,
+      "midpoint": 20,
+      "max": 24,
+      "market": 21
+    },
+    {
+      "id": "NV02",
+      "family": "Kỹ thuật",
+      "grade": "G1",
+      "fte": 1,
+      "salary": 18,
+      "min": 16,
+      "midpoint": 20,
+      "max": 24,
+      "market": 21
+    },
+    {
+      "id": "NV03",
+      "family": "Nhân sự",
+      "grade": "G1",
+      "fte": 1,
+      "salary": 20,
+      "min": 16,
+      "midpoint": 20,
+      "max": 24,
+      "market": 20
+    },
+    {
+      "id": "NV04",
+      "family": "Nhân sự",
+      "grade": "G1",
+      "fte": 0.5,
+      "salary": 10,
+      "min": 16,
+      "midpoint": 20,
+      "max": 24,
+      "market": 20
+    },
+    {
+      "id": "NV05",
+      "family": "Kỹ thuật",
+      "grade": "G2",
+      "fte": 1,
+      "salary": 23,
+      "min": 22,
+      "midpoint": 27,
+      "max": 32,
+      "market": 28
+    },
+    {
+      "id": "NV06",
+      "family": "Kinh doanh",
+      "grade": "G2",
+      "fte": 1,
+      "salary": 29,
+      "min": 22,
+      "midpoint": 27,
+      "max": 32,
+      "market": 29
+    },
+    {
+      "id": "NV07",
+      "family": "Nhân sự",
+      "grade": "G2",
+      "fte": 1,
+      "salary": 33,
+      "min": 22,
+      "midpoint": 27,
+      "max": 32,
+      "market": 28
+    },
+    {
+      "id": "NV08",
+      "family": "Kỹ thuật",
+      "grade": "G2",
+      "fte": 1,
+      "salary": 27,
+      "min": 22,
+      "midpoint": 27,
+      "max": 32,
+      "market": 28
+    },
+    {
+      "id": "NV09",
+      "family": "Kỹ thuật",
+      "grade": "G3",
+      "fte": 1,
+      "salary": 34,
+      "min": 32,
+      "midpoint": 40,
+      "max": 48,
+      "market": 42
+    },
+    {
+      "id": "NV10",
+      "family": "Kinh doanh",
+      "grade": "G3",
+      "fte": 1,
+      "salary": 43,
+      "min": 32,
+      "midpoint": 40,
+      "max": 48,
+      "market": 42
+    },
+    {
+      "id": "NV11",
+      "family": "Nhân sự",
+      "grade": "G3",
+      "fte": 1,
+      "salary": 49,
+      "min": 32,
+      "midpoint": 40,
+      "max": 48,
+      "market": 41
+    },
+    {
+      "id": "NV12",
+      "family": "Kỹ thuật",
+      "grade": "G3",
+      "fte": 1,
+      "salary": 40,
+      "min": 32,
+      "midpoint": 40,
+      "max": 48,
+      "market": 42
+    }
+  ]
+}

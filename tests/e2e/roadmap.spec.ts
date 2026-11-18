@@ -64,3 +64,34 @@ test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page 
   await page.reload();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
 });
+
+test('đọc M09 và so sánh lương theo FTE, grade và họ nghề', async ({ page }, info) => {
+  await page.goto('./#lo-trinh');
+  const module = page.getByRole('region', { name: 'Phân tích dữ liệu đãi ngộ' });
+  await module.getByRole('button', { name: 'Đọc phân bố và nguyên nhân' }).click();
+  await expect(page.getByRole('heading', { name: 'Bối cảnh nghiệp vụ' })).toBeVisible();
+  const coverage = page.getByTestId('salary-coverage');
+  const group = page.getByTestId('salary-group');
+  await expect(coverage).toContainText('12/12 hồ sơ đủ dữ liệu tính compa');
+  await expect(group).toContainText('100,86%');
+  await expect(group).toContainText('99,57%');
+  await page.getByRole('combobox', { name: 'Grade', exact: true }).selectOption('G1');
+  await expect(coverage).toContainText('4/4 hồ sơ đủ dữ liệu tính compa');
+  await expect(group).toContainText('91,25%');
+  await page.getByRole('combobox', { name: 'Hồ sơ mẫu', exact: true }).selectOption('NV04');
+  await expect(page.getByTestId('salary-detail')).toContainText('20,00 triệu');
+  if (process.env.PW_SHOTS === 'roadmap' && info.project.name === 'iPhone SE') {
+    await group.evaluate((el) => el.scrollIntoView({ block: 'center' }));
+    await page.screenshot({ path: info.outputPath('m09.png') });
+  }
+  await page.getByLabel('Midpoint tại 1 FTE').fill('');
+  await expect(coverage).toContainText('3/4 hồ sơ đủ dữ liệu tính compa');
+  await expect(group).toContainText('88,33%');
+  await page.getByRole('combobox', { name: 'Họ nghề', exact: true }).selectOption('Kinh doanh');
+  await expect(page.getByText(/Tổ hợp grade và họ nghề này chưa có hồ sơ/)).toBeVisible();
+  await page.getByRole('button', { name: 'Khôi phục bảng mẫu' }).click();
+  await expect(coverage).toContainText('12/12 hồ sơ đủ dữ liệu tính compa');
+  await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+  await page.reload();
+  await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
+});

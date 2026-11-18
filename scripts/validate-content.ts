@@ -114,7 +114,7 @@ function validateEnglish() {
 }
 
 function validateRoadmap() {
-  for (const code of ['05', '06']) {
+  for (const code of ['05', '06', '09']) {
     const file = `content/tr-roadmap/m${code}.json`;
     const data = readJson(file);
     const validReview = (value: unknown) => isObj(value) && nonEmpty(value.question) && nonEmpty(value.answer);
@@ -130,14 +130,25 @@ function validateRoadmap() {
       if (!Array.isArray(row.steps) || !row.steps.length || !row.steps.every(nonEmpty)) err(`${where}: thiếu các bước thực hiện`);
       if (!validReview(row.review)) err(`${where}: phần tự ôn cần câu hỏi và lời giải`);
     });
+    const inRange = (value: unknown, max: number) => typeof value === 'number' && value >= 0 && value <= max;
     if (code === '06') {
-      const inRange = (value: unknown, max: number) => typeof value === 'number' && value >= 0 && value <= max;
       const merit = data.merit;
       if (!isObj(merit) || !inRange(merit.budget, 100) || !Array.isArray(merit.cells) || merit.cells.length !== 9
         || !merit.cells.every((cell: unknown) => isObj(cell) && nonEmpty(cell.rating) && nonEmpty(cell.compa)
           && inRange(cell.payroll, 1e9) && inRange(cell.rate, 100))) {
         err(`${file}: cần ngân sách và 9 ô ma trận hợp lệ`);
       }
+    }
+    if (code === '09') {
+      checkList(file, 'sample', data.sample, ['id', 'grade', 'family'], 'id', (row, where) => {
+        if (!inRange(row.fte, 1) || row.fte === 0
+          || !['salary', 'min', 'midpoint', 'max', 'market'].every((key) => inRange(row[key], 1e6))
+          || row.min === 0 || row.market === 0
+          || !(Number(row.min) <= Number(row.midpoint) && Number(row.midpoint) <= Number(row.max))
+          || row.max === row.min) {
+          err(`${where}: mẫu có FTE, số tiền hoặc dải không hợp lệ`);
+        }
+      });
     }
   }
 }

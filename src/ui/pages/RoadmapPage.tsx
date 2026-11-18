@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { fmt } from '../../core/num';
 import { compaRatio, rangePenetration } from '../../modules/tr/calc';
 import { completeLesson, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
+import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
 
@@ -124,6 +125,7 @@ function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
         <p>{lesson.example}</p>
       </section>
       {lesson.id === 'trm-06-03' && <MeritPractice />}
+      {lesson.id === 'trm-09-03' && <SalaryAnalysisPractice />}
       <section className="roadmap-reading roadmap-review" aria-labelledby="scenario-title">
         <h2 className="h-sec" id="scenario-title">Tự ôn</h2>
         <p><strong>Cần nhớ</strong> · {lesson.takeaway}</p>
