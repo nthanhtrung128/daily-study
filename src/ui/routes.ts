@@ -28,3 +28,7 @@ export function parseHash(hash: string): RouteId {
 export function routeLabel(id: RouteId): string {
   return ROUTES.find((r) => r.id === id)?.label ?? '';
 }
+
+export function lessonHref(id: string): string {
+  return `#lo-trinh?bai=${encodeURIComponent(id)}`;
+}

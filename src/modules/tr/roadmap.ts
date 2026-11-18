@@ -7,7 +7,11 @@ import { db, setSetting } from '../../core/db';
 
 export const ROADMAP_MODULES = [module05, module06, module09];
 export type RoadmapLesson = typeof module05.lessons[number];
-export { module06, module09 };
+export { module05, module06, module09 };
+
+export function firstIncompleteLesson(lessons: readonly RoadmapLesson[], completed: readonly string[]) {
+  return lessons.find((lesson) => !completed.includes(lesson.id));
+}
 
 const prefix = 'tr.roadmap.';
 

@@ -1,22 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fmt } from '../../core/num';
 import { compaRatio, rangePenetration } from '../../modules/tr/calc';
-import { completeLesson, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
+import { completeLesson, firstIncompleteLesson, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
 import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
 import { RoadmapRelatedCards } from '../components/RoadmapRelatedCards';
+import { lessonHref } from '../routes';
+import { useLocationHash } from '../useHashRoute';
 
 export function RoadmapPage() {
   const completed = useRoadmapProgress();
-  const [selected, setSelected] = useState<RoadmapLesson>();
+  const hash = useLocationHash();
+  const id = new URLSearchParams(hash.split('?')[1]).get('bai');
+  const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === id));
+  const selected = module?.lessons.find((lesson) => lesson.id === id);
   const heading = useFocusOnMount<HTMLHeadingElement>(!selected);
-  const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === selected?.id));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [selected]);
 
   function open(lesson?: RoadmapLesson) {
-    setSelected(lesson);
-    window.scrollTo(0, 0);
+    if (window.location.hash === hash) window.location.assign(lesson ? lessonHref(lesson.id) : '#lo-trinh');
   }
 
   if (selected && module) {
@@ -44,7 +51,7 @@ export function RoadmapPage() {
       <div className="roadmap-modules">
         {ROADMAP_MODULES.map((entry) => {
           const count = entry.lessons.filter((lesson) => completed?.includes(lesson.id)).length;
-          const next = entry.lessons.find((lesson) => !completed?.includes(lesson.id));
+          const next = completed && firstIncompleteLesson(entry.lessons, completed);
           return (
             <section className="panel stack" key={entry.code} aria-labelledby={`module-${entry.code}`}>
               <div>
