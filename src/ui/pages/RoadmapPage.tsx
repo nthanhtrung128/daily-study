@@ -159,32 +159,63 @@ function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
 }
 
 function SalaryPractice() {
-  const [showCompa, setShowCompa] = useState(false);
+  const [prediction, setPrediction] = useState('');
+  const [guess, setGuess] = useState<number>();
+  const [invalidPrediction, setInvalidPrediction] = useState(false);
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
   const [result, setResult] = useState<string>();
-  const salary = 18;
+  const salary = 19.2;
   const midpoint = 20;
+  const compa = compaRatio(salary, midpoint) * 100;
+  const difference = guess === undefined ? 0 : Math.round((guess - compa) * 10) / 10;
 
   return (
     <section className="stack" aria-labelledby="practice-title">
       <h2 className="h-sec" id="practice-title">Thử tính vị trí trong dải</h2>
-      <p>Lương cơ bản 18 triệu đồng/tháng, midpoint 20 triệu. Hãy dự đoán compa-ratio.</p>
-      <div className="row">
-        <button className="btn ghost" type="button" aria-expanded={showCompa} onClick={() => setShowCompa(!showCompa)}>
-          {showCompa ? 'Ẩn compa-ratio' : 'Xem compa-ratio'}
-        </button>
+      <p>Lương cơ bản {fmt(salary, 1)} triệu đồng/tháng, midpoint {midpoint} triệu. Hãy dự đoán compa-ratio.</p>
+      <form className="stack" onSubmit={(event) => {
+        event.preventDefault();
+        const value = readAmount(prediction.replace(/%\s*$/, ''));
+        setInvalidPrediction(!Number.isFinite(value));
+        if (Number.isFinite(value)) setGuess(value);
+      }}>
+        <label className="field">
+          Dự đoán compa-ratio (%)
+          <input type="text" inputMode="decimal" maxLength={14} value={prediction} aria-invalid={invalidPrediction}
+            aria-describedby="prediction-help" onChange={(event) => {
+              setPrediction(event.target.value);
+              setGuess(undefined);
+              setInvalidPrediction(false);
+              setResult(undefined);
+            }} />
+        </label>
+        <p className="hint" id="prediction-help">Nhập phần trăm, ví dụ 85 hoặc 85,5%.</p>
+        {invalidPrediction && <p role="alert">Nhập một tỷ lệ phần trăm hợp lệ.</p>}
+        <div className="row">
+          <button className="btn" type="submit">Đối chiếu dự đoán</button>
+        </div>
+      </form>
+      <div className="stack" role="status">
+        {guess !== undefined && (
+          <>
+            <p><strong>{fmt(salary, 1)} ÷ {midpoint} = {fmt(compa)}%.</strong> Bạn dự đoán {fmt(guess, Number.isInteger(guess) ? 0 : 1)}%.</p>
+            <p>{difference === 0
+              ? 'Dự đoán khớp với kết quả.'
+              : `Dự đoán ${difference < 0 ? 'thấp' : 'cao'} hơn ${fmt(Math.abs(difference), Number.isInteger(difference) ? 0 : 1)} điểm phần trăm.`}</p>
+          </>
+        )}
       </div>
-      {showCompa && (
+      {guess !== undefined && (
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();
           const low = readAmount(min);
           const high = readAmount(max);
           setResult(low > 0 && low < midpoint && high > midpoint
             ? `Vị trí trong dải: ${fmt(rangePenetration(salary, low, high), 1)}%.`
-            : 'Nhập min dương dưới 20 và max trên 20. Dùng dấu phẩy hoặc dấu chấm cho phần thập phân.');
+            : `Nhập min dương dưới ${midpoint} và max trên ${midpoint}. Dùng dấu phẩy hoặc dấu chấm cho phần thập phân.`);
         }}>
-          <p>18 ÷ 20 = {fmt(compaRatio(salary, midpoint) * 100)}%. Nhập min và max rồi thử đổi độ rộng dải để xem chỉ số thứ hai thay đổi ra sao.</p>
+          <p>Nhập min và max rồi thử đổi độ rộng dải để xem range penetration thay đổi ra sao.</p>
           <label className="field">
             Min (triệu đồng/tháng)
             <input type="text" inputMode="decimal" value={min} placeholder="16" onChange={(e) => { setMin(e.target.value); setResult(undefined); }} />
