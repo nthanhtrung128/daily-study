@@ -45,6 +45,41 @@ test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp',
   await expect(page.getByRole('button', { name: /^Học tiếp/ })).toHaveText(/Quy tắc tuyển và dịch chuyển/);
 });
 
+test('Hôm nay mở bài M05 đầu tiên chưa hoàn thành và khôi phục đúng bài qua URL', async ({ page }) => {
+  await page.goto('./#hom-nay');
+  const start = page.getByRole('link', { name: /^Bắt đầu M05/ });
+  await expect(start).toHaveAttribute('href', '#lo-trinh?bai=trm-05-01');
+  await start.click();
+  const title = page.getByRole('heading', { level: 1 });
+  await expect(title).toHaveText('Từ chính sách thị trường đến dải');
+  await expect(page).toHaveURL(/#lo-trinh\?bai=trm-05-01$/);
+  await page.reload();
+  await expect(title).toHaveText('Từ chính sách thị trường đến dải');
+  await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+  await expect(title).toHaveText('Đọc và tự ôn Total Rewards');
+
+  await openTab(page, 'hom-nay');
+  const resume = page.getByRole('link', { name: /^Học tiếp/ });
+  await expect(resume).toHaveAttribute('href', '#lo-trinh?bai=trm-05-02');
+  await resume.click();
+  await expect(title).toHaveText('Diễn giải compa và penetration');
+  await openTab(page, 'lo-trinh');
+  await expect(title).toHaveText('Đọc và tự ôn Total Rewards');
+  await page.goBack();
+  await expect(title).toHaveText('Diễn giải compa và penetration');
+  await page.getByRole('button', { name: 'Về kho kiến thức' }).click();
+
+  const module = page.getByRole('region', { name: 'Cấu trúc lương cơ bản' });
+  for (const lesson of ['Ngoài dải và duy trì', 'Diễn giải compa và penetration', 'Quy tắc tuyển và dịch chuyển']) {
+    await module.getByRole('button', { name: lesson, exact: true }).click();
+    await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+    await expect(title).toHaveText('Đọc và tự ôn Total Rewards');
+  }
+  await openTab(page, 'hom-nay');
+  await expect(page.getByText('Đã hoàn thành M05')).toBeVisible();
+  await expect(resume).toHaveCount(0);
+});
+
 test('mở thẻ M05, hẹn ôn hoặc bỏ hẹn rồi chấm thẻ đã chọn ở Hôm nay', async ({ page }, info) => {
   await page.addInitScript(watchCsp);
   await page.goto('./#lo-trinh');
