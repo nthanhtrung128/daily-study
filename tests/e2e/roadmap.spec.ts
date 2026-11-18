@@ -19,6 +19,7 @@ test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp',
   await calculate.click();
   await expect(page.getByText('Vị trí trong dải: 25,0%.')).toBeVisible();
   if (process.env.PW_SHOTS === 'roadmap') {
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: info.outputPath('m05.png'), fullPage: true });
   }
   await page.getByRole('button', { name: 'Xem lời giải' }).click();
