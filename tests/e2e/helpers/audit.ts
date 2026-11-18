@@ -191,6 +191,7 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await at('tr-the-lat');
   await btn(/^Quên/).click();
   await btn('Kết thúc').click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Xong phiên ôn hôm nay');
   await at('tr-ket-qua');
 
   await trMode('Trắc nghiệm');

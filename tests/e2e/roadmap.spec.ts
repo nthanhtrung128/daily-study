@@ -40,6 +40,7 @@ test('mở thẻ M05, hẹn ôn hoặc bỏ hẹn rồi chấm thẻ đã chọn
   await page.getByRole('button', { name: 'Diễn giải compa và penetration' }).click();
   const related = page.getByRole('region', { name: 'Thẻ liên quan' });
   const compa = related.locator('details').filter({ has: page.getByText('Compa-ratio', { exact: true }) });
+  await expect(related.getByRole('button', { name: 'Đưa vào lịch ôn', includeHidden: true })).toHaveCount(0);
   await compa.locator('summary').click();
   await expect(compa.locator('.formula')).toBeVisible();
   await compa.getByRole('button', { name: 'Đưa vào lịch ôn' }).click();

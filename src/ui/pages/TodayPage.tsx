@@ -319,6 +319,7 @@ function Session({
   const p = useProgress();
   const [i, setI] = useState(start);
   const [now, setNow] = useState(() => Date.now());
+  const [saving, setSaving] = useState(false);
   const results = useRef<Result[]>(initial ?? []);
   const savedStep = useRef<Promise<unknown> | null>(null);
   const advancing = useRef(false);
@@ -342,6 +343,7 @@ function Session({
   const finish = async () => {
     if (advancing.current) return;
     advancing.current = true;
+    setSaving(true);
     await Promise.all([savedStep.current, endSession()]);
     onFinish(results.current, Math.round((Date.now() - t0) / 1000));
   };
@@ -368,7 +370,7 @@ function Session({
           {mmss(secs)}
           <span className="sess-total"> / {minutes}:00</span>
         </span>
-        <button type="button" className="btn ghost small" onClick={finish}>
+        <button type="button" className="btn ghost small" disabled={saving} onClick={finish}>
           Kết thúc
         </button>
       </div>
@@ -388,8 +390,10 @@ function Session({
           if (advancing.current) return;
           if (i + 1 >= list.length) return finish();
           advancing.current = true;
+          setSaving(true);
           await (savedStep.current ?? stepSession(i + 1));
           setI(i + 1);
+          setSaving(false);
         }}
       />
     </section>

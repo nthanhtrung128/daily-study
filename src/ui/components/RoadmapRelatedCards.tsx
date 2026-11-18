@@ -7,6 +7,7 @@ import { LookupDetail } from './LookupDetail';
 
 export function RoadmapRelatedCards({ ids }: { ids: string[] }) {
   const queue = useRoadmapReview(useProgress());
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [saving, setSaving] = useState<string>();
   const [error, setError] = useState(false);
 
@@ -32,21 +33,26 @@ export function RoadmapRelatedCards({ ids }: { ids: string[] }) {
           if (!entry) return null;
           const queued = queue?.some((item) => item.id === id) ?? false;
           return (
-            <details className="item roadmap-card" key={id}>
+            <details className="item roadmap-card" key={id} onToggle={({ currentTarget }) => {
+              const open = currentTarget.open;
+              setExpanded((cards) => ({ ...cards, [id]: open }));
+            }}>
               <summary>
                 <span className="lk-head"><b>{entry.title}</b></span>
                 <span className="tag">{KIND_LABEL[entry.kind]}</span>
               </summary>
-              <div className="body">
-                <LookupDetail e={entry} />
-                <div className="row">
-                  <button type="button" className={queued ? 'btn ghost' : 'btn'} disabled={!queue || saving !== undefined}
-                    onClick={() => void change(id, !queued)}>
-                    {saving === id ? 'Đang lưu…' : queued ? 'Bỏ khỏi lịch ôn' : 'Đưa vào lịch ôn'}
-                  </button>
-                  <span className="hint" role="status">{queued ? 'Đã lên lịch' : ''}</span>
+              {expanded[id] && (
+                <div className="body">
+                  <LookupDetail e={entry} />
+                  <div className="row">
+                    <button type="button" className={queued ? 'btn ghost' : 'btn'} disabled={!queue || saving !== undefined}
+                      onClick={() => void change(id, !queued)}>
+                      {saving === id ? 'Đang lưu…' : queued ? 'Bỏ khỏi lịch ôn' : 'Đưa vào lịch ôn'}
+                    </button>
+                    <span className="hint" role="status">{queued ? 'Đã lên lịch' : ''}</span>
+                  </div>
                 </div>
-              </div>
+              )}
             </details>
           );
         })}
