@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fmt } from '../../core/num';
 import { compaRatio, rangePenetration } from '../../modules/tr/calc';
-import { completeLesson, firstIncompleteLesson, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
+import { completeLesson, courseProgress, CURRICULUM, nextAfter, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
 import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
@@ -12,6 +12,7 @@ import { useLocationHash } from '../useHashRoute';
 
 export function RoadmapPage() {
   const completed = useRoadmapProgress();
+  const course = completed && courseProgress(completed);
   const hash = useLocationHash();
   const id = new URLSearchParams(hash.split('?')[1]).get('bai');
   const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === id));
@@ -34,9 +35,10 @@ export function RoadmapPage() {
         lesson={selected}
         label={`${module.code} · Bài ${index + 1}/${module.lessons.length}`}
         source={module.source}
-        done={completed?.includes(selected.id) ?? false}
+        done={completed?.includes(selected.id)}
+        following={completed && nextAfter(selected.id, completed)}
+        browseNext={module.lessons[index + 1]}
         onBack={() => open()}
-        next={module.lessons[index + 1]}
         onNext={open}
       />
     );
@@ -46,12 +48,45 @@ export function RoadmapPage() {
     <section className="stack roadmap-library" aria-labelledby="roadmap-title">
       <header className="panel stack roadmap-intro">
         <h1 className="h-page" id="roadmap-title" tabIndex={-1} ref={heading}>Đọc và tự ôn Total Rewards</h1>
-        <p>Chọn một bài để đọc bối cảnh, xem ví dụ và tự trả lời câu hỏi cuối bài.</p>
+        <p>Chương trình gồm {CURRICULUM.length} mô-đun. Hiện có {ROADMAP_MODULES.length} mô-đun mở để đọc, thực hành và tự kiểm tra.</p>
+        {course && (
+          <div className="stack">
+            <div className="reading-progress-row">
+              <label htmlFor="course-progress">{course.count}/{course.total} bài đang mở đã hoàn thành</label>
+              <progress id="course-progress" value={course.count} max={course.total} />
+            </div>
+            {course.next ? (
+              <div className="row">
+                <a className="btn roadmap-link" href={lessonHref(course.next.lesson.id)}>
+                  {course.count ? 'Học tiếp' : 'Bắt đầu'} {course.next.code} · {course.next.lesson.title}
+                </a>
+              </div>
+            ) : <p>Bạn đã học xong các bài đang mở. Chọn một bài bên dưới để ôn lại.</p>}
+          </div>
+        )}
+        <details className="course-outline">
+          <summary>Chương trình {CURRICULUM.length} mô-đun</summary>
+          <ol role="list" aria-label="Thứ tự mô-đun">
+            {CURRICULUM.map((entry) => {
+              const lessons = 'lessons' in entry ? entry.lessons : undefined;
+              const first = lessons?.find((lesson) => !completed?.includes(lesson.id)) ?? lessons?.[0];
+              return (
+                <li key={entry.code}>
+                  <span className="eyebrow">{entry.code}</span>
+                  <div>
+                    {first ? <a className="course-module-link" href={lessonHref(first.id)}>{entry.title}</a> : <strong>{entry.title}</strong>}
+                    <p className="hint">{lessons ? `${lessons.length} bài đọc` : 'Chưa có bài đọc'}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </details>
       </header>
       <div className="roadmap-modules">
         {ROADMAP_MODULES.map((entry) => {
           const count = entry.lessons.filter((lesson) => completed?.includes(lesson.id)).length;
-          const next = completed && firstIncompleteLesson(entry.lessons, completed);
+          const next = completed && entry.lessons.find((lesson) => !completed.includes(lesson.id));
           return (
             <section className="panel stack" key={entry.code} aria-labelledby={`module-${entry.code}`}>
               <div>
@@ -59,7 +94,7 @@ export function RoadmapPage() {
                 <h2 className="h-sec" id={`module-${entry.code}`}>{entry.title}</h2>
               </div>
               <p>{entry.goal}</p>
-              <p className="hint" aria-live="polite">{count}/{entry.lessons.length} bài đã hoàn thành</p>
+              {completed && <p className="hint">{count}/{entry.lessons.length} bài đã hoàn thành</p>}
               {next && (
                 <div className="row">
                   <button className="btn" type="button" onClick={() => open(next)}>
@@ -84,13 +119,14 @@ export function RoadmapPage() {
   );
 }
 
-function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
+function Lesson({ lesson, label, source, done, following, browseNext, onBack, onNext }: {
   lesson: RoadmapLesson;
   label: string;
   source: string;
-  done: boolean;
+  done: boolean | undefined;
+  following: ReturnType<typeof nextAfter>;
+  browseNext: RoadmapLesson | undefined;
   onBack: () => void;
-  next: RoadmapLesson | undefined;
   onNext: (lesson: RoadmapLesson) => void;
 }) {
   const heading = useFocusOnMount<HTMLHeadingElement>();
@@ -104,7 +140,8 @@ function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
     setError(false);
     try {
       await completeLesson(lesson.id);
-      onBack();
+      if (following) onNext(following.lesson);
+      else onBack();
     } catch {
       setSaving(false);
       setError(true);
@@ -150,15 +187,21 @@ function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
       {related.length > 0 && <RoadmapRelatedCards ids={related} />}
       <p className="hint">Nguồn biên soạn · {source}</p>
       {error && <p role="alert">Chưa lưu được tiến độ. Hãy thử lại.</p>}
+      {following && <p className="hint">Bài tiếp theo · {following.code} · {following.lesson.title}</p>}
       <div className="row">
         {done ? (
-          <p className="hint">Đã hoàn thành</p>
+          <>
+            <p className="hint">Đã hoàn thành</p>
+            {following && <button className="btn" type="button" onClick={() => onNext(following.lesson)}>Học bài tiếp theo</button>}
+          </>
         ) : (
-          <button className="btn" type="button" disabled={saving} onClick={() => void finish()}>
-            {saving ? 'Đang lưu…' : 'Đánh dấu hoàn thành'}
+          <button className="btn" type="button" disabled={saving || done === undefined} onClick={() => void finish()}>
+            {saving ? 'Đang lưu…' : following ? 'Hoàn thành và học tiếp' : 'Hoàn thành và xem tiến độ'}
           </button>
         )}
-        {next && <button className="btn ghost" type="button" onClick={() => onNext(next)}>Đọc bài kế tiếp</button>}
+        {browseNext && (!done || following?.lesson.id !== browseNext.id) && (
+          <a className="btn ghost roadmap-link" href={lessonHref(browseNext.id)}>Đọc bài kế tiếp</a>
+        )}
         <button className="btn ghost" type="button" onClick={onBack}>Chọn bài khác</button>
       </div>
     </article>

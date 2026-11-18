@@ -9,7 +9,7 @@ import { useProgress } from '../useProgress';
 import { BAI_KEYS, BAI_SHORT } from '../../modules/tr/data';
 import { titleOf, type TrItem } from '../../modules/tr/items';
 import { DEFAULT_PREFS, DURATIONS, MODES, TIME, countBy, homeStats, modeOf, planSession, type Prefs } from '../../modules/tr/plan';
-import { firstIncompleteLesson, module05, useRoadmapProgress } from '../../modules/tr/roadmap';
+import { courseProgress, useRoadmapProgress } from '../../modules/tr/roadmap';
 import { useRoadmapReview } from '../../modules/tr/roadmapCards';
 import { Explain, TrCard } from '../../modules/tr/cards/TrCard';
 import { EnglishHome } from '../../modules/english/ui/EnglishHome';
@@ -190,8 +190,7 @@ export function TodayPage() {
   const st = homeStats(p.stateOf, today);
   const plan = planSession(prefs, p.stateOf, today, { dry: true });
   const mode = modeOf(prefs.mode);
-  const nextLesson = readingProgress && firstIncompleteLesson(module05.lessons, readingProgress);
-  const startedM05 = readingProgress?.some((id) => module05.lessons.some((lesson) => lesson.id === id));
+  const course = readingProgress && courseProgress(readingProgress);
 
   return (
     <section className="stack" aria-labelledby="h-today">
@@ -204,13 +203,13 @@ export function TodayPage() {
       <div className="panel stack">
         <h2 className="h-sec">Tự ôn bằng cách đọc</h2>
         <p>Đọc về cấu trúc lương, merit và phân tích dữ liệu đãi ngộ. Thử tính với số liệu mẫu rồi tự kiểm tra.</p>
-        {nextLesson ? (
+        {course?.next ? (
           <div className="row">
-            <a className="btn roadmap-link" href={lessonHref(nextLesson.id)}>
-              {startedM05 ? 'Học tiếp' : 'Bắt đầu M05'} · {nextLesson.title}
+            <a className="btn roadmap-link" href={lessonHref(course.next.lesson.id)}>
+              {course.count ? 'Học tiếp' : 'Bắt đầu'} {course.next.code} · {course.next.lesson.title}
             </a>
           </div>
-        ) : readingProgress && <p className="hint">Đã hoàn thành M05</p>}
+        ) : course && <p className="hint">Đã hoàn thành {course.total} bài đang mở</p>}
         <div className="row">
           <a className="btn ghost roadmap-link" href="#lo-trinh">Mở lộ trình Total Rewards</a>
           {!!readingReview?.length && (

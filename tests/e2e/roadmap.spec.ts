@@ -8,7 +8,8 @@ test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp',
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Đọc và tự ôn Total Rewards');
   const module = page.getByRole('region', { name: 'Cấu trúc lương cơ bản' });
   await module.getByRole('button', { name: /^Bắt đầu học/ }).click();
-  await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+  await page.getByRole('button', { name: 'Hoàn thành và học tiếp' }).click();
+  await page.getByRole('button', { name: 'Về kho kiến thức' }).click();
   await expect(page.getByText('1/4 bài đã hoàn thành')).toBeVisible();
   await page.getByRole('button', { name: /^Học tiếp/ }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Diễn giải compa và penetration');
@@ -38,7 +39,8 @@ test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp',
   }
   await page.getByRole('button', { name: 'Xem lời giải' }).click();
   await expect(page.getByText(/Compa từ 90% xuống 85,7%/)).toBeVisible();
-  await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+  await page.getByRole('button', { name: 'Hoàn thành và học tiếp' }).click();
+  await page.getByRole('button', { name: 'Về kho kiến thức' }).click();
   await expect(page.getByText('2/4 bài đã hoàn thành')).toBeVisible();
   await page.reload();
   await expect(page.getByText('2/4 bài đã hoàn thành')).toBeVisible();
@@ -55,8 +57,8 @@ test('Hôm nay mở bài M05 đầu tiên chưa hoàn thành và khôi phục đ
   await expect(page).toHaveURL(/#lo-trinh\?bai=trm-05-01$/);
   await page.reload();
   await expect(title).toHaveText('Từ chính sách thị trường đến dải');
-  await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
-  await expect(title).toHaveText('Đọc và tự ôn Total Rewards');
+  await page.getByRole('button', { name: 'Hoàn thành và học tiếp' }).click();
+  await expect(title).toHaveText('Diễn giải compa và penetration');
 
   await openTab(page, 'hom-nay');
   const resume = page.getByRole('link', { name: /^Học tiếp/ });
@@ -72,12 +74,12 @@ test('Hôm nay mở bài M05 đầu tiên chưa hoàn thành và khôi phục đ
   const module = page.getByRole('region', { name: 'Cấu trúc lương cơ bản' });
   for (const lesson of ['Ngoài dải và duy trì', 'Diễn giải compa và penetration', 'Quy tắc tuyển và dịch chuyển']) {
     await module.getByRole('button', { name: lesson, exact: true }).click();
-    await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+    await page.getByRole('button', { name: 'Hoàn thành và học tiếp' }).click();
+    await page.getByRole('button', { name: 'Về kho kiến thức' }).click();
     await expect(title).toHaveText('Đọc và tự ôn Total Rewards');
   }
   await openTab(page, 'hom-nay');
-  await expect(page.getByText('Đã hoàn thành M05')).toBeVisible();
-  await expect(resume).toHaveCount(0);
+  await expect(resume).toHaveAttribute('href', '#lo-trinh?bai=trm-06-01');
 });
 
 test('mở thẻ M05, hẹn ôn hoặc bỏ hẹn rồi chấm thẻ đã chọn ở Hôm nay', async ({ page }, info) => {
@@ -151,7 +153,8 @@ test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page 
     await page.locator('#merit-title').evaluate((el) => el.scrollIntoView({ block: 'center' }));
     await page.screenshot({ path: info.outputPath('m06.png') });
   }
-  await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+  await page.getByRole('button', { name: 'Hoàn thành và học tiếp' }).click();
+  await page.getByRole('button', { name: 'Về kho kiến thức' }).click();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
   expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
   await page.reload();
@@ -186,7 +189,8 @@ test('đọc M09 và so sánh lương theo FTE, grade và họ nghề', async ({
   await expect(page.getByText(/Tổ hợp grade và họ nghề này chưa có hồ sơ/)).toBeVisible();
   await page.getByRole('button', { name: 'Khôi phục bảng mẫu' }).click();
   await expect(coverage).toContainText('12/12 hồ sơ đủ dữ liệu tính compa');
-  await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+  await page.getByRole('button', { name: 'Hoàn thành và học tiếp' }).click();
+  await page.getByRole('button', { name: 'Về kho kiến thức' }).click();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
   expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
   await page.reload();
@@ -199,8 +203,8 @@ test('Tiến độ đếm riêng bài đọc từng mô-đun và giữ kết qu�
   await expect(panel.getByText('0/4 bài đã đánh dấu hoàn thành')).toHaveCount(3);
   for (const id of ['trm-05-02', 'trm-06-01', 'trm-05-04']) {
     await page.goto(`./#lo-trinh?bai=${id}`);
-    await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Đọc và tự ôn Total Rewards');
+    await page.getByRole('button', { name: 'Hoàn thành và học tiếp' }).click();
+    await expect(page).not.toHaveURL(new RegExp(id + '$'));
   }
   await openTab(page, 'tien-do');
   await page.reload();
@@ -211,4 +215,34 @@ test('Tiến độ đếm riêng bài đọc từng mô-đun và giữ kết qu�
     await expect(panel.getByText(`${count}/4 bài đã đánh dấu hoàn thành`)).toBeVisible();
   }
   await expect(page.getByTestId('pg-reviews')).toHaveText('0');
+});
+
+test('học liền 12 bài theo chương trình, lưu tiến độ và ôn lại sau bài cuối', async ({ page }, info) => {
+  await page.goto('./#lo-trinh');
+  await page.getByText('Chương trình 17 mô-đun', { exact: true }).click();
+  const outline = page.getByRole('list', { name: 'Thứ tự mô-đun' });
+  await expect(outline.getByRole('listitem')).toHaveCount(17);
+  await expect(outline.getByRole('listitem').first()).toContainText('M01');
+  await expect(outline.getByRole('listitem').last()).toContainText('M17');
+  await expect(outline.getByText('Chưa có bài đọc')).toHaveCount(14);
+  const findings: string[] = [];
+  await audit(page, 'chuong-trinh', findings);
+  expect(findings).toEqual([]);
+  if (process.env.PW_SHOTS === 'course' && info.project.name === 'iPhone SE WebKit') {
+    await page.screenshot({ path: info.outputPath('lo-trinh-iphone-se.png') });
+  }
+  await page.getByRole('link', { name: /^Bắt đầu M05/ }).click();
+  for (const code of ['05', '06', '09']) {
+    for (const number of [1, 2, 3, 4]) {
+      await expect(page).toHaveURL(new RegExp(`#lo-trinh\\?bai=trm-${code}-0${number}$`));
+      await page.getByRole('button', { name: /^Hoàn thành và / }).click();
+    }
+  }
+  await expect(page).toHaveURL(/#lo-trinh$/);
+  await page.reload();
+  await expect(page.getByRole('progressbar', { name: '12/12 bài đang mở đã hoàn thành' })).toHaveAttribute('value', '12');
+  await page.getByRole('button', { name: /^Ngoài dải và duy trì/ }).click();
+  await expect(page.getByText('Đã hoàn thành', { exact: true })).toBeVisible();
+  await openTab(page, 'hom-nay');
+  await expect(page.getByText('Đã hoàn thành 12 bài đang mở')).toBeVisible();
 });
