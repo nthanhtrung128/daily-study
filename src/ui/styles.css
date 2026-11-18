@@ -103,8 +103,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background: var(--surface); border: 1px solid var(--line); white-space: nowrap;
 }
 .streak b { font-family: var(--f-num); }
-nav.tabs { display: flex; gap: 4px; width: 100%; margin-top: 10px; overflow-x: auto; scrollbar-width: none; }
-nav.tabs::-webkit-scrollbar { display: none; }
+nav.tabs { display: flex; gap: 4px; width: 100%; margin-top: 10px; flex-wrap: wrap; }
 nav.tabs a {
   flex: 0 0 auto; text-decoration: none; color: var(--muted); font-weight: 500; font-size: calc(14rem / 15);
   padding: calc(8rem / 15) 12px; border-radius: 999px; min-height: var(--tap); display: inline-flex; align-items: center;
@@ -153,11 +152,9 @@ input:disabled { opacity: 0.6; }
   .stat { padding: calc(10rem / 15); }
   .stat b { font-size: calc(20rem / 15); }
 }
-/* Màn hẹp (iPhone SE 320–375px): 4 tab chia đều, không phải vuốt ngang. */
+/* Màn hẹp: tab xuống hàng khi cần để luôn nhìn thấy. */
 @media (max-width: 400px) {
   nav.tabs { gap: 2px; }
-  /* Chữ lớn: 4 tab không vừa một hàng → 2 × 2 (flex-basis 40%), không phải vuốt ngang tìm tab. */
-  nav.tabs { flex-wrap: wrap; }
   nav.tabs a { flex: 1 1 clamp(0%, var(--big-gap) * 999, 40%); justify-content: center; padding: calc(8rem / 15) 4px; font-size: calc(13.5rem / 15); white-space: nowrap; }
   .stat span { font-size: calc(12rem / 15); }
 }
@@ -375,3 +372,7 @@ p, .hint, .fb, .opt, .card .q, .eyebrow, li, dd { text-wrap: pretty; }
 .wk-stats .stat span { display: block; overflow-wrap: anywhere; }
 .wk-stats .stat .wk-diff { margin-top: 4px; color: var(--ink); }
 .wk-stats .stat .wk-diff span { display: inline; color: inherit; font-size: inherit; }
+
+.roadmap-link { text-decoration: none; display: inline-flex; align-items: center; }
+.roadmap-lessons { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.roadmap-lessons button { width: 100%; text-align: start; }

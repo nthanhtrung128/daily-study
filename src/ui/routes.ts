@@ -2,6 +2,7 @@
 export const ROUTES = [
   { id: 'hom-nay', label: 'Hôm nay' },
   { id: 'tra-cuu', label: 'Tra cứu' },
+  { id: 'lo-trinh', label: 'Lộ trình' },
   { id: 'tien-do', label: 'Tiến độ' },
   { id: 'cai-dat', label: 'Cài đặt' },
 ] as const;

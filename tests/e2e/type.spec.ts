@@ -30,7 +30,7 @@ function auditLarge(): string[] {
   const vw = document.documentElement.clientWidth;
   const nav = document.querySelector('nav.tabs');
   const tabs = [...document.querySelectorAll<HTMLAnchorElement>('nav.tabs a')];
-  if (!nav || tabs.length !== 4) out.push(`thanh tab: thấy ${tabs.length}/4 tab`);
+  if (!nav || tabs.length !== 5) out.push(`thanh tab: thấy ${tabs.length}/5 tab`);
   else {
     const nr = nav.getBoundingClientRect();
     for (const a of tabs) {
