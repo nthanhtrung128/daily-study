@@ -376,3 +376,16 @@ p, .hint, .fb, .opt, .card .q, .eyebrow, li, dd { text-wrap: pretty; }
 .roadmap-link { text-decoration: none; display: inline-flex; align-items: center; }
 .roadmap-lessons { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .roadmap-lessons button { width: 100%; text-align: start; }
+
+.roadmap-intro { background: var(--sunk); }
+.roadmap-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 16px; }
+body:has(main .roadmap-reader) .top { position: static; }
+.roadmap-reader { max-width: 66ch; margin-inline: auto; gap: 24px; }
+.roadmap-reading { display: grid; gap: 10px; }
+.roadmap-reading ol { margin: 0; padding-inline-start: 1.5em; }
+.roadmap-reading li + li { margin-top: 8px; }
+.roadmap-review { border: 1px solid var(--line); border-radius: var(--r); background: var(--sunk); padding: max(12px, 0.85rem); }
+.merit-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 12px; }
+.merit-inputs select { width: 100%; min-height: var(--tap); border: 1px solid var(--line); border-radius: 8px; padding: 6px; background: var(--surface); color: var(--ink); font: inherit; font-size: max(16px, 1rem); }
+.merit-results { list-style: none; margin: 0; padding: 0; }
+.merit-results li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 8px 0; border-top: 1px solid var(--line); }

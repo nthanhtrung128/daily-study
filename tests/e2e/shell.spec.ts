@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 const PAGES = [
   { hash: 'hom-nay', tab: 'Hôm nay', heading: 'Hôm nay ôn bao lâu?' },
   { hash: 'tra-cuu', tab: 'Tra cứu', heading: 'Tra cứu' },
-  { hash: 'lo-trinh', tab: 'Lộ trình', heading: 'Cấu trúc lương cơ bản' },
+  { hash: 'lo-trinh', tab: 'Lộ trình', heading: 'Đọc và tự ôn Total Rewards' },
   { hash: 'tien-do', tab: 'Tiến độ', heading: 'Tiến độ' },
   { hash: 'cai-dat', tab: 'Cài đặt', heading: 'Cài đặt' },
 ];
