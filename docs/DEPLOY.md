@@ -31,7 +31,7 @@ Cần: tài khoản GitHub có quyền với repo `daily-study`, và một tài 
 
    | Ô | Giá trị |
    |---|---|
-   | Project name | `daily-study-6en` → bản đang chạy tại `https://daily-study-6en.pages.dev` |
+   | Project name | `daily-study` → bản đang chạy tại `https://daily-study-6en.pages.dev` |
    | Production branch | `main` |
    | Framework preset | `None` (hoặc `Vite`, miễn là 2 dòng dưới đúng) |
    | Build command | `npm run build` |
@@ -113,7 +113,7 @@ Trên máy tính, có thể mở trực tiếp `https://daily-study-6en.pages.de
 
 ## 6. Cập nhật phiên bản mới
 
-- Sau khi PR vào `main`, mở **Workers & Pages → daily-study-6en → Deployments** để kiểm tra bản production đã triển khai thành công và đúng commit.
+- Sau khi PR vào `main`, mở **Workers & Pages → daily-study → Deployments** để kiểm tra bản production đã triển khai thành công và đúng commit.
 - Mở app trên iPhone khi có mạng và phiên Access còn hạn. Khi bản mới đã tải xong, dải **Có bản mới** xuất hiện bên ngoài phiên ôn. Nếu đang ôn, tiếp tục đến màn kết quả.
 - Chọn **Cập nhật** để tải lại app và dùng bản mới. Chọn **Để sau** để ẩn dải trong lần mở app này. Nếu đổi ý, vào **Cài đặt → Dữ liệu → Cập nhật ngay**. Tiến độ, cài đặt và ghi âm vẫn nằm trong IndexedDB trên máy.
 - Dòng *Phiên bản* trong Cài đặt lấy số từ `package.json`. Nhiều lần triển khai có thể dùng cùng một số. Để kiểm tra trên iPhone, mở tính năng vừa phát hành sau khi bấm cập nhật.
@@ -139,7 +139,7 @@ Dùng khi không muốn cho Cloudflare đọc repo GitHub. Cần Node 22 trên m
 ```bash
 npm ci
 npm run build
-npx wrangler pages deploy dist --project-name daily-study-6en --branch main
+npx wrangler pages deploy dist --project-name daily-study --branch main
 ```
 
 - Lần đầu `wrangler` mở trình duyệt để đăng nhập Cloudflare; nếu project chưa có, nó hỏi tạo mới → đồng ý, production branch `main`.
