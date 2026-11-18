@@ -54,7 +54,8 @@ export function DailySession({
   const [now, setNow] = useState(() => Date.now());
   const [hideSay, setHideSay] = useState(false);
   const results = useRef<DailyResult[]>(initial ?? []);
-  const graded = useRef(false);
+  const savedStep = useRef<Promise<unknown> | null>(null);
+  const advancing = useRef(false);
   const e = entries[i];
 
   useEffect(() => {
@@ -76,26 +77,29 @@ export function DailySession({
     return () => clearInterval(t);
   }, []);
   useEffect(() => {
+    savedStep.current = null;
+    advancing.current = false;
     window.scrollTo?.({ top: 0 });
   }, [i]);
 
-  const finish = () => {
-    endSession();
+  const finish = async () => {
+    if (advancing.current) return;
+    advancing.current = true;
     tts.cancel();
     speechRec.abort();
+    await Promise.all([savedStep.current, endSession()]);
     onFinish(results.current, Math.round((Date.now() - t0) / 1000));
   };
-  const next = () => {
-    graded.current = false;
-    if (i + 1 >= entries.length) finish();
-    else {
-      stepSession(i + 1);
-      setI(i + 1);
-    }
+  const next = async () => {
+    if (advancing.current) return;
+    if (i + 1 >= entries.length) return finish();
+    advancing.current = true;
+    // Khi câu tiếp xuất hiện, cả lượt chấm và vị trí tiếp tục phải đã được ghi.
+    await (savedStep.current ?? stepSession(i + 1));
+    setI(i + 1);
   };
   const record = (g: Grade | null, score?: number | null) => {
-    if (!e || graded.current) return;
-    graded.current = true;
+    if (!e || advancing.current || savedStep.current) return savedStep.current;
     if (e.tier === 'extra' && e.item.kind === 'dict') {
       // Câu nghe chép: chấm vào lịch của thẻ gốc; câu hội thoại (không id) / bỏ qua chỉ tính thời gian tiếng Anh.
       if (g !== null && e.item.item.id) p.grade(e.item.item.id, g);
@@ -105,7 +109,8 @@ export function DailySession({
     // Bước không chấm Leitner (đề nói, câu nói bỏ qua): vẫn tính thời gian đã bỏ ra.
     else p.lap(e.tier === 'extra' ? 'speak' : e.lane, score);
     results.current.push({ entry: e, g, ...(score !== undefined ? { score } : {}) });
-    stepSession(i + 1, { i, g, ...(score !== undefined ? { score } : {}) });
+    savedStep.current = Promise.all([p.flush(), stepSession(i + 1, { i, g, ...(score !== undefined ? { score } : {}) })]);
+    return savedStep.current;
   };
   const gradeNext = (g: Grade) => {
     record(g);
@@ -158,9 +163,7 @@ export function DailySession({
           key={i}
           it={e.item.item}
           last={i + 1 >= entries.length}
-          onScore={(r) => {
-            if (e.item.kind === 'dict') record(dictGrade(e.item.item, r.score), r.score);
-          }}
+          onScore={(r) => e.item.kind === 'dict' ? record(dictGrade(e.item.item, r.score), r.score) : null}
           onNext={(scored) => {
             if (!scored) record(null);
             next();

@@ -6,6 +6,8 @@ import { reminderReady, requestBackupFocus, snoozeReminder, useBackupReminder } 
 /** Dải nhắc nhẹ trên trang Hôm nay khi lâu chưa xuất sao lưu. "Để sau" ẩn 3 ngày. */
 export function BackupNudge({ at }: { at?: number }) {
   const [mounted] = useState(() => Date.now());
+  const [snoozing, setSnoozing] = useState(false);
+  const [snoozeError, setSnoozeError] = useState(false);
   const now = at ?? mounted;
   const p = useProgress();
   const r = useBackupReminder();
@@ -17,6 +19,17 @@ export function BackupNudge({ at }: { at?: number }) {
     r.lastAt === null
       ? 'Bạn chưa sao lưu tiến độ lần nào. Tiến độ và ghi âm chỉ nằm trên máy này — xuất một file để phòng khi mất dữ liệu.'
       : `Đã ${daysSince(r.lastAt, now)} ngày chưa sao lưu tiến độ. Xuất một file mới để phòng khi mất dữ liệu.`;
+  const postpone = async () => {
+    setSnoozing(true);
+    setSnoozeError(false);
+    try {
+      await snoozeReminder(Math.max(now, Date.now()));
+    } catch {
+      setSnoozeError(true);
+    } finally {
+      setSnoozing(false);
+    }
+  };
   return (
     <div className="backup-nudge" role="region" aria-labelledby="nudge-title" data-testid="backup-nudge">
       <p className="nudge-text">
@@ -26,10 +39,11 @@ export function BackupNudge({ at }: { at?: number }) {
         <a className="btn small link-btn" href="#cai-dat" onClick={requestBackupFocus}>
           Sao lưu ngay
         </a>
-        <button type="button" className="btn ghost small" onClick={() => snoozeReminder(Math.max(now, Date.now()))}>
+        <button type="button" className="btn ghost small" disabled={snoozing} onClick={postpone}>
           Để sau
         </button>
       </div>
+      {snoozeError && <p role="alert" className="hint">Chưa lưu được lựa chọn Để sau. Bạn có thể thử lại.</p>}
     </div>
   );
 }

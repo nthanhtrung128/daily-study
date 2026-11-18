@@ -49,10 +49,10 @@ export function markBackedUp(at = Date.now()): void {
 }
 
 /** "Để sau": ẩn nhắc 3 ngày. */
-export function snoozeReminder(now = Date.now()): void {
+export async function snoozeReminder(now = Date.now()): Promise<void> {
   const until = snoozeUntil(now);
+  await setSetting(SNOOZE_KEY, until);
   set({ snoozeUntil: until });
-  void setSetting(SNOOZE_KEY, until).catch(() => undefined);
 }
 
 export function setRemindEvery(every: RemindEvery): void {

@@ -72,7 +72,7 @@ describe('Phiên hằng ngày trộn TR + EN', () => {
     for (let k = 0; k < 6; k++) {
       lanes.push(screen.getByTestId('mix-lane').getAttribute('data-lane') ?? '');
       answer(k % 3 !== 2);
-      expect(screen.getByTestId('sess-count')).toHaveTextContent(`${k + 2}/${total}`);
+      await waitFor(() => expect(screen.getByTestId('sess-count')).toHaveTextContent(`${k + 2}/${total}`));
     }
     expect(new Set(lanes.filter((l) => l !== 'speak'))).toEqual(new Set(['tr', 'en']));
     expect(screen.getByRole('progressbar', { name: 'Tiến độ phiên' })).toHaveAttribute('aria-valuenow', '6');
