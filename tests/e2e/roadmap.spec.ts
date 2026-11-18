@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { watchCsp } from './helpers/stubs';
 
 test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp', async ({ page }, info) => {
   await page.goto('./');
@@ -33,6 +34,7 @@ test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp',
 });
 
 test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page }, info) => {
+  await page.addInitScript(watchCsp);
   await page.goto('./#lo-trinh');
   const module = page.getByRole('region', { name: 'Hiệu suất và trả lương theo thành tích' });
   await module.getByRole('button', { name: 'Thiết kế ma trận merit' }).click();
@@ -48,7 +50,9 @@ test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page 
   await expect(result).toHaveCount(0);
   await month.fill('3');
   await expect(result).toContainText('135,00 triệu/3 tháng');
-  await page.getByLabel('Ô trong ma trận').selectOption('1');
+  const band = page.getByRole('group', { name: 'Vùng compa' }).getByRole('button', { name: '90–110%', exact: true });
+  await band.click();
+  await expect(band).toHaveAttribute('aria-pressed', 'true');
   await page.getByLabel('Quỹ ô (triệu đồng/tháng)').fill('200');
   await expect(result).toContainText('45,90 triệu/tháng');
   await page.getByRole('button', { name: 'Khôi phục số liệu mẫu' }).click();
@@ -61,6 +65,7 @@ test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page 
   }
   await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
+  expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
   await page.reload();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
 });

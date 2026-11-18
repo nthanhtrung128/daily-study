@@ -25,6 +25,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #20 | Ôn điểm yếu (`core/weak.ts`, `core/misswords.ts`, `modules/mix/weak.ts`, `ui/mix/WeakPanel.tsx`): mục TR/EN hay sai + câu chứa từ hay nói / nghe sai; khối "Từ hay sai" ở Tiến độ; nghe chép trong phiên hằng ngày (công tắc ở Cài đặt, mặc định tắt); tiếp tục phiên dở cho nghe chép và Ôn điểm yếu |
 | #21 | M05: bốn bài Cấu trúc lương cơ bản, bài tính compa-ratio và vị trí trong dải, lưu trạng thái học |
 | #22 | Kho đọc M05/M06: tám bài có bối cảnh, ví dụ và câu tự ôn, kèm bài thực hành cân ma trận merit |
+| #24 | Dùng nút chọn mức hiệu suất và vùng compa trong ma trận merit để WebKit không kích hoạt vi phạm CSP khi tạo ô chọn |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

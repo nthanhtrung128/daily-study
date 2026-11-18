@@ -4,6 +4,8 @@ import { balanceMerit } from './merit';
 import { module06 } from './roadmap';
 
 const sample = module06.merit;
+const ratings = [...new Set(sample.cells.map((cell) => cell.rating))];
+const compaBands = [...new Set(sample.cells.map((cell) => cell.compa))];
 const toInput = (value: number) => String(value).replace('.', ',');
 const salary = (value: number) => fmt(value, 2);
 const sampleInputs = () => sample.cells.map((cell) => ({ payroll: toInput(cell.payroll), rate: toInput(cell.rate) }));
@@ -21,6 +23,12 @@ export function MeritPractice() {
     && numericCells.every((cell) => Number.isFinite(cell.payroll) && Number.isFinite(cell.rate));
   const balanced = valid ? balanceMerit(numericCells, budgetRate) : undefined;
   const selected = cells[index];
+  const selectedCell = sample.cells[index];
+
+  function choose(rating: string | undefined, compa: string | undefined) {
+    const match = sample.cells.findIndex((cell) => cell.rating === rating && cell.compa === compa);
+    if (match >= 0) setIndex(match);
+  }
 
   function change(field: 'payroll' | 'rate', value: string) {
     setCells((current) => current.map((cell, cellIndex) => cellIndex === index ? { ...cell, [field]: value } : cell));
@@ -30,13 +38,25 @@ export function MeritPractice() {
     <section className="stack roadmap-review" aria-labelledby="merit-title">
       <h2 className="h-sec" id="merit-title">Thử cân ma trận merit</h2>
       <p>Chọn từng ô để chỉnh quỹ hoặc tỷ lệ gốc. Các số tiền dùng triệu đồng. Mô hình áp dụng cùng hệ số cho mọi ô và giả định chi đủ tháng.</p>
+      <div className="field" role="group" aria-label="Mức hiệu suất">
+        <span>Mức hiệu suất</span>
+        <div className="row">
+          {ratings.map((rating) => (
+            <button className="chip" type="button" key={rating} aria-pressed={rating === selectedCell?.rating}
+              onClick={() => choose(rating, selectedCell?.compa)}>{rating}</button>
+          ))}
+        </div>
+      </div>
+      <div className="field" role="group" aria-label="Vùng compa">
+        <span>Vùng compa</span>
+        <div className="row">
+          {compaBands.map((compa) => (
+            <button className="chip" type="button" key={compa} aria-pressed={compa === selectedCell?.compa}
+              onClick={() => choose(selectedCell?.rating, compa)}>{compa}</button>
+          ))}
+        </div>
+      </div>
       <div className="merit-inputs">
-        <label className="field">
-          Ô trong ma trận
-          <select value={index} onChange={(e) => setIndex(Number(e.target.value))}>
-            {sample.cells.map((cell, i) => <option value={i} key={i}>{cell.rating} · {cell.compa}</option>)}
-          </select>
-        </label>
         <label className="field">
           Quỹ ô (triệu đồng/tháng)
           <input type="text" inputMode="decimal" value={selected?.payroll ?? ''} onChange={(e) => change('payroll', e.target.value)} />
