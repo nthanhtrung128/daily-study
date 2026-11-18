@@ -114,15 +114,31 @@ function validateEnglish() {
 }
 
 function validateRoadmap() {
-  const file = 'content/tr-roadmap/m05.json';
-  const data = readJson(file);
-  if (!isObj(data)) return err(`${file}: gốc phải là object`);
-  if (!nonEmpty(data.title) || !nonEmpty(data.goal)) err(`${file}: thiếu tên hoặc mục tiêu mô-đun`);
-  checkList(file, 'lessons', data.lessons, ['id', 'title', 'explanation', 'example'], 'id', (row, where) => {
-    if (typeof row.id === 'string' && !/^trm-05-\d{2}$/.test(row.id)) err(`${where}: mã bài không hợp lệ`);
-  });
-  if (!isObj(data.scenario) || !nonEmpty(data.scenario.question) || !nonEmpty(data.scenario.answer)) {
-    err(`${file}: tình huống cần câu hỏi và lời giải`);
+  for (const code of ['05', '06']) {
+    const file = `content/tr-roadmap/m${code}.json`;
+    const data = readJson(file);
+    const validReview = (value: unknown) => isObj(value) && nonEmpty(value.question) && nonEmpty(value.answer);
+    if (!isObj(data)) {
+      err(`${file}: gốc phải là object`);
+      continue;
+    }
+    if (data.code !== `M${code}` || !nonEmpty(data.title) || !nonEmpty(data.goal) || !nonEmpty(data.source)) {
+      err(`${file}: thiếu mã, tên, nguồn hoặc mục tiêu mô-đun`);
+    }
+    checkList(file, 'lessons', data.lessons, ['id', 'title', 'context', 'explanation', 'example', 'takeaway'], 'id', (row, where) => {
+      if (typeof row.id !== 'string' || !new RegExp(`^trm-${code}-[0-9]{2}$`).test(row.id)) err(`${where}: mã bài không hợp lệ`);
+      if (!Array.isArray(row.steps) || !row.steps.length || !row.steps.every(nonEmpty)) err(`${where}: thiếu các bước thực hiện`);
+      if (!validReview(row.review)) err(`${where}: phần tự ôn cần câu hỏi và lời giải`);
+    });
+    if (code === '06') {
+      const inRange = (value: unknown, max: number) => typeof value === 'number' && value >= 0 && value <= max;
+      const merit = data.merit;
+      if (!isObj(merit) || !inRange(merit.budget, 100) || !Array.isArray(merit.cells) || merit.cells.length !== 9
+        || !merit.cells.every((cell: unknown) => isObj(cell) && nonEmpty(cell.rating) && nonEmpty(cell.compa)
+          && inRange(cell.payroll, 1e9) && inRange(cell.rate, 100))) {
+        err(`${file}: cần ngân sách và 9 ô ma trận hợp lệ`);
+      }
+    }
   }
 }
 

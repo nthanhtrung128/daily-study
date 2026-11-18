@@ -6,29 +6,71 @@
       "id": "trm-05-01",
       "title": "Từ chính sách thị trường đến dải",
       "explanation": "Chọn nhóm vị trí chuẩn có nội dung rõ và dữ liệu đối sánh đáng tin. Xây đường midpoint hoặc các điểm tham chiếu cho grade, sau đó kiểm tra sự nhất quán với cấu trúc công việc. Độ rộng dải và khoảng tăng midpoint ảnh hưởng khả năng phát triển lương trong grade. Thử trên toàn bộ nhân sự để thấy số người ngoài dải và chi phí xử lý.",
-      "example": "Nếu midpoint là 20 triệu, min 16 và max 24, spread bằng 50% theo min. Nếu muốn giữ midpoint là trung điểm số học và spread là S, min = 2 × midpoint ÷ (2 + S), max = min × (1 + S). Ghi quy ước midpoint vì một số thiết kế dùng cách đặt khác."
+      "example": "Nếu midpoint là 20 triệu, min 16 và max 24, spread bằng 50% theo min. Nếu muốn giữ midpoint là trung điểm số học và spread là S, min = 2 × midpoint ÷ (2 + S), max = min × (1 + S). Ghi quy ước midpoint vì một số thiết kế dùng cách đặt khác.",
+      "context": "C&B cần một dải lương để đưa ra đề nghị tuyển, xét tăng lương và dự báo ngân sách. Dải thường được xây cho một grade, tức nhóm vai trò có giá trị công việc tương đương. Min và max là hai biên. Midpoint là điểm tham chiếu của chính sách trả lương.",
+      "steps": [
+        "Chọn vị trí chuẩn có mô tả đủ rõ. So dữ liệu thị trường theo công việc thực tế, cùng địa bàn, kỳ và đơn vị trả lương.",
+        "Chọn điểm tham chiếu cho từng grade và quy ước midpoint. Với midpoint là trung điểm số học, kiểm lại (min + max) ÷ 2.",
+        "Đặt độ rộng dải, kiểm khoảng cách giữa các midpoint và thử trên danh sách lương hiện tại để ước tính chi phí ngoài dải."
+      ],
+      "takeaway": "Spread = (max − min) ÷ min. Với min 16 và max 24 triệu đồng/tháng, spread là 50%.",
+      "review": {
+        "question": "Nếu min 18 và max 27 triệu đồng/tháng, midpoint số học và spread bằng bao nhiêu?",
+        "answer": "Midpoint là 22,5 triệu. Spread là (27 − 18) ÷ 18 = 50%."
+      }
     },
     {
       "id": "trm-05-02",
       "title": "Diễn giải compa và penetration",
       "explanation": "Compa-ratio bằng lương cơ bản chia midpoint, phản ánh mức trả so với điểm chính sách. Range penetration bằng phần vượt min chia độ rộng dải. Hai người cùng compa có thể khác vị trí trong dải nếu spread khác nhau. Giá trị âm hoặc trên 100% của penetration có thể là dữ liệu đúng về người ngoài dải.",
-      "example": "Lương 18 trong dải 16–24 có compa 90% và penetration 25%. Nếu toàn bộ dải tăng 5% còn lương giữ nguyên, vị trí tương đối giảm. Khi báo cáo biến động, tách ảnh hưởng tăng lương và cập nhật dải để quản lý hiểu nguyên nhân."
+      "example": "Lương 18 trong dải 16–24 có compa 90% và penetration 25%. Nếu toàn bộ dải tăng 5% còn lương giữ nguyên, vị trí tương đối giảm. Khi báo cáo biến động, tách ảnh hưởng tăng lương và cập nhật dải để quản lý hiểu nguyên nhân.",
+      "context": "Khi quản lý hỏi một nhân viên đang được trả ở đâu trong dải, hãy xác định mốc cần so. Midpoint trả lời về vị trí so với điểm chính sách. Min và max cho biết vị trí giữa hai biên. Dùng lương cơ bản và dải cùng kỳ, cùng đơn vị và cùng quy đổi FTE.",
+      "steps": [
+        "Chia lương cho midpoint để tính compa-ratio. Kết quả 90% nghĩa là lương bằng 90% midpoint.",
+        "Lấy phần lương vượt min chia độ rộng dải để tính range penetration. Min tương ứng 0%, max tương ứng 100%.",
+        "Giữ giá trị ngoài khoảng 0–100% nếu dữ liệu hợp lệ. Kiểm tra dải, grade, FTE và ngày hiệu lực trước khi đề xuất điều chỉnh."
+      ],
+      "takeaway": "Compa-ratio cần midpoint. Range penetration cần cả min và max.",
+      "review": {
+        "question": "Lương 18 triệu, min 16, mid 20, max 24. Nếu mid tăng lên 21 nhưng min/max giữ nguyên, chỉ số đổi thế nào?",
+        "answer": "Compa từ 90% xuống 85,7%. Range penetration giữ 25%. Cần giải thích chính sách nếu midpoint không còn là trung điểm số học."
+      }
     },
     {
       "id": "trm-05-03",
       "title": "Quy tắc tuyển và dịch chuyển",
       "explanation": "Quy tắc tuyển cần điều kiện chọn mức trong dải, bằng chứng kinh nghiệm và quyền duyệt vượt ngưỡng. Thăng chức cần đối chiếu dải mới, mức tăng hợp lý và tương quan nội bộ. Chuyển ngang có thể thay thị trường địa phương hoặc phụ cấp mà không đổi grade. Xếp lại ngạch phát sinh khi giá trị vai trò được đánh giá lại.",
-      "example": "Tạo bảng sự kiện, điều kiện, nguồn ngân sách, cách tính, ngày hiệu lực và người duyệt. Nếu một người vừa được merit vừa thăng chức, xác định thứ tự và cơ sở tính để tránh cộng trùng. So tác động với người cùng vai trò trước khi chốt."
+      "example": "Tạo bảng sự kiện, điều kiện, nguồn ngân sách, cách tính, ngày hiệu lực và người duyệt. Nếu một người vừa được merit vừa thăng chức, xác định thứ tự và cơ sở tính để tránh cộng trùng. So tác động với người cùng vai trò trước khi chốt.",
+      "context": "Cùng là thay đổi lương, nhưng tuyển mới, thăng chức, chuyển ngang và xếp lại ngạch có căn cứ duyệt và ngân sách khác nhau. Chính sách trước kỳ giúp C&B giải thích vì sao hai trường hợp có kết quả khác nhau.",
+      "steps": [
+        "Xác định sự kiện và dải áp dụng tại ngày hiệu lực. Với tuyển mới, kiểm kinh nghiệm và tương quan với người đang làm cùng vai trò.",
+        "Với thăng chức, thử mức lương trong dải mới. Với chuyển ngang, xem điều kiện thị trường và phụ cấp tại nơi làm việc mới.",
+        "Nếu merit và thăng chức cùng kỳ, xác nhận thứ tự tính, quỹ chi và quyền duyệt ngoại lệ trước khi gửi danh sách."
+      ],
+      "takeaway": "Mỗi quyết định cần căn cứ, mức đề xuất, ngày hiệu lực và người phê duyệt.",
+      "review": {
+        "question": "Một người vừa được merit vừa được thăng chức. Cần thống nhất thông tin gì trước khi tính?",
+        "answer": "Cần biết mỗi tỷ lệ áp lên lương nào, ngày nào có hiệu lực, dùng quỹ nào và ai duyệt. So mức sau cùng với dải mới và các vai trò tương đương."
+      }
     },
     {
       "id": "trm-05-04",
       "title": "Ngoài dải và duy trì",
       "explanation": "Phân loại dưới min do dữ liệu sai, mới chuyển grade hoặc chính sách chưa cập nhật. Trên max có thể do dải giảm, lịch sử tuyển hoặc vai trò thay đổi. Mỗi nguyên nhân cần phương án riêng và xác nhận nghĩa vụ hợp đồng. Theo dõi chi phí chỉnh về dải, ngày hoàn tất và nguyên tắc cho các quyết định sau.",
-      "example": "Trong một danh sách lương mẫu, chọn một người dưới min hoặc trên max. Viết một dòng giải thích lý do cần xem xét, dữ liệu cần bổ sung và người phê duyệt. Trạng thái ngoài dải là tín hiệu rà soát. Quyết định điều chỉnh cần căn cứ vào dữ liệu và chính sách."
+      "example": "Trong một danh sách lương mẫu, chọn một người dưới min hoặc trên max. Viết một dòng giải thích lý do cần xem xét, dữ liệu cần bổ sung và người phê duyệt. Trạng thái ngoài dải là tín hiệu rà soát. Quyết định điều chỉnh cần căn cứ vào dữ liệu và chính sách.",
+      "context": "Báo cáo ngoài dải là danh sách ưu tiên rà soát. Một dòng dưới min có thể xuất phát từ FTE quy đổi sai hoặc dải vừa cập nhật. Một dòng trên max có thể là kết quả của lịch sử tuyển hoặc thay đổi vai trò.",
+      "steps": [
+        "Đối chiếu hồ sơ lương cơ bản, FTE, grade và ngày hiệu lực của dải.",
+        "Ghi nguyên nhân, phương án, chi phí và người duyệt. Xác minh chính sách và nghĩa vụ áp dụng trước khi điều chỉnh.",
+        "Theo dõi ngày xử lý và kiểm lại danh sách khi dải hoặc công việc thay đổi."
+      ],
+      "takeaway": "Xác minh dữ liệu và nguyên nhân trước khi đưa ra bất kỳ quyết định nào về lương.",
+      "review": {
+        "question": "Lương thực trả là 12 triệu ở 0,5 FTE. Min của dải 1 FTE là 18 triệu. Nhân viên có dưới min không?",
+        "answer": "Lương quy đổi 1 FTE là 12 ÷ 0,5 = 24 triệu. So 24 với min 18 mới cho kết quả đúng về vị trí so với min."
+      }
     }
   ],
-  "scenario": {
-    "question": "Lương 18 triệu, min 16, mid 20, max 24. Nếu mid tăng lên 21 nhưng min/max giữ nguyên, chỉ số đổi thế nào?",
-    "answer": "Compa từ 90% xuống 85,7%. Range penetration giữ 25%. Cần giải thích chính sách nếu midpoint không còn là trung điểm số học."
-  }
+  "code": "M05",
+  "source": "Lộ trình Total Rewards · M01–M06, Thực hành và Tự kiểm tra"
 }

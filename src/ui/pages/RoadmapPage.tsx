@@ -1,66 +1,87 @@
 import { useState } from 'react';
 import { fmt } from '../../core/num';
 import { compaRatio, rangePenetration } from '../../modules/tr/calc';
-import { completeLesson, module05, useRoadmapProgress } from '../../modules/tr/roadmap';
+import { completeLesson, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
+import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
 
 export function RoadmapPage() {
   const completed = useRoadmapProgress();
-  const [selected, setSelected] = useState<string>();
+  const [selected, setSelected] = useState<RoadmapLesson>();
   const heading = useFocusOnMount<HTMLHeadingElement>(!selected);
-  const lesson = module05.lessons.find((entry) => entry.id === selected);
-  const next = module05.lessons.find((entry) => !completed?.includes(entry.id));
+  const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === selected?.id));
 
-  function open(id?: string) {
-    setSelected(id);
+  function open(lesson?: RoadmapLesson) {
+    setSelected(lesson);
     window.scrollTo(0, 0);
   }
 
-  if (lesson) {
+  if (selected && module) {
+    const index = module.lessons.findIndex((lesson) => lesson.id === selected.id);
     return (
       <Lesson
-        key={lesson.id}
-        lesson={lesson}
-        done={completed?.includes(lesson.id) ?? false}
+        key={selected.id}
+        lesson={selected}
+        label={`${module.code} · Bài ${index + 1}/${module.lessons.length}`}
+        source={module.source}
+        done={completed?.includes(selected.id) ?? false}
         onBack={() => open()}
+        next={module.lessons[index + 1]}
+        onNext={open}
       />
     );
   }
 
   return (
-    <section className="panel stack" aria-labelledby="roadmap-title">
-      <div>
-        <p className="eyebrow">Lộ trình Total Rewards · M05</p>
-        <h1 className="h-page" id="roadmap-title" tabIndex={-1} ref={heading}>{module05.title}</h1>
-        <p>{module05.goal}</p>
+    <section className="stack roadmap-library" aria-labelledby="roadmap-title">
+      <header className="panel stack roadmap-intro">
+        <h1 className="h-page" id="roadmap-title" tabIndex={-1} ref={heading}>Đọc và tự ôn Total Rewards</h1>
+        <p>Chọn một bài để đọc bối cảnh, xem ví dụ và tự trả lời câu hỏi cuối bài.</p>
+      </header>
+      <div className="roadmap-modules">
+        {ROADMAP_MODULES.map((entry) => {
+          const count = entry.lessons.filter((lesson) => completed?.includes(lesson.id)).length;
+          const next = entry.lessons.find((lesson) => !completed?.includes(lesson.id));
+          return (
+            <section className="panel stack" key={entry.code} aria-labelledby={`module-${entry.code}`}>
+              <div>
+                <p className="eyebrow">{entry.code}</p>
+                <h2 className="h-sec" id={`module-${entry.code}`}>{entry.title}</h2>
+              </div>
+              <p>{entry.goal}</p>
+              <p className="hint" aria-live="polite">{count}/{entry.lessons.length} bài đã hoàn thành</p>
+              {next && (
+                <div className="row">
+                  <button className="btn" type="button" onClick={() => open(next)}>
+                    {count ? 'Học tiếp' : 'Bắt đầu học'} · {next.title}
+                  </button>
+                </div>
+              )}
+              <ul className="roadmap-lessons">
+                {entry.lessons.map((lesson) => (
+                  <li key={lesson.id}>
+                    <button className="btn ghost" type="button" onClick={() => open(lesson)}>
+                      {lesson.title}{completed?.includes(lesson.id) ? ' · Đã hoàn thành' : ''}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
       </div>
-      <p className="hint" aria-live="polite">
-        {module05.lessons.filter((entry) => completed?.includes(entry.id)).length}/{module05.lessons.length} bài đã hoàn thành
-      </p>
-      {next && (
-        <div className="row">
-          <button className="btn" type="button" onClick={() => open(next.id)}>
-            {next === module05.lessons[0] ? 'Bắt đầu học' : 'Học tiếp'} · {next.title}
-          </button>
-        </div>
-      )}
-      <ul className="roadmap-lessons">
-        {module05.lessons.map((entry) => (
-          <li key={entry.id}>
-            <button className="btn ghost" type="button" onClick={() => open(entry.id)}>
-              {entry.title}{completed?.includes(entry.id) ? ' · Đã hoàn thành' : ''}
-            </button>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
 
-function Lesson({ lesson, done, onBack }: {
-  lesson: typeof module05.lessons[number];
+function Lesson({ lesson, label, source, done, onBack, next, onNext }: {
+  lesson: RoadmapLesson;
+  label: string;
+  source: string;
   done: boolean;
   onBack: () => void;
+  next: RoadmapLesson | undefined;
+  onNext: (lesson: RoadmapLesson) => void;
 }) {
   const heading = useFocusOnMount<HTMLHeadingElement>();
   const [revealed, setRevealed] = useState(false);
@@ -80,27 +101,41 @@ function Lesson({ lesson, done, onBack }: {
   }
 
   return (
-    <article className="panel stack" aria-labelledby="lesson-title">
+    <article className="panel stack roadmap-reader" aria-labelledby="lesson-title">
       <div className="row">
-        <button className="btn ghost small" type="button" onClick={onBack}>Về mô-đun M05</button>
+        <button className="btn ghost small" type="button" onClick={onBack}>Về kho kiến thức</button>
       </div>
-      <h1 className="h-page" id="lesson-title" tabIndex={-1} ref={heading}>{lesson.title}</h1>
-      <p>{lesson.explanation}</p>
+      <header>
+        <p className="eyebrow">{label}</p>
+        <h1 className="h-page" id="lesson-title" tabIndex={-1} ref={heading}>{lesson.title}</h1>
+      </header>
+      <section className="roadmap-reading">
+        <h2 className="h-sec">Bối cảnh nghiệp vụ</h2>
+        <p>{lesson.context}</p>
+      </section>
+      <section className="roadmap-reading">
+        <h2 className="h-sec">Cách thực hiện</h2>
+        <p>{lesson.explanation}</p>
+        <ol>{lesson.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+      </section>
       {lesson.id === 'trm-05-02' && <SalaryPractice />}
-      <h2 className="h-sec">Ví dụ và thực hành</h2>
-      <p>{lesson.example}</p>
-      {lesson.id === 'trm-05-02' && (
-        <section className="stack" aria-labelledby="scenario-title">
-          <h2 className="h-sec" id="scenario-title">Tự kiểm tra</h2>
-          <p>{module05.scenario.question}</p>
-          <div className="row">
-            <button className="btn ghost" type="button" aria-expanded={revealed} onClick={() => setRevealed(!revealed)}>
-              {revealed ? 'Ẩn lời giải' : 'Xem lời giải'}
-            </button>
-          </div>
-          {revealed && <p>{module05.scenario.answer}</p>}
-        </section>
-      )}
+      <section className="roadmap-reading">
+        <h2 className="h-sec">Ví dụ và thực hành</h2>
+        <p>{lesson.example}</p>
+      </section>
+      {lesson.id === 'trm-06-03' && <MeritPractice />}
+      <section className="roadmap-reading roadmap-review" aria-labelledby="scenario-title">
+        <h2 className="h-sec" id="scenario-title">Tự ôn</h2>
+        <p><strong>Cần nhớ</strong> · {lesson.takeaway}</p>
+        <p>{lesson.review.question}</p>
+        <div className="row">
+          <button className="btn ghost" type="button" aria-expanded={revealed} onClick={() => setRevealed(!revealed)}>
+            {revealed ? 'Ẩn lời giải' : 'Xem lời giải'}
+          </button>
+        </div>
+        {revealed && <p>{lesson.review.answer}</p>}
+      </section>
+      <p className="hint">Nguồn biên soạn · {source}</p>
       {error && <p role="alert">Chưa lưu được tiến độ. Hãy thử lại.</p>}
       <div className="row">
         {done ? (
@@ -110,6 +145,8 @@ function Lesson({ lesson, done, onBack }: {
             {saving ? 'Đang lưu…' : 'Đánh dấu hoàn thành'}
           </button>
         )}
+        {next && <button className="btn ghost" type="button" onClick={() => onNext(next)}>Đọc bài kế tiếp</button>}
+        <button className="btn ghost" type="button" onClick={onBack}>Chọn bài khác</button>
       </div>
     </article>
   );
