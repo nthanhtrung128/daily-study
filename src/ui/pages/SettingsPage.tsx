@@ -164,6 +164,15 @@ export function SettingsPage() {
           </div>
           <p className="hint">Phiên 10–14 phút: 1 câu nói có chấm; từ 15 phút: 1 đề nói 1 phút có ghi âm. Micro chỉ bật khi bạn bấm.</p>
         </div>
+        <div className="set-group">
+          <div className="eyebrow">Nghe chép trong phiên</div>
+          <div className="row">
+            <button type="button" className="chip" aria-pressed={prefs.dict} onClick={() => setDailyPrefs({ dict: !prefs.dict })}>
+              Nghe chép trong phiên hằng ngày
+            </button>
+          </div>
+          <p className="hint">Chèn 1 câu nghe chép (từ 15 phút: 2 câu) vào phiên, tính vào phần thời gian tiếng Anh. Âm thanh chỉ phát khi bạn bấm Nghe.</p>
+        </div>
       </div>
 
       <div className="panel stack" aria-labelledby="h-set-goal">

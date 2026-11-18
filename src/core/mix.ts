@@ -14,6 +14,7 @@ import { priority, type SessionItem } from './session';
  * 5. Mục mới bị giới hạn bởi `maxNew` (chung cả hai làn).
  * 6. Hết ngân sách thời gian thì dừng (vượt tối đa một mục). Một làn cạn thì làn kia lấp phần còn lại.
  * 7. Mục "thêm" (luyện nói) — nếu có — tính vào làn EN, chèn ở khoảng 2/3 phiên, cạnh một mục TR.
+ * 8. Các mục thêm khác (`extras`, vd câu nghe chép) cũng tính vào thời gian làn EN, mỗi mục chèn quanh vị trí `at` của nó.
  */
 export type Lane = 'tr' | 'en';
 export type Tier = 'due' | 'wrong' | 'new' | 'extra';
@@ -30,6 +31,8 @@ export interface MixExtra<X> {
   item: X;
   /** Giây ước tính. */
   secs: number;
+  /** Vị trí mong muốn trong phiên, 0–1 (mặc định 2/3). */
+  at?: number;
 }
 
 export interface MixOptions<A extends SessionItem, B extends SessionItem, X = never> {
@@ -47,6 +50,8 @@ export interface MixOptions<A extends SessionItem, B extends SessionItem, X = ne
   maxRun?: number;
   /** Mục luyện nói kèm theo (tính vào làn EN). */
   extra?: MixExtra<X> | null;
+  /** Các mục thêm khác (vd câu nghe chép), cũng tính vào làn EN. */
+  extras?: readonly MixExtra<X>[];
   rng?: Rng;
 }
 
@@ -135,8 +140,14 @@ export function planMix<A extends SessionItem, B extends SessionItem, X = never>
     en: makeQueue<B>(o.en, o.stateOf, o.today, rng),
   };
   const used: Record<Lane, number> = { tr: 0, en: 0 };
-  const extra = o.extra && o.extra.secs <= o.budget && w.en > 0 ? o.extra : null;
-  if (extra) used.en += extra.secs;
+  // Mục thêm: lấy lần lượt chừng nào còn vừa ngân sách.
+  const extras: MixExtra<X>[] = [];
+  for (const x of [...(o.extra ? [o.extra] : []), ...(o.extras ?? [])]) {
+    if (w.en > 0 && used.en + x.secs <= o.budget) {
+      extras.push(x);
+      used.en += x.secs;
+    }
+  }
 
   type Core = Exclude<MixEntry<A, B, X>, { tier: 'extra' }>;
   const out: Core[] = [];
@@ -167,19 +178,30 @@ export function planMix<A extends SessionItem, B extends SessionItem, X = never>
   }
 
   const entries: MixEntry<A, B, X>[] = out;
-  if (extra) {
-    // Chèn ở khoảng 2/3 phiên, ngay sau một mục TR và không làm chuỗi EN dài quá maxRun; không có chỗ như vậy thì
-    // lấy chỗ gần nhất sau một mục TR, cuối cùng là đúng vị trí 2/3.
-    const target = Math.round((out.length * 2) / 3);
+  if (extras.length) {
+    // Mỗi mục thêm chèn quanh vị trí `at` (mặc định 2/3 phiên), ngay sau một mục TR và không làm chuỗi EN dài quá maxRun;
+    // không có chỗ như vậy thì lấy chỗ gần nhất sau một mục TR, cuối cùng là đúng vị trí mong muốn. Hai mục thêm không chung chỗ.
     const enRunFrom = (k: number) => {
       let n = 0;
       while (out[k + n]?.lane === 'en') n++;
       return n;
     };
-    const positions = Array.from({ length: out.length }, (_, k) => k + 1).sort((a, b) => Math.abs(a - target) - Math.abs(b - target) || a - b);
-    const afterTr = positions.filter((k) => out[k - 1]?.lane === 'tr');
-    const at = afterTr.find((k) => enRunFrom(k) + 1 <= maxRun) ?? afterTr[0] ?? target;
-    entries.splice(Math.min(at, out.length), 0, { lane: 'en', tier: 'extra', secs: extra.secs, item: extra.item });
+    const taken = new Set<number>();
+    const placed = extras.map((x) => {
+      const target = Math.round(out.length * (x.at ?? 2 / 3));
+      const positions = Array.from({ length: out.length }, (_, k) => k + 1)
+        .filter((k) => !taken.has(k))
+        .sort((a, b) => Math.abs(a - target) - Math.abs(b - target) || a - b);
+      const afterTr = positions.filter((k) => out[k - 1]?.lane === 'tr');
+      const at = Math.min(afterTr.find((k) => enRunFrom(k) + 1 <= maxRun) ?? afterTr[0] ?? target, out.length);
+      taken.add(at);
+      return { at, x };
+    });
+    // Chèn từ cuối lên để chỉ số phía trước không lệch; cùng chỗ thì giữ thứ tự khai báo.
+    placed
+      .map((p, k) => ({ ...p, k }))
+      .sort((a, b) => b.at - a.at || b.k - a.k)
+      .forEach(({ at, x }) => entries.splice(at, 0, { lane: 'en', tier: 'extra', secs: x.secs, item: x.item }));
   }
   const fresh = out.filter((e) => e.tier === 'new').length;
   return { entries, secs: { ...used }, total: used.tr + used.en, fresh };

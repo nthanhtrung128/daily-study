@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Grade } from '../../../core/leitner';
 import { REC_ERROR_VI, speechRec, type RecErrorCode } from '../speech/recognizer';
+import { missStore } from '../../../core/misswords';
 import { GRADE_VI, bestOf, gradeForScore, scoreSpeech, type ScoreResult } from '../speech/score';
 import { useRecState } from '../speech/useRec';
 import { tts } from '../tts';
@@ -82,6 +83,8 @@ export function SayCheck({ target, listen = true, onScored, onApply, onStart }: 
 
   const scored = (r: ScoreResult) => {
     setResult(r);
+    // Đếm từ nói sai / thiếu cho "Từ hay sai" (nói đúng thì giảm).
+    missStore.record(r.words);
     onScored?.(r, gradeForScore(r.score));
   };
 

@@ -225,3 +225,36 @@ test('tiếp tục phiên dở: tải lại trang giữa phiên trộn → "Ti�
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
   await expect(page.getByTestId('resume-panel')).toHaveCount(0);
 });
+
+test('bật nghe chép trong phiên hằng ngày, tiếp tục đúng vị trí sau khi chấm', async ({ page }) => {
+  test.slow();
+  await page.goto('./#cai-dat');
+  const dict = page.getByRole('button', { name: 'Nghe chép trong phiên hằng ngày' });
+  await expect(dict).toHaveAttribute('aria-pressed', 'false');
+  await dict.click();
+  await page.getByRole('group', { name: 'Số mục mới tối đa mỗi ngày' }).getByRole('button', { name: '5', exact: true }).click();
+  await page.getByRole('link', { name: 'Hôm nay', exact: true }).click();
+  await page.getByRole('group', { name: 'Thời lượng phiên hôm nay' }).getByRole('button', { name: '10 phút' }).click();
+  await page.getByRole('button', { name: 'Bắt đầu ôn hôm nay' }).click();
+  const box = page.getByRole('textbox', { name: 'Gõ lại câu bạn nghe được' });
+  const count = page.getByTestId('sess-count');
+  const total = Number((await count.textContent())?.split('/')[1]);
+  let at = 0;
+  while (at < total && !(await box.count())) {
+    await answer(page, at);
+    at++;
+  }
+  await expect(box).toBeVisible();
+  await page.getByRole('button', { name: 'Nghe câu' }).click();
+  const heard = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)?.split('|').at(-1) ?? '');
+  await box.fill(heard);
+  await page.getByRole('button', { name: 'Kiểm tra', exact: true }).click();
+  await expect(page.getByTestId('dict-score')).toHaveText('100%');
+  await page.reload();
+  const resume = page.getByTestId('resume-panel');
+  await expect(resume).toContainText(`(${at + 1}/${total})`);
+  await resume.getByRole('button', { name: 'Tiếp tục' }).click();
+  await expect(count).toHaveText(`${at + 2}/${total}`);
+  await page.getByRole('button', { name: 'Kết thúc' }).click();
+  await expect(page.getByTestId('mix-dict')).toContainText('100%');
+});

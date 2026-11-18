@@ -3,6 +3,8 @@ import { restoreSession, type ActiveSession, type SavedItem } from '../../core/r
 import { ITEMS, type TrItem } from '../../modules/tr/items';
 import { EN_ITEMS, type EnItem } from '../../modules/english/content';
 import { SAY_ITEMS, type SayItem } from '../../modules/english/speech/sayItems';
+import { DICT_ITEMS } from '../../modules/english/dictation';
+import { dictExtra } from '../../modules/mix/plan';
 import { SPEAKING_TOPICS } from '../../modules/english/speech/topics';
 import type { DailyEntry } from '../../modules/mix/plan';
 import type { DailyResult } from '../../modules/mix/result';
@@ -10,7 +12,7 @@ import type { EnView } from '../../modules/english/ui/EnglishScreen';
 
 /** Phiên dở đã dựng lại từ id (mục không còn trong nội dung đã bỏ qua). */
 export type ResumeTarget =
-  | { kind: 'mix'; entries: DailyEntry[]; pos: number; results: DailyResult[]; t0: number; minutes: number }
+  | { kind: 'mix'; weak?: boolean; entries: DailyEntry[]; pos: number; results: DailyResult[]; t0: number; minutes: number }
   | { kind: 'tr'; list: TrItem[]; pos: number; results: { it: TrItem; g: Grade }[]; t0: number; minutes: number }
   | { kind: 'en'; view: EnView };
 
@@ -30,6 +32,10 @@ function mixEntry(s: SavedItem, tr: Map<string, TrItem>, en: Map<string, EnItem>
       const topic = SPEAKING_TOPICS.find((t) => `topic:${t.id}` === s.id);
       return topic ? { lane: 'en', tier: 'extra', secs, item: { kind: 'topic', id: s.id, topic } } : undefined;
     }
+    if (s.id.startsWith('dict:')) {
+      const d = DICT_ITEMS.find((x) => `dict:${x.key}` === s.id);
+      return d ? { lane: 'en', tier: 'extra', secs, item: dictExtra(d) } : undefined;
+    }
     const item = say.get(s.id);
     return item ? { lane: 'en', tier: 'extra', secs, item: { kind: 'say', id: s.id, item } } : undefined;
   }
@@ -45,20 +51,27 @@ function mixEntry(s: SavedItem, tr: Map<string, TrItem>, en: Map<string, EnItem>
 const graded = <T>(rs: { item: T; g: Grade | null }[]) => rs.flatMap((r) => (r.g === null ? [] : [{ it: r.item, g: r.g }]));
 
 export function resolveActive(s: ActiveSession, now: number): Resumable | null {
-  if (s.kind === 'mix') {
+  if (s.kind === 'mix' || s.kind === 'weak') {
     const tr = byId(ITEMS);
     const en = byId(EN_ITEMS);
     const say = byId(SAY_ITEMS);
     const r = restoreSession(s, (it) => mixEntry(it, tr, en, say), now);
     if (!r) return null;
     const results = r.results.map((x) => ({ entry: x.item, g: x.g, ...(x.score !== undefined ? { score: x.score } : {}) }));
-    return { target: { kind: 'mix', entries: r.list, pos: r.pos, results, t0: r.t0, minutes: s.minutes }, done: r.pos, total: r.list.length };
+    return { target: { kind: 'mix', ...(s.kind === 'weak' ? { weak: true } : {}), entries: r.list, pos: r.pos, results, t0: r.t0, minutes: s.minutes }, done: r.pos, total: r.list.length };
   }
   if (s.kind === 'tr') {
     const tr = byId(ITEMS);
     const r = restoreSession(s, (it) => tr.get(it.id), now);
     if (!r) return null;
     return { target: { kind: 'tr', list: r.list, pos: r.pos, results: graded(r.results), t0: r.t0, minutes: s.minutes }, done: r.pos, total: r.list.length };
+  }
+  if (s.kind === 'dict') {
+    const dict = new Map(DICT_ITEMS.map((d) => [d.key, d]));
+    const r = restoreSession(s, (it) => dict.get(it.id), now);
+    if (!r) return null;
+    const done = r.results.flatMap((x) => (typeof x.score === 'number' ? [{ it: x.item, score: x.score }] : []));
+    return { target: { kind: 'en', view: { kind: 'dictation', list: r.list, t0: r.t0, pos: r.pos, done } }, done: r.pos, total: r.list.length };
   }
   if (s.kind === 'speak') {
     const say = byId(SAY_ITEMS);

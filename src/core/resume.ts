@@ -9,7 +9,8 @@ export const ACTIVE_KEY = 'session.active';
 /** Phiên dở quá 12 giờ thì bỏ. */
 export const RESUME_MAX_MS = 12 * 60 * 60 * 1000;
 
-export type ActiveKind = 'mix' | 'tr' | 'en-phrase' | 'en-pattern' | 'speak';
+/** `weak` = phiên Ôn điểm yếu (cùng cấu trúc mục với `mix`); `dict` = phiên nghe chép (id = khóa câu). */
+export type ActiveKind = 'mix' | 'tr' | 'en-phrase' | 'en-pattern' | 'speak' | 'weak' | 'dict';
 
 /** Một mục trong phiên: id + thông tin xếp lịch (làn, tầng, giây ước tính) để dựng lại mục của phiên trộn. */
 export interface SavedItem {

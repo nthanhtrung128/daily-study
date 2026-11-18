@@ -9,7 +9,20 @@ const mmss = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, 
 const pct = (l: LaneTally) => (l.n ? `${fmt((l.ok / l.n) * 100)}%` : '–');
 
 /** Màn kết quả phiên hằng ngày: đúng/sai theo TR/EN, bài nói, chuỗi ngày, mục cần ôn lại. */
-export function DailyResultView({ results, secs, onMore, onHome }: { results: DailyResult[]; secs: number; onMore: () => void; onHome: () => void }) {
+export function DailyResultView({
+  results,
+  secs,
+  onMore,
+  onHome,
+  title = 'Xong phiên hôm nay',
+}: {
+  results: DailyResult[];
+  secs: number;
+  /** Không truyền (vd phiên Ôn điểm yếu) thì ẩn nút "Ôn thêm 5 phút". */
+  onMore?: () => void;
+  onHome: () => void;
+  title?: string;
+}) {
   const p = useProgress();
   const { restDays } = useDailyPrefs();
   const t = tally(results);
@@ -19,7 +32,7 @@ export function DailyResultView({ results, secs, onMore, onHome }: { results: Da
     <section className="stack mix-result" aria-labelledby="h-mix-result">
       <div className="panel stack">
         <h1 id="h-mix-result" className="h-page">
-          {n || t.speak.done ? 'Xong phiên hôm nay' : 'Phiên chưa có câu trả lời'}
+          {n || t.speak.done || t.dict.done ? title : 'Phiên chưa có câu trả lời'}
         </h1>
         <div className="stats">
           <div className="stat">
@@ -67,6 +80,11 @@ export function DailyResultView({ results, secs, onMore, onHome }: { results: Da
             Luyện nói: đã làm {t.speak.done} bài{t.speak.score !== null ? ` · điểm ${fmt(t.speak.score)}%` : ''}. Nghe lại bản ghi ở Đề nói 1 phút.
           </p>
         )}
+        {t.dict.done > 0 && (
+          <p className="hint" data-testid="mix-dict">
+            Nghe chép: {t.dict.done} câu{t.dict.score !== null ? ` · điểm trung bình ${fmt(t.dict.score)}%` : ''} (tính trong phần Tiếng Anh).
+          </p>
+        )}
         <p className="hint">
           Chuỗi <b className="num">{p.streak(restDays)}</b> ngày ·{' '}
           {t.review.length
@@ -74,10 +92,12 @@ export function DailyResultView({ results, secs, onMore, onHome }: { results: Da
             : 'Không có mục nào sai. Các mục nhớ rõ được giãn lịch ôn.'}
         </p>
         <div className="row">
-          <button type="button" className="btn" onClick={onMore}>
-            Ôn thêm 5 phút
-          </button>
-          <button type="button" className="btn ghost" onClick={onHome}>
+          {onMore && (
+            <button type="button" className="btn" onClick={onMore}>
+              Ôn thêm 5 phút
+            </button>
+          )}
+          <button type="button" className={onMore ? 'btn ghost' : 'btn'} onClick={onHome}>
             Về trang Hôm nay
           </button>
         </div>
@@ -93,14 +113,14 @@ export function DailyResultView({ results, secs, onMore, onHome }: { results: Da
                   <summary>
                     <b {...(e.lane === 'en' ? { lang: 'en' } : {})}>{titleOfEntry(e)}</b>{' '}
                     <span className="tag">
-                      {e.tier === 'extra' ? 'Nói' : e.lane === 'tr' ? 'TR' : 'EN'} · {r.g === 0 ? 'Quên' : 'Mơ hồ'}
+                      {e.tier === 'extra' ? (e.item.kind === 'dict' ? 'Nghe chép' : 'Nói') : e.lane === 'tr' ? 'TR' : 'EN'} · {r.g === 0 ? 'Quên' : 'Mơ hồ'}
                     </span>
                   </summary>
                   <div className="body">
                     {e.lane === 'tr' ? (
                       <Explain it={e.item} />
                     ) : e.tier === 'extra' ? (
-                      e.item.kind === 'say' && (
+                      e.item.kind !== 'topic' && (
                         <>
                           <div>{e.item.item.vi}</div>
                           <div className="row">

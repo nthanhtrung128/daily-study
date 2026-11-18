@@ -19,6 +19,8 @@ export interface DailyPrefs {
   maxNew: number;
   /** Kèm 1 bài luyện nói trong phiên. */
   speak: boolean;
+  /** Chèn 1–2 câu nghe chép vào phiên hằng ngày (mặc định tắt). */
+  dict: boolean;
   /** Giờ nhắc "HH:MM". */
   remindAt: string;
   /** Các ngày nhắc trong tuần (0 = CN). */
@@ -34,6 +36,7 @@ export const DEFAULT_DAILY: DailyPrefs = {
   trShare: 0.4,
   maxNew: 20,
   speak: true,
+  dict: false,
   remindAt: '20:30',
   remindDays: [1, 2, 3, 4, 5, 6, 0],
   goalMin: 15,
@@ -56,6 +59,7 @@ export function normalizePrefs(raw: unknown): DailyPrefs {
   const trShare = Math.round(num(r.trShare, 0, 1, DEFAULT_DAILY.trShare) * 20) / 20;
   const maxNew = Math.round(num(r.maxNew, 0, 200, DEFAULT_DAILY.maxNew));
   const speak = typeof r.speak === 'boolean' ? r.speak : DEFAULT_DAILY.speak;
+  const dict = typeof r.dict === 'boolean' ? r.dict : DEFAULT_DAILY.dict;
   const remindAt = isTime(r.remindAt) ? r.remindAt : DEFAULT_DAILY.remindAt;
   const dayList = (v: unknown, d: number[]) => {
     const days = Array.isArray(v) ? v.filter((x): x is number => Number.isInteger(x) && x >= 0 && x <= 6) : d;
@@ -65,7 +69,7 @@ export function normalizePrefs(raw: unknown): DailyPrefs {
   const goalMin = (GOAL_CHOICES as readonly number[]).includes(r.goalMin as number) ? (r.goalMin as number) : DEFAULT_DAILY.goalMin;
   // Không cho nghỉ cả 7 ngày (chuỗi sẽ vô nghĩa): giữ tối đa 6.
   const restDays = dayList(r.restDays, DEFAULT_DAILY.restDays).slice(0, 6);
-  return { min, trShare, maxNew, speak, remindAt, remindDays, goalMin, restDays };
+  return { min, trShare, maxNew, speak, dict, remindAt, remindDays, goalMin, restDays };
 }
 
 /** "TR 40% · Tiếng Anh 60%". */
