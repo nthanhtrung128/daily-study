@@ -192,3 +192,23 @@ test('đọc M09 và so sánh lương theo FTE, grade và họ nghề', async ({
   await page.reload();
   await expect(module.getByText('1/4 bài đã hoàn thành')).toBeVisible();
 });
+
+test('Tiến độ đếm riêng bài đọc từng mô-đun và giữ kết quả khi tải lại', async ({ page }) => {
+  await page.goto('./#tien-do');
+  const panel = page.getByRole('region', { name: 'Bài đọc theo mô-đun' });
+  await expect(panel.getByText('0/4 bài đã đánh dấu hoàn thành')).toHaveCount(3);
+  for (const id of ['trm-05-02', 'trm-06-01', 'trm-05-04']) {
+    await page.goto(`./#lo-trinh?bai=${id}`);
+    await page.getByRole('button', { name: 'Đánh dấu hoàn thành' }).click();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Đọc và tự ôn Total Rewards');
+  }
+  await openTab(page, 'tien-do');
+  await page.reload();
+  for (const [code, count] of [['M05', '2'], ['M06', '1'], ['M09', '0']] as const) {
+    const bar = panel.getByRole('progressbar', { name: new RegExp(code) });
+    await expect(bar).toHaveAttribute('value', count);
+    await expect(bar).toHaveAttribute('max', '4');
+    await expect(panel.getByText(`${count}/4 bài đã đánh dấu hoàn thành`)).toBeVisible();
+  }
+  await expect(page.getByTestId('pg-reviews')).toHaveText('0');
+});
