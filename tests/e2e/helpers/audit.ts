@@ -276,7 +276,9 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await openTab(page, 'lo-trinh');
   await at('lo-trinh');
   await btn('Diễn giải compa và penetration').click();
-  await btn('Xem compa-ratio').click();
+  await page.getByLabel('Dự đoán compa-ratio (%)').fill('96');
+  await btn('Đối chiếu dự đoán').click();
+  await expect(page.getByText('Dự đoán khớp với kết quả.')).toBeVisible();
   await at('lo-trinh-bai-tinh');
   await btn('Về kho kiến thức').click();
   await btn('Thiết kế ma trận merit').click();

@@ -28,6 +28,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #23 | M09: bốn bài phân tích dữ liệu đãi ngộ, lọc và chuẩn hóa FTE trên 12 hồ sơ giả định. Phiên trộn, Ôn điểm yếu và nút hoãn nhắc sao lưu đợi ghi IndexedDB trước khi cập nhật màn hình. |
 | #24 | Dùng nút chọn mức hiệu suất và vùng compa trong ma trận merit để WebKit không kích hoạt vi phạm CSP khi tạo ô chọn |
 | #25 | M05: mở thẻ TR101 liên quan ngay trong bài đọc, chọn thẻ vào lịch ôn ở Hôm nay và chấm theo Leitner |
+| #26 | M05.2: nhập dự đoán compa-ratio, đối chiếu theo điểm phần trăm rồi thực hành đổi độ rộng dải |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
