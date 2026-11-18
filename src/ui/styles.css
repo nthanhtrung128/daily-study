@@ -390,6 +390,11 @@ body:has(main .roadmap-reader) .top { position: static; }
 .roadmap-reading ol { margin: 0; padding-inline-start: 1.5em; }
 .roadmap-reading li + li { margin-top: 8px; }
 .roadmap-review { border: 1px solid var(--line); border-radius: var(--r); background: var(--sunk); padding: max(12px, 0.85rem); }
+.roadmap-card summary::after {
+  content: ""; flex: none; width: 0.45rem; height: 0.45rem; margin: 0.45rem 0.15rem 0 0;
+  border: solid var(--muted); border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+.roadmap-card[open] summary::after { transform: translateY(0.2rem) rotate(225deg); }
 .roadmap-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 12px; }
 .merit-results { list-style: none; margin: 0; padding: 0; }
 .merit-results li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 8px 0; border-top: 1px solid var(--line); }

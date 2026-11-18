@@ -11,6 +11,7 @@ import {
 } from '../../src/core/backup';
 import { StudyDB, getSetting } from '../../src/core/db';
 import { Progress } from '../../src/core/progress';
+import { ROADMAP_REVIEW_PREFIX } from '../../src/core/roadmapReview';
 
 /** State đúng định dạng Sổ ôn bản cũ (localStorage["tr101.state.v1"]). */
 const LEGACY = {
@@ -160,5 +161,20 @@ describe('xuất / nhập vào IndexedDB', () => {
     expect(d.reviews).toHaveLength(1);
     expect(d.settings).toEqual([{ key: 'a', value: 1 }]);
     expect(d.skipped).toBe(5);
+  });
+
+  it('lịch ôn bài đọc giữ lựa chọn mới nhất khi gộp và được thay cùng tiến độ', async () => {
+    const key = ROADMAP_REVIEW_PREFIX + 'tr:F08';
+    await a.settings.put({ key, value: { at: 10, queued: true } });
+    await b.settings.put({ key, value: { at: 20, queued: false } });
+    const older = parseBackup(await exportBackup(a));
+    await applyBackup(older, 'merge', b);
+    expect(await getSetting(key, null, b)).toEqual({ at: 20, queued: false });
+    await applyBackup(parseBackup(await exportBackup(b)), 'merge', a);
+    expect(await getSetting(key, null, a)).toEqual({ at: 20, queued: false });
+    await applyBackup(older, 'replace', b);
+    expect(await getSetting(key, null, b)).toEqual({ at: 10, queued: true });
+    await applyBackup(fromLegacy(LEGACY), 'replace', b);
+    expect(await getSetting(key, null, b)).toBeNull();
   });
 });

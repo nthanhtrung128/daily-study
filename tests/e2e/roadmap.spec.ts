@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { audit, openTab } from './helpers/audit';
 import { watchCsp } from './helpers/stubs';
 
 test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp', async ({ page }, info) => {
@@ -31,6 +32,47 @@ test('học M05 từ Hôm nay, thử tính, lưu tiến độ và học tiếp',
   await page.reload();
   await expect(page.getByText('2/4 bài đã hoàn thành')).toBeVisible();
   await expect(page.getByRole('button', { name: /^Học tiếp/ })).toHaveText(/Quy tắc tuyển và dịch chuyển/);
+});
+
+test('mở thẻ M05, hẹn ôn hoặc bỏ hẹn rồi chấm thẻ đã chọn ở Hôm nay', async ({ page }, info) => {
+  await page.addInitScript(watchCsp);
+  await page.goto('./#lo-trinh');
+  await page.getByRole('button', { name: 'Diễn giải compa và penetration' }).click();
+  const related = page.getByRole('region', { name: 'Thẻ liên quan' });
+  const compa = related.locator('details').filter({ has: page.getByText('Compa-ratio', { exact: true }) });
+  await expect(related.getByRole('button', { name: 'Đưa vào lịch ôn', includeHidden: true })).toHaveCount(0);
+  await compa.locator('summary').click();
+  await expect(compa.locator('.formula')).toBeVisible();
+  await compa.getByRole('button', { name: 'Đưa vào lịch ôn' }).click();
+  await expect(compa.getByRole('status')).toHaveText('Đã lên lịch');
+  const found: string[] = [];
+  await audit(page, 'm05-the-lien-quan', found);
+  expect(found).toEqual([]);
+  if (process.env.PW_SHOTS === 'roadmap' && info.project.name === 'iPhone SE') {
+    await related.evaluate((el) => el.scrollIntoView({ block: 'center' }));
+    await page.screenshot({ path: info.outputPath('m05-the-lien-quan.png') });
+  }
+  const range = related.locator('details').filter({ has: page.getByText('Range penetration', { exact: true }) });
+  await range.locator('summary').click();
+  await range.getByRole('button', { name: 'Đưa vào lịch ôn' }).click();
+  await expect(range.getByRole('status')).toHaveText('Đã lên lịch');
+  await range.getByRole('button', { name: 'Bỏ khỏi lịch ôn' }).click();
+  await expect(range.getByRole('button', { name: 'Đưa vào lịch ôn' })).toBeEnabled();
+
+  await openTab(page, 'hom-nay');
+  const review = page.getByRole('button', { name: 'Ôn 1 thẻ từ bài đọc' });
+  await expect(review).toBeVisible();
+  await expect(page.getByTestId('st-today')).toHaveText('0');
+  await page.reload();
+  await review.click();
+  await expect(page.getByRole('heading', { name: 'Compa-ratio' })).toBeVisible();
+  await page.getByRole('button', { name: 'Lật thẻ' }).click();
+  await page.getByRole('button', { name: /^Nhớ rõ/ }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Xong phiên ôn hôm nay');
+  await page.reload();
+  await expect(page.getByTestId('st-today')).toHaveText('1');
+  await expect(review).toHaveCount(0);
+  expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
 });
 
 test('đọc M06 và cân cả ma trận merit theo ngân sách', async ({ page }, info) => {
