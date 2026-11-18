@@ -30,6 +30,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #25 | M05: mở thẻ TR101 liên quan ngay trong bài đọc, chọn thẻ vào lịch ôn ở Hôm nay và chấm theo Leitner |
 | #26 | M05.2: nhập dự đoán compa-ratio, đối chiếu theo điểm phần trăm rồi thực hành đổi độ rộng dải |
 | #27 | M05: Học tiếp từ Hôm nay và mở bài theo liên kết hash, giữ đúng bài khi tải lại hoặc dùng nút Back |
+| #28 | Trang Tiến độ hiển thị số bài đọc đã đánh dấu hoàn thành trên tổng số bài của từng mô-đun M05, M06 và M09. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

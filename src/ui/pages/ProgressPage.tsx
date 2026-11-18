@@ -4,6 +4,7 @@ import { fmt } from '../../core/num';
 import { CALC } from '../../modules/tr/calc';
 import { DATA, BAI_SHORT } from '../../modules/tr/data';
 import { ITEM_BY_ID, trId } from '../../modules/tr/items';
+import { ROADMAP_MODULES, useRoadmapProgress } from '../../modules/tr/roadmap';
 import { DEFAULT_PREFS, type Prefs } from '../../modules/tr/plan';
 import { entryById, titleOfId } from '../../modules/lookup';
 import { baiRows, extraRows, hardest, heatCells, learnedCount, totals, type BarRow } from '../../modules/progress/stats';
@@ -41,6 +42,7 @@ function Bars({ rows, label }: { rows: BarRow[]; label: (k: string) => string })
 
 export function ProgressPage() {
   const p = useProgress();
+  const completedLessons = useRoadmapProgress();
   const today = p.today();
   const tot = totals(p.allDays());
   const learned = learnedCount(p.entries());
@@ -83,6 +85,20 @@ export function ProgressPage() {
       </div>
 
       <WeekPanel p={p} goalMin={daily.goalMin} />
+
+      <section className="panel stack" aria-labelledby="reading-progress">
+        <h2 id="reading-progress" className="h-sec">Bài đọc theo mô-đun</h2>
+        {completedLessons ? ROADMAP_MODULES.map(({ code, title, lessons }) => {
+          const count = lessons.filter((lesson) => completedLessons.includes(lesson.id)).length;
+          return (
+            <div className="reading-progress-row" key={code}>
+              <h3 className="h-sec" id={`reading-${code}`}>{code} · {title}</h3>
+              <progress aria-labelledby={`reading-${code}`} value={count} max={lessons.length} />
+              <p className="hint">{count}/{lessons.length} bài đã đánh dấu hoàn thành</p>
+            </div>
+          );
+        }) : <p className="hint">Chưa có dữ liệu tiến độ từ bộ nhớ máy.</p>}
+      </section>
 
       <div className="panel stack">
         <h2 className="h-sec">Tiến độ theo buổi</h2>
