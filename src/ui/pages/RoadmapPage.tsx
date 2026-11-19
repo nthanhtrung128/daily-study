@@ -6,6 +6,8 @@ import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
+import { useReadingMemos } from '../../modules/tr/readingMemos';
+import { LessonMemo, MemoBook } from '../components/ReadingMemos';
 import { RoadmapRelatedCards } from '../components/RoadmapRelatedCards';
 import { lessonHref } from '../routes';
 import { useLocationHash } from '../useHashRoute';
@@ -15,14 +17,19 @@ export function RoadmapPage() {
   const course = completed && courseProgress(completed);
   const [expanded, setExpanded] = useState<string | null>(null);
   const hash = useLocationHash();
-  const id = new URLSearchParams(hash.split('?')[1]).get('bai');
+  const params = new URLSearchParams(hash.split('?')[1]);
+  const id = params.get('bai');
+  const memo = params.get('memo') === '1';
+  const notes = useReadingMemos();
+  const [memoQuery, setMemoQuery] = useState('');
   const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === id));
   const selected = module?.lessons.find((lesson) => lesson.id === id);
-  const heading = useFocusOnMount<HTMLHeadingElement>(!selected);
+  const heading = useFocusOnMount<HTMLHeadingElement>(!selected && !memo);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [selected]);
+    if (selected && memo) document.getElementById('lesson-memo-title')?.focus();
+    else window.scrollTo(0, 0);
+  }, [selected, memo]);
 
   function open(lesson?: RoadmapLesson) {
     if (window.location.hash !== hash) return;
@@ -36,6 +43,8 @@ export function RoadmapPage() {
       <Lesson
         key={selected.id}
         lesson={selected}
+        notes={notes}
+        fromMemo={memo}
         label={`Buổi ${Number(module.code.slice(1))} · ${module.title} · Bài ${index + 1}/${module.lessons.length}`}
         source={module.source}
         done={completed?.includes(selected.id)}
@@ -46,6 +55,8 @@ export function RoadmapPage() {
       />
     );
   }
+
+  if (memo) return <MemoBook notes={notes} query={memoQuery} onQuery={setMemoQuery} />;
 
   return (
     <section className="stack roadmap-library" aria-labelledby="roadmap-title">
@@ -67,6 +78,9 @@ export function RoadmapPage() {
             ) : <p>Bạn đã hoàn thành toàn bộ lộ trình. Chọn một bài bên dưới để ôn lại.</p>}
           </div>
         )}
+        <div className="row">
+          <a className="btn ghost roadmap-link" href="#lo-trinh?memo=1">Sổ memo bài học{notes?.length ? ` (${notes.length})` : ''}</a>
+        </div>
       </header>
       {COURSE_STAGES.map((stage, stageIndex) => (
         <section key={stage.title} className="panel stack" aria-labelledby={`stage-${stageIndex}`}>
@@ -124,8 +138,10 @@ export function RoadmapPage() {
   );
 }
 
-function Lesson({ lesson, label, source, done, following, browseNext, onBack, onNext }: {
+function Lesson({ lesson, notes, fromMemo, label, source, done, following, browseNext, onBack, onNext }: {
   lesson: RoadmapLesson;
+  notes: ReturnType<typeof useReadingMemos>;
+  fromMemo: boolean;
   label: string;
   source: string;
   done: boolean | undefined;
@@ -134,7 +150,7 @@ function Lesson({ lesson, label, source, done, following, browseNext, onBack, on
   onBack: () => void;
   onNext: (lesson: RoadmapLesson) => void;
 }) {
-  const heading = useFocusOnMount<HTMLHeadingElement>();
+  const heading = useFocusOnMount<HTMLHeadingElement>(!fromMemo);
   const [revealed, setRevealed] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(false);
@@ -156,7 +172,10 @@ function Lesson({ lesson, label, source, done, following, browseNext, onBack, on
   return (
     <article className="panel stack roadmap-reader" aria-labelledby="lesson-title">
       <div className="row">
-        <button className="btn ghost small" type="button" onClick={onBack}>Về kho kiến thức</button>
+        {fromMemo ? <a className="btn ghost small roadmap-link" href="#lo-trinh?memo=1">Về sổ memo</a>
+          : <button className="btn ghost small" type="button" onClick={onBack}>Về kho kiến thức</button>}
+        <button className="btn ghost small" type="button" disabled={notes == null}
+          onClick={() => document.getElementById('lesson-memo')?.focus()}>Ghi memo</button>
       </div>
       <header>
         <p className="eyebrow">{label}</p>
@@ -189,6 +208,7 @@ function Lesson({ lesson, label, source, done, following, browseNext, onBack, on
         </div>
         {revealed && <p>{lesson.review.answer}</p>}
       </section>
+      <LessonMemo id={lesson.id} notes={notes} />
       {related.length > 0 && <RoadmapRelatedCards ids={related} />}
       <p className="hint">Nguồn biên soạn · {source}</p>
       {error && <p role="alert">Chưa lưu được tiến độ. Hãy thử lại.</p>}

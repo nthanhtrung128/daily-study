@@ -35,6 +35,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #30 | Lộ trình Total Rewards theo thứ tự 17 mô-đun của Excel. Hôm nay và Lộ trình gợi ý bài chưa học, cuối bài chuyển tiếp qua M05, M06 và M09. Tiến độ tính trên 12 bài đang mở. |
 | #31 | Bổ sung 57 bài đọc từ lộ trình Excel ở M01–M04, M07–M08 và M10–M17, kèm tình huống, bước thực hiện và câu tự ôn riêng cho từng bài. |
 | #32 | Mở 69 bài theo 17 buổi và 4 chặng từ nền tảng đến chuyên sâu. Hôm nay, Lộ trình và Tiến độ dùng cùng thứ tự M01–M17 và giữ mã bài cũ. |
+| #33 | Memo cá nhân trong 69 bài đọc, tự lưu vào bảng notes và đi cùng bản sao lưu. Sổ memo trong Lộ trình cho tìm theo nội dung hoặc bài, mở lại đúng vị trí. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
