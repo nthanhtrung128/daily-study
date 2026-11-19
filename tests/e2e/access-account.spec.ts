@@ -5,7 +5,7 @@ import { audit } from './helpers/audit';
 
 // WebKit cần phản hồi HTTP 302 thực. Máy chủ thử nghiệm chỉ lắng nghe trên loopback.
 const test = base.extend<{ access: { origin: string; checks: () => number } }>({
-  access: async ({ baseURL }, use) => {
+  access: async ({ baseURL }, provideAccess) => {
     if (!baseURL) throw new Error('Thiếu URL bản preview.');
     let checks = 0;
     const server = createServer((req, res) => {
@@ -37,7 +37,7 @@ const test = base.extend<{ access: { origin: string; checks: () => number } }>({
     await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
     try {
       const { port } = server.address() as AddressInfo;
-      await use({ origin: `http://127.0.0.1:${port}`, checks: () => checks });
+      await provideAccess({ origin: `http://127.0.0.1:${port}`, checks: () => checks });
     } finally {
       server.closeAllConnections();
       await new Promise<void>((resolve) => server.close(() => resolve()));
