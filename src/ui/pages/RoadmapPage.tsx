@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fmt } from '../../core/num';
 import { compaRatio, rangePenetration } from '../../modules/tr/calc';
-import { completeLesson, courseProgress, CURRICULUM, nextAfter, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
+import { completeLesson, courseProgress, COURSE_STAGES, nextAfter, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
 import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
@@ -13,6 +13,7 @@ import { useLocationHash } from '../useHashRoute';
 export function RoadmapPage() {
   const completed = useRoadmapProgress();
   const course = completed && courseProgress(completed);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const hash = useLocationHash();
   const id = new URLSearchParams(hash.split('?')[1]).get('bai');
   const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === id));
@@ -24,7 +25,9 @@ export function RoadmapPage() {
   }, [selected]);
 
   function open(lesson?: RoadmapLesson) {
-    if (window.location.hash === hash) window.location.assign(lesson ? lessonHref(lesson.id) : '#lo-trinh');
+    if (window.location.hash !== hash) return;
+    if (!lesson && module) setExpanded(module.code);
+    window.location.assign(lesson ? lessonHref(lesson.id) : '#lo-trinh');
   }
 
   if (selected && module) {
@@ -33,7 +36,7 @@ export function RoadmapPage() {
       <Lesson
         key={selected.id}
         lesson={selected}
-        label={`${module.code} · Bài ${index + 1}/${module.lessons.length}`}
+        label={`Buổi ${Number(module.code.slice(1))} · ${module.title} · Bài ${index + 1}/${module.lessons.length}`}
         source={module.source}
         done={completed?.includes(selected.id)}
         following={completed && nextAfter(selected.id, completed)}
@@ -48,11 +51,11 @@ export function RoadmapPage() {
     <section className="stack roadmap-library" aria-labelledby="roadmap-title">
       <header className="panel stack roadmap-intro">
         <h1 className="h-page" id="roadmap-title" tabIndex={-1} ref={heading}>Đọc và tự ôn Total Rewards</h1>
-        <p>Chương trình gồm {CURRICULUM.length} mô-đun. Hiện có {ROADMAP_MODULES.length} mô-đun mở để đọc, thực hành và tự kiểm tra.</p>
+        <p>{ROADMAP_MODULES.length} buổi qua {COURSE_STAGES.length} chặng. Bắt đầu từ chiến lược đãi ngộ, sau đó thiết kế lương thưởng và vận dụng vào các tình huống chuyên sâu.</p>
         {course && (
           <div className="stack">
             <div className="reading-progress-row">
-              <label htmlFor="course-progress">{course.count}/{course.total} bài đang mở đã hoàn thành</label>
+              <label htmlFor="course-progress">{course.count}/{course.total} bài đã hoàn thành trong lộ trình</label>
               <progress id="course-progress" value={course.count} max={course.total} />
             </div>
             {course.next ? (
@@ -61,60 +64,62 @@ export function RoadmapPage() {
                   {course.count ? 'Học tiếp' : 'Bắt đầu'} {course.next.code} · {course.next.lesson.title}
                 </a>
               </div>
-            ) : <p>Bạn đã học xong các bài đang mở. Chọn một bài bên dưới để ôn lại.</p>}
+            ) : <p>Bạn đã hoàn thành toàn bộ lộ trình. Chọn một bài bên dưới để ôn lại.</p>}
           </div>
         )}
-        <details className="course-outline">
-          <summary>Chương trình {CURRICULUM.length} mô-đun</summary>
-          <ol role="list" aria-label="Thứ tự mô-đun">
-            {CURRICULUM.map((entry) => {
-              const lessons = 'lessons' in entry ? entry.lessons : undefined;
-              const first = lessons?.find((lesson) => !completed?.includes(lesson.id)) ?? lessons?.[0];
-              return (
-                <li key={entry.code}>
-                  <span className="eyebrow">{entry.code}</span>
-                  <div>
-                    {first ? <a className="course-module-link" href={lessonHref(first.id)}>{entry.title}</a> : <strong>{entry.title}</strong>}
-                    <p className="hint">{lessons ? `${lessons.length} bài đọc` : 'Chưa có bài đọc'}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-        </details>
       </header>
-      <div className="roadmap-modules">
-        {ROADMAP_MODULES.map((entry) => {
-          const count = entry.lessons.filter((lesson) => completed?.includes(lesson.id)).length;
-          const next = completed && entry.lessons.find((lesson) => !completed.includes(lesson.id));
-          return (
-            <section className="panel stack" key={entry.code} aria-labelledby={`module-${entry.code}`}>
-              <div>
-                <p className="eyebrow">{entry.code}</p>
-                <h2 className="h-sec" id={`module-${entry.code}`}>{entry.title}</h2>
-              </div>
-              <p>{entry.goal}</p>
-              {completed && <p className="hint">{count}/{entry.lessons.length} bài đã hoàn thành</p>}
-              {next && (
-                <div className="row">
-                  <button className="btn" type="button" onClick={() => open(next)}>
-                    {count ? 'Học tiếp' : 'Bắt đầu học'} · {next.title}
+      {COURSE_STAGES.map((stage, stageIndex) => (
+        <section key={stage.title} className="panel stack" aria-labelledby={`stage-${stageIndex}`}>
+          <header>
+            <p className="eyebrow">Chặng {stageIndex + 1}</p>
+            <h2 className="h-sec" id={`stage-${stageIndex}`}>{stage.title}</h2>
+          </header>
+          {stage.modules.map((entry) => {
+            const isOpen = expanded === entry.code;
+            const count = entry.lessons.filter((lesson) => completed?.includes(lesson.id)).length;
+            const next = completed && entry.lessons.find((lesson) => !completed.includes(lesson.id));
+            return (
+              <section key={entry.code} className="course-session" aria-labelledby={`module-${entry.code}`}>
+                <h3>
+                  <button className="course-toggle" type="button" aria-expanded={isOpen}
+                    aria-controls={`lessons-${entry.code}`} aria-labelledby={`module-${entry.code}`}
+                    aria-describedby={`session-${entry.code} status-${entry.code}`} onClick={() => setExpanded(isOpen ? null : entry.code)}>
+                    <span>
+                      <span className="eyebrow" id={`session-${entry.code}`}>Buổi {Number(entry.code.slice(1))} · {entry.code}</span>
+                      <strong id={`module-${entry.code}`}>{entry.title}</strong>
+                      <span className="hint" id={`status-${entry.code}`}>
+                        {completed ? `${count}/${entry.lessons.length} bài đã hoàn thành` : `${entry.lessons.length} bài`}
+                      </span>
+                    </span>
+                    <span aria-hidden="true">{isOpen ? '−' : '+'}</span>
                   </button>
+                </h3>
+                <div id={`lessons-${entry.code}`} hidden={!isOpen}>
+                  {isOpen && (
+                    <div className="stack course-session-body">
+                      <p>{entry.goal}</p>
+                      {next && <div className="row">
+                        <button className="btn" type="button" onClick={() => open(next)}>
+                          {count ? 'Học tiếp' : 'Bắt đầu học'} · {next.title}
+                        </button>
+                      </div>}
+                      <ol className="roadmap-lessons" aria-label={`Bài học ${entry.code}`}>
+                        {entry.lessons.map((lesson) => (
+                          <li key={lesson.id}>
+                            <button className="btn ghost" type="button" onClick={() => open(lesson)}>
+                              {lesson.title}{completed?.includes(lesson.id) ? ' · Đã hoàn thành' : ''}
+                            </button>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  )}
                 </div>
-              )}
-              <ul className="roadmap-lessons">
-                {entry.lessons.map((lesson) => (
-                  <li key={lesson.id}>
-                    <button className="btn ghost" type="button" onClick={() => open(lesson)}>
-                      {lesson.title}{completed?.includes(lesson.id) ? ' · Đã hoàn thành' : ''}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          );
-        })}
-      </div>
+              </section>
+            );
+          })}
+        </section>
+      ))}
     </section>
   );
 }

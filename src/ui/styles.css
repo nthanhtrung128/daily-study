@@ -385,13 +385,14 @@ p, .hint, .fb, .opt, .card .q, .eyebrow, li, dd { text-wrap: pretty; }
 .roadmap-lessons button { width: 100%; text-align: start; }
 
 .roadmap-intro { background: var(--sunk); }
-.course-outline { border-top: 1px solid var(--line); }
-.course-outline summary { padding-block: 12px; min-height: var(--tap); cursor: pointer; font-weight: 600; }
-.course-outline ol { margin: 0; padding: 0; list-style: none; }
-.course-outline li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 10px; padding-block: 10px; border-top: 1px solid var(--line); }
-.course-module-link { display: flex; align-items: center; min-height: var(--tap); color: var(--accent); font-weight: 600; }
-.course-outline li p { margin: 0; }
-.roadmap-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 16px; }
+.course-session { border-top: 1px solid var(--line); }
+.course-session h3 { margin: 0; }
+.course-toggle { width: 100%; min-height: var(--tap); display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 4px; font: inherit; color: var(--ink); background: transparent; border: 0; text-align: start; cursor: pointer; }
+.course-toggle > span:first-child { min-width: 0; display: grid; gap: 3px; }
+.course-toggle strong { font-size: 1rem; overflow-wrap: anywhere; }
+.course-toggle .hint { font-weight: 400; }
+.course-toggle > span:last-child { color: var(--accent); }
+.course-session-body { padding: 0 4px 12px; }
 body:has(main .roadmap-reader) .top { position: static; }
 .roadmap-reader { max-width: 66ch; margin-inline: auto; gap: 24px; }
 .roadmap-reading { display: grid; gap: 10px; }

@@ -114,7 +114,8 @@ function validateEnglish() {
 }
 
 function validateRoadmap() {
-  for (const code of ['05', '06', '09']) {
+  for (let session = 1; session <= 17; session++) {
+    const code = String(session).padStart(2, '0');
     const file = `content/tr-roadmap/m${code}.json`;
     const data = readJson(file);
     const validReview = (value: unknown) => isObj(value) && nonEmpty(value.question) && nonEmpty(value.answer);
@@ -125,8 +126,14 @@ function validateRoadmap() {
     if (data.code !== `M${code}` || !nonEmpty(data.title) || !nonEmpty(data.goal) || !nonEmpty(data.source)) {
       err(`${file}: thiếu mã, tên, nguồn hoặc mục tiêu mô-đun`);
     }
+    const expectedCount = code === '04' ? 5 : 4;
+    if (!Array.isArray(data.lessons) || data.lessons.length !== expectedCount) {
+      err(`${file}: lộ trình yêu cầu ${expectedCount} bài`);
+    }
+    let number = 0;
     checkList(file, 'lessons', data.lessons, ['id', 'title', 'context', 'explanation', 'example', 'takeaway'], 'id', (row, where) => {
-      if (typeof row.id !== 'string' || !new RegExp(`^trm-${code}-[0-9]{2}$`).test(row.id)) err(`${where}: mã bài không hợp lệ`);
+      const expectedId = `trm-${code}-${String(++number).padStart(2, '0')}`;
+      if (row.id !== expectedId) err(`${where}: cần mã ${expectedId} theo thứ tự buổi`);
       if (!Array.isArray(row.steps) || !row.steps.length || !row.steps.every(nonEmpty)) err(`${where}: thiếu các bước thực hiện`);
       if (!validReview(row.review)) err(`${where}: phần tự ôn cần câu hỏi và lời giải`);
     });

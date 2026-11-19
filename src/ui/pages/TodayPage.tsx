@@ -202,14 +202,14 @@ export function TodayPage() {
 
       <div className="panel stack">
         <h2 className="h-sec">Tự ôn bằng cách đọc</h2>
-        <p>Đọc về cấu trúc lương, merit và phân tích dữ liệu đãi ngộ. Thử tính với số liệu mẫu rồi tự kiểm tra.</p>
+        <p>Theo lộ trình từ chiến lược Total Rewards đến đãi ngộ vốn. Mỗi buổi có bài đọc, ví dụ thực hành và câu tự ôn.</p>
         {course?.next ? (
           <div className="row">
             <a className="btn roadmap-link" href={lessonHref(course.next.lesson.id)}>
               {course.count ? 'Học tiếp' : 'Bắt đầu'} {course.next.code} · {course.next.lesson.title}
             </a>
           </div>
-        ) : course && <p className="hint">Đã hoàn thành {course.total} bài đang mở</p>}
+        ) : course && <p className="hint">Đã hoàn thành {course.total} bài trong lộ trình</p>}
         <div className="row">
           <a className="btn ghost roadmap-link" href="#lo-trinh">Mở lộ trình Total Rewards</a>
           {!!readingReview?.length && (
