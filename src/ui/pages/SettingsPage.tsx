@@ -3,6 +3,7 @@ import { loadTheme, saveTheme, type Theme } from '../../core/theme';
 import { FONT_SIZES, FONT_SIZE_LABELS, loadFontSize, saveFontSize, type FontSize } from '../../core/fontsize';
 import { ICS_FILENAME, appUrl, buildIcs } from '../../core/ics';
 import { GOAL_CHOICES, DAILY_DURATIONS, DAY_SHORT_VI, MAX_NEW_CHOICES, WEEK_ORDER, isTime, shareLabel } from '../../core/prefs';
+import { AccessAccount } from '../components/AccessAccount';
 import { BackupPanel } from '../components/BackupPanel';
 import { StorageInfo } from '../components/StorageInfo';
 import { setDailyPrefs, useDailyPrefs } from '../useDailyPrefs';
@@ -95,6 +96,8 @@ export function SettingsPage() {
           </p>
         </div>
       </div>
+
+      <AccessAccount />
 
       <div className="panel stack" aria-labelledby="h-set-daily">
         <h2 id="h-set-daily" className="h-page">

@@ -23,6 +23,11 @@ import { applyTheme, loadTheme } from './core/theme';
 import { applyFontSize, loadFontSize } from './core/fontsize';
 import { markNeedRefresh, setUpdater } from './ui/swUpdate';
 
+// Sau khi Access trả về app, quay về URL nằm trong bộ nhớ đệm để lần tải lại ngoại tuyến vẫn mở được.
+if (location.pathname === '/dang-nhap' && new URLSearchParams(location.search).get('ve') === 'tai-khoan') {
+  history.replaceState(null, '', '/#cai-dat?muc=tai-khoan');
+}
+
 applyTheme(loadTheme());
 applyFontSize(loadFontSize());
 
