@@ -64,6 +64,12 @@ describe('chấm chính tả', () => {
     expect(scoreDictation(T, T).score).toBe(100);
   });
 
+  it('bỏ dấu cuối câu vẫn giữ giá trị số thập phân', () => {
+    const target = 'The total is 6.2 million.';
+    expect(scoreDictation(target, 'the total is 6.2 million').score).toBe(100);
+    expect(scoreDictation(target, 'the total is 62 million').score).toBeLessThan(100);
+  });
+
   it('từ sai, thiếu, thừa được đánh dấu và trừ điểm', () => {
     const r = scoreDictation('Could you send me the updated salary report by Friday?', 'could you sent me the salary report by next Friday');
     expect(r.words.find((w) => w.text === 'send')).toMatchObject({ status: 'wrong', heard: 'sent' });

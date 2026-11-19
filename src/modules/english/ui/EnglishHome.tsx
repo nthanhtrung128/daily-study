@@ -19,12 +19,13 @@ const DEFAULT: EnPrefs = { min: 10 };
 /** Khối "Tiếng Anh giao tiếp" trên trang Hôm nay: bắt đầu phiên thẻ từ / câu mẫu / shadowing. */
 export function EnglishHome({ onStart }: { onStart: (v: EnView) => void }) {
   const p = useProgress();
-  const [prefs, setPrefs] = useState<EnPrefs>(DEFAULT);
+  const [selectedPrefs, setPrefs] = useState<EnPrefs>();
+  const prefs = selectedPrefs ?? DEFAULT;
 
   useEffect(() => {
     let live = true;
     void getSetting<EnPrefs>(PREFS_KEY, DEFAULT)
-      .then((v) => live && setPrefs({ ...DEFAULT, ...v }))
+      .then((v) => live && setPrefs((current) => current ?? { ...DEFAULT, ...v }))
       .catch(() => undefined);
     return () => {
       live = false;

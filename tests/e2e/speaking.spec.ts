@@ -187,3 +187,28 @@ test('đề nói 1 phút: chọn 30 giây, ghi âm (audio/mp4), dừng & lưu, n
   await page.getByRole('button', { name: 'Bấm lần nữa để xóa' }).click();
   await expect(page.getByTestId('rec-empty')).toBeVisible();
 });
+
+test('giữ thời lượng vừa chọn nếu cài đặt tiếng Anh về muộn', async ({ page }) => {
+  type TestWindow = Window & { releasePrefs?: () => void };
+  await page.addInitScript(() => {
+    const get = IDBObjectStore.prototype.get;
+    IDBObjectStore.prototype.get = function (key) {
+      const request = get.call(this, key);
+      if (this.name === 'settings' && key === 'en.prefs') {
+        request.addEventListener('success', (event) => {
+          event.stopImmediatePropagation();
+          (window as TestWindow).releasePrefs = () => request.dispatchEvent(new Event('success'));
+        }, { once: true });
+      }
+      return request;
+    };
+  });
+  await page.goto('./#hom-nay');
+  await page.waitForFunction(() => !!(window as TestWindow).releasePrefs);
+  const fiveMinutes = page.getByRole('button', { name: 'EN 5 phút' });
+  await fiveMinutes.click();
+  await expect(fiveMinutes).toHaveAttribute('aria-pressed', 'true');
+  await page.evaluate(() => (window as TestWindow).releasePrefs!());
+  await page.getByRole('button', { name: /^Luyện nói/ }).click();
+  await expect(page.getByTestId('sess-count')).toHaveText('1/5');
+});

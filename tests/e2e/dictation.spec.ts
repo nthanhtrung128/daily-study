@@ -36,8 +36,8 @@ test('nghe chép: nghe → gõ → Kiểm tra → tô từ sai + điểm → h�
   const target = heard[0] as string;
   await shot(page, P, '1-nghe');
 
-  // Câu 1: gõ đúng (chữ thường, không dấu câu) → 100%.
-  await box.fill(target.replace(/[.,!?]/g, '').toLowerCase());
+  // Câu 1: gõ đúng (chữ thường, bỏ dấu câu, giữ dấu trong số) → 100%.
+  await box.fill(target.replace(/[!?]|[.,](?!\d)/g, '').toLowerCase());
   await noHScroll(page);
   await page.getByRole('button', { name: 'Kiểm tra' }).click();
   await expect(page.getByTestId('dict-score')).toHaveText('100%');
