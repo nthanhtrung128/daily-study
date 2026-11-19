@@ -298,6 +298,12 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await btn('Đọc phân bố và nguyên nhân').click();
   await at('lo-trinh-phan-tich-luong');
 
+  await openTab(page, 'doc-them');
+  await at('doc-them');
+  await page.getByRole('link', { name: 'Who covers the early shift?' }).click();
+  await page.getByText('Dịch đoạn 1', { exact: true }).click();
+  await at('doc-them-doi-chieu');
+
   await openTab(page, 'tien-do');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   await at('tien-do');
