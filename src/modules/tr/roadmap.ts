@@ -1,31 +1,31 @@
 import { liveQuery } from 'dexie';
 import { useEffect, useState } from 'react';
+import module01 from '../../../content/tr-roadmap/m01.json';
+import module02 from '../../../content/tr-roadmap/m02.json';
+import module03 from '../../../content/tr-roadmap/m03.json';
+import module04 from '../../../content/tr-roadmap/m04.json';
 import module05 from '../../../content/tr-roadmap/m05.json';
 import module06 from '../../../content/tr-roadmap/m06.json';
+import module07 from '../../../content/tr-roadmap/m07.json';
+import module08 from '../../../content/tr-roadmap/m08.json';
 import module09 from '../../../content/tr-roadmap/m09.json';
+import module10 from '../../../content/tr-roadmap/m10.json';
+import module11 from '../../../content/tr-roadmap/m11.json';
+import module12 from '../../../content/tr-roadmap/m12.json';
+import module13 from '../../../content/tr-roadmap/m13.json';
+import module14 from '../../../content/tr-roadmap/m14.json';
+import module15 from '../../../content/tr-roadmap/m15.json';
+import module16 from '../../../content/tr-roadmap/m16.json';
+import module17 from '../../../content/tr-roadmap/m17.json';
 import { db, setSetting } from '../../core/db';
 
-export const CURRICULUM = [
-  { code: 'M01', title: 'Chiến lược Total Rewards' },
-  { code: 'M02', title: 'Khung pháp lý về đãi ngộ' },
-  { code: 'M03', title: 'Công bằng và minh bạch lương' },
-  { code: 'M04', title: 'Phân tích và đánh giá công việc' },
-  module05,
-  module06,
-  { code: 'M07', title: 'Lương biến đổi và khuyến khích' },
-  { code: 'M08', title: 'Định giá lương thị trường' },
-  module09,
-  { code: 'M10', title: 'Tài chính cho Total Rewards' },
-  { code: 'M11', title: 'Business case và truyền thông' },
-  { code: 'M12', title: 'Đãi ngộ toàn cầu' },
-  { code: 'M13', title: 'Phúc lợi và sức khỏe toàn diện' },
-  { code: 'M14', title: 'Phát triển và nghề nghiệp' },
-  { code: 'M15', title: 'Lương thưởng kinh doanh' },
-  { code: 'M16', title: 'Đãi ngộ lãnh đạo' },
-  { code: 'M17', title: 'Cổ phiếu và đãi ngộ vốn' },
-] as const;
-
-export const ROADMAP_MODULES = CURRICULUM.filter((entry) => 'lessons' in entry);
+export const COURSE_STAGES = [
+  { title: 'Nền tảng Total Rewards', modules: [module01, module02, module03, module04] },
+  { title: 'Thiết kế lương và thưởng', modules: [module05, module06, module07, module08, module09] },
+  { title: 'Quản trị chương trình đãi ngộ', modules: [module10, module11, module12, module13, module14] },
+  { title: 'Đãi ngộ chuyên sâu', modules: [module15, module16, module17] },
+];
+export const ROADMAP_MODULES = COURSE_STAGES.flatMap((stage) => stage.modules);
 export type RoadmapLesson = typeof module05.lessons[number];
 export { module06, module09 };
 

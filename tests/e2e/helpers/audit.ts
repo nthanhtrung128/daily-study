@@ -123,6 +123,14 @@ export function trackErrors(page: Page): string[] {
 const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'lo-trinh': 'Lộ trình', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
 export type TabId = keyof typeof TABS;
 
+export async function openReadingModule(page: Page, title: string) {
+  const region = page.getByRole('region', { name: title, exact: true });
+  const toggle = region.getByRole('button', { name: title, exact: true });
+  if (await toggle.getAttribute('aria-expanded') !== 'true') await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  return region;
+}
+
 /**
  * Mở một tab như người dùng (bấm thanh tab). Không dùng page.goto('./#…') khi chỉ đổi hash:
  * trên WebKit đôi khi không phát `hashchange`, URL đổi mà trang vẫn ở tab cũ. Trang trắng thì tải bằng goto.
@@ -275,15 +283,18 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
 
   await openTab(page, 'lo-trinh');
   await at('lo-trinh');
+  await openReadingModule(page, 'Cấu trúc lương cơ bản');
   await btn('Diễn giải compa và penetration').click();
   await page.getByLabel('Dự đoán compa-ratio (%)').fill('96');
   await btn('Đối chiếu dự đoán').click();
   await expect(page.getByText('Dự đoán khớp với kết quả.')).toBeVisible();
   await at('lo-trinh-bai-tinh');
   await btn('Về kho kiến thức').click();
+  await openReadingModule(page, 'Hiệu suất và trả lương theo thành tích');
   await btn('Thiết kế ma trận merit').click();
   await at('lo-trinh-merit');
   await btn('Về kho kiến thức').click();
+  await openReadingModule(page, 'Phân tích dữ liệu đãi ngộ');
   await btn('Đọc phân bố và nguyên nhân').click();
   await at('lo-trinh-phan-tich-luong');
 
