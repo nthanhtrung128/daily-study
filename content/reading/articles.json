@@ -1,0 +1,302 @@
+[
+  {
+    "id": "doi-ca",
+    "region": "Quốc tế",
+    "title": {
+      "en": "Who covers the early shift?",
+      "vi": "Ai trực ca sớm?"
+    },
+    "source": {
+      "name": "Work–life balance",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/reading/b2/work-life-balance",
+      "reason": "Bài đọc B2 có điểm trung bình 4,3 từ 73 lượt đánh giá khi đối chiếu ngày 19/11/2026.",
+      "publisher": "British Council"
+    },
+    "paragraphs": [
+      {
+        "en": "At eight each morning, someone on the payroll team checks the overnight messages from the factory. Linh would like to start later on Wednesdays so she can take her father to an appointment. Her manager first suggests working from home. Linh explains that changing where she works would still leave the meeting at eight.",
+        "vi": "Tám giờ mỗi sáng, một người trong nhóm tiền lương kiểm tra tin nhắn nhà máy gửi trong đêm. Linh muốn vào làm muộn hơn vào thứ Tư để đưa bố đi khám. Quản lý ban đầu gợi ý làm việc tại nhà. Linh giải thích rằng dù đổi nơi làm, cô vẫn phải có mặt trong cuộc họp lúc tám giờ."
+      },
+      {
+        "en": "A colleague, Nam, prefers an early start. He offers to cover Wednesday morning if Linh takes his late shift on Friday. Before agreeing, they list the tasks that cannot wait: checking missing time records and calling the shift supervisor if a whole team is missing.",
+        "vi": "Nam, một đồng nghiệp, thích bắt đầu sớm. Anh đề nghị trực sáng thứ Tư nếu Linh nhận ca muộn thứ Sáu của anh. Trước khi thống nhất, họ liệt kê các việc cần làm ngay: kiểm tra lượt chấm công bị thiếu và gọi trưởng ca nếu thiếu dữ liệu của cả tổ."
+      },
+      {
+        "en": "They try the swap for a month. On the last Friday, the manager asks how many urgent messages waited until noon and whether either colleague regularly worked late. Both answers matter when the team decides whether to keep the arrangement.",
+        "vi": "Họ thử đổi ca trong một tháng. Vào thứ Sáu cuối cùng, quản lý hỏi có bao nhiêu tin khẩn phải đợi tới trưa và có ai thường xuyên phải làm quá giờ hay không. Nhóm dùng cả hai câu trả lời để quyết định có duy trì cách bố trí này."
+      }
+    ],
+    "terms": [
+      {
+        "en": "cover a shift",
+        "vi": "trực thay một ca"
+      },
+      {
+        "en": "overnight messages",
+        "vi": "tin nhắn gửi trong đêm"
+      },
+      {
+        "en": "time records",
+        "vi": "dữ liệu chấm công"
+      }
+    ],
+    "question": {
+      "en": "Why would working from home leave Linh’s problem unresolved?",
+      "vi": "Vì sao làm việc ở nhà vẫn chưa giải quyết được vấn đề của Linh?"
+    },
+    "answer": {
+      "en": "She needs a later start. She would still be responsible for the eight o’clock check at home.",
+      "vi": "Linh cần bắt đầu muộn hơn. Nếu làm ở nhà, cô vẫn phải phụ trách lượt kiểm tra lúc tám giờ."
+    }
+  },
+  {
+    "id": "thu-ban-giao",
+    "region": "Quốc tế",
+    "title": {
+      "en": "A leave request before payroll closes",
+      "vi": "Email xin nghỉ trước ngày chốt lương"
+    },
+    "source": {
+      "name": "An email to request time off",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/writing/b2/email-request-time",
+      "reason": "Bài thực hành email B2 có điểm trung bình 4,6 từ 14 lượt đánh giá khi đối chiếu ngày 19/11/2026.",
+      "publisher": "British Council"
+    },
+    "paragraphs": [
+      {
+        "en": "Hi Mai, could I take Friday afternoon off? The factory sends its final attendance file at noon, and I know you need a checked copy before four. I can finish the checks for the office staff on Thursday. The factory file is the only piece that would still need an owner.",
+        "vi": "Chào Mai, chị có thể cho em nghỉ chiều thứ Sáu được không? Nhà máy gửi tệp chấm công cuối cùng vào buổi trưa và em biết chị cần bản đã kiểm tra trước bốn giờ. Em có thể kiểm tra xong dữ liệu khối văn phòng vào thứ Năm. Chỉ còn tệp của nhà máy cần người phụ trách."
+      },
+      {
+        "en": "Huy has agreed to check that file. I have put last month’s checklist in the payroll folder. If the number of night shifts looks unusual, he will call the shift supervisor before sending the total to you. Could you confirm that this handover works for you by Thursday morning?",
+        "vi": "Huy đã đồng ý kiểm tra tệp đó. Em đã đặt danh sách kiểm tra tháng trước vào thư mục tiền lương. Nếu số ca đêm có vẻ bất thường, Huy sẽ gọi trưởng ca trước khi gửi số tổng cho chị. Chị có thể xác nhận phương án bàn giao này trước sáng thứ Năm được không?"
+      },
+      {
+        "en": "Mai replies that the plan works, with one change: Huy should send the checked file directly to payroll and copy her on the email. The request is now clear enough for someone outside the conversation to carry out the work.",
+        "vi": "Mai trả lời rằng phương án này phù hợp, với một thay đổi: Huy nên gửi thẳng tệp đã kiểm tra cho bộ phận tính lương và đồng gửi cho chị. Lúc này, ngay cả người không tham gia trao đổi ban đầu cũng hiểu phải làm gì."
+      }
+    ],
+    "terms": [
+      {
+        "en": "take the afternoon off",
+        "vi": "xin nghỉ buổi chiều"
+      },
+      {
+        "en": "handover",
+        "vi": "việc bàn giao"
+      },
+      {
+        "en": "copy someone on an email",
+        "vi": "đồng gửi email cho ai"
+      }
+    ],
+    "question": {
+      "en": "Who needs the final file, and who only needs a copy?",
+      "vi": "Ai cần nhận trực tiếp tệp cuối cùng và ai chỉ cần được đồng gửi?"
+    },
+    "answer": {
+      "en": "Huy sends the file to payroll and copies Mai.",
+      "vi": "Huy gửi tệp cho bộ phận tính lương và đồng gửi cho Mai."
+    }
+  },
+  {
+    "id": "bang-luong-thi-truong",
+    "region": "Việt Nam",
+    "title": {
+      "en": "Two offers, two different totals",
+      "vi": "Hai lời mời làm việc, hai cách tính thu nhập"
+    },
+    "source": {
+      "name": "Báo cáo thị trường lao động Việt Nam 2025",
+      "url": "https://www.talentnetgroup.com/vn/vi/phan-tich-chuyen-sau/rewards-vi/bao-cao-luong-thi-truong-lao-dong-viet-nam-2025",
+      "reason": "Khảo sát năm 2025 có dữ liệu từ 678 doanh nghiệp. Nguồn cho phép đối chiếu lương cơ bản và thưởng trong bối cảnh Việt Nam.",
+      "publisher": "Talentnet–Mercer"
+    },
+    "paragraphs": [
+      {
+        "en": "A recruiter tells Thu that a candidate has a better offer. Both jobs pay 24 million dong a month before tax. The recruiter has compared the jobs using only the monthly figure. Thu asks for the payment terms in writing before recommending a change.",
+        "vi": "Một chuyên viên tuyển dụng báo với Thu rằng ứng viên có lời mời tốt hơn. Cả hai công việc đều trả 24 triệu đồng mỗi tháng trước thuế. Người tuyển dụng mới so sánh con số theo tháng. Thu đề nghị xem các điều khoản chi trả bằng văn bản trước khi kiến nghị điều chỉnh."
+      },
+      {
+        "en": "In this example, the first offer guarantees twelve monthly payments. The second guarantees thirteen. Both mention a possible bonus, but neither states a minimum bonus. Thu writes down 288 million and 312 million as the guaranteed annual amounts. She leaves the possible bonuses in a separate column.",
+        "vi": "Trong ví dụ này, lời mời thứ nhất cam kết trả mười hai tháng lương, lời mời thứ hai cam kết mười ba tháng. Cả hai có đề cập khả năng nhận thưởng nhưng đều không nêu mức thưởng tối thiểu. Thu ghi 288 triệu và 312 triệu là hai mức thu nhập năm được bảo đảm. Cô để các khoản thưởng có thể có ở một cột riêng."
+      },
+      {
+        "en": "Now the hiring manager can see the gap. Matching the higher figure would add 24 million dong in guaranteed pay each year. Before making that commitment, the manager checks what people doing comparable work already earn.",
+        "vi": "Giờ đây quản lý tuyển dụng thấy rõ chênh lệch. Để ngang bằng lời mời cao hơn, mỗi năm công ty sẽ phải cam kết trả thêm 24 triệu đồng. Trước khi quyết định, quản lý xem lại thu nhập của những nhân viên hiện làm công việc tương đương."
+      }
+    ],
+    "terms": [
+      {
+        "en": "guaranteed pay",
+        "vi": "thu nhập được bảo đảm"
+      },
+      {
+        "en": "payment terms",
+        "vi": "điều khoản chi trả"
+      },
+      {
+        "en": "comparable work",
+        "vi": "công việc tương đương"
+      }
+    ],
+    "question": {
+      "en": "Why does Thu leave the bonus out of both annual totals?",
+      "vi": "Vì sao Thu chưa cộng tiền thưởng vào hai tổng thu nhập năm?"
+    },
+    "answer": {
+      "en": "Neither offer guarantees a minimum bonus. Adding an estimate would mix a possible payment with committed pay.",
+      "vi": "Cả hai lời mời đều không cam kết mức thưởng tối thiểu. Nếu cộng một số ước tính, Thu sẽ gộp khoản có thể nhận với khoản chắc chắn được trả."
+    }
+  },
+  {
+    "id": "doc-trung-vi",
+    "region": "Việt Nam",
+    "title": {
+      "en": "Which engineers belong in the comparison?",
+      "vi": "Nên so sánh nhóm kỹ sư nào?"
+    },
+    "source": {
+      "name": "Báo cáo Lương IT và Thị trường tuyển dụng 2024–2025",
+      "url": "https://itviec.com/bao-cao/luong-it-va-thi-truong-tuyen-dung-it-vietnam-2024-2025",
+      "reason": "Báo cáo khảo sát tại Việt Nam phân tích 31 vị trí IT và công bố các mức lương trung vị theo vai trò.",
+      "publisher": "ITviec"
+    },
+    "paragraphs": [
+      {
+        "en": "A director sees a salary figure for a technical lead and asks whether all software engineers should earn the same amount. Before opening the budget file, the analyst asks a different question: does the job in the survey involve the same responsibility as the job we are trying to fill?",
+        "vi": "Một giám đốc thấy con số lương của trưởng nhóm kỹ thuật và hỏi liệu tất cả kỹ sư phần mềm có nên nhận mức đó. Trước khi mở tệp ngân sách, chuyên viên phân tích hỏi: công việc trong khảo sát có cùng mức trách nhiệm với vị trí công ty đang tuyển hay không?"
+      },
+      {
+        "en": "She illustrates a median with five fictional monthly salaries, in millions of dong: 20, 22, 24, 28 and 46. The middle observation is 24. If the highest salary rises to 56, the median is still 24. The average, however, rises because it uses every value.",
+        "vi": "Cô minh họa trung vị bằng năm mức lương tháng giả định, đơn vị triệu đồng: 20, 22, 24, 28 và 46. Giá trị ở giữa là 24. Nếu mức cao nhất tăng lên 56, trung vị vẫn là 24. Trong khi đó, số trung bình tăng vì phép tính dùng tất cả các giá trị."
+      },
+      {
+        "en": "The director asks for a comparison of engineers who make similar technical decisions. If the sample is small, the analyst will flag that limitation when she reports the result. A precise-looking number can still describe the wrong group.",
+        "vi": "Giám đốc yêu cầu so sánh nhóm kỹ sư có thẩm quyền quyết định kỹ thuật tương đương. Nếu mẫu nhỏ, chuyên viên sẽ ghi rõ hạn chế đó khi báo cáo kết quả. Một con số trông rất chính xác vẫn có thể mô tả sai nhóm cần so sánh."
+      }
+    ],
+    "terms": [
+      {
+        "en": "median",
+        "vi": "trung vị"
+      },
+      {
+        "en": "sample size",
+        "vi": "cỡ mẫu"
+      },
+      {
+        "en": "flag a limitation",
+        "vi": "nêu rõ một hạn chế"
+      }
+    ],
+    "question": {
+      "en": "If only the largest value increases, which measure changes in this example?",
+      "vi": "Trong ví dụ, nếu chỉ giá trị lớn nhất tăng thì chỉ số nào thay đổi?"
+    },
+    "answer": {
+      "en": "The average rises. The middle observation, and therefore the median, stays at 24 million.",
+      "vi": "Số trung bình tăng. Giá trị đứng giữa, tức trung vị, vẫn là 24 triệu."
+    }
+  },
+  {
+    "id": "chuyen-dai-luong",
+    "region": "Quốc tế",
+    "title": {
+      "en": "A pay rise within the same grade",
+      "vi": "Tăng lương trong cùng ngạch"
+    },
+    "source": {
+      "name": "Pay structures and pay progression",
+      "url": "https://www.cipd.org/en/knowledge/factsheets/pay-structures-factsheet/",
+      "reason": "CIPD dẫn khảo sát quản trị đãi ngộ năm 2019: 67% nhà tuyển dụng tham gia dùng cơ cấu lương.",
+      "publisher": "CIPD"
+    },
+    "paragraphs": [
+      {
+        "en": "During a review, Lan learns that her proposed salary will rise from 22 to 24 million dong a month. Her job title and duties will stay the same. She asks her manager whether the new salary means she has moved up a grade. The manager opens the pay table they use for her role.",
+        "vi": "Trong buổi đánh giá, Lan được biết mức lương đề xuất sẽ tăng từ 22 lên 24 triệu đồng mỗi tháng. Chức danh và nhiệm vụ của cô vẫn như cũ. Cô hỏi quản lý liệu mức mới có đồng nghĩa với việc đã lên ngạch. Quản lý mở bảng lương đang áp dụng cho vị trí của cô."
+      },
+      {
+        "en": "In their example, the grade covers monthly salaries from 20 to 28 million. Both figures sit inside that range. Lan can now close a complex payroll case on her own and teach a colleague how to check it. The manager records that evidence when proposing a rise within the grade.",
+        "vi": "Trong tình huống này, ngạch của Lan có dải lương tháng từ 20 đến 28 triệu. Cả hai mức đều nằm trong dải. Lan hiện có thể tự xử lý một trường hợp tính lương phức tạp và hướng dẫn đồng nghiệp cách kiểm tra. Quản lý ghi nhận bằng chứng đó khi đề xuất tăng lương trong ngạch."
+      },
+      {
+        "en": "A move to the next grade would need a separate review of the role. For example, would Lan own the payroll process across several sites? They agree to discuss the responsibilities of that role at their next career meeting.",
+        "vi": "Muốn chuyển lên ngạch kế tiếp, hai bên cần đánh giá riêng phạm vi công việc. Chẳng hạn, Lan có chịu trách nhiệm cho quy trình tính lương ở nhiều cơ sở không? Họ thống nhất sẽ thảo luận trách nhiệm của vị trí đó trong buổi trao đổi nghề nghiệp tới."
+      }
+    ],
+    "terms": [
+      {
+        "en": "pay grade",
+        "vi": "ngạch lương"
+      },
+      {
+        "en": "within the range",
+        "vi": "trong dải lương"
+      },
+      {
+        "en": "own the process",
+        "vi": "chịu trách nhiệm về quy trình"
+      }
+    ],
+    "question": {
+      "en": "Which evidence supports Lan’s proposed rise, and what would require another review?",
+      "vi": "Bằng chứng nào ủng hộ việc tăng lương cho Lan và điều gì cần được đánh giá riêng?"
+    },
+    "answer": {
+      "en": "She handles harder cases independently and coaches a colleague. Moving to a higher grade would require reviewing the scope of the role.",
+      "vi": "Lan tự xử lý được trường hợp khó hơn và hướng dẫn đồng nghiệp. Việc lên ngạch cần đánh giá lại phạm vi trách nhiệm của vị trí."
+    }
+  },
+  {
+    "id": "doc-binh-chon",
+    "region": "Việt Nam",
+    "title": {
+      "en": "A popular employer and an unpopular benefit",
+      "vi": "Nhà tuyển dụng được yêu thích và một phúc lợi ít người dùng"
+    },
+    "source": {
+      "name": "Top 100 Nơi làm việc tốt nhất Việt Nam 2024",
+      "url": "https://vcci-hcm.org.vn/top-100-noi-lam-viec-tot-nhat-viet-nam-2024/",
+      "reason": "VCCI-HCM ghi nhận khảo sát Anphabe năm 2024 có 65.000 người đi làm đánh giá hơn 700 doanh nghiệp thuộc 18 nhóm ngành.",
+      "publisher": "VCCI-HCM"
+    },
+    "paragraphs": [
+      {
+        "en": "At a planning meeting, a manager points to an employer ranking and suggests copying a well-known company’s gym benefit. People clearly like working there, she says. Hanh, the benefits specialist, asks whether the votes tell them which particular benefit people value. The published ranking alone cannot answer that question.",
+        "vi": "Trong cuộc họp lập kế hoạch, một quản lý chỉ vào bảng xếp hạng nhà tuyển dụng và đề nghị làm theo chương trình hỗ trợ tập gym của một công ty nổi tiếng. Chị nói rằng rõ ràng mọi người thích làm việc ở đó. Hạnh, chuyên viên phúc lợi, hỏi liệu các lá phiếu có cho biết mọi người coi trọng phúc lợi cụ thể nào. Riêng bảng xếp hạng chưa trả lời được câu hỏi ấy."
+      },
+      {
+        "en": "Hanh checks a small pilot at their own company. Forty colleagues received a gym pass, but only six used it last month. In short interviews, several night-shift workers mention that the gym closes before their shift ends. A low usage figure can hide a scheduling problem.",
+        "vi": "Hạnh kiểm tra một đợt thí điểm nhỏ tại công ty mình. Bốn mươi đồng nghiệp được phát thẻ tập nhưng tháng trước chỉ sáu người dùng. Khi trao đổi ngắn, vài nhân viên ca đêm cho biết phòng tập đóng cửa trước khi họ tan ca. Mức sử dụng thấp có thể che khuất vấn đề về thời gian."
+      },
+      {
+        "en": "For the next trial, employees can choose between two nearby gyms with different hours. Hanh will compare use by shift and ask non-users what still gets in the way. That gives the team evidence for a decision about this benefit.",
+        "vi": "Trong đợt thử tiếp theo, nhân viên được chọn một trong hai phòng tập gần đó có giờ mở cửa khác nhau. Hạnh sẽ so sánh mức sử dụng theo ca và hỏi người chưa dùng xem còn trở ngại gì. Nhờ vậy, nhóm có bằng chứng để quyết định về chính phúc lợi này."
+      }
+    ],
+    "terms": [
+      {
+        "en": "usage rate",
+        "vi": "tỷ lệ sử dụng"
+      },
+      {
+        "en": "pilot",
+        "vi": "đợt thí điểm"
+      },
+      {
+        "en": "get in the way",
+        "vi": "gây trở ngại"
+      }
+    ],
+    "question": {
+      "en": "What should Hanh check before concluding that staff dislike the gym benefit?",
+      "vi": "Hạnh nên kiểm tra gì trước khi kết luận nhân viên không thích phúc lợi tập gym?"
+    },
+    "answer": {
+      "en": "Whether the opening hours suit each shift, and why people with a pass have not used it.",
+      "vi": "Cần xem giờ mở cửa có phù hợp với từng ca và hỏi vì sao người được cấp thẻ chưa sử dụng."
+    }
+  }
+]

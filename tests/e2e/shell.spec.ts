@@ -4,11 +4,12 @@ const PAGES = [
   { hash: 'hom-nay', tab: 'Hôm nay', heading: 'Hôm nay ôn bao lâu?' },
   { hash: 'tra-cuu', tab: 'Tra cứu', heading: 'Tra cứu' },
   { hash: 'lo-trinh', tab: 'Lộ trình', heading: 'Đọc và tự ôn Total Rewards' },
+  { hash: 'doc-them', tab: 'Đọc thêm', heading: 'Đọc thêm' },
   { hash: 'tien-do', tab: 'Tiến độ', heading: 'Tiến độ' },
   { hash: 'cai-dat', tab: 'Cài đặt', heading: 'Cài đặt' },
 ];
 
-test('điều hướng qua 5 trang bằng tab, không cuộn ngang', async ({ page }) => {
+test('điều hướng qua 6 trang bằng tab, không cuộn ngang', async ({ page }) => {
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
 

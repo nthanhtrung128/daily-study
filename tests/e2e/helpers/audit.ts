@@ -120,7 +120,7 @@ export function trackErrors(page: Page): string[] {
   return errs;
 }
 
-const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'lo-trinh': 'Lộ trình', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
+const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'lo-trinh': 'Lộ trình', 'doc-them': 'Đọc thêm', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
 export type TabId = keyof typeof TABS;
 
 export async function openReadingModule(page: Page, title: string) {
@@ -297,6 +297,12 @@ export async function walkApp(page: Page, at: (where: string) => Promise<void>):
   await openReadingModule(page, 'Phân tích dữ liệu đãi ngộ');
   await btn('Đọc phân bố và nguyên nhân').click();
   await at('lo-trinh-phan-tich-luong');
+
+  await openTab(page, 'doc-them');
+  await at('doc-them');
+  await page.getByRole('link', { name: 'Who covers the early shift?' }).click();
+  await page.getByText('Dịch đoạn 1', { exact: true }).click();
+  await at('doc-them-doi-chieu');
 
   await openTab(page, 'tien-do');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();

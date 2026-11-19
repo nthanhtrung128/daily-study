@@ -160,6 +160,23 @@ function validateRoadmap() {
   }
 }
 
+function validateReadings() {
+  const file = 'content/reading/articles.json';
+  checkList(file, 'articles', readJson(file), ['id', 'region'], 'id', (row, where) => {
+    if (!isStr(row.id) || !/^[a-z0-9-]+$/.test(row.id)) err(`${where}: mã bài không hợp lệ`);
+    if (!['Việt Nam', 'Quốc tế'].includes(String(row.region))) err(`${where}: nhóm nguồn không hợp lệ`);
+    for (const field of ['title', 'question', 'answer']) {
+      const pair = row[field];
+      if (!isObj(pair) || !nonEmpty(pair.en) || !nonEmpty(pair.vi)) err(`${where}: thiếu bản Anh–Việt cho ${field}`);
+    }
+    for (const field of ['paragraphs', 'terms']) checkList(file, where + '.' + field, row[field], ['en', 'vi']);
+    const source = row.source;
+    if (!isObj(source) || !nonEmpty(source.publisher) || !nonEmpty(source.name) || !nonEmpty(source.reason)
+      || !isStr(source.url) || !/^https:\/\/[^/]+\/.+/.test(source.url)) err(`${where}: thiếu nguồn tham khảo`);
+  });
+}
+
+validateReadings();
 validateTr101();
 validateRoadmap();
 validateEnglish();

@@ -7,7 +7,7 @@ import { stubMedia, watchCsp } from './helpers/stubs';
  * - "Rất lớn" chọn trong app (15 px × 1,3 = 19,5 px), và
  * - mức Trợ năng › Chữ lớn hơn của iOS, giả lập bằng cỡ gốc 23 px và 28 px (Safari đặt -apple-system-body cỡ đó).
  * Mỗi màn kiểm như audit thường (tràn ngang, chữ tràn hộp, vùng chạm ≥ 44 px, tương phản) và thêm:
- * thanh tab dùng được (đủ 4 tab, nằm gọn trong màn, không bị cắt), thanh trên không che quá nửa màn,
+ * thanh tab dùng được (đủ 6 tab, nằm gọn trong màn, không bị cắt), thanh trên không che quá nửa màn,
  * chữ không bị cắt dọc trong hộp overflow: hidden.
  */
 test.use({ serviceWorkers: 'block' });
@@ -30,7 +30,7 @@ function auditLarge(): string[] {
   const vw = document.documentElement.clientWidth;
   const nav = document.querySelector('nav.tabs');
   const tabs = [...document.querySelectorAll<HTMLAnchorElement>('nav.tabs a')];
-  if (!nav || tabs.length !== 5) out.push(`thanh tab: thấy ${tabs.length}/5 tab`);
+  if (!nav || tabs.length !== 6) out.push(`thanh tab: thấy ${tabs.length}/6 tab`);
   else {
     const nr = nav.getBoundingClientRect();
     for (const a of tabs) {

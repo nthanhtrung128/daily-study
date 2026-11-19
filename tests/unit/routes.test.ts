@@ -3,7 +3,7 @@ import { DEFAULT_ROUTE, ROUTES, parseHash, routeLabel } from '../../src/ui/route
 
 describe('parseHash', () => {
   it('nhận đủ 5 trang', () => {
-    expect(ROUTES.map((r) => r.id)).toEqual(['hom-nay', 'tra-cuu', 'lo-trinh', 'tien-do', 'cai-dat']);
+    expect(ROUTES.map((r) => r.id)).toEqual(['hom-nay', 'tra-cuu', 'lo-trinh', 'doc-them', 'tien-do', 'cai-dat']);
     for (const r of ROUTES) expect(parseHash(`#${r.id}`)).toBe(r.id);
   });
 
