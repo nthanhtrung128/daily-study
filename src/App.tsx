@@ -3,6 +3,7 @@ import { ROUTES, type RouteId } from './ui/routes';
 import { useHashRoute } from './ui/useHashRoute';
 import { TodayPage } from './ui/pages/TodayPage';
 import { LookupPage } from './ui/pages/LookupPage';
+import { ExtraReadingPage } from './ui/pages/ExtraReadingPage';
 import { RoadmapPage } from './ui/pages/RoadmapPage';
 import { ProgressPage } from './ui/pages/ProgressPage';
 import { SettingsPage } from './ui/pages/SettingsPage';
@@ -17,6 +18,7 @@ const PAGES: Record<RouteId, () => ReactElement> = {
   'hom-nay': TodayPage,
   'tra-cuu': LookupPage,
   'lo-trinh': RoadmapPage,
+  'doc-them': ExtraReadingPage,
   'tien-do': ProgressPage,
   'cai-dat': SettingsPage,
 };

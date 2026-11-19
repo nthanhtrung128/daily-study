@@ -120,7 +120,7 @@ export function trackErrors(page: Page): string[] {
   return errs;
 }
 
-const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'lo-trinh': 'Lộ trình', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
+const TABS = { 'hom-nay': 'Hôm nay', 'tra-cuu': 'Tra cứu', 'lo-trinh': 'Lộ trình', 'doc-them': 'Đọc thêm', 'tien-do': 'Tiến độ', 'cai-dat': 'Cài đặt' } as const;
 export type TabId = keyof typeof TABS;
 
 export async function openReadingModule(page: Page, title: string) {

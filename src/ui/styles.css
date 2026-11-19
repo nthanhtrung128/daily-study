@@ -419,3 +419,11 @@ body:has(main .roadmap-reader) .top { position: static; }
 .salary-picker > .row { margin-top: 8px; }
 
 .access-status { overflow-wrap: anywhere; }
+
+.extra-reader .passages p { font-family: var(--f-card); font-size: 1.125rem; line-height: 1.65; overflow-wrap: anywhere; }
+.extra-reader summary { display: list-item; min-height: var(--tap); padding-block: 10px; color: var(--accent); cursor: pointer; font-weight: 600; }
+.extra-reader .passages details p { padding-inline-start: 12px; border-inline-start: 3px solid var(--line); }
+.word-pairs { margin: 0; }
+.word-pairs > div { border-top: 1px solid var(--line); padding-block: 8px; }
+.word-pairs dt { font-weight: 600; }
+.word-pairs dd { margin: 0; }
