@@ -394,6 +394,10 @@ p, .hint, .fb, .opt, .card .q, .eyebrow, li, dd { text-wrap: pretty; }
 .course-toggle > span:last-child { color: var(--accent); }
 .course-session-body { padding: 0 4px 12px; }
 body:has(main .roadmap-reader) .top { position: static; }
+.memo-list { list-style: none; padding: 0; margin: 0; }
+.memo-list li { border-top: 1px solid var(--line); padding: 12px 0; }
+.memo-source { display: flex; align-items: center; min-height: var(--tap); color: var(--accent); font-weight: 600; overflow-wrap: anywhere; }
+.memo-excerpt { white-space: pre-wrap; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
 .roadmap-reader { max-width: 66ch; margin-inline: auto; gap: 24px; }
 .roadmap-reading { display: grid; gap: 10px; }
 .roadmap-reading ol { margin: 0; padding-inline-start: 1.5em; }
