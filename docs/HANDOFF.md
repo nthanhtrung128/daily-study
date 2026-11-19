@@ -36,6 +36,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #31 | Bổ sung 57 bài đọc từ lộ trình Excel ở M01–M04, M07–M08 và M10–M17, kèm tình huống, bước thực hiện và câu tự ôn riêng cho từng bài. |
 | #32 | Mở 69 bài theo 17 buổi và 4 chặng từ nền tảng đến chuyên sâu. Hôm nay, Lộ trình và Tiến độ dùng cùng thứ tự M01–M17 và giữ mã bài cũ. |
 | #33 | Memo cá nhân trong 69 bài đọc, tự lưu vào bảng notes và đi cùng bản sao lưu. Sổ memo trong Lộ trình cho tìm theo nội dung hoặc bài, mở lại đúng vị trí. |
+| #34 | Tìm trong 69 bài ngay tại Lộ trình bằng mã bài, tên buổi hoặc nội dung không dấu. Khi quay lại từ bài đã mở, giữ kết quả và đặt focus về bài đó. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
