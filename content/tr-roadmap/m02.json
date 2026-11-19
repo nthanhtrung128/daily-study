@@ -1,0 +1,72 @@
+{
+  "code": "M02",
+  "title": "Khung pháp lý về đãi ngộ",
+  "goal": "Lần theo một khoản chi từ căn cứ áp dụng đến phiếu lương và xử lý chênh lệch có chứng từ.",
+  "source": "Lộ trình Total Rewards · M01–M06. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-02-01",
+      "title": "Quản trị thay đổi pháp lý",
+      "context": "Payroll nhận thông báo điều chỉnh một tham số khi đang khóa sổ lương.",
+      "explanation": "Tạo sổ quy định theo khoản chi, nhóm nhân sự, địa bàn, nguồn chính thức, ngày hiệu lực và người kiểm tra. Một sửa đổi có thể ảnh hưởng mức chi, căn cứ thuế, bảo hiểm hoặc hồ sơ. Khi nhận tin mới, đọc văn bản và điều khoản chuyển tiếp, xác định tập người bị ảnh hưởng, mô phỏng và trình duyệt thay đổi payroll. Lưu bản đã áp dụng theo từng kỳ để tái dựng phép tính về sau.",
+      "steps": [
+        "Ghi nguồn chính thức, đối tượng, kỳ áp dụng và người duyệt phiên bản.",
+        "Chạy đối chiếu trên hồ sơ ở cả hai phía ngày hiệu lực."
+      ],
+      "example": "Ví dụ một mức giảm trừ thay đổi theo kỳ thuế. C&B phải cập nhật tham số, kiểm tra người phụ thuộc, chạy các mức thu nhập quanh ranh giới bậc và xác nhận cách đối soát với kỳ trước. Người cập nhật tham số và người kiểm tra nên độc lập. Tài liệu bàn giao cần nêu ngày dữ liệu và phiên bản công thức.",
+      "takeaway": "Ngày hiệu lực quyết định bộ tham số dùng cho từng kỳ.",
+      "review": {
+        "question": "Có hai phiên bản quy định trong thư mục dùng chung. Chọn bản nào để tính lại kỳ cũ?",
+        "answer": "Đối chiếu nguồn chính thức, đối tượng, ngày hiệu lực và điều khoản chuyển tiếp của kỳ đó. Lưu lại phiên bản đã dùng và căn cứ lựa chọn."
+      }
+    },
+    {
+      "id": "trm-02-02",
+      "title": "Kiểm soát từ hợp đồng tới chi trả",
+      "context": "Một khoản truy lĩnh xuất hiện trong cả bảng bổ sung và dữ liệu đầu vào kỳ sau.",
+      "explanation": "Vẽ đường đi từ thỏa thuận, quyết định lương, dữ liệu chấm công, bảng tính đến lệnh chuyển tiền và hạch toán. Với mỗi điểm bàn giao, quy định nguồn chuẩn, thời điểm khóa và người xác nhận. Phân tích chênh tháng hiện tại với tháng trước theo nhân sự vào ra, thay đổi lương, thời gian làm việc và khoản một lần. Chênh lệch chưa giải thích được cần được xử lý trước khi chi.",
+      "steps": [
+        "Gắn khoản điều chỉnh với mã người, kỳ gốc và quyết định duyệt.",
+        "Đối chiếu bảng lương, lệnh chi và bút toán bằng mã giao dịch."
+      ],
+      "example": "Tạo bảng kiểm gồm mã người, khoản chi, kỳ gốc, kỳ trả, hồ sơ duyệt, số trước, số sau và lý do. Kiểm tra ba chiều tổng bảng lương, tổng lệnh thanh toán và tổng hạch toán. Khoản hồi tố phải giữ thông tin kỳ liên quan để tránh ghi trùng khi nhập lại.",
+      "takeaway": "Mỗi khoản phải lần ngược được từ số thực chi về chứng từ gốc.",
+      "review": {
+        "question": "Tổng lệnh chuyển tiền đúng bằng tổng bảng lương. Đã loại được rủi ro trả trùng chưa?",
+        "answer": "Chưa. Khoản trùng có thể xuất hiện ở cả hai tổng. Kiểm tra từng người, khoản chi và kỳ gốc so với chứng từ."
+      }
+    },
+    {
+      "id": "trm-02-03",
+      "title": "Kiểm toán theo mẫu và sửa lỗi",
+      "context": "Kiểm tra mẫu phát hiện công thức phụ cấp bỏ qua ngày đầu tháng.",
+      "explanation": "Chọn mẫu theo rủi ro như giao dịch ngoại lệ, giá trị lớn, nhân viên mới hoặc nghỉ, thay đổi tài khoản và thay đổi mức lương. Xác định trước thế nào là lỗi, bằng chứng tối thiểu và mức độ ảnh hưởng. Khi phát hiện một lỗi, kiểm tra nó là cá biệt hay phát sinh từ quy tắc chung. Mở rộng phạm vi kiểm tra khi cùng cơ chế có thể tác động nhiều người.",
+      "steps": [
+        "Xác định những dòng và kỳ dùng cùng công thức.",
+        "Tính lại chênh lệch, duyệt điều chỉnh và kiểm tra cả một ca sát ranh ngày."
+      ],
+      "example": "Ví dụ 2 trong 20 mẫu phụ cấp sai do công thức lấy thiếu ngày. Cần xác định tất cả dòng dùng cùng công thức, tính lại chênh lệch, trình phương án xử lý và thêm kiểm tra hồi quy vào kỳ sau. Báo cáo nêu tổng ảnh hưởng đã xác nhận, phần đang kiểm tra và người đóng hành động.",
+      "takeaway": "Phạm vi sửa lỗi phụ thuộc cơ chế gây lỗi.",
+      "review": {
+        "question": "Hai trong hai mươi mẫu bị sai. Có nên sửa đúng hai dòng đó rồi đóng việc?",
+        "answer": "Truy tất cả giao dịch dùng công thức lỗi, lượng hóa ảnh hưởng và đối chiếu sau sửa. Mẫu chỉ là nơi phát hiện vấn đề."
+      }
+    },
+    {
+      "id": "trm-02-04",
+      "title": "Tiếp nhận và xử lý khiếu nại",
+      "context": "Nhân viên vừa điều chuyển thắc mắc số thực nhận tháng này giảm.",
+      "explanation": "Ghi nhận câu hỏi cụ thể, kỳ chi trả và khoản có tranh chấp. Tái dựng căn cứ cùng phép tính bằng dữ liệu gốc. Trao đổi với người lao động bằng ngôn ngữ rõ, nêu mốc trả lời và đầu mối. Hạn chế chia sẻ hồ sơ của người khác. Những câu hỏi liên quan quyền lợi pháp lý cần chuyển người có thẩm quyền xác nhận căn cứ trước khi chốt phương án.",
+      "steps": [
+        "Xác nhận khoản bị hỏi, kỳ trả và ngày thay đổi.",
+        "Tái dựng phép tính bằng hồ sơ được phép dùng rồi hẹn mốc phản hồi."
+      ],
+      "example": "Một nhân viên cho rằng bị giảm lương sau điều chuyển. Lập danh sách thông tin cần kiểm tra gồm quyết định điều chuyển, thỏa thuận áp dụng, ngày hiệu lực, loại khoản giảm, dữ liệu ngày công và quy chế. Soạn bản giải thích phép tính theo từng khoản, tránh suy đoán về động cơ của các bên.",
+      "takeaway": "Trả lời khiếu nại bằng căn cứ, phép tính và thời điểm xử lý.",
+      "review": {
+        "question": "Chỉ có phiếu lương tháng này. Cần thêm gì để giải thích khoản phụ cấp giảm?",
+        "answer": "Đối chiếu điều kiện hưởng, hồ sơ điều chuyển, ngày công và cách tính của cả hai kỳ. Trao đổi riêng về trường hợp của người hỏi."
+      }
+    }
+  ]
+}

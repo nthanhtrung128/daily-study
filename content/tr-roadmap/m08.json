@@ -1,0 +1,72 @@
+{
+  "code": "M08",
+  "title": "Định giá lương thị trường",
+  "goal": "Chọn thị trường, đối sánh công việc và chuẩn hóa dữ liệu để đề xuất mức tham chiếu.",
+  "source": "Lộ trình Total Rewards · M07–M12. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-08-01",
+      "title": "Định nghĩa thị trường liên quan",
+      "context": "Đội tuyển dụng đề xuất mua một khảo sát chung cho cả chuyên viên payroll và chuyên gia kỹ thuật hiếm.",
+      "explanation": "Chọn thị trường dựa trên nơi tuyển và nơi nhân sự có thể chuyển đến, đồng thời xét địa bàn, ngành, quy mô và loại vai trò. Việc mua khảo sát không bảo đảm mọi vị trí đều có mẫu phù hợp. Ghi rõ dữ liệu đo base, guaranteed cash, total cash hay equity. Kiểm tra ngày hiệu lực và cách nhà cung cấp tính thống kê.",
+      "steps": [
+        "Xác định nguồn tuyển và nơi nhân viên thường chuyển đến.",
+        "So độ phủ, địa bàn, ngành và quy mô mẫu của từng thị trường."
+      ],
+      "example": "Ví dụ chuyên viên payroll có thể dùng thị trường rộng, trong khi chuyên gia thiết kế hệ thống điện cần nhóm ngành hẹp. Hai nguồn có P50 khác nhau có thể do cấu phần thu nhập hoặc mẫu doanh nghiệp khác nhau. Chuẩn hóa trước khi kết hợp.",
+      "takeaway": "Thị trường liên quan đi theo cạnh tranh lao động của từng vai trò.",
+      "review": {
+        "question": "Vì sao hai vị trí trong cùng doanh nghiệp có thể cần hai thị trường tham chiếu?",
+        "answer": "Nguồn cung và nơi cạnh tranh nhân lực có thể khác. Kiểm tra lịch sử tuyển, mất người và mức phù hợp của mẫu khảo sát."
+      }
+    },
+    {
+      "id": "trm-08-02",
+      "title": "Job match có hồ sơ",
+      "context": "Hai vị trí cùng tên “trưởng phòng” nhưng một bên chỉ phụ trách một nhà máy.",
+      "explanation": "So nội dung, phạm vi, level, quy mô và quyền quyết định. Ghi mức phù hợp và lý do loại vị trí khảo sát. Với vai trò lai, cân nhắc dữ liệu các phần việc và đánh giá tổng thể, tránh ghép số liệu tùy ý. Khi thiếu mẫu, dùng vai trò gần nhất kèm giới hạn và kiểm tra tương quan với các vị trí chuẩn khác.",
+      "steps": [
+        "So hồ sơ công việc theo nội dung, cấp độ, quy mô và quyền quyết định.",
+        "Ghi căn cứ chọn hoặc loại mã khảo sát và số quan sát của kết quả."
+      ],
+      "example": "Đầu ra là bảng tên nội bộ, JD chuẩn, mã khảo sát, cấp độ, nguồn, cấu phần, thống kê, số quan sát và lý do match. Nhờ bảng này người khác có thể rà lại lựa chọn khi thay nhân sự phụ trách hoặc khi khảo sát cập nhật.",
+      "takeaway": "Đối sánh công việc dựa vào phạm vi thực tế.",
+      "review": {
+        "question": "Một mã khảo sát trùng chức danh nhưng phụ trách cả khu vực. Có nên dùng trực tiếp?",
+        "answer": "Kiểm tra phạm vi và quyền quyết định. Tìm mã gần hơn hoặc ghi rõ hạn chế trước khi sử dụng số liệu làm tham chiếu."
+      }
+    },
+    {
+      "id": "trm-08-03",
+      "title": "Chuẩn hóa và cập nhật thời điểm",
+      "context": "Ba khảo sát sử dụng kỳ lương, tỷ lệ FTE và ngày hiệu lực khác nhau.",
+      "explanation": "Đổi cùng tiền tệ, kỳ trả, FTE và cấu phần. Aging dùng giả định tăng thị trường để đưa dữ liệu về ngày chung. Công thức tăng kép theo tháng là mức gốc × (1 + tăng năm)^(số tháng/12). Nếu công ty dùng cách tuyến tính, ghi rõ quy ước và dùng nhất quán.",
+      "steps": [
+        "Quy đổi về cùng cấu phần, tiền tệ, kỳ trả và FTE.",
+        "Ghi giả định tốc độ tăng và đưa các nguồn về cùng ngày tham chiếu."
+      ],
+      "example": "Mức 22 triệu, giả định tăng năm 6%, sau sáu tháng là khoảng 22,6504 triệu theo tăng kép. Khi kết hợp hai nguồn, đặt trọng số theo độ phù hợp và chất lượng, kiểm tra mức kết quả nếu đổi trọng số. Lưu cả dữ liệu gốc và số đã chuẩn hóa.",
+      "takeaway": "So sánh sau khi đã chuẩn hóa đơn vị và thời điểm.",
+      "review": {
+        "question": "Mức lương 12 triệu mỗi tháng cho 0,6 FTE tương đương bao nhiêu ở 1 FTE?",
+        "answer": "Nếu tỷ lệ thuận với FTE, lấy 12 ÷ 0,6 = 20 triệu mỗi tháng. Sau đó mới đối chiếu với mức toàn thời gian cùng kỳ."
+      }
+    },
+    {
+      "id": "trm-08-04",
+      "title": "Đưa thị trường vào quyết định",
+      "context": "Midpoint thấp hơn thị trường nhưng doanh nghiệp vẫn tuyển đủ và giữ người tốt.",
+      "explanation": "So mức tham chiếu với midpoint và lương thực trả, sau đó xét mục tiêu chính sách, ngân sách, tuyển dụng và công bằng nội bộ. Phụ trội cho kỹ năng có thể tách riêng để theo dõi ngày hết hạn. Một chênh lệch lớn cần rà chất lượng match trước khi điều chỉnh toàn dải.",
+      "steps": [
+        "Đánh giá độ tin cậy của đối sánh và vị thế thị trường mà chính sách hướng tới.",
+        "Mô phỏng tác động của việc giữ dải hoặc điều chỉnh dải lên ngân sách và công bằng nội bộ."
+      ],
+      "example": "Midpoint 22, thị trường 24 nhưng vị trí có tỷ lệ nhận offer tốt và nghỉ thấp. Lập hai phương án giữ cấu trúc hoặc điều chỉnh có chọn lọc. Trình chi phí, giả định và dữ liệu bổ sung cần có để chọn.",
+      "takeaway": "Số thị trường là đầu vào cho quyết định chính sách.",
+      "review": {
+        "question": "Midpoint 22 triệu so với thị trường 24 triệu. Có phải tất cả nhân viên cần tăng ngay?",
+        "answer": "Midpoint bằng 91,7% mức tham chiếu. Xem chất lượng dữ liệu, mục tiêu trả lương, tình hình tuyển và chi phí trước khi quyết định về dải hay từng cá nhân."
+      }
+    }
+  ]
+}

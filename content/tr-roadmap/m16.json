@@ -1,0 +1,72 @@
+{
+  "code": "M16",
+  "title": "Đãi ngộ lãnh đạo",
+  "goal": "So các cấu phần đãi ngộ lãnh đạo, điều kiện dài hạn và quy trình phê duyệt.",
+  "source": "Lộ trình Total Rewards · M13–M17. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-16-01",
+      "title": "Thiết kế gói theo trách nhiệm",
+      "context": "Hội đồng cần so hai gói trả cho lãnh đạo có cách phân bổ ngắn hạn và dài hạn khác nhau. LTI là đãi ngộ dài hạn. Vesting là quá trình quyền lợi trở thành quyền được hưởng khi đủ điều kiện.",
+      "explanation": "Tách lương cơ bản, thưởng ngắn hạn, dài hạn, phúc lợi và khoản đặc biệt. So với nhóm doanh nghiệp có quy mô, loại sở hữu và vai trò tương đồng. Phân biệt giá trị mục tiêu, giá trị trao theo kế toán và giá trị thực nhận. Cùng số đơn vị cổ phiếu có thể tạo giá trị khác nhau theo giá và điều kiện vesting.",
+      "steps": [
+        "Tách lương, thưởng ngắn hạn, dài hạn và quyền lợi đặc biệt theo kỳ.",
+        "So kịch bản thấp, mục tiêu, cao cùng phạm vi trách nhiệm và nhóm đối sánh."
+      ],
+      "example": "Bảng trình duyệt nên cho thấy từng cấu phần, mục đích, kỳ đo, điều kiện và giá trị ở các kịch bản. Một tổng số lớn mà thiếu lịch chi trả làm người duyệt khó đánh giá nghĩa vụ của công ty.",
+      "takeaway": "Giá trị tại mục tiêu cần đọc cùng điều kiện và thời gian nhận.",
+      "review": {
+        "question": "Hai gói cùng tổng mục tiêu nhưng một gói có tỷ lệ LTI cao hơn. Điểm khác biệt nào cần trình?",
+        "answer": "So thời gian vest, điều kiện kết quả, rủi ro mất quyền, thanh khoản và khoảng giá trị thực nhận trong các kịch bản."
+      }
+    },
+    {
+      "id": "trm-16-02",
+      "title": "Chỉ số dài hạn và rủi ro",
+      "context": "Kế hoạch ba năm thưởng theo doanh thu trong khi công nợ và vốn sử dụng tăng. ROIC đo lợi nhuận trên vốn đầu tư. TSR đo tổng mức sinh lợi của cổ đông trong kỳ, có xét biến động giá và cổ tức theo quy ước đã chọn.",
+      "explanation": "Chọn chỉ số phản ánh tạo giá trị trong chu kỳ phù hợp. Doanh thu, biên lợi nhuận, dòng tiền, ROIC và TSR đo các khía cạnh khác nhau. Xem khả năng điều chỉnh kế toán, mua lại cổ phiếu hoặc dùng đòn bẩy để đạt mục tiêu. Quy tắc điều chỉnh chỉ tiêu cần được xác định trước và có quản trị.",
+      "steps": [
+        "Nối từng chỉ số với hành vi mong muốn và nguồn dữ liệu đáng tin cậy.",
+        "Mô phỏng tình huống doanh thu tăng nhưng biên, dòng tiền hoặc ROIC giảm."
+      ],
+      "example": "Ví dụ doanh nghiệp dự án tăng doanh thu nhưng tiền chưa thu và nợ tăng. Một kế hoạch chỉ thưởng doanh thu có thể trả cao trong khi chất lượng tăng trưởng yếu. Mô phỏng thêm điều kiện dòng tiền hoặc chất lượng lợi nhuận với dữ liệu giả định.",
+      "takeaway": "Thử chỉ số dài hạn trong cả các kịch bản tăng trưởng kém chất lượng.",
+      "review": {
+        "question": "Vì sao nên xem thêm dòng tiền khi doanh thu tăng mạnh?",
+        "answer": "Doanh thu có thể đã ghi nhận nhưng tiền còn nằm ở công nợ. Chỉ số bổ trợ và điều kiện rủi ro giúp phân biệt tăng trưởng với giá trị có thể thực hiện."
+      }
+    },
+    {
+      "id": "trm-16-03",
+      "title": "Quyền lợi trả chậm và khi rời công ty",
+      "context": "Một lãnh đạo rời công ty trước ngày thanh toán khoản thưởng dài hạn.",
+      "explanation": "Ghi mốc vesting, thời điểm chi, điều kiện mất quyền hoặc tiếp tục quyền và cách xử lý thay đổi kiểm soát. Khoản đặc quyền cần lý do kinh doanh, chi phí và người phê duyệt. Thuế và kế toán cần được xác nhận theo loại chương trình và quốc gia trước khi vận hành.",
+      "steps": [
+        "Lập dòng thời gian trao, vest, thanh toán và ngày rời đi.",
+        "Đối chiếu loại sự kiện với điều khoản kế hoạch, người duyệt và hồ sơ."
+      ],
+      "example": "Đầu ra bài học là bảng sự kiện như nghỉ tự nguyện, nghỉ hưu, chấm dứt và thay đổi kiểm soát, kèm cách xác định quyền lợi theo quy chế giả định. Chỗ chưa thống nhất cần đánh dấu để người có thẩm quyền quyết định.",
+      "takeaway": "Ngày vest và ngày thanh toán có thể khác nhau.",
+      "review": {
+        "question": "Quyền đã vest nhưng chưa đến ngày chi. Có thể mặc định mất quyền khi nghỉ việc không?",
+        "answer": "Đọc quy chế, hợp đồng và điều kiện áp dụng cho sự kiện đó, xác minh với đầu mối pháp lý. Phân biệt phần đã vest và phần còn có điều kiện."
+      }
+    },
+    {
+      "id": "trm-16-04",
+      "title": "Quản trị và công bố",
+      "context": "Hội đồng cân nhắc LTI cho doanh nghiệp chưa niêm yết và cần quản trị xung đột lợi ích.",
+      "explanation": "Tách người đề xuất, người thẩm định và người quyết định để kiểm soát xung đột lợi ích. Hồ sơ cần nhóm đối sánh, giả định, kịch bản, chi phí và căn cứ phê duyệt. Xem yêu cầu công bố áp dụng với loại doanh nghiệp. Theo dõi thay đổi kế hoạch sau phê duyệt và giải thích rõ lý do.",
+      "steps": [
+        "So thưởng tiền dài hạn với quyền gắn giá trị cổ phần theo tiêu chí, chi phí và thanh khoản.",
+        "Tách vai trò đề xuất, thẩm định, quyết định và lưu hồ sơ căn cứ."
+      ],
+      "example": "Trình hai phương án LTI cho công ty chưa niêm yết, một dùng thưởng tiền theo kết quả ba năm và một dùng cổ phần ảo. So nguồn thanh toán, cách định giá, thanh khoản, động cơ và yêu cầu quản trị. Ghi các vấn đề cần chuyên gia xác nhận.",
+      "takeaway": "Quản trị LTI cần làm rõ ai định giá, ai phê duyệt và ai chi trả.",
+      "review": {
+        "question": "Nếu dùng cổ phần ảo, hai điều gì cần chốt trước khi cấp quyền?",
+        "answer": "Thống nhất phương pháp và thời điểm định giá, cùng nguồn và điều kiện thanh toán. Mô phỏng nghĩa vụ tiền mặt ở các kịch bản."
+      }
+    }
+  ]
+}

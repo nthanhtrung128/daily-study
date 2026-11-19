@@ -1,0 +1,88 @@
+{
+  "code": "M04",
+  "title": "Phân tích và đánh giá công việc",
+  "goal": "Viết hồ sơ vai trò, đánh giá yếu tố công việc và hiệu chỉnh trước khi xếp ngạch.",
+  "source": "Lộ trình Total Rewards · M01–M06. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-04-01",
+      "title": "Thu thập và viết hồ sơ công việc",
+      "context": "Hai bản mô tả công việc đều ghi “phụ trách C&B” nhưng phạm vi quyết định khác nhau. Grade là ngạch dùng để nhóm các vị trí có giá trị công việc tương đương.",
+      "explanation": "Hồ sơ cần mục đích vị trí, kết quả chính, quyền quyết định, phạm vi nguồn lực, quan hệ và điều kiện thực hiện. Phỏng vấn bằng câu hỏi về quyết định gần đây, ví dụ khó và cấp phải xin duyệt. Đối chiếu với sơ đồ tổ chức và phân quyền. Mỗi trách nhiệm nên có hành động, đối tượng và kết quả để người chấm thấy phạm vi đóng góp.",
+      "steps": [
+        "Hỏi người giữ vị trí về một quyết định thực tế và tác động của quyết định đó.",
+        "Xác nhận kết quả đầu ra, phạm vi và người phê duyệt với quản lý."
+      ],
+      "example": "Ví dụ thay câu quản lý công tác C&B bằng thiết kế và trình chính sách tăng lương cho 6 đơn vị, mô phỏng chi phí, theo dõi áp dụng và báo ngoại lệ. Bổ sung ai phê duyệt ngân sách, số nhân sự chịu tác động và độ tự chủ trong chọn phương án. Thành tích cá nhân được ghi ở hồ sơ hiệu suất riêng.",
+      "takeaway": "Đánh giá vai trò dựa trên công việc được giao.",
+      "review": {
+        "question": "“Làm tốt công tác lương” cần viết lại thế nào để dùng khi đánh giá vị trí?",
+        "answer": "Ghi một đầu ra cụ thể, chẳng hạn lập ngân sách lương cho sáu đơn vị, phân tích sai lệch và trình giám đốc duyệt. Nêu rõ ai có quyền quyết định cuối."
+      }
+    },
+    {
+      "id": "trm-04-02",
+      "title": "Chọn yếu tố và mô tả cấp độ",
+      "context": "Hội đồng muốn hai người chấm độc lập có thể nhận diện cùng một mức tự chủ.",
+      "explanation": "Một hệ thống point-factor cần các chiều có thể phân biệt vai trò và chứng minh bằng dữ liệu. Mỗi chiều có các cấp tăng dần về một đặc điểm rõ, như độ phức tạp vấn đề hoặc phạm vi ảnh hưởng. Tránh cấp thấp và cấp cao khác nhau chỉ bằng tính từ. Kiểm tra tính trùng khi cùng quy mô đội ngũ làm tăng nhiều yếu tố. Chấm các vai trò chuẩn rồi điều chỉnh định nghĩa trước khi áp toàn bộ.",
+      "steps": [
+        "Chọn các yếu tố phân biệt được công việc và mô tả từng mức bằng hành vi quan sát được.",
+        "Chấm thử hai hồ sơ chuẩn rồi đối chiếu bằng chứng tại từng yếu tố."
+      ],
+      "example": "Ví dụ yếu tố tự chủ gồm làm theo hướng dẫn cụ thể, chọn trong phương án đã có, tự xây phương án trong phạm vi đơn vị, thiết kế chính sách nhiều đơn vị và đặt định hướng tổ chức. Khi chấm, yêu cầu một ví dụ quyết định và giới hạn phê duyệt. Cấp độ được xác định bởi yêu cầu thường xuyên của vai trò.",
+      "takeaway": "Mức yếu tố phải có ranh giới quan sát được.",
+      "review": {
+        "question": "Hai mô tả “khá tự chủ” và “rất tự chủ” có đủ để chấm nhất quán không?",
+        "answer": "Cần nêu quyền thực tế, ví dụ chọn giải pháp trong hướng dẫn hay tự thiết kế phương án để trình duyệt. Dùng hồ sơ mẫu để thử ranh giới."
+      }
+    },
+    {
+      "id": "trm-04-03",
+      "title": "Hiểu Hay qua câu hỏi đánh giá",
+      "context": "Một trưởng nhóm thiết kế chính sách nhưng hội đồng quyết định ngân sách.",
+      "explanation": "Korn Ferry công khai ba nhóm Know-How, Problem Solving và Accountability trong chương trình Hay. Khi chuẩn bị hồ sơ, hãy hỏi vai trò cần biết gì để thực hiện, phải xử lý loại vấn đề nào và được quyết định đến đâu đối với kết quả. Đây là khung đặt câu hỏi để thu bằng chứng. Điểm, bảng chuẩn và hiệu chỉnh chính thức cần theo bộ công cụ được cấp quyền.",
+      "steps": [
+        "Tách kiến thức cần có, vấn đề phải giải và trách nhiệm với kết quả.",
+        "Ghi ví dụ minh chứng quyền đề xuất, thẩm định hoặc phê duyệt."
+      ],
+      "example": "Trưởng C&B có thể thiết kế chính sách phức tạp nhưng hội đồng giữ quyền chốt chi. Giám đốc dự án có thể trực tiếp quyết định nguồn lực trong ngân sách. Để so hai vai trò, ghi phạm vi kết quả, mức chủ động, tính mới của vấn đề và yêu cầu phối hợp. Chỉ biết số người cấp dưới chưa đủ để chấm.",
+      "takeaway": "Phân biệt độ phức tạp chuyên môn với quyền tác động lên kết quả.",
+      "review": {
+        "question": "Thiết kế chính sách rất khó có đồng nghĩa với quyền quyết ngân sách không?",
+        "answer": "Không. Độ khó cho biết yêu cầu giải quyết vấn đề. Cần hồ sơ phân quyền riêng để xác định trách nhiệm đối với kết quả."
+      }
+    },
+    {
+      "id": "trm-04-04",
+      "title": "Hiểu Mercer IPE và quy mô",
+      "context": "Cùng tên chức danh, một chuyên gia tư vấn còn người kia được quyền dừng nghiệm thu toàn hệ thống.",
+      "explanation": "Mercer IPE xem công việc trong bối cảnh tổ chức. Nguồn công khai mô tả quy mô qua headcount, economic volume và complexity. Các chiều gồm Impact, Communication, Innovation, Knowledge và Risk trong brochure. Trang theo khu vực hoặc phiên bản có thể dùng tên khác cho chiều cuối. Xác nhận tài liệu áp dụng trước dự án.",
+      "steps": [
+        "Ghi quy mô hoạt động và phạm vi công việc thực sự tác động.",
+        "Kiểm tra quyền ra quyết định qua ví dụ và đối chiếu với vị trí chuẩn."
+      ],
+      "example": "Một chuyên gia có quyền chặn nghiệm thu toàn hệ thống cần được mô tả rõ phạm vi ảnh hưởng và quyền thực tế. Nếu chỉ tư vấn còn đơn vị tự quyết, hồ sơ phải phản ánh đúng quan hệ đó. Không quy đổi trực tiếp 70 điểm của mô hình nội bộ thành Position Class IPE.",
+      "takeaway": "Quy mô tổ chức và tác động của vị trí cần được chứng minh riêng.",
+      "review": {
+        "question": "Hai đơn vị có cùng số nhân viên. Có thể mặc định hai vai trò cùng cấp IPE không?",
+        "answer": "Chưa đủ. Cần xem quy mô kinh tế, độ phức tạp, phạm vi ảnh hưởng và quyền thực tế của từng vai trò theo phương pháp được áp dụng."
+      }
+    },
+    {
+      "id": "trm-04-05",
+      "title": "Hiệu chỉnh và xếp ngạch",
+      "context": "Một vị trí nằm sát ranh ngạch sau vòng chấm đầu tiên.",
+      "explanation": "Cho người chấm đánh giá độc lập các vị trí chuẩn, so chênh từng yếu tố rồi thảo luận bằng hồ sơ. Sau khi thống nhất định nghĩa, kiểm tra thứ tự trong từng họ nghề và các vai trò ngang cấp khác chuyên môn. Thiết lập ranh giới grade dựa trên cấu trúc điểm cùng khả năng quản trị. Giữ biên bản lý do, phiên bản JD và quy trình khiếu nại.",
+      "steps": [
+        "Yêu cầu chấm độc lập và so từng yếu tố với vị trí chuẩn.",
+        "Ghi căn cứ cuối cùng, điểm còn bất đồng và điều kiện tái đánh giá."
+      ],
+      "example": "Giả sử grade B bắt đầu từ 70 điểm trong mô hình nội bộ. Một hồ sơ đạt 68 điểm được đề nghị cộng 3 điểm cho mức tự chủ. Hãy thử tính ngạch trước và sau thay đổi. Nếu một thay đổi nhỏ làm vị trí vượt grade, xem lại bằng chứng và ranh giới. Đánh giá lại khi phạm vi công việc thay đổi đáng kể. Việc một nhân viên làm tốt hơn trong cùng phạm vi có thể dẫn tới phát triển trong dải mà không cần đổi giá trị vị trí.",
+      "takeaway": "Hiệu chỉnh bằng bằng chứng về vai trò trước khi gán ngạch.",
+      "review": {
+        "question": "Một nhân viên vượt mục tiêu ba năm liên tục nhưng công việc giữ nguyên. Có cần nâng ngạch vị trí?",
+        "answer": "Thành tích có thể được ghi nhận qua lương hoặc thưởng. Tái đánh giá ngạch khi có bằng chứng phạm vi, trách nhiệm hay độ phức tạp của vị trí thay đổi."
+      }
+    }
+  ]
+}
