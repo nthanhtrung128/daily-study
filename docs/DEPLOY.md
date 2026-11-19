@@ -107,6 +107,8 @@ Cách app chạy khi đã cài:
 Nên:
 - Đặt *Session Duration* của ứng dụng Access dài (1 tháng) như bước 2.
 
+Trong **Cài đặt → Tài khoản**, bấm **Đăng nhập qua Cloudflare** để mở Access qua mạng. Nếu phiên còn hiệu lực, app quay về mục Tài khoản ngay. Nếu Access yêu cầu mã, dùng email đã được cấp quyền ở mục 2. Bấm **Kiểm tra phiên** để xem email do Access vừa xác nhận, rồi chọn **Đăng xuất Cloudflare** khi cần kết thúc phiên trực tuyến. Kiểm tra phiên chỉ gửi yêu cầu đến tên miền của app khi bạn bấm nút. Khi mất mạng, bạn vẫn đọc bài và ghi memo trên thiết bị đã tải app. Memo, tiến độ và ghi âm vẫn ở trên thiết bị sau khi đăng xuất.
+
 Để lấy bản mới khi phiên Access hết hạn, kết nối mạng rồi mở **Cài đặt → Dữ liệu → Kiểm tra bản mới / đăng nhập lại**. Nút mở `/dang-nhap` qua mạng. Nhập mã email nếu Access yêu cầu. Sau khi app tải xong bản mới, làm theo mục 6. Khi máy đang ngoại tuyến, nút báo “Đang không có mạng”.
 
 Trên máy tính, có thể mở trực tiếp `https://daily-study-6en.pages.dev/dang-nhap`. Nếu kẹt ở trang đăng nhập trên iPhone, thoát hẳn app rồi mở lại. Nếu cần cài lại hoặc xóa dữ liệu trang, trước hết hãy xuất tiến độ, kèm ghi âm nếu có, và kiểm tra tệp đã lưu theo mục 7.

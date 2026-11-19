@@ -38,6 +38,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #33 | Memo cá nhân trong 69 bài đọc, tự lưu vào bảng notes và đi cùng bản sao lưu. Sổ memo trong Lộ trình cho tìm theo nội dung hoặc bài, mở lại đúng vị trí. |
 | #34 | Hôm nay giữ thời lượng tiếng Anh vừa chọn khi IndexedDB trả cài đặt muộn. Test nghe chép giữ dấu thập phân khi nhập câu đúng. |
 | #35 | Tìm trong 69 bài ngay tại Lộ trình bằng mã bài, tên buổi hoặc nội dung không dấu. Khi quay lại từ bài đã mở, giữ kết quả và đặt focus về bài đó. |
+| #36 | Cài đặt → Tài khoản: đăng nhập qua Cloudflare Access, kiểm tra email phiên theo yêu cầu, đăng xuất và nhận biết ngoại tuyến. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

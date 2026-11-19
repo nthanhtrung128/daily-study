@@ -417,3 +417,5 @@ body:has(main .roadmap-reader) .top { position: static; }
 .salary-metrics dd { margin: 0; font-weight: 600; }
 .salary-picker > summary { display: list-item; padding: 10px 12px; min-height: var(--tap); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; }
 .salary-picker > .row { margin-top: 8px; }
+
+.access-status { overflow-wrap: anywhere; }
