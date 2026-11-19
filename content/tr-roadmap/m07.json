@@ -1,0 +1,72 @@
+{
+  "code": "M07",
+  "title": "Lương biến đổi và khuyến khích",
+  "goal": "Thiết kế đường chi trả và kiểm tra tác động của quy tắc thưởng lên ngân sách, hành vi.",
+  "source": "Lộ trình Total Rewards · M07–M12. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-07-01",
+      "title": "Chọn cấp khuyến khích",
+      "context": "Thiết kế và mua hàng cùng quyết định tiến độ dự án.",
+      "explanation": "Xem kết quả được tạo bởi cá nhân, nhóm hay nhiều bộ phận. Cá nhân kiểm soát được chỉ tiêu giúp liên hệ giữa nỗ lực và thưởng rõ hơn. Công việc phụ thuộc lẫn nhau cần phần thưởng nhóm hoặc điều kiện phối hợp. Kỳ đo phải đủ dài để phản ánh kết quả thật và đủ gần để người tham gia hiểu tác động.",
+      "steps": [
+        "Khoanh các kết quả cá nhân và tập thể có thể kiểm soát.",
+        "Thử chỉ tiêu trên một giao dịch thực tế để tìm xung đột giữa bộ phận."
+      ],
+      "example": "Ví dụ kỹ sư thiết kế và mua hàng cùng ảnh hưởng tiến độ. Thưởng riêng theo số bản vẽ hoặc số đơn hàng có thể tăng lượng nhưng không cải thiện thời gian bàn giao. Dùng mốc tích hợp và tiêu chí chất lượng để kiểm tra.",
+      "takeaway": "Cấp trả thưởng cần khớp nơi kết quả được tạo ra.",
+      "review": {
+        "question": "Thưởng nhóm thiết kế chỉ theo số bản vẽ có thể tạo hành vi gì?",
+        "answer": "Nhóm có thể đẩy số lượng dù hồ sơ chưa đủ để mua hàng. Bổ sung tiêu chí chất lượng bàn giao hoặc kết quả chung giữa hai bên."
+      }
+    },
+    {
+      "id": "trm-07-02",
+      "title": "Từ chỉ tiêu đến đường chi trả",
+      "context": "Nhân viên muốn dự đoán tiền thưởng tại các mức hoàn thành quanh ngưỡng. Payout là mức thưởng được chi trả. Trong đường chi trả, nó thường được biểu diễn bằng phần trăm mức thưởng mục tiêu.",
+      "explanation": "Định nghĩa threshold, target, maximum và công thức giữa các điểm. Phân biệt gate điều kiện đủ với trọng số KPI. Nếu gate không đạt, quy chế phải nói rõ toàn bộ hay chỉ một phần thưởng bằng 0. Với mục tiêu ngược như lỗi hoặc chi phí, chiều tốt hơn phải được xử lý nhất quán.",
+      "steps": [
+        "Viết rõ điểm ngưỡng, mục tiêu, trần và cách nội suy giữa các điểm.",
+        "Thử các trường hợp ngay dưới, đúng và ngay trên từng ngưỡng."
+      ],
+      "example": "Ví dụ tự xây dựng dùng đạt 80% mới có thưởng, 100% trả 100%, 120% trả 150%. Cần quy định đoạn 80–100 là nội suy và payout tại 80 là bao nhiêu. Chạy điểm 79,9%, 80%, 99,9%, 100% và 120% để phát hiện bước nhảy không mong muốn.",
+      "takeaway": "Đường chi trả phải xác định được kết quả tại cả các điểm ranh.",
+      "review": {
+        "question": "Tại 100% mục tiêu trả 100%, tại 120% trả 150%. Nếu nội suy tuyến tính, đạt 110% nhận bao nhiêu?",
+        "answer": "Đi nửa đoạn giữa hai điểm nên nhận 125% thưởng mục tiêu, với giả định đủ điều kiện và chưa chạm trần khác."
+      }
+    },
+    {
+      "id": "trm-07-03",
+      "title": "Mô phỏng ngân sách và hành vi",
+      "context": "Tài chính giới hạn quỹ thưởng trong khi các đơn vị đề nghị hệ số đóng góp khác nhau.",
+      "explanation": "Dùng ba mức kết quả và phân bố người đạt, tính tổng payout và chi phí so với lợi nhuận hoặc dòng tiền. Kiểm tra trường hợp các KPI di chuyển trái chiều. Xem khả năng dồn giao dịch, trì hoãn ghi nhận, chiết khấu hoặc chuyển trách nhiệm để đạt chỉ tiêu. Mô phỏng cần dựa vào dữ liệu quá khứ và giả định ghi rõ.",
+      "steps": [
+        "Tính tổng trọng số và số tiền mỗi người nhận trong từng kịch bản.",
+        "Thay một trọng số rồi kiểm tra lại quỹ và mức thưởng của những người còn lại."
+      ],
+      "example": "Với một quỹ hữu hạn, phần của mỗi người bằng quỹ nhân trọng số của họ rồi chia cho tổng trọng số. Khi tăng hệ số một người, tỷ trọng của những người khác thay đổi. Nếu kế hoạch đã cam kết trả theo công thức cá nhân, không dùng cơ chế chia quỹ hữu hạn này mà chưa thống nhất lại quy tắc.",
+      "takeaway": "Chia quỹ cố định tạo quan hệ phụ thuộc giữa các phần thưởng.",
+      "review": {
+        "question": "Quỹ 90 triệu chia theo trọng số 2 và 1. Nếu nâng trọng số thứ hai lên 2 thì hai phần đổi ra sao?",
+        "answer": "Ban đầu là 60 và 30 triệu. Sau thay đổi mỗi người nhận 45 triệu. Tổng vẫn là 90 triệu."
+      }
+    },
+    {
+      "id": "trm-07-04",
+      "title": "Vận hành thưởng và ghi nhận",
+      "context": "Một nhân viên đổi nhóm giữa kỳ thưởng dự án.",
+      "explanation": "Ghi rõ điều kiện tham gia, ngày vào, prorate, điều chuyển, nghỉ, nguồn số liệu, người chốt và ngày trả. Với thưởng giữ chân hoặc ký hợp đồng, cần ghi mốc phát sinh quyền hưởng và xử lý khi điều kiện không hoàn tất. Ghi nhận hành vi nên có ví dụ, người đề cử và kiểm tra phân bố giữa các nhóm.",
+      "steps": [
+        "Xác định kỳ tính, điều kiện tham gia và cách phân bổ thời gian giữa hai nhóm.",
+        "Lập hồ sơ mô phỏng, giao quyền duyệt và công bố mốc đối soát."
+      ],
+      "example": "Viết một trang quy chế thưởng dự án gồm kết quả, đo lường, tỷ lệ, ngưỡng, trần, điều kiện chất lượng, xử lý thay người và khiếu nại. Người chưa tham gia thiết kế phải tự tính lại được một tình huống mẫu.",
+      "takeaway": "Chốt điều kiện vận hành trước kỳ đánh giá.",
+      "review": {
+        "question": "Thưởng mục tiêu 30 triệu, hai chỉ tiêu nặng 60% và 40%, hệ số 110% và 90%. Tạm tính bao nhiêu?",
+        "answer": "Hệ số gộp là 0,6 × 1,1 + 0,4 × 0,9 = 1,02. Tiền thưởng là 30,6 triệu trước khi xét điều kiện đủ và trần."
+      }
+    }
+  ]
+}

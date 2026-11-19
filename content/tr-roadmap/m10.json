@@ -1,0 +1,72 @@
+{
+  "code": "M10",
+  "title": "Tài chính cho Total Rewards",
+  "goal": "Quy đổi quyết định đãi ngộ thành dòng tiền theo kỳ và giải trình ngân sách.",
+  "source": "Lộ trình Total Rewards · M07–M12. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-10-01",
+      "title": "Đọc chi phí theo thời điểm",
+      "context": "Tài chính hỏi vì sao chi phí tăng lương trên báo cáo năm nay thấp hơn mức xin duyệt đủ năm.",
+      "explanation": "Payroll cần phân biệt mức lương theo tháng, chi phí năm hóa, tiền chi trong kỳ và khoản ghi nhận theo kế toán. Ngày hiệu lực làm một quyết định có chi phí năm hiện tại khác năm sau. Bổ sung chi phí doanh nghiệp đóng theo cơ sở và giới hạn áp dụng thay vì cộng một tỷ lệ vào mọi trường hợp.",
+      "steps": [
+        "Tách mức tăng mỗi tháng, số tháng hiệu lực và tháng thực chi.",
+        "Lập hai cột chi trong năm và mức năm hóa, ghi các chi phí liên quan."
+      ],
+      "example": "Tăng quỹ 52 triệu mỗi tháng từ tháng 10 tạo 156 triệu trong ba tháng và 624 triệu cho đủ năm. Nếu có phụ cấp hoặc thưởng tính theo lương, cần mô phỏng thêm quan hệ đó. Khoản một lần không tự lặp vào năm sau.",
+      "takeaway": "Cùng một quyết định tăng lương có nhiều cách nhìn theo thời điểm.",
+      "review": {
+        "question": "Tăng quỹ 40 triệu mỗi tháng từ đầu tháng 9. Nếu nhân sự ổn định, chi thêm trong năm là bao nhiêu?",
+        "answer": "Bốn tháng tạo 160 triệu. Khi lập ngân sách đủ năm sau, phần lương tăng thêm là 480 triệu, trước các chi phí liên quan."
+      }
+    },
+    {
+      "id": "trm-10-02",
+      "title": "Xây mô hình có thể giải trình",
+      "context": "Quỹ lương vượt kế hoạch khi cả số người và mức lương bình quân cùng tăng. Baseline là mức nền dùng làm mốc so sánh khi lập ngân sách.",
+      "explanation": "Bắt đầu từ headcount hoặc FTE, mức trả, thời gian và giả định tuyển hoặc nghỉ. Tách baseline, thay đổi đã cam kết và phương án mới. Khi giải thích chênh lệch với ngân sách, phân rã thành số người, mức trả, thời điểm và cấu phần. Ghi rõ đơn vị để tránh trộn triệu đồng với đồng.",
+      "steps": [
+        "Chốt mức nền theo FTE và lương bình quân của kế hoạch.",
+        "Thay từng biến theo thứ tự đã ghi và đối chiếu tổng chênh lệch."
+      ],
+      "example": "Ví dụ ngân sách 100 FTE với lương bình quân 20 triệu là 2 tỷ mỗi tháng. Thực tế 105 FTE và 20,5 triệu là 2,1525 tỷ. Chênh 152,5 triệu có thể trình theo số người thêm tại mức gốc 100 triệu và mức lương tăng trên FTE thực tế 52,5 triệu. Nêu cách phân rã vì có nhiều quy ước hợp lệ.",
+      "takeaway": "Tách tác động quy mô và đơn giá giúp giải trình biến động quỹ.",
+      "review": {
+        "question": "Từ 100 FTE × 20 triệu lên 105 FTE × 20,5 triệu. Theo thứ tự đổi FTE trước, quỹ tăng do đâu?",
+        "answer": "FTE làm tăng 5 × 20 = 100 triệu. Đơn giá làm tăng 105 × 0,5 = 52,5 triệu. Tổng chênh lệch là 152,5 triệu mỗi tháng."
+      }
+    },
+    {
+      "id": "trm-10-03",
+      "title": "Đánh giá khoản đầu tư",
+      "context": "Doanh nghiệp trả chi phí hôm nay để thu lợi ích trong hai năm tới. NPV là giá trị hiện tại ròng, bằng tổng các dòng tiền sau khi chiết khấu về cùng một thời điểm.",
+      "explanation": "ROI cần định nghĩa lợi ích ròng và chi phí. Payback đo tốc độ thu hồi, còn NPV xét thời điểm dòng tiền và tỷ lệ chiết khấu. Với chương trình giữ chân, tránh tính cùng một lợi ích vừa là chi phí tuyển tiết kiệm vừa là năng suất phục hồi nếu chúng chồng nhau. Có thể trình các lợi ích chưa quy đổi tiền riêng.",
+      "steps": [
+        "Lập dòng tiền ròng theo kỳ và chọn tỷ lệ chiết khấu.",
+        "Tính giá trị hiện tại rồi thử lại với lợi ích thấp hơn dự kiến."
+      ],
+      "example": "Chi ban đầu 100 triệu, nhận ròng 60 triệu ở cuối mỗi năm trong hai năm, tỷ lệ 10% cho NPV khoảng 4,13 triệu. Thử giảm lợi ích xuống 50 triệu mỗi năm để thấy quyết định nhạy thế nào. Các giả định về tác động cần được người kinh doanh xác nhận.",
+      "takeaway": "Dòng tiền ở những thời điểm khác nhau cần được quy về một mốc.",
+      "review": {
+        "question": "Chi 100 triệu hôm nay, thu ròng 60 triệu cuối mỗi năm trong hai năm. NPV tại 10% xấp xỉ bao nhiêu?",
+        "answer": "−100 + 60/1,1 + 60/1,1² ≈ 4,13 triệu. Biên dương nhỏ nên cần thử độ nhạy theo dòng tiền và tỷ lệ chiết khấu."
+      }
+    },
+    {
+      "id": "trm-10-04",
+      "title": "Trình ngân sách và theo dõi",
+      "context": "Sau khi ngân sách được duyệt, các khoản tuyển mới và thăng chức liên tục đổi ngày hiệu lực.",
+      "explanation": "Đề xuất cần ghi tổng cam kết, chi theo kỳ, chi phí năm sau, người chịu trách nhiệm và dữ liệu chứng minh. Sau duyệt, đối chiếu thực tế với giả định và giải thích nguyên nhân lệch. Tách thay đổi do quy mô kinh doanh khỏi thay đổi do cơ chế đãi ngộ.",
+      "steps": [
+        "Tách baseline, cam kết, đề xuất mới và quỹ dự phòng.",
+        "Cập nhật thực chi, dự báo phần còn lại và giao người giải trình sai lệch."
+      ],
+      "example": "Đầu ra bài học là bảng ngân sách một năm gồm baseline, merit, thăng chức, điều chỉnh thị trường, thưởng và phúc lợi. Có cột ngày hiệu lực và cột năm hóa. Đối soát tổng về dữ liệu đầu vào trước khi trình.",
+      "takeaway": "Dự báo cuối kỳ phải kết hợp số đã chi với các cam kết còn lại.",
+      "review": {
+        "question": "Ngân sách 1 tỷ, đã chi 600 triệu và dự kiến chi thêm 450 triệu. Điều gì cần báo cáo?",
+        "answer": "Dự báo tổng là 1.050 triệu, vượt 50 triệu. Tách phần đã cam kết và phần có thể điều chỉnh rồi trình phương án xử lý."
+      }
+    }
+  ]
+}

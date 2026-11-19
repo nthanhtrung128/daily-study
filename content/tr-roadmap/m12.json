@@ -1,0 +1,72 @@
+{
+  "code": "M12",
+  "title": "Đãi ngộ toàn cầu",
+  "goal": "Thiết kế nguyên tắc chung và quản lý chi phí, quyền lợi, dữ liệu giữa các quốc gia.",
+  "source": "Lộ trình Total Rewards · M07–M12. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-12-01",
+      "title": "Chọn mức chuẩn hóa toàn cầu",
+      "context": "Hai đơn vị cùng tập đoàn dùng chung grade nhưng tuyển nhân sự tại hai thị trường khác nhau.",
+      "explanation": "Tách những yếu tố cần thống nhất như cấu trúc nghề nghiệp, nguyên tắc quản trị và báo cáo khỏi các tham số theo nước như dải thị trường hoặc phúc lợi địa phương. Mọi ngoại lệ cần chủ sở hữu và thời hạn. Dữ liệu toàn cầu phải định nghĩa cùng cấu phần và kỳ trước khi quy đổi tiền tệ.",
+      "steps": [
+        "Tách nguyên tắc dùng chung khỏi tham số do quốc gia quyết định.",
+        "Khi so chi phí, quy đổi cùng cấu phần, kỳ trả và tỷ giá có ngày chốt."
+      ],
+      "example": "Ví dụ grade tương đương ở hai nước có thể dùng mức trả khác nhau. Khi so chi phí, ghi tỷ giá và ngày quy đổi. Khi đánh giá cạnh tranh, so với thị trường địa phương của từng nước để tránh suy luận chỉ từ chênh lương danh nghĩa.",
+      "takeaway": "Grade thống nhất giúp so cấp độ, còn dải lương phản ánh thị trường địa phương.",
+      "review": {
+        "question": "Cùng grade tại hai nước có bắt buộc cùng số lương sau quy đổi tiền tệ?",
+        "answer": "Không. Cần xét thị trường tuyển dụng, cấu phần và chính sách từng nước. Tỷ giá giúp quy đổi chi phí báo cáo."
+      }
+    },
+    {
+      "id": "trm-12-02",
+      "title": "Thiết kế điều động quốc tế",
+      "context": "Một kỹ sư nhận nhiệm vụ chín tháng ở nước ngoài. Phụ cấp nhà và vé máy bay mang hai loại tiền khác nhau.",
+      "explanation": "Xác định hình thức điều động, thời hạn, căn cứ lương, người chịu các khoản nhà ở, học phí, đi lại và nghĩa vụ thuế cần tư vấn. Chính sách nước gốc, nước đến hoặc kết hợp có logic khác nhau. Hồ sơ cần mốc bắt đầu, kết thúc và điều kiện quay về để tránh khoản phụ cấp kéo dài ngoài mục đích.",
+      "steps": [
+        "Ghi tiền gốc, tỷ giá, tần suất và bên chịu chi phí của từng khoản.",
+        "Tách chi phí một lần và định kỳ rồi xác nhận nghĩa vụ pháp lý với đầu mối địa phương."
+      ],
+      "example": "Lập mô hình chi phí theo tháng bằng tiền gốc từng khoản rồi quy về đồng báo cáo. Tách khoản một lần với khoản định kỳ. Ghi người xác nhận thuế và bảo hiểm tại các nước liên quan, vì tình trạng cư trú và hiệp định có thể ảnh hưởng kết quả.",
+      "takeaway": "Chi phí điều động phụ thuộc cả thời hạn và điều kiện của từng khoản.",
+      "review": {
+        "question": "Tiền nhà 10 triệu mỗi tháng và vé đi về 15 triệu một lần. Chín tháng dự toán bao nhiêu?",
+        "answer": "9 × 10 + 15 = 105 triệu nếu các khoản đã cùng tiền tệ. Ghi riêng thuế, bảo hiểm và các khoản khác cần xác nhận."
+      }
+    },
+    {
+      "id": "trm-12-03",
+      "title": "Quản trị phúc lợi nhiều nước",
+      "context": "Hai nước báo phí bảo hiểm bình quân bằng nhau nhưng phản hồi của nhân viên rất khác.",
+      "explanation": "Lập danh mục quyền lợi theo quốc gia, nhóm đủ điều kiện, nhà cung cấp và chi phí. Đánh giá mức bảo vệ tổng thể cùng hệ thống công tại địa phương. Khi xem gộp quỹ đa quốc gia, kiểm tra cơ chế chia sẻ rủi ro, khả năng tiết kiệm, phí và dữ liệu cần trao đổi.",
+      "steps": [
+        "So cùng nhóm đủ điều kiện, quyền lợi, loại trừ, mạng lưới và mức tự trả.",
+        "Đọc dữ liệu sử dụng cùng bối cảnh hệ thống bảo vệ bắt buộc tại từng nước."
+      ],
+      "example": "Hai nước có cùng phí trên người nhưng mức quyền lợi khác nhau. Tạo bảng đối sánh phạm vi, loại trừ, chi trả trực tiếp, khả năng tiếp cận và trải nghiệm. Kết luận cần nêu tiêu chí đánh giá mà doanh nghiệp ưu tiên.",
+      "takeaway": "Mức phí bằng nhau có thể mua được mức bảo vệ khác nhau.",
+      "review": {
+        "question": "Nhà cung cấp nào tốt hơn nếu hai gói cùng giá nhưng một gói có hạn mức cao hơn?",
+        "answer": "Cần so thêm phạm vi bệnh, mạng lưới, khoản tự trả và khả năng sử dụng thực tế. Hạn mức chỉ là một tiêu chí."
+      }
+    },
+    {
+      "id": "trm-12-04",
+      "title": "Kiểm soát dữ liệu và ngoại lệ",
+      "context": "Trụ sở cần tổng hợp báo cáo đa quốc gia nhưng mỗi nơi thu thập dữ liệu theo lịch riêng.",
+      "explanation": "Thiết lập trách nhiệm giữa trung tâm và địa phương, mẫu dữ liệu, lịch chốt và quyền truy cập. Theo dõi các trường hợp vượt chính sách, ngày hết hạn và lý do. Rà soát tính nhất quán của chức danh và grade để báo cáo toàn cầu có ý nghĩa.",
+      "steps": [
+        "Chốt bộ trường tối thiểu, kỳ dữ liệu và người chịu trách nhiệm tại từng nước.",
+        "Duyệt quyền truy cập, thời hạn giữ dữ liệu và lịch rà soát ngoại lệ."
+      ],
+      "example": "Đầu ra gồm ma trận trách nhiệm, lịch kiểm tra, bảng ngoại lệ và mẫu chi phí điều động. Khi có thay đổi tỷ giá hoặc thị trường, xác định yếu tố nào tự cập nhật và yếu tố nào cần phê duyệt lại.",
+      "takeaway": "Báo cáo toàn cầu cần quản trị cả chất lượng lẫn quyền sử dụng dữ liệu.",
+      "review": {
+        "question": "Trụ sở cần biết tổng chi theo grade. Có cần gửi toàn bộ bảng lương mang tên cá nhân?",
+        "answer": "Ưu tiên tổng hợp tại nguồn ở mức đủ cho mục đích. Kiểm tra yêu cầu địa phương, nhóm quá nhỏ và quyền truy cập trước khi chuyển."
+      }
+    }
+  ]
+}

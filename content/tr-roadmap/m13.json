@@ -1,0 +1,72 @@
+{
+  "code": "M13",
+  "title": "Phúc lợi và sức khỏe toàn diện",
+  "goal": "Chọn quyền lợi dựa trên nhu cầu và khả năng tiếp cận rồi đo chi phí trên người được bảo vệ.",
+  "source": "Lộ trình Total Rewards · M13–M17. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-13-01",
+      "title": "Xác định nhu cầu và thiết kế danh mục",
+      "context": "Nhân viên ở công trường ít dùng gói khám tập trung tại thành phố.",
+      "explanation": "Phân nhóm nhu cầu theo công việc, giai đoạn nghề nghiệp và điều kiện tiếp cận. Dùng khảo sát kết hợp dữ liệu sử dụng, nhưng tránh kết luận quyền lợi ít dùng là không có giá trị. Bảo hiểm bảo vệ rủi ro hiếm vẫn có ý nghĩa. Kiểm tra khoảng trống trước khi tăng hạn mức ở quyền lợi đã đủ.",
+      "steps": [
+        "So nhu cầu theo địa bàn với vị trí cơ sở, giờ phục vụ và dữ liệu sử dụng.",
+        "Phỏng vấn nhóm ít tham gia rồi thử một thay đổi về tiếp cận."
+      ],
+      "example": "Ví dụ nhân viên công trường ít dùng khám tại thành phố vì đi lại khó. Có thể xem mạng lưới gần địa bàn hoặc khám định kỳ phù hợp. Đo tiếp cận và trải nghiệm sau thay đổi thay vì chỉ so tổng phí.",
+      "takeaway": "Mức sử dụng thấp có thể phản ánh rào cản tiếp cận.",
+      "review": {
+        "question": "Cần kiểm tra gì trước khi cắt một gói khám ít người dùng?",
+        "answer": "Xem người đủ điều kiện có biết quyền lợi, có thể đặt lịch và tới cơ sở hay không. So cả giá trị bảo vệ khi phát sinh rủi ro."
+      }
+    },
+    {
+      "id": "trm-13-02",
+      "title": "Đánh giá nhà cung cấp",
+      "context": "Hai báo giá cùng mức phí nhưng khác điều khoản loại trừ và thời hạn xử lý hồ sơ.",
+      "explanation": "So phạm vi, điều kiện, loại trừ, hạn mức, mạng lưới, thời gian xử lý và dữ liệu báo cáo trên cùng hồ sơ yêu cầu. Kiểm tra chi phí công ty và phần người lao động đồng chi trả. Các cam kết dịch vụ cần có định nghĩa đo lường và cách xử lý khi không đạt.",
+      "steps": [
+        "Lập bộ tiêu chí có trọng số và yêu cầu nhà cung cấp trả lời cùng tình huống.",
+        "Đối chiếu kết quả mô phỏng với cam kết dịch vụ và dữ liệu báo cáo."
+      ],
+      "example": "Lập bảng chấm nhà cung cấp gồm tiêu chí có trọng số do doanh nghiệp xác định. Yêu cầu tình huống mô phỏng một hồ sơ bồi thường và một trường hợp bị từ chối để thấy cách vận hành thực tế.",
+      "takeaway": "So nhà cung cấp trên cùng nhu cầu bảo vệ và chất lượng thực hiện.",
+      "review": {
+        "question": "Gói rẻ hơn 5% nhưng loại trừ dịch vụ nhóm mục tiêu thường dùng. Chọn dựa trên gì?",
+        "answer": "Ước tính phần người lao động phải tự chi, ảnh hưởng tiếp cận và chất lượng xử lý. Đối chiếu tổng giá trị với tiêu chí đã duyệt."
+      }
+    },
+    {
+      "id": "trm-13-03",
+      "title": "Sức khỏe toàn diện và linh hoạt",
+      "context": "Một chương trình chăm sóc sức khỏe chung thu hút nhân viên văn phòng nhưng bỏ sót lao động theo ca.",
+      "explanation": "Xem thể chất, tinh thần, tài chính và môi trường làm việc. Chính sách cần phù hợp với cách tổ chức công việc, quyền tự chủ và khả năng thay ca. Một giải pháp phổ biến ở văn phòng có thể ít phù hợp với ca sản xuất. Thử nghiệm và lắng nghe nhóm bị ảnh hưởng trước khi mở rộng.",
+      "steps": [
+        "Xác định trở ngại về lịch, địa điểm hoặc tính riêng tư của từng nhóm.",
+        "Thí điểm phương án phù hợp cách làm việc và nhận phản hồi tự nguyện."
+      ],
+      "example": "Với công trường, lịch nghỉ rõ và cơ chế thay ca có thể hữu ích. Với nhân viên văn phòng, linh hoạt giờ vào có thể giảm khó khăn chăm sóc gia đình. Ghi điều kiện vận hành và chất lượng phục vụ để đánh giá khả thi.",
+      "takeaway": "Thiết kế linh hoạt bắt đầu từ khả năng sử dụng trong công việc thực tế.",
+      "review": {
+        "question": "Tổ chức một buổi tư vấn trong giờ hành chính có đủ cho nhóm làm ca đêm?",
+        "answer": "Cần phương án giờ khác hoặc kênh tiếp cận phù hợp, bảo mật và tự nguyện. Đánh giá độ phủ theo nhóm và điều chỉnh."
+      }
+    },
+    {
+      "id": "trm-13-04",
+      "title": "Đo chi phí và hiệu quả",
+      "context": "Phí phúc lợi tăng nhanh hơn số người tham gia trong kỳ gia hạn.",
+      "explanation": "Dùng chỉ số phí trên người đủ điều kiện, tỷ lệ tham gia, mức sử dụng và thời gian giải quyết. Tách phần chi tăng vì giá, vì số người và vì quyền lợi. Khi phân tích sức khỏe theo nhóm, dùng dữ liệu tổng hợp và giới hạn nhóm nhỏ để giảm nguy cơ nhận diện cá nhân.",
+      "steps": [
+        "Chọn đúng mẫu số rồi tách biến động số người khỏi chi phí bình quân.",
+        "Đối chiếu quyền lợi, mức sử dụng, cơ cấu nhóm và phí đơn vị."
+      ],
+      "example": "Phí tăng 12% trong khi headcount tăng 5%. Tính phí bình quân và hỏi quyền lợi hoặc cơ cấu tuổi có thay đổi không. Chuẩn bị phương án thương lượng với nhà cung cấp và phương án điều chỉnh thiết kế dựa trên nhu cầu.",
+      "takeaway": "Chi phí tổng và chi phí bình quân trả lời hai câu hỏi khác nhau.",
+      "review": {
+        "question": "Tổng phí tăng 12%, số người được bảo vệ tăng 5%. Phí bình quân tăng khoảng bao nhiêu?",
+        "answer": "1,12/1,05 − 1 ≈ 6,67%. Kiểm tra thay đổi quyền lợi và cơ cấu người tham gia trước khi giải thích nguyên nhân."
+      }
+    }
+  ]
+}

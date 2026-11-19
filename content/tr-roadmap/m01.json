@@ -1,0 +1,72 @@
+{
+  "code": "M01",
+  "title": "Chiến lược Total Rewards",
+  "goal": "Từ một vấn đề kinh doanh, chọn giải pháp đãi ngộ và thiết kế cách đo tác động.",
+  "source": "Lộ trình Total Rewards · M01–M06. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-01-01",
+      "title": "Thiết kế từ vấn đề kinh doanh",
+      "context": "Giám đốc muốn thưởng thêm để giảm nghỉ việc ở công trường, nhưng C&B chưa biết vì sao kỹ sư rời đi. Total Rewards là tổng thể các giá trị người lao động nhận từ công việc, gồm lương, thưởng, phúc lợi, ghi nhận và cơ hội phát triển. C&B là bộ phận phụ trách lương và phúc lợi.",
+      "explanation": "Bắt đầu bằng một kết quả kinh doanh đo được, sau đó xác định nhóm vai trò và hành vi ảnh hưởng đến kết quả. Nếu dự án chậm vì thiếu năng lực điều phối, tăng thưởng theo sản lượng có thể làm tăng đầu ra cục bộ nhưng vẫn để công việc chờ nhau. Hãy vẽ chuỗi công việc từ đầu vào đến khách hàng, xác định điểm nghẽn rồi chọn biện pháp đãi ngộ. Hồ sơ chẩn đoán cần có dữ liệu tuyển, nghỉ, năng suất, chất lượng, chi phí và phản hồi của quản lý.",
+      "steps": [
+        "Khoanh nhóm vai trò và kết quả kinh doanh bị ảnh hưởng.",
+        "Đối chiếu lịch điều động, phỏng vấn nghỉ việc và dữ liệu tuyển bù."
+      ],
+      "example": "Đơn vị có 20 quản lý dự án, nghỉ tự nguyện 5 người trong năm. Phỏng vấn cho thấy lịch điều động khó dự báo. Chương trình thử gồm thông báo luân chuyển sớm, phụ cấp theo thời gian xa nhà và người thay thế dự phòng. Đo số người nghỉ trong cùng nhóm, tỷ lệ vị trí trống và chi phí điều động sau sáu tháng. Ghi các thay đổi kinh doanh khác để tránh quy toàn bộ kết quả cho chính sách.",
+      "takeaway": "Chọn biện pháp sau khi đã kiểm tra nguyên nhân.",
+      "review": {
+        "question": "Hai đội có cùng mức lương nhưng tỷ lệ nghỉ khác nhau. Bạn sẽ kiểm tra giả thuyết nào?",
+        "answer": "So lịch xa nhà, cơ hội phát triển và đặc điểm công việc của hai đội. Dùng phỏng vấn để kiểm tra giả thuyết trước khi đề xuất thay đổi lương."
+      }
+    },
+    {
+      "id": "trm-01-02",
+      "title": "Xây dựng danh mục theo đối tượng",
+      "context": "Công ty chỉ đủ ngân sách cho một thay đổi trong gói đãi ngộ năm tới.",
+      "explanation": "Lập bảng chương trình hiện tại theo nhóm nhân sự và mục đích. Ghi chi phí công ty, giá trị nhân viên cảm nhận, tỷ lệ đủ điều kiện và mức sử dụng. Một quyền lợi đắt có thể ít được dùng nhưng vẫn bảo vệ trước rủi ro lớn. Ưu tiên bằng nhu cầu đã kiểm chứng và khả năng cung cấp. Với ngân sách hữu hạn, đánh giá gói tổng thể và các lựa chọn thay thế trước khi thêm từng khoản nhỏ.",
+      "steps": [
+        "Lập danh mục chi phí và số người thực sự có thể tiếp cận mỗi quyền lợi.",
+        "Đối chiếu mức sử dụng với khảo sát nhu cầu của từng nhóm."
+      ],
+      "example": "Đầu ra cần làm là bảng gồm nhóm lao động, nhu cầu, chương trình, điều kiện, ngân sách, chủ sở hữu và chỉ số. Dùng thang khảo sát có định nghĩa rõ. Tách nhân viên mới, chuyên gia khan hiếm và quản lý tuyến để kiểm tra sự khác biệt, đồng thời bảo đảm các nhóm nhỏ không làm lộ danh tính.",
+      "takeaway": "Đánh giá đồng thời chi phí, khả năng tiếp cận và giá trị bảo vệ.",
+      "review": {
+        "question": "Bảo hiểm rủi ro lớn có ít yêu cầu bồi thường. Dữ liệu đó cho biết gì?",
+        "answer": "Nó cho biết tần suất sử dụng. Cần xem mức độ bảo vệ, điều khoản loại trừ và khả năng tiếp cận để đánh giá giá trị."
+      }
+    },
+    {
+      "id": "trm-01-03",
+      "title": "Triết lý trả lương thành quy tắc",
+      "context": "Hai đơn vị đưa ra mức chào lương khác nhau cho cùng một loại vị trí khan hiếm. Midpoint là mức tham chiếu ở giữa dải lương. P50 là trung vị của mẫu thị trường, tức một nửa số quan sát nằm bằng hoặc dưới mức đó.",
+      "explanation": "Triết lý cần trả lời thị trường tuyển nào được dùng, vị thế trả lương mục tiêu, mức phân hóa theo thành tích và cách xử lý kỹ năng khan hiếm. Sau đó chuyển thành quy tắc tuyển mới, điều chỉnh, thăng chức và ngoại lệ. Ghi rõ điều kiện áp dụng và quyền phê duyệt. Cụm từ cạnh tranh chỉ có giá trị khi nêu đối tượng so sánh, cấu phần thu nhập và ngày dữ liệu.",
+      "steps": [
+        "Ghi thị trường đối sánh, điểm tham chiếu và tiêu chí áp dụng phụ trội.",
+        "Quy định người duyệt ngoại lệ, bằng chứng và ngày xem xét lại."
+      ],
+      "example": "Ví dụ chính sách giả định dùng midpoint quanh P50 cho vai trò phổ thông và phụ trội có kỳ hạn cho một kỹ năng thiếu hụt. Lập khoản phụ trội riêng, có người duyệt và ngày rà lại. Nhờ đó có thể đánh giá khi thị trường bình thường hóa mà không làm sai toàn bộ thứ bậc công việc.",
+      "takeaway": "Một nguyên tắc trả lương cần dẫn tới những quyết định có thể giải thích.",
+      "review": {
+        "question": "Một kỹ năng khan hiếm chỉ trong sáu tháng. Làm sao quản lý phần trả thêm?",
+        "answer": "Xác định căn cứ khan hiếm, điều kiện nhận, thời hạn và mốc đánh giá lại. Dự toán chi phí và thông báo quy tắc trước khi áp dụng."
+      }
+    },
+    {
+      "id": "trm-01-04",
+      "title": "Thực hiện và đo tác động",
+      "context": "Một nhóm sắp thí điểm phụ cấp điều động. Ban điều hành cần biết khi nào nên nhân rộng.",
+      "explanation": "Phân kỳ thành chẩn đoán, thiết kế, mô phỏng, phê duyệt, thử nghiệm, truyền thông và rà soát. Mỗi giai đoạn cần đầu ra và người chịu trách nhiệm. Đặt dữ liệu nền trước khi triển khai. Nếu dùng nhóm đối chứng, chọn nhóm tương đồng và ghi các yếu tố khác biệt. Chỉ số kết quả như nghỉ việc cần đọc cùng chỉ số vận hành như thời gian duyệt ngoại lệ.",
+      "steps": [
+        "Ghi số liệu trước thí điểm, nhóm so sánh, chi phí và mốc đo.",
+        "Đối chiếu kết quả với thay đổi về quản lý, thị trường và khối lượng việc."
+      ],
+      "example": "Viết đề xuất một trang về giữ chân kỹ sư, gồm vấn đề, ba giả thuyết, dữ liệu cần có, hai phương án chi phí, tiêu chí chọn và mốc đánh giá. Điểm đạt là người duyệt có thể hiểu cần quyết định điều gì và chi phí phát sinh trong kỳ nào.",
+      "takeaway": "Đo kết quả trên cùng tập đối tượng và ghi cả các yếu tố khác có thể tác động.",
+      "review": {
+        "question": "Sau sáu tháng tỷ lệ nghỉ giảm ở cả nhóm thí điểm và nhóm đối chiếu. Có thể quy toàn bộ kết quả cho phụ cấp không?",
+        "answer": "So mức thay đổi giữa hai nhóm và xem các yếu tố đồng thời. Mức giảm chung có thể đến từ thị trường hoặc thay đổi lịch làm việc."
+      }
+    }
+  ]
+}

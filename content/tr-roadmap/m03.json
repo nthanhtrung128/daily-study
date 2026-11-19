@@ -1,0 +1,72 @@
+{
+  "code": "M03",
+  "title": "Công bằng và minh bạch lương",
+  "goal": "Đo chênh lệch đúng nhóm so sánh, chọn hồ sơ cần xem xét và giải thích quyết định.",
+  "source": "Lộ trình Total Rewards · M01–M06. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-03-01",
+      "title": "Thiết kế phép so sánh công bằng",
+      "context": "Báo cáo toàn công ty cho thấy trung vị lương hai nhóm khác nhau. Trung vị là giá trị ở giữa sau khi sắp thứ tự. FTE là tỷ lệ thời gian làm việc so với một vị trí toàn thời gian.",
+      "explanation": "Xác định câu hỏi trước khi tính chênh lệch. Chênh trung vị toàn công ty cho thấy bức tranh phân bố thu nhập. So sánh trong nhóm công việc tương đương xem xét khác biệt giữa người có trách nhiệm gần nhau. Chuẩn hóa FTE, kỳ tính, loại tiền và cấu phần lương. Dùng cùng tập hợp đủ dữ liệu cho tử và mẫu số. Ghi rõ nhóm tham chiếu để dấu âm hoặc dương có ý nghĩa nhất quán.",
+      "steps": [
+        "Ghi nhóm tham chiếu, tử số, mẫu số và chiều của chênh lệch.",
+        "So lại trong các nhóm có công việc và điều kiện tương đương."
+      ],
+      "example": "Giả sử trung vị nhóm tham chiếu là 25 triệu và nhóm được so là 22 triệu, chênh lệch theo nhóm tham chiếu bằng 12%. Nếu nhóm thứ hai tập trung nhiều ở cấp đầu vào, cần phân tầng theo cấp. Không cộng hay trung bình các phần trăm chênh của nhóm con để suy ra chênh toàn công ty.",
+      "takeaway": "Chênh tổng thể là điểm bắt đầu cho điều tra nguyên nhân.",
+      "review": {
+        "question": "Trung vị hai nhóm là 25 và 22 triệu. Nếu lấy nhóm 25 làm chuẩn thì chênh bao nhiêu?",
+        "answer": "Nhóm 22 thấp hơn 3/25 = 12%. Kiểm tra cơ cấu grade, địa bàn và FTE trước khi đưa ra kết luận về từng người."
+      }
+    },
+    {
+      "id": "trm-03-02",
+      "title": "Phân tích có điều chỉnh",
+      "context": "Sau so sánh mô tả, nhóm phân tích muốn biết chênh lệch còn lại khi xét các đặc điểm công việc.",
+      "explanation": "Lựa chọn biến giải thích dựa trên cơ chế trả lương và chất lượng dữ liệu. Cấp bậc, vị trí, địa bàn và kinh nghiệm liên quan có thể hữu ích. Kiểm tra biến có trùng thông tin, quá ít quan sát hoặc phản ánh một quy trình thiếu nhất quán trong quá khứ. Hồi quy giúp lượng hóa liên hệ trong mẫu. Kết quả còn cần đánh giá chuyên môn và đối chiếu hồ sơ.",
+      "steps": [
+        "Liệt kê biến có cơ sở nghiệp vụ và kiểm tra độ phủ từng nhóm.",
+        "Ghi đặc tả, độ bất định và số quan sát bị loại trước khi diễn giải."
+      ],
+      "example": "Với biến phụ thuộc là log tự nhiên của lương, hệ số nhóm 0,05 tương ứng mức chênh ước tính (exp(0,05) − 1) × 100 ≈ 5,13% khi giữ các biến còn lại cố định. Ghi đặc tả, tập mẫu và độ bất định. Khi mới thống kê theo grade, ghi rõ đây là phân tích mô tả.",
+      "takeaway": "Kết quả điều chỉnh phụ thuộc tập mẫu và giả định của mô hình.",
+      "review": {
+        "question": "Hai vị trí cùng grade đã đủ để gọi chênh lệch là chênh sau điều chỉnh chưa?",
+        "answer": "Chưa. Cần nêu các yếu tố đã kiểm soát và phương pháp ước lượng. So sánh trong một grade vẫn là phân tích mô tả nếu chỉ tính trung vị."
+      }
+    },
+    {
+      "id": "trm-03-03",
+      "title": "Khắc phục và phòng tái diễn",
+      "context": "Hội đồng có ngân sách hữu hạn để xử lý các trường hợp chênh lương cần rà soát.",
+      "explanation": "Đặt tiêu chí vào danh sách xem xét, ngưỡng ưu tiên, phương pháp xác định mức điều chỉnh và cấp duyệt. Tách ngân sách sửa bất hợp lý khỏi merit khi cần theo dõi riêng mục đích. Sau điều chỉnh, kiểm tra dải, quan hệ với đồng nghiệp và tác động lên quỹ. Sửa quy trình tuyển, thăng chức hoặc ngoại lệ nếu đó là nguồn tạo chênh lệch.",
+      "steps": [
+        "Xác minh từng hồ sơ rồi xếp ưu tiên theo tiêu chí đã duyệt.",
+        "Tách chi phí trong năm khỏi chi phí năm hóa và kiểm tra sau điều chỉnh."
+      ],
+      "example": "Ví dụ điều chỉnh một nhóm 10 người tốn 20 triệu mỗi tháng. Chi phí năm hóa là 240 triệu trước chi phí liên quan. Nếu vẫn cho phép tuyển mới vượt dải mà không hiệu chỉnh đội hiện tại, chênh lệch có thể tái xuất hiện. Theo dõi các quyết định mới hàng quý bên cạnh đo chênh cuối năm.",
+      "takeaway": "Sửa cả mức trả hiện tại lẫn quy trình có thể tạo lại chênh lệch.",
+      "review": {
+        "question": "Điều chỉnh tăng tổng cộng 20 triệu mỗi tháng, hiệu lực từ tháng 10. Chi phí phát sinh năm nay là bao nhiêu?",
+        "answer": "Ba tháng tạo 60 triệu, giả định quỹ và nhân sự ổn định. Chi phí đủ 12 tháng là 240 triệu, trước các khoản liên quan."
+      }
+    },
+    {
+      "id": "trm-03-04",
+      "title": "Chuẩn bị minh bạch",
+      "context": "Quản lý chuẩn bị giải thích dải lương cho đội ngũ lần đầu tiên.",
+      "explanation": "Chọn mức thông tin công bố từ nguyên tắc đến dải và tiêu chí dịch chuyển. Kiểm tra tên grade, dải đang có hiệu lực, dữ liệu ngoại lệ và năng lực giải thích của quản lý. Thử hỏi các câu như vì sao hai người cùng grade khác lương, điều kiện lên grade là gì và ai xử lý khi có lỗi dữ liệu. Các câu chưa trả lời được là việc cần xử lý trước truyền thông rộng.",
+      "steps": [
+        "Kiểm tra dải còn hiệu lực và xử lý các điểm dữ liệu bất thường.",
+        "Chuẩn bị ví dụ ẩn danh, kịch bản trao đổi riêng và kênh phản hồi."
+      ],
+      "example": "Viết FAQ gồm năm câu và tình huống người lâu năm thấp hơn người mới tuyển. Đáp án cần nói rõ thông tin nào có thể xác nhận, cách rà soát trường hợp, thời gian phản hồi và quyền duyệt. Tránh hứa tăng lương khi ngân sách hoặc căn cứ chưa được phê duyệt.",
+      "takeaway": "Minh bạch cần đi kèm tiêu chí dịch chuyển và cách xử lý ngoại lệ.",
+      "review": {
+        "question": "Nhân viên hỏi vì sao đồng nghiệp mới có vẻ được trả cao hơn. Quản lý nên bắt đầu ở đâu?",
+        "answer": "Làm rõ câu hỏi, giải thích dải và tiêu chí của chính vị trí người hỏi. Hẹn rà soát trường hợp riêng và bảo mật thông tin đồng nghiệp."
+      }
+    }
+  ]
+}

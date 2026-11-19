@@ -1,0 +1,72 @@
+{
+  "code": "M11",
+  "title": "Business case và truyền thông",
+  "goal": "So các phương án bằng một đề xuất kinh doanh và chuẩn bị trao đổi với từng nhóm người nghe.",
+  "source": "Lộ trình Total Rewards · M07–M12. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-11-01",
+      "title": "Liên hệ với mô hình kinh doanh",
+      "context": "Doanh số ký hợp đồng tăng nhưng tiền thu về chậm và đội giao hàng quá tải.",
+      "explanation": "Hãy hiểu khách hàng trả tiền cho điều gì, quá trình tạo doanh thu, cấu trúc chi phí và rủi ro chất lượng. Chính sách thưởng cần xét chuỗi giá trị này để tránh tối ưu một bộ phận làm hại bộ phận khác. Với doanh nghiệp dự án, ghi nhận doanh thu, nghiệm thu và thu tiền có thể ở các thời điểm khác nhau.",
+      "steps": [
+        "Vẽ các mốc từ tạo cơ hội đến thu tiền.",
+        "Gắn từng mốc với người có quyền tác động và chỉ số chất lượng."
+      ],
+      "example": "Vẽ một trang từ ký hợp đồng đến thu tiền và chỉ ra ai ảnh hưởng từng mốc. Chọn chỉ số cho sales, dự án và tài chính theo quyền kiểm soát. Thảo luận trường hợp tăng doanh thu nhưng công nợ quá hạn tăng để thấy điểm cần điều kiện chặn.",
+      "takeaway": "Chính sách trả thưởng cần theo cách doanh nghiệp tạo và thu giá trị.",
+      "review": {
+        "question": "Chỉ thưởng theo giá trị hợp đồng ký có thể bỏ qua điều gì?",
+        "answer": "Có thể bỏ qua lợi nhuận, khả năng giao hàng và thu tiền. Cần chọn chỉ số phù hợp với trách nhiệm và nguồn dữ liệu xác nhận."
+      }
+    },
+    {
+      "id": "trm-11-02",
+      "title": "Lập business case có lựa chọn",
+      "context": "Hội đồng cần chọn giữa phụ cấp kỹ năng và đào tạo nội bộ cho nhóm chuyên gia thiếu hụt.",
+      "explanation": "Mô tả vấn đề bằng baseline, nêu hậu quả nếu giữ hiện trạng và trình ít nhất hai phương án khả thi. Với mỗi phương án, ghi đối tượng, cơ chế, chi phí, lợi ích, giả định và yêu cầu vận hành. Quyết định cần được viết rõ như phê duyệt ngân sách, phạm vi thử hay mốc triển khai.",
+      "steps": [
+        "Mô tả điểm xuất phát, hậu quả của việc giữ hiện trạng và các lựa chọn.",
+        "So chi phí, lợi ích, rủi ro và điều kiện dừng trên cùng kỳ."
+      ],
+      "example": "Ví dụ đề xuất phụ cấp kỹ năng cần nêu số người đủ điều kiện, cách xác nhận kỹ năng, mức chi, thời hạn và cách đánh giá. Nếu chỉ ghi cần giữ chân nhân tài, người duyệt khó kiểm tra số tiền và tác động dự kiến.",
+      "takeaway": "Đề xuất có thể duyệt khi người đọc thấy cả đánh đổi và tiêu chí thành công.",
+      "review": {
+        "question": "Hai phương án có cùng chi phí năm đầu. Cần so thêm điều gì?",
+        "answer": "So thời gian tạo năng lực, số vị trí hưởng lợi, chi phí duy trì, rủi ro thực hiện và cách kiểm chứng kết quả."
+      }
+    },
+    {
+      "id": "trm-11-03",
+      "title": "Thiết kế truyền thông",
+      "context": "Chính sách mới đã được duyệt nhưng nhân viên và quản lý cần các thông tin khác nhau.",
+      "explanation": "Xác định người nghe và điều họ cần quyết định hoặc thực hiện. Quản lý cần công cụ giải thích, nhân viên cần điều kiện hưởng và đường hỏi, lãnh đạo cần tác động và rủi ro. Thử tài liệu với người chưa tham gia thiết kế để phát hiện thuật ngữ khó. Chuẩn bị câu trả lời cho ngoại lệ phổ biến.",
+      "steps": [
+        "Viết thông điệp cho từng nhóm dựa trên hành động họ cần làm.",
+        "Thử ví dụ trước và sau với quản lý, chuẩn bị câu trả lời và lịch phản hồi."
+      ],
+      "example": "Đầu ra gồm thông điệp chính, bảng thay đổi, ví dụ trước sau, FAQ, người trả lời và lịch. Theo dõi số câu hỏi chưa giải đáp và tỷ lệ quản lý được hướng dẫn. Điều chỉnh tài liệu khi cùng một câu hỏi lặp lại ở nhiều nhóm.",
+      "takeaway": "Truyền thông tốt giúp người nhận thực hiện đúng bước kế tiếp.",
+      "review": {
+        "question": "Gửi cùng một bảng tính ngân sách cho toàn công ty có đủ để triển khai chính sách?",
+        "answer": "Nhân viên cần biết điều kiện và cách tra cứu. Quản lý cần ví dụ, cách giải thích và kênh xử lý ngoại lệ. Hãy kiểm tra mức hiểu qua tình huống thử."
+      }
+    },
+    {
+      "id": "trm-11-04",
+      "title": "Làm việc trong tình huống khó",
+      "context": "Trong buổi công bố dải lương, một nhân viên lo rằng thâm niên của mình chưa được ghi nhận.",
+      "explanation": "Khi thông tin lương gây phản ứng, lắng nghe câu hỏi cụ thể, xác nhận dữ liệu và giải thích phạm vi có thể trả lời. Không suy đoán động cơ hay tiết lộ lương người khác. Những nội dung cần xác minh nên có mốc phản hồi. C&B phải giữ được tính nhất quán giữa các trường hợp tương tự.",
+      "steps": [
+        "Lắng nghe và xác định chính xác quyết định mà nhân viên muốn hiểu.",
+        "Kiểm tra hồ sơ cá nhân, giải thích căn cứ được phép chia sẻ và hẹn phản hồi."
+      ],
+      "example": "Nhân viên nói tôi lâu năm hơn nhưng lương thấp hơn người mới. Viết câu trả lời gồm ghi nhận vấn đề, dữ liệu cần rà, cơ chế xem xét và thời gian phản hồi. Sau đó chuẩn bị phương án nếu phát hiện chênh do thị trường và phương án nếu dữ liệu sai.",
+      "takeaway": "Một cuộc trao đổi khó cần có người chịu trách nhiệm theo đến kết quả.",
+      "review": {
+        "question": "Quản lý chưa biết lý do chênh lương. Nên kết thúc cuộc trao đổi đầu tiên thế nào?",
+        "answer": "Tóm tắt câu hỏi, nêu dữ liệu sẽ kiểm tra, hẹn mốc và kênh trả lời riêng. Tránh hứa điều chỉnh trước khi có căn cứ."
+      }
+    }
+  ]
+}

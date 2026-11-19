@@ -1,0 +1,72 @@
+{
+  "code": "M15",
+  "title": "Lương thưởng kinh doanh",
+  "goal": "Từ vai trò bán hàng, thiết kế pay mix, quota và kiểm tra tiền chi trả trên từng giao dịch.",
+  "source": "Lộ trình Total Rewards · M13–M17. Tình huống và số liệu dùng để luyện tập.",
+  "lessons": [
+    {
+      "id": "trm-15-01",
+      "title": "Từ vai trò đến pay mix",
+      "context": "Doanh nghiệp cần thiết kế gói thu nhập cho người tìm khách mới và người hỗ trợ giải pháp. OTE là tổng thu nhập khi đạt mục tiêu. Pay mix là tỷ trọng giữa lương cố định và phần thưởng tại mục tiêu.",
+      "explanation": "Xác định người bán tìm khách mới, phát triển khách hiện tại hay hỗ trợ kỹ thuật. Phạm vi kiểm soát, chu kỳ bán và mức cộng tác ảnh hưởng tỷ trọng cố định và biến đổi. OTE là tổng thu nhập mục tiêu khi đạt mức quy định, nên phải cùng kỳ với quota và payout.",
+      "steps": [
+        "Xác định phần kết quả mỗi vai trò có thể tác động trong chu kỳ bán.",
+        "Tách thu nhập mục tiêu thành lương cố định và phần biến đổi rồi mô phỏng payout."
+      ],
+      "example": "Ví dụ OTE 40 triệu, cơ cấu 70/30 có 28 triệu cố định và 12 triệu thưởng mục tiêu. Nếu đạt payout 130%, tổng là 43,6 triệu trước các điều chỉnh khác. Thử cơ cấu 60/40 để thấy biến động thu nhập và mức rủi ro chuyển cho người bán.",
+      "takeaway": "Pay mix nối mức biến động thu nhập với khả năng kiểm soát kết quả.",
+      "review": {
+        "question": "OTE 40 triệu, pay mix 70/30, payout 130%. Thu nhập kỳ đó là bao nhiêu?",
+        "answer": "Lương cố định 28 triệu, phần thưởng là 12 × 1,3 = 15,6 triệu. Tổng 43,6 triệu nếu đủ điều kiện và chưa áp trần."
+      }
+    },
+    {
+      "id": "trm-15-02",
+      "title": "Quota và ghi nhận giao dịch",
+      "context": "Một hợp đồng có cả người mở khách, người chốt và người quản lý tài khoản. Quota là chỉ tiêu được giao cho kỳ bán hàng. Crediting là quy tắc ghi nhận phần đóng góp vào kết quả đó.",
+      "explanation": "Quota cần xét tiềm năng địa bàn, nguồn khách, độ chín thị trường và năng lực cung ứng. Crediting quy định ai nhận công và tại thời điểm ký, xuất hóa đơn, nghiệm thu hay thu tiền. Giao dịch có nhiều người tham gia cần quy tắc chia công trước khi phát sinh.",
+      "steps": [
+        "Chốt quota theo tiềm năng địa bàn và định nghĩa mốc ghi nhận giao dịch.",
+        "Viết quy tắc chia công và thử đối chiếu với tổng doanh số đủ điều kiện."
+      ],
+      "example": "Ví dụ khách do đội marketing tạo, sales chốt và account manager chăm sóc gia hạn. Nếu mỗi bên được tính toàn doanh thu, tổng credit có thể vượt doanh thu thực. Quy chế phải nêu mục đích của từng credit và cơ chế tính ngân sách tương ứng.",
+      "takeaway": "Quy tắc ghi nhận cần rõ trước khi nhiều vai trò cùng tác động một giao dịch.",
+      "review": {
+        "question": "Một giao dịch 1 tỷ chia công 60/40, mỗi bên có doanh số ghi nhận bao nhiêu?",
+        "answer": "Lần lượt 600 và 400 triệu. Tổng đối soát là 1 tỷ nếu cơ chế chia công không cho phép ghi nhận kép."
+      }
+    },
+    {
+      "id": "trm-15-03",
+      "title": "Hoa hồng theo bậc và thưởng theo mục tiêu",
+      "context": "Kế hoạch bán hàng áp dụng mức hoa hồng cao hơn cho phần doanh số vượt quota.",
+      "explanation": "Hoa hồng thường dựa trên giá trị giao dịch đủ điều kiện, còn bonus theo mục tiêu dựa vào tỷ lệ hoàn thành. Accelerator chỉ áp phần vượt quota hoặc áp lại toàn bộ sẽ tạo hai kết quả khác nhau. Viết công thức bằng các phần có ý nghĩa để người bán tính được và finance đối soát được.",
+      "steps": [
+        "Tách doanh số theo từng bậc và áp tỷ lệ của chính bậc đó.",
+        "Thử giao dịch dưới, đúng và trên quota để kiểm tra công thức."
+      ],
+      "example": "Ví dụ quota 1 tỷ, doanh số 1,2 tỷ, tỷ lệ 2% trong quota và 3% phần vượt thì hoa hồng là 20 triệu + 6 triệu = 26 triệu. Nếu 3% áp lại toàn doanh số thì là 36 triệu. Hai cách cần ghi rõ trong kế hoạch để tránh tranh chấp tại ranh giới.",
+      "takeaway": "Phân biệt tỷ lệ cận biên theo bậc với tỷ lệ hồi tố trên toàn doanh số.",
+      "review": {
+        "question": "Quota 1 tỷ, doanh số 1,2 tỷ. Hai bậc 2% rồi 3% phần vượt trả bao nhiêu?",
+        "answer": "1 tỷ × 2% + 0,2 tỷ × 3% = 26 triệu. Chỉ phần 200 triệu vượt quota hưởng tỷ lệ cao hơn."
+      }
+    },
+    {
+      "id": "trm-15-04",
+      "title": "Chất lượng doanh thu và vận hành",
+      "context": "Giao dịch đã ký cuối tháng nhưng khách hàng trả lại một phần sau kỳ hoa hồng.",
+      "explanation": "Rà quy tắc trả hàng, hủy, nợ xấu, chiết khấu và đổi địa bàn. Xác định dữ liệu chuẩn giữa CRM, kế toán và thu tiền. Lập lịch chốt, thời gian phản hồi và người duyệt. Theo dõi phân bố mức đạt quota, chi phí payout trên doanh thu đủ điều kiện và mức tập trung vào một số giao dịch.",
+      "steps": [
+        "Đối chiếu CRM, hóa đơn và số tiền thực thu theo cùng mã giao dịch.",
+        "Áp quy tắc hủy, hoàn và điều chỉnh kỳ sau theo quy chế đã thông báo."
+      ],
+      "example": "Chạy một giao dịch ký cuối tháng nhưng thu tiền tháng sau, một giao dịch chia công và một giao dịch bị trả. Viết payout từng kỳ và hồ sơ cần đối soát. Người kiểm tra phải tái lập được kết quả từ dữ liệu giao dịch.",
+      "takeaway": "Bảng đối soát cần theo được toàn bộ vòng đời giao dịch.",
+      "review": {
+        "question": "Đã trả hoa hồng nhưng khách hủy đơn. Có tự động thu hồi toàn bộ không?",
+        "answer": "Xác minh sự kiện, số đủ điều kiện và chính sách áp dụng cùng quy định liên quan. Lưu liên kết giao dịch và phép tính của phần điều chỉnh."
+      }
+    }
+  ]
+}
