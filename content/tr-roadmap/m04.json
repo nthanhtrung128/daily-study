@@ -84,5 +84,105 @@
         "answer": "Thành tích có thể được ghi nhận qua lương hoặc thưởng. Tái đánh giá ngạch khi có bằng chứng phạm vi, trách nhiệm hay độ phức tạp của vị trí thay đổi."
       }
     }
-  ]
+  ],
+  "evaluation": {
+    "factors": [
+      {
+        "name": "Chuyên môn",
+        "weight": 25,
+        "anchors": [
+          "Làm theo hướng dẫn chi tiết.",
+          "Áp dụng quy trình đã học vào công việc quen thuộc.",
+          "Chọn phương pháp chuyên môn cho tình huống khác nhau.",
+          "Tích hợp nhiều chuyên môn để thiết kế giải pháp.",
+          "Xây chuẩn chuyên môn áp dụng trên toàn tổ chức."
+        ]
+      },
+      {
+        "name": "Giải quyết vấn đề",
+        "weight": 25,
+        "anchors": [
+          "Nhận biết sai lệch và báo người hướng dẫn.",
+          "Chọn cách xử lý trong danh mục có sẵn.",
+          "Phân tích nguyên nhân và tự xử lý trong đơn vị.",
+          "Thiết kế giải pháp cho vấn đề mới liên đơn vị.",
+          "Xử lý vấn đề chưa có tiền lệ với hệ quả cấp tổ chức."
+        ]
+      },
+      {
+        "name": "Ảnh hưởng",
+        "weight": 35,
+        "anchors": [
+          "Chịu trách nhiệm về một đầu việc.",
+          "Chịu trách nhiệm về đầu ra của một quy trình hẹp.",
+          "Quyết định tác động đến kết quả của đơn vị hoặc dự án.",
+          "Quyết định chi phối kết quả của nhiều đơn vị hoặc dự án.",
+          "Chịu trách nhiệm cuối về kết quả tài chính hoặc vận hành trọng yếu."
+        ]
+      },
+      {
+        "name": "Giao tiếp",
+        "weight": 15,
+        "anchors": [
+          "Tiếp nhận chỉ dẫn và báo tiến độ.",
+          "Trao đổi thông tin giữa các đầu mối quen thuộc.",
+          "Giải thích nghiệp vụ và thống nhất cách xử lý trong đơn vị.",
+          "Đàm phán với các bên có ưu tiên khác nhau.",
+          "Dẫn dắt thỏa thuận chiến lược giữa các bên có lợi ích xung đột."
+        ]
+      }
+    ],
+    "profiles": [
+      {
+        "role": "Kỹ sư hiện trường",
+        "levels": [
+          3,
+          3,
+          2,
+          3
+        ],
+        "evidence": "Giải quyết sự cố trong chuẩn kỹ thuật và báo quản lý khi thay đổi phạm vi."
+      },
+      {
+        "role": "Chuyên viên C&B",
+        "levels": [
+          3,
+          3,
+          2,
+          3
+        ],
+        "evidence": "Tính và đối soát lương nhiều đơn vị. Kiểm tra quyền phê duyệt ngoại lệ."
+      },
+      {
+        "role": "Chuyên gia kỹ thuật",
+        "levels": [
+          5,
+          4,
+          3,
+          4
+        ],
+        "evidence": "Ban hành chuẩn và có quyền chặn nghiệm thu. Xác minh số dự án áp dụng."
+      },
+      {
+        "role": "Trưởng C&B",
+        "levels": [
+          4,
+          4,
+          3,
+          4
+        ],
+        "evidence": "Thiết kế chính sách liên đơn vị. Xác minh mức quyền quyết định ngân sách."
+      },
+      {
+        "role": "Giám đốc dự án",
+        "levels": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "evidence": "Chịu tiến độ, chi phí và kết quả dự án. Kiểm tra giới hạn ký và trách nhiệm P&L."
+      }
+    ]
+  }
 }

@@ -297,3 +297,20 @@ test('thẻ thuật ngữ của buổi 17 đi từ bài đọc vào lịch ôn',
   await expect(page.getByTestId('st-today')).toHaveText('1');
   await expect(page.getByRole('button', { name: 'Ôn 1 thẻ từ bài đọc' })).toHaveCount(0);
 });
+
+test('chấm lại yếu tố ảnh hưởng và so sánh các hồ sơ của M04', async ({ page }) => {
+  await page.addInitScript(watchCsp);
+  await page.goto('./#lo-trinh?bai=trm-04-05');
+  const practice = page.getByRole('region', { name: 'Thử chấm điểm và xếp ngạch' });
+  const score = practice.getByRole('status');
+  await expect(score).toContainText('53/100 điểm · Ngạch G2');
+  await practice.getByRole('group', { name: 'Ảnh hưởng' }).getByRole('button', { name: 'Cấp 3' }).click();
+  await expect(score).toContainText('60/100 điểm · Ngạch G3');
+  await practice.getByRole('button', { name: 'Chuyên gia kỹ thuật' }).click();
+  await expect(score).toContainText('78/100 điểm · Ngạch G4');
+  await practice.getByRole('button', { name: 'Kỹ sư hiện trường' }).click();
+  await expect(score).toContainText('60/100 điểm · Ngạch G3');
+  await practice.getByRole('button', { name: 'Khôi phục hồ sơ này' }).click();
+  await expect(score).toContainText('53/100 điểm · Ngạch G2');
+  expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
+});
