@@ -432,3 +432,5 @@ body:has(main .roadmap-reader) .top { position: static; }
 .checkpoint-question legend { max-width: 100%; font-weight: 600; }
 .checkpoint-question label { display: flex; align-items: center; gap: 10px; min-height: var(--tap); padding: 6px 0; }
 .checkpoint-question input { flex: none; accent-color: var(--accent); }
+.pool-amounts { margin: 0; padding-inline-start: 1.5em; }
+.pool-amounts li + li { margin-top: 4px; }

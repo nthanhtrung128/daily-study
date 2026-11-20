@@ -5,6 +5,7 @@ import { completeLesson, courseProgress, COURSE_STAGES, nextAfter, ROADMAP_MODUL
 import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { CourseRecommendation, CourseReview } from '../../modules/tr/CourseReview';
+import { BonusPoolPractice } from '../../modules/tr/BonusPoolPractice';
 import { JobEvaluationPractice } from '../../modules/tr/JobEvaluationPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
@@ -215,6 +216,7 @@ function Lesson({ lesson, notes, fromMemo, label, moduleCode, source, done, foll
       </section>
       {lesson.id === 'trm-04-05' && <JobEvaluationPractice />}
       {lesson.id === 'trm-06-03' && <MeritPractice />}
+      {lesson.id === 'trm-07-03' && <BonusPoolPractice />}
       {lesson.id === 'trm-09-03' && <SalaryAnalysisPractice />}
       <section className="roadmap-reading roadmap-review" aria-labelledby="scenario-title">
         <h2 className="h-sec" id="scenario-title">Tự ôn</h2>

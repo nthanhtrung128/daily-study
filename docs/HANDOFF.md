@@ -43,6 +43,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #38 | Ôn duy trì sau khóa ở Hôm nay và Lộ trình. M01–M17 có 34 câu trắc nghiệm, 17 tình huống tự chấm và lịch ôn lưu trên thiết bị. |
 | #39 | Cả 69 bài trong 17 buổi đều có thẻ liên quan. Có thể chọn thẻ khái niệm, công thức hoặc thuật ngữ để ôn từ Hôm nay. |
 | #40 | M04.5 có bài thực hành chấm giá trị năm vị trí bằng bốn yếu tố, xem điểm, ngạch và căn cứ cho mỗi cấp. |
+| #41 | M07.3 có mô phỏng phân bổ quỹ thưởng cho năm nhân viên. Thử thay đổi quỹ và trọng số từng người, kiểm tra số đã chia và số còn lại sau làm tròn. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
