@@ -16,12 +16,14 @@ beforeEach(async () => {
   resetReminderForTest();
 });
 afterEach(() => {
+  vi.restoreAllMocks();
   delete nav.standalone;
   Object.assign(navigator, { share: undefined, canShare: undefined });
 });
 
 describe('Dải nhắc sao lưu (trang Hôm nay)', () => {
   it('hiện khi đã ôn ≥ 14 ngày mà chưa sao lưu; "Để sau" ẩn và lưu thời điểm hoãn', async () => {
+    vi.spyOn(Date, 'now').mockReturnValue(NOW);
     await db.days.put({ day: '2026-11-01', n: 12, ok: 8, s: 300 });
     await act(() => progress.load(true));
     render(<BackupNudge at={NOW} />);

@@ -1,4 +1,4 @@
-# Bàn giao (cập nhật 19/11/2026)
+# Bàn giao (cập nhật 20/11/2026)
 
 ## Hiện trạng
 App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Playwright trên cấu hình iPhone 14 / iPhone SE với Chromium và WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
@@ -40,6 +40,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #35 | Tìm trong 69 bài ngay tại Lộ trình bằng mã bài, tên buổi hoặc nội dung không dấu. Khi quay lại từ bài đã mở, giữ kết quả và đặt focus về bài đó. |
 | #36 | Cài đặt → Tài khoản: đăng nhập qua Cloudflare Access, kiểm tra email phiên theo yêu cầu, đăng xuất và nhận biết ngoại tuyến. |
 | #37 | Tab Đọc thêm có 6 tình huống Anh–Việt tự biên soạn theo nguồn Việt Nam và quốc tế, đổi ngôn ngữ cả bài hoặc mở nghĩa từng đoạn ngay cả khi ngoại tuyến. |
+| #38 | Ôn duy trì sau khóa ở Hôm nay và Lộ trình. M01–M17 có 34 câu trắc nghiệm, 17 tình huống tự chấm và lịch ôn lưu trên thiết bị. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

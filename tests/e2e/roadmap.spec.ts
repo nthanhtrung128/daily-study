@@ -256,4 +256,26 @@ test('học liền 69 bài theo 17 buổi, lưu tiến độ và ôn lại sau b
   await expect(page.getByText('Đã hoàn thành', { exact: true })).toBeVisible();
   await openTab(page, 'hom-nay');
   await expect(page.getByText('Đã hoàn thành 69 bài trong lộ trình')).toBeVisible();
+  await expect(page.getByRole('link', { name: /^Ôn M01/ })).toHaveAttribute('href', '#lo-trinh?on=M01');
+});
+
+test('tự kiểm tra buổi M01, xem lời giải sau khi làm rồi mở lại kết quả đã lưu', async ({ page }) => {
+  await page.addInitScript(watchCsp);
+  await page.goto('./#lo-trinh');
+  const module = await openReadingModule(page, 'Chiến lược Total Rewards');
+  await module.getByRole('link', { name: 'Tự kiểm tra M01' }).click();
+  const submit = page.getByRole('button', { name: 'Đối chiếu bài làm' });
+  await expect(submit).toBeDisabled();
+  await expect(page.getByText('Gợi ý đối chiếu')).toHaveCount(0);
+  await page.getByRole('radio').nth(1).check();
+  await page.getByRole('radio').nth(6).check();
+  await page.getByRole('textbox').fill('Đối chiếu thời gian xa nhà và lịch sử bổ nhiệm.');
+  await submit.click();
+  await expect(page.getByRole('heading', { name: 'Đúng 2/2 câu trắc nghiệm' })).toBeVisible();
+  await page.getByRole('button', { name: 'Cần ôn thêm' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Tình huống cần ôn thêm' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText(/Bài làm của bạn.*Đối chiếu thời gian/)).toBeVisible();
+  await expect(submit).toHaveCount(0);
+  expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
 });
