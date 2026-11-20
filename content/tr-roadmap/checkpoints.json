@@ -1,0 +1,563 @@
+{
+  "M01": {
+    "questions": [
+      {
+        "prompt": "Để xử lý nghỉ việc cao, bước đầu phù hợp nhất là gì?",
+        "options": [
+          "Tăng mọi khoản lương 10%",
+          "Xác định nhóm nghỉ và kiểm tra nguyên nhân bằng dữ liệu",
+          "Mua công cụ khảo sát lương đắt nhất",
+          "Giảm tiêu chí tuyển"
+        ],
+        "correct": 1,
+        "explanation": "Chẩn đoán giúp chọn biện pháp phù hợp. Ba phương án còn lại quyết định giải pháp trước khi biết nguyên nhân.",
+        "lesson": "trm-01-01"
+      },
+      {
+        "prompt": "Một phụ trội kỹ năng khan hiếm nên có thông tin nào?",
+        "options": [
+          "Chỉ tên kỹ năng",
+          "Chỉ số tiền",
+          "Điều kiện, bằng chứng kỹ năng, người duyệt và mốc rà lại",
+          "Không cần thời hạn"
+        ],
+        "correct": 2,
+        "explanation": "Cơ chế có thể vận hành và đánh giá khi thị trường thay đổi cần đủ các điều kiện này.",
+        "lesson": "trm-01-03"
+      }
+    ],
+    "scenario": {
+      "prompt": "Kỹ sư công trường nghỉ nhiều dù lương ngang thị trường. Chọn hai giả thuyết và cách kiểm tra.",
+      "answer": "So thời gian xa nhà và lịch nghỉ giữa người ở lại và nghỉ. Kiểm tra cơ hội lên cấp qua dữ liệu bổ nhiệm. Thử giải pháp theo từng nguyên nhân và đo giữ chân.",
+      "lesson": "trm-01-01"
+    }
+  },
+  "M02": {
+    "questions": [
+      {
+        "prompt": "Sau khi phát hiện lỗi công thức phụ cấp trong hai mẫu, làm gì?",
+        "options": [
+          "Chỉ sửa hai dòng",
+          "Đợi người khác khiếu nại",
+          "Xóa lịch sử",
+          "Xác định toàn bộ dòng dùng cùng cơ chế và tính ảnh hưởng"
+        ],
+        "correct": 3,
+        "explanation": "Lỗi công thức có thể tác động cả tập dữ liệu. Cần đánh giá phạm vi và lưu căn cứ sửa.",
+        "lesson": "trm-02-03"
+      },
+      {
+        "prompt": "Bằng chứng quan trọng để tái dựng payroll là gì?",
+        "options": [
+          "Phiên bản dữ liệu và tham số theo kỳ",
+          "Chỉ bảng lương mới nhất",
+          "Lời nhớ của người tính",
+          "Chỉ tổng chuyển tiền"
+        ],
+        "correct": 0,
+        "explanation": "Ngày hiệu lực và phiên bản cho phép tái lập từng phép tính.",
+        "lesson": "trm-02-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "Một nhân viên báo phụ cấp tháng này thấp hơn tháng trước. Bạn kiểm tra gì trước khi kết luận?",
+      "answer": "Lấy điều khoản áp dụng, ngày hiệu lực, số ngày đủ điều kiện, dữ liệu chấm công và phép tính. Đối chiếu người tương tự và xác minh với payroll.",
+      "lesson": "trm-02-04"
+    }
+  },
+  "M03": {
+    "questions": [
+      {
+        "prompt": "Chênh trung vị thô 12% cho biết gì?",
+        "options": [
+          "Chắc chắn có phân biệt đối xử",
+          "Mọi người cần tăng 12%",
+          "Có khác biệt phân bố cần phân tích thêm",
+          "Hệ thống hoàn toàn công bằng"
+        ],
+        "correct": 2,
+        "explanation": "Chênh thô chịu tác động cơ cấu nghề, grade và nhiều yếu tố. Cần kiểm tra trước khi kết luận nguyên nhân.",
+        "lesson": "trm-03-01"
+      },
+      {
+        "prompt": "Khi một người thiếu midpoint, tính compa theo quỹ nên thế nào?",
+        "options": [
+          "Giữ lương người đó trong tử số",
+          "Loại cả lương và midpoint khỏi phép so, báo thiếu dữ liệu",
+          "Cho midpoint bằng 0",
+          "Cho compa bằng 100%"
+        ],
+        "correct": 1,
+        "explanation": "Tử và mẫu cần cùng tập đối tượng đủ dữ liệu.",
+        "lesson": "trm-03-01"
+      }
+    ],
+    "scenario": {
+      "prompt": "Trung vị nhóm tham chiếu 25 triệu, nhóm so sánh 22 triệu. Giải thích kết quả.",
+      "answer": "Chênh lệch là 12% theo nhóm tham chiếu. Cần xem phân bổ grade, FTE, địa bàn và mức độ tương đương công việc trước khi suy ra nguyên nhân.",
+      "lesson": "trm-03-01"
+    }
+  },
+  "M04": {
+    "questions": [
+      {
+        "prompt": "Chấm giá trị công việc chủ yếu dựa vào gì?",
+        "options": [
+          "Tuổi người giữ vị trí",
+          "Lương hiện tại",
+          "Số năm gắn bó",
+          "Trách nhiệm và yêu cầu của vai trò có bằng chứng"
+        ],
+        "correct": 3,
+        "explanation": "Giá trị vai trò cần căn cứ phạm vi công việc. Các thuộc tính cá nhân không thay thế hồ sơ trách nhiệm.",
+        "lesson": "trm-04-01"
+      },
+      {
+        "prompt": "70 điểm của mô hình tự xây tương đương bao nhiêu điểm Hay?",
+        "options": [
+          "Chưa có cơ sở quy đổi",
+          "70",
+          "140",
+          "Một grade cố định"
+        ],
+        "correct": 0,
+        "explanation": "Hai hệ thống có thang, định nghĩa và hiệu chỉnh khác nhau.",
+        "lesson": "trm-04-03"
+      }
+    ],
+    "scenario": {
+      "prompt": "Giám đốc dự án chịu biên lợi nhuận. Chuyên gia kỹ thuật có quyền chặn nghiệm thu nhiều dự án. Ai có grade cao hơn?",
+      "answer": "Chưa đủ căn cứ. Thu giới hạn quyền quyết định, quy mô kết quả, tác động trực tiếp hoặc tham mưu, độ phức tạp và các vị trí chuẩn để hiệu chỉnh.",
+      "lesson": "trm-04-05"
+    }
+  },
+  "M05": {
+    "questions": [
+      {
+        "prompt": "Lương 18, min 16, max 24 có penetration bao nhiêu?",
+        "options": [
+          "90%",
+          "50%",
+          "25%",
+          "75%"
+        ],
+        "correct": 2,
+        "explanation": "Phần vượt min là 2, độ rộng là 8, nên bằng 25%.",
+        "lesson": "trm-05-02"
+      },
+      {
+        "prompt": "Lương giữ nguyên, midpoint tăng thì compa thế nào?",
+        "options": [
+          "Tăng",
+          "Giảm",
+          "Luôn giữ nguyên",
+          "Bằng 0"
+        ],
+        "correct": 1,
+        "explanation": "Compa có midpoint ở mẫu số nên giảm khi mẫu tăng và lương giữ nguyên.",
+        "lesson": "trm-05-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "Lương 18 triệu, min 16, mid 20, max 24. Nếu mid tăng lên 21 nhưng min/max giữ nguyên, chỉ số đổi thế nào?",
+      "answer": "Compa từ 90% xuống 85,7%. Range penetration giữ 25%. Cần giải thích chính sách nếu midpoint không còn là trung điểm số học.",
+      "lesson": "trm-05-02"
+    }
+  },
+  "M06": {
+    "questions": [
+      {
+        "prompt": "Quỹ 400 tăng 7%, quỹ 600 tăng 4%, tỷ lệ chung là gì?",
+        "options": [
+          "5,5%",
+          "4%",
+          "7%",
+          "5,2%"
+        ],
+        "correct": 3,
+        "explanation": "Tiền tăng 28 cộng 24 bằng 52, chia quỹ 1.000 bằng 5,2%.",
+        "lesson": "trm-06-03"
+      },
+      {
+        "prompt": "Hiệu chỉnh rating cần dựa trên gì?",
+        "options": [
+          "Bằng chứng và chuẩn thống nhất",
+          "Phân bố đẹp bằng mọi giá",
+          "Ai nói thuyết phục nhất",
+          "Chức danh quản lý"
+        ],
+        "correct": 0,
+        "explanation": "Hiệu chỉnh nhằm áp chuẩn nhất quán, cần lý do và bằng chứng.",
+        "lesson": "trm-06-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "Nhóm A quỹ 400 triệu tăng 7%, nhóm B quỹ 600 triệu tăng 4%. Quỹ tăng bình quân là bao nhiêu?",
+      "answer": "52 triệu, tức 5,2%. Trung bình số học 5,5% bỏ qua quy mô quỹ của mỗi nhóm.",
+      "lesson": "trm-06-03"
+    }
+  },
+  "M07": {
+    "questions": [
+      {
+        "prompt": "Gate khác trọng số KPI ở điểm nào?",
+        "options": [
+          "Luôn bằng 100%",
+          "Là lương cố định",
+          "Có thể quyết định điều kiện được nhận toàn bộ hoặc một phần thưởng",
+          "Chỉ dùng cho sales"
+        ],
+        "correct": 2,
+        "explanation": "Cần ghi phạm vi tác động của gate trong quy chế.",
+        "lesson": "trm-07-02"
+      },
+      {
+        "prompt": "Payout mục tiêu 30, trọng số 60/40, hệ số 110/90%, trả bao nhiêu?",
+        "options": [
+          "30",
+          "30,6",
+          "33",
+          "27"
+        ],
+        "correct": 1,
+        "explanation": "Hệ số gộp bằng 102%, nhân 30 được 30,6.",
+        "lesson": "trm-07-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "Thưởng mục tiêu 30 triệu, trọng số 60/40, hệ số 110% và 90%. Tính payout trước trần.",
+      "answer": "30,6 triệu vì hệ số gộp là 102%. Sau đó kiểm tra gate và trần theo quy chế.",
+      "lesson": "trm-07-03"
+    }
+  },
+  "M08": {
+    "questions": [
+      {
+        "prompt": "Trước khi gộp hai khảo sát cần gì?",
+        "options": [
+          "Chọn số cao hơn",
+          "Lấy trung bình ngay",
+          "Bỏ cỡ mẫu",
+          "Chuẩn hóa job match, cấu phần, kỳ và ngày"
+        ],
+        "correct": 3,
+        "explanation": "Các nguồn phải cùng cơ sở để kết hợp có ý nghĩa.",
+        "lesson": "trm-08-02"
+      },
+      {
+        "prompt": "Aging sáu tháng ở mức tăng năm 6% theo kép dùng công thức nào?",
+        "options": [
+          "Mức gốc × 1,06^0,5",
+          "Mức gốc × 1,06 × 6",
+          "Mức gốc + 6",
+          "Mức gốc × 1,5"
+        ],
+        "correct": 0,
+        "explanation": "Số tháng được quy thành phần của năm.",
+        "lesson": "trm-08-03"
+      }
+    ],
+    "scenario": {
+      "prompt": "Midpoint 22 triệu, mức thị trường 24 triệu. Có nên tăng ngay lên 24 triệu?",
+      "answer": "Tỷ lệ là 91,7%. Kiểm tra chất lượng match, vị thế mục tiêu, dấu hiệu khó tuyển và tác động lên các ngạch trước khi quyết định.",
+      "lesson": "trm-08-04"
+    }
+  },
+  "M09": {
+    "questions": [
+      {
+        "prompt": "Compa cá nhân 50% và 100% có chắc compa theo quỹ là 75%?",
+        "options": [
+          "Luôn chắc",
+          "Chỉ phụ thuộc số người",
+          "Cần biết lương và midpoint từng người",
+          "Luôn bằng 100%"
+        ],
+        "correct": 2,
+        "explanation": "Compa theo quỹ dùng tổng lương chia tổng midpoint.",
+        "lesson": "trm-09-02"
+      },
+      {
+        "prompt": "Nối dữ liệu làm quỹ tăng gấp đôi thường cần kiểm tra gì trước?",
+        "options": [
+          "Tỷ giá",
+          "Khóa trùng và quan hệ nhiều dòng",
+          "Đổi màu biểu đồ",
+          "Tăng ngân sách"
+        ],
+        "correct": 1,
+        "explanation": "Một mã khớp nhiều bản ghi có thể nhân đôi dòng và số tiền.",
+        "lesson": "trm-09-01"
+      }
+    ],
+    "scenario": {
+      "prompt": "Hai người có lương và midpoint lần lượt 10/20 và 30/30. Compa nhóm và trung bình cá nhân khác nhau ra sao?",
+      "answer": "Compa theo quỹ là 40/50 = 80%. Bình quân cá nhân là (50% + 100%) / 2 = 75%.",
+      "lesson": "trm-09-02"
+    }
+  },
+  "M10": {
+    "questions": [
+      {
+        "prompt": "Tăng 52 triệu/tháng từ tháng 10, chi tăng trong năm là gì?",
+        "options": [
+          "624",
+          "52",
+          "208",
+          "156 triệu"
+        ],
+        "correct": 3,
+        "explanation": "Ba tháng hiệu lực tạo 156 triệu, trước chi phí liên quan.",
+        "lesson": "trm-10-01"
+      },
+      {
+        "prompt": "NPV xét thêm yếu tố nào so với cộng dòng tiền đơn giản?",
+        "options": [
+          "Thời điểm và tỷ lệ chiết khấu",
+          "Tên nhân viên",
+          "Grade",
+          "Số tab"
+        ],
+        "correct": 0,
+        "explanation": "Dòng tiền ở các thời điểm được quy về cùng thời điểm gốc.",
+        "lesson": "trm-10-03"
+      }
+    ],
+    "scenario": {
+      "prompt": "Chi ban đầu 100 triệu, dòng tiền ròng cuối năm 1 và 2 là 60 triệu mỗi năm, chiết khấu 10%. NPV?",
+      "answer": "Khoảng 4,13 triệu = −100 + 60/1,1 + 60/1,1². Với dòng tiền giả định, NPV dương nhẹ.",
+      "lesson": "trm-10-03"
+    }
+  },
+  "M11": {
+    "questions": [
+      {
+        "prompt": "Business case cần người duyệt thấy gì?",
+        "options": [
+          "Chỉ lý thuyết",
+          "Chỉ tổng chi",
+          "Vấn đề, lựa chọn, chi phí, giả định và quyết định cần duyệt",
+          "Chỉ biểu đồ đẹp"
+        ],
+        "correct": 2,
+        "explanation": "Các thông tin này hỗ trợ lựa chọn và giao trách nhiệm.",
+        "lesson": "trm-11-02"
+      },
+      {
+        "prompt": "Trước công bố dải lương cần kiểm tra gì?",
+        "options": [
+          "Chỉ thiết kế email",
+          "Dải, ngoại lệ và khả năng giải thích của quản lý",
+          "Chỉ logo",
+          "Chỉ thời điểm gửi"
+        ],
+        "correct": 1,
+        "explanation": "Minh bạch đòi hỏi thông tin và quy tắc có thể giải trình.",
+        "lesson": "trm-11-03"
+      }
+    ],
+    "scenario": {
+      "prompt": "Công ty sắp công bố dải lương nhưng nhiều người dưới min. Cần chuẩn bị gì?",
+      "answer": "Xác minh dữ liệu, phân loại lý do, dự toán xử lý, thống nhất mốc hành động và chuẩn bị quản lý giải thích từng trường hợp riêng.",
+      "lesson": "trm-11-03"
+    }
+  },
+  "M12": {
+    "questions": [
+      {
+        "prompt": "Cùng grade ở hai nước có buộc cùng lương danh nghĩa?",
+        "options": [
+          "Có",
+          "Chỉ khi cùng chức danh",
+          "Chỉ khi cùng tuổi",
+          "Không, còn phụ thuộc thị trường và chính sách địa phương"
+        ],
+        "correct": 3,
+        "explanation": "Grade thể hiện cấp độ vai trò, mức trả có thể theo thị trường địa phương.",
+        "lesson": "trm-12-01"
+      },
+      {
+        "prompt": "Mô hình chi phí điều động cần giữ gì?",
+        "options": [
+          "Tiền gốc, tỷ giá, kỳ chi và khoản một lần/định kỳ",
+          "Chỉ một tổng cuối cùng",
+          "Chỉ lương cơ bản",
+          "Chỉ chi phí vé máy bay"
+        ],
+        "correct": 0,
+        "explanation": "Thông tin này giúp giải thích và cập nhật chi phí.",
+        "lesson": "trm-12-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "Cùng grade tại Việt Nam và Singapore nhưng mức lương danh nghĩa khác nhau. Nên giải thích thế nào?",
+      "answer": "Grade nói về cấp độ vai trò. Dải lương phản ánh chính sách và thị trường địa phương. So thu nhập cùng cấu phần và kỳ tính khi cần đối chiếu.",
+      "lesson": "trm-12-01"
+    }
+  },
+  "M13": {
+    "questions": [
+      {
+        "prompt": "Phúc lợi ít sử dụng có nghĩa gì?",
+        "options": [
+          "Luôn vô ích",
+          "Cắt ngay",
+          "Cần xem nhận biết, tiếp cận và giá trị bảo vệ rủi ro",
+          "Luôn tăng hạn mức"
+        ],
+        "correct": 2,
+        "explanation": "Tỷ lệ sử dụng là một tín hiệu, chưa đủ để quyết định giá trị.",
+        "lesson": "trm-13-04"
+      },
+      {
+        "prompt": "Tỷ lệ sử dụng theo người có tử số nào?",
+        "options": [
+          "Tổng lượt dùng",
+          "Số người dùng ít nhất một lần",
+          "Tổng phí",
+          "Số yêu cầu bị từ chối"
+        ],
+        "correct": 1,
+        "explanation": "Đếm người và đếm lượt là hai thước đo khác nhau.",
+        "lesson": "trm-13-04"
+      }
+    ],
+    "scenario": {
+      "prompt": "Gói bảo hiểm ít người dùng. Có nên cắt ngay?",
+      "answer": "Kiểm tra độ nhận biết, địa bàn tiếp cận, loại trừ, bảo vệ với rủi ro hiếm và lý do không dùng trước khi quyết định.",
+      "lesson": "trm-13-04"
+    }
+  },
+  "M14": {
+    "questions": [
+      {
+        "prompt": "Hoàn tất chứng chỉ có tự động đổi grade?",
+        "options": [
+          "Luôn có",
+          "Theo học phí",
+          "Theo tuổi",
+          "Cần xét phạm vi vai trò và chính sách áp dụng"
+        ],
+        "correct": 3,
+        "explanation": "Kỹ năng và giá trị vai trò liên quan nhưng việc lên grade cần căn cứ trách nhiệm.",
+        "lesson": "trm-14-03"
+      },
+      {
+        "prompt": "Bằng chứng phát triển tốt nhất trong bài tập này là gì?",
+        "options": [
+          "Sản phẩm được áp dụng và đánh giá",
+          "Chỉ số giờ học",
+          "Chỉ giấy đăng ký",
+          "Chỉ lời hứa"
+        ],
+        "correct": 0,
+        "explanation": "Bằng chứng áp dụng cho thấy năng lực phục vụ công việc.",
+        "lesson": "trm-14-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "Một kỹ sư hoàn tất chứng chỉ mới. Điều này có đủ để lên grade không?",
+      "answer": "Kiểm tra phạm vi trách nhiệm mới và bằng chứng áp dụng. Chính sách kỹ năng có thể ghi nhận chứng chỉ trong khi grade giữ nguyên.",
+      "lesson": "trm-14-03"
+    }
+  },
+  "M15": {
+    "questions": [
+      {
+        "prompt": "Doanh số 1,2 tỷ, quota 1 tỷ, 2% trong quota, 3% phần vượt, hoa hồng?",
+        "options": [
+          "36 triệu",
+          "24 triệu",
+          "26 triệu",
+          "20 triệu"
+        ],
+        "correct": 2,
+        "explanation": "20 triệu trong quota cộng 6 triệu phần vượt.",
+        "lesson": "trm-15-03"
+      },
+      {
+        "prompt": "Crediting quy định điều gì?",
+        "options": [
+          "Thuế suất",
+          "Ai được ghi công giao dịch và khi nào",
+          "Chỉ số tiền OTE",
+          "Mức lương tối thiểu"
+        ],
+        "correct": 1,
+        "explanation": "Cần có cả quy tắc chia công và thời điểm ghi nhận.",
+        "lesson": "trm-15-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "OTE 40 triệu, pay mix 70/30, hệ số payout 130%. Tổng thu nhập trong kỳ?",
+      "answer": "43,6 triệu, gồm 28 triệu cố định và 15,6 triệu incentive, giả định đủ điều kiện và không có trần áp dụng.",
+      "lesson": "trm-15-01"
+    }
+  },
+  "M16": {
+    "questions": [
+      {
+        "prompt": "EPS tăng khi lợi nhuận giữ nguyên có thể do gì?",
+        "options": [
+          "Chỉ do năng suất",
+          "Không thể xảy ra",
+          "Chỉ do lương giảm",
+          "Số cổ phần giảm"
+        ],
+        "correct": 3,
+        "explanation": "Mẫu số EPS giảm có thể làm EPS tăng, cần đọc cơ cấu vốn.",
+        "lesson": "trm-16-02"
+      },
+      {
+        "prompt": "Phương án LTI cần trình gì?",
+        "options": [
+          "Điều kiện, kỳ đo, kịch bản, chi phí và quản trị",
+          "Chỉ tên chương trình",
+          "Chỉ số cổ phiếu",
+          "Chỉ giá hôm nay"
+        ],
+        "correct": 0,
+        "explanation": "Các điều kiện quyết định nghĩa vụ và động cơ của chương trình.",
+        "lesson": "trm-16-02"
+      }
+    ],
+    "scenario": {
+      "prompt": "Thiết kế LTI ba năm cho doanh nghiệp chưa niêm yết. Dùng chỉ số nào?",
+      "answer": "Cân nhắc dòng tiền hoặc lợi nhuận đã điều chỉnh cùng mục tiêu chiến lược. Nếu dùng giá trị cổ phần ảo, thống nhất cách định giá và nguồn thanh toán.",
+      "lesson": "trm-16-02"
+    }
+  },
+  "M17": {
+    "questions": [
+      {
+        "prompt": "1.000 option, thị giá 27.000, thực hiện 20.000 có nội tại?",
+        "options": [
+          "27 triệu",
+          "20 triệu",
+          "7 triệu",
+          "47 triệu"
+        ],
+        "correct": 2,
+        "explanation": "Chênh 7.000 nhân 1.000 bằng 7 triệu trước thuế phí.",
+        "lesson": "trm-17-04"
+      },
+      {
+        "prompt": "Có 100 triệu cổ phần, thêm 5 triệu, phần mới trên tổng sau là gì?",
+        "options": [
+          "5%",
+          "4,7619%",
+          "95%",
+          "0,5%"
+        ],
+        "correct": 1,
+        "explanation": "Mẫu số sau phát hành là 105 triệu.",
+        "lesson": "trm-17-03"
+      }
+    ],
+    "scenario": {
+      "prompt": "Có 100 triệu cổ phần, phát hành thêm 5 triệu. Người giữ 1 triệu cổ phần bị pha loãng thế nào?",
+      "answer": "Tỷ lệ từ 1% xuống khoảng 0,9524%. Lượng phát hành mới chiếm 4,7619% tổng sau phát hành.",
+      "lesson": "trm-17-03"
+    }
+  }
+}

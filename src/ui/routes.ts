@@ -33,3 +33,7 @@ export function routeLabel(id: RouteId): string {
 export function lessonHref(id: string): string {
   return `#lo-trinh?bai=${encodeURIComponent(id)}`;
 }
+
+export function reviewHref(code: string): string {
+  return '#lo-trinh?on=' + encodeURIComponent(code);
+}

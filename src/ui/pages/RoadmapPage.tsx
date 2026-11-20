@@ -4,13 +4,14 @@ import { compaRatio, rangePenetration } from '../../modules/tr/calc';
 import { completeLesson, courseProgress, COURSE_STAGES, nextAfter, ROADMAP_MODULES, useRoadmapProgress, type RoadmapLesson } from '../../modules/tr/roadmap';
 import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
+import { CourseRecommendation, CourseReview } from '../../modules/tr/CourseReview';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
 import { useReadingMemos } from '../../modules/tr/readingMemos';
 import { LessonMemo, MemoBook } from '../components/ReadingMemos';
 import { RoadmapSearch } from '../components/RoadmapSearch';
 import { RoadmapRelatedCards } from '../components/RoadmapRelatedCards';
-import { lessonHref } from '../routes';
+import { lessonHref, reviewHref } from '../routes';
 import { useLocationHash } from '../useHashRoute';
 
 export function RoadmapPage() {
@@ -20,6 +21,7 @@ export function RoadmapPage() {
   const hash = useLocationHash();
   const params = new URLSearchParams(hash.split('?')[1]);
   const id = params.get('bai');
+  const review = ROADMAP_MODULES.find((entry) => entry.code === params.get('on'));
   const memo = params.get('memo') === '1';
   const notes = useReadingMemos();
   const [memoQuery, setMemoQuery] = useState('');
@@ -27,7 +29,7 @@ export function RoadmapPage() {
   const returnResult = useRef<string | null>(null);
   const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === id));
   const selected = module?.lessons.find((lesson) => lesson.id === id);
-  const heading = useFocusOnMount<HTMLHeadingElement>(!selected && !memo);
+  const heading = useFocusOnMount<HTMLHeadingElement>(!selected && !memo && !review);
 
   useEffect(() => {
     if (selected && memo) document.getElementById('lesson-memo-title')?.focus();
@@ -37,13 +39,15 @@ export function RoadmapPage() {
       link?.scrollIntoView({ block: 'center' });
       returnResult.current = null;
     } else window.scrollTo(0, 0);
-  }, [selected, memo]);
+  }, [selected, memo, review]);
 
   function open(lesson?: RoadmapLesson) {
     if (window.location.hash !== hash) return;
     if (!lesson && module) setExpanded(module.code);
     window.location.assign(lesson ? lessonHref(lesson.id) : '#lo-trinh');
   }
+
+  if (review) return <CourseReview key={review.code} code={review.code} graduated={!!course && !course.next} />;
 
   if (selected && module) {
     const index = module.lessons.findIndex((lesson) => lesson.id === selected.id);
@@ -54,6 +58,7 @@ export function RoadmapPage() {
         notes={notes}
         fromMemo={memo}
         label={`Buổi ${Number(module.code.slice(1))} · ${module.title} · Bài ${index + 1}/${module.lessons.length}`}
+        moduleCode={module.code}
         source={module.source}
         done={completed?.includes(selected.id)}
         following={completed && nextAfter(selected.id, completed)}
@@ -83,7 +88,7 @@ export function RoadmapPage() {
                   {course.count ? 'Học tiếp' : 'Bắt đầu'} {course.next.code} · {course.next.lesson.title}
                 </a>
               </div>
-            ) : <p>Bạn đã hoàn thành toàn bộ lộ trình. Chọn một bài bên dưới để ôn lại.</p>}
+            ) : <CourseRecommendation />}
           </div>
         )}
         <div className="row">
@@ -136,6 +141,7 @@ export function RoadmapPage() {
                           </li>
                         ))}
                       </ol>
+                      <div className="row"><a className="btn ghost roadmap-link" href={reviewHref(entry.code)}>Tự kiểm tra {entry.code}</a></div>
                     </div>
                   )}
                 </div>
@@ -148,11 +154,12 @@ export function RoadmapPage() {
   );
 }
 
-function Lesson({ lesson, notes, fromMemo, label, source, done, following, browseNext, onBack, onNext }: {
+function Lesson({ lesson, notes, fromMemo, label, moduleCode, source, done, following, browseNext, onBack, onNext }: {
   lesson: RoadmapLesson;
   notes: ReturnType<typeof useReadingMemos>;
   fromMemo: boolean;
   label: string;
+  moduleCode: string;
   source: string;
   done: boolean | undefined;
   following: ReturnType<typeof nextAfter>;
@@ -218,6 +225,7 @@ function Lesson({ lesson, notes, fromMemo, label, source, done, following, brows
         </div>
         {revealed && <p>{lesson.review.answer}</p>}
       </section>
+      {!browseNext && <div className="row"><a className="btn ghost roadmap-link" href={reviewHref(moduleCode)}>Tự kiểm tra {moduleCode}</a></div>}
       <LessonMemo id={lesson.id} notes={notes} />
       {related.length > 0 && <RoadmapRelatedCards ids={related} />}
       <p className="hint">Nguồn biên soạn · {source}</p>

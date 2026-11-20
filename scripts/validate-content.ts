@@ -114,6 +114,8 @@ function validateEnglish() {
 }
 
 function validateRoadmap() {
+  const checkpoints = readJson('content/tr-roadmap/checkpoints.json');
+  if (!isObj(checkpoints) || Object.keys(checkpoints).length !== 17) err('Cần bài tự kiểm tra cho đủ 17 mô-đun');
   for (let session = 1; session <= 17; session++) {
     const code = String(session).padStart(2, '0');
     const file = `content/tr-roadmap/m${code}.json`;
@@ -137,6 +139,16 @@ function validateRoadmap() {
       if (!Array.isArray(row.steps) || !row.steps.length || !row.steps.every(nonEmpty)) err(`${where}: thiếu các bước thực hiện`);
       if (!validReview(row.review)) err(`${where}: phần tự ôn cần câu hỏi và lời giải`);
     });
+    const checkpoint = isObj(checkpoints) ? checkpoints['M' + code] : undefined;
+    const lessonIds = new Set(Array.isArray(data.lessons) ? data.lessons.filter(isObj).map((l) => l.id) : []);
+    const validPrompt = (q: unknown): q is Obj => isObj(q) && nonEmpty(q.prompt) && lessonIds.has(q.lesson);
+    if (!isObj(checkpoint) || !validPrompt(checkpoint.scenario) || !nonEmpty(checkpoint.scenario.answer)
+      || !Array.isArray(checkpoint.questions) || checkpoint.questions.length !== 2
+      || !checkpoint.questions.every((q: unknown) => validPrompt(q) && nonEmpty(q.explanation)
+        && Array.isArray(q.options) && q.options.length === 4 && new Set(q.options).size === 4 && q.options.every(nonEmpty)
+        && typeof q.correct === 'number' && Number.isInteger(q.correct) && q.correct >= 0 && q.correct < 4)) {
+      err(`Tự kiểm tra M${code} cần tình huống, hai câu bốn lựa chọn, đáp án, giải thích và liên kết bài hợp lệ`);
+    }
     const inRange = (value: unknown, max: number) => typeof value === 'number' && value >= 0 && value <= max;
     if (code === '06') {
       const merit = data.merit;

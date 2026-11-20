@@ -9,6 +9,7 @@ import { useProgress } from '../useProgress';
 import { BAI_KEYS, BAI_SHORT } from '../../modules/tr/data';
 import { titleOf, type TrItem } from '../../modules/tr/items';
 import { DEFAULT_PREFS, DURATIONS, MODES, TIME, countBy, homeStats, modeOf, planSession, type Prefs } from '../../modules/tr/plan';
+import { CourseRecommendation } from '../../modules/tr/CourseReview';
 import { courseProgress, useRoadmapProgress } from '../../modules/tr/roadmap';
 import { useRoadmapReview } from '../../modules/tr/roadmapCards';
 import { Explain, TrCard } from '../../modules/tr/cards/TrCard';
@@ -209,7 +210,7 @@ export function TodayPage() {
               {course.count ? 'Học tiếp' : 'Bắt đầu'} {course.next.code} · {course.next.lesson.title}
             </a>
           </div>
-        ) : course && <p className="hint">Đã hoàn thành {course.total} bài trong lộ trình</p>}
+        ) : course && <><p className="hint">Đã hoàn thành {course.total} bài trong lộ trình</p><CourseRecommendation /></>}
         <div className="row">
           <a className="btn ghost roadmap-link" href="#lo-trinh">Mở lộ trình Total Rewards</a>
           {!!readingReview?.length && (
