@@ -26,7 +26,7 @@ export function RoadmapRelatedCards({ ids }: { ids: string[] }) {
   return (
     <section className="stack" aria-labelledby="related-cards-title">
       <h2 className="h-sec" id="related-cards-title">Thẻ liên quan</h2>
-      <p className="hint">Mở thẻ để xem lại khái niệm hoặc công thức. Thẻ được chọn sẽ hiện trong lịch ôn ở trang Hôm nay.</p>
+      <p className="hint">Mở thẻ để xem lại khái niệm, công thức hoặc thuật ngữ. Thẻ được chọn sẽ hiện trong lịch ôn ở trang Hôm nay.</p>
       <div className="stack">
         {ids.map((id) => {
           const entry = entryById(id);

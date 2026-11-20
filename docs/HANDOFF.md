@@ -41,6 +41,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #36 | Cài đặt → Tài khoản: đăng nhập qua Cloudflare Access, kiểm tra email phiên theo yêu cầu, đăng xuất và nhận biết ngoại tuyến. |
 | #37 | Tab Đọc thêm có 6 tình huống Anh–Việt tự biên soạn theo nguồn Việt Nam và quốc tế, đổi ngôn ngữ cả bài hoặc mở nghĩa từng đoạn ngay cả khi ngoại tuyến. |
 | #38 | Ôn duy trì sau khóa ở Hôm nay và Lộ trình. M01–M17 có 34 câu trắc nghiệm, 17 tình huống tự chấm và lịch ôn lưu trên thiết bị. |
+| #39 | Cả 69 bài trong 17 buổi đều có thẻ liên quan. Có thể chọn thẻ khái niệm, công thức hoặc thuật ngữ để ôn từ Hôm nay. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

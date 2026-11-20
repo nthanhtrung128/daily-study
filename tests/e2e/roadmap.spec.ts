@@ -279,3 +279,21 @@ test('tự kiểm tra buổi M01, xem lời giải sau khi làm rồi mở lại
   await expect(submit).toHaveCount(0);
   expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
 });
+
+test('thẻ thuật ngữ của buổi 17 đi từ bài đọc vào lịch ôn', async ({ page }) => {
+  await page.goto('./#lo-trinh?bai=trm-17-04');
+  const region = page.getByRole('region', { name: 'Thẻ liên quan' });
+  const rsu = region.locator('details').filter({ hasText: 'Restricted Stock Units (RSU)' });
+  await rsu.locator('summary').click();
+  await rsu.getByRole('button', { name: 'Đưa vào lịch ôn' }).click();
+  await expect(rsu.getByRole('status')).toHaveText('Đã lên lịch');
+  await openTab(page, 'hom-nay');
+  await page.getByRole('button', { name: 'Ôn 1 thẻ từ bài đọc' }).click();
+  await expect(page.getByRole('heading', { name: 'Restricted Stock Units (RSU)' })).toBeVisible();
+  await page.getByRole('button', { name: 'Xem nghĩa' }).click();
+  await page.getByRole('button', { name: /^Nhớ rõ/ }).click();
+  await expect(page.getByRole('heading', { name: 'Xong phiên ôn hôm nay' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByTestId('st-today')).toHaveText('1');
+  await expect(page.getByRole('button', { name: 'Ôn 1 thẻ từ bài đọc' })).toHaveCount(0);
+});
