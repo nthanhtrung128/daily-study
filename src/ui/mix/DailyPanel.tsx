@@ -14,12 +14,12 @@ export function DailyPanel({ onStart }: { onStart: (plan: DailyPlan, minutes: nu
   const newLeft = Math.max(0, prefs.maxNew - p.newToday());
 
   return (
-    <div className="panel stack daily" aria-labelledby="h-today">
+    <div className="panel stack daily" aria-labelledby="daily-duration">
       <div>
         <div className="eyebrow">Phiên hằng ngày · {shareLabel(prefs.trShare)}</div>
-        <h1 id="h-today" className="h-page">
+        <h2 id="daily-duration" className="h-sec">
           Hôm nay ôn bao lâu?
-        </h1>
+        </h2>
       </div>
       <div className="row" role="group" aria-label="Thời lượng phiên hôm nay">
         {DAILY_DURATIONS.map((m) => (

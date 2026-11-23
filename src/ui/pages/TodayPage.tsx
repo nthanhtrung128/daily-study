@@ -1,6 +1,9 @@
 import { CommunicationSummary } from '../../modules/english/ui/CommunicationCourse';
 import { useEffect, useRef, useState } from 'react';
-import { getSetting, setSetting } from '../../core/db';
+import { liveQuery } from 'dexie';
+import { capstoneHref } from '../../modules/tr/Capstone';
+import { draftKey, readDraft } from '../../modules/tr/capstoneDraft';
+import { db, getSetting, setSetting } from '../../core/db';
 import type { Grade } from '../../core/leitner';
 import { fmt } from '../../core/num';
 import { RangeBar } from '../components/RangeBar';
@@ -59,6 +62,13 @@ export function TodayPage() {
   const readingReview = useRoadmapReview(p);
   const readingProgress = useRoadmapProgress();
   const daily = useDailyPrefs();
+  const [hasDraft, setHasDraft] = useState(false);
+  useEffect(() => {
+    const sub = liveQuery(() => db.settings.get(draftKey)).subscribe({
+      next: (row) => setHasDraft(!!readDraft(row?.value)), error: () => setHasDraft(false),
+    });
+    return () => sub.unsubscribe();
+  }, []);
   const [prefs, setPrefs] = useState<Prefs>(DEFAULT_PREFS);
   const [view, setView] = useState<View>({ kind: 'home' });
   const [en, setEnView] = useState<EnView | null>(null);
@@ -196,18 +206,13 @@ export function TodayPage() {
   const course = readingProgress && courseProgress(readingProgress);
 
   return (
-    <section className="stack" aria-labelledby="h-today">
-      {resume && <ResumePanel done={resume.done} total={resume.total} onResume={continueResume} onDrop={dropResume} />}
-      <BackupNudge />
-      <GoalBar p={p} prefs={daily} />
-      <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
-      <WeakPanel onStart={startWeak} />
-      <SkillDrills />
-      <CommunicationSummary />
-
-      <div className="panel stack">
-        <h2 className="h-sec">Tự ôn bằng cách đọc</h2>
-        <p>Theo lộ trình từ chiến lược Total Rewards đến đãi ngộ vốn. Mỗi buổi có bài đọc, ví dụ thực hành và câu tự ôn.</p>
+    <section className="stack">
+      <section className="panel stack study-hub" aria-labelledby="h-today">
+        <header><h1 className="h-page" id="h-today">Trung tâm học tập</h1>
+          {course && <p className="hint">{course.count}/{course.total} bài Total Rewards đã hoàn thành</p>}</header>
+        {resume && <ResumePanel done={resume.done} total={resume.total} onResume={continueResume} onDrop={dropResume} />}
+        {hasDraft && <a className="btn roadmap-link" href={capstoneHref}>Tiếp tục đề xuất giữ người</a>}
+        <SkillDrills>
         {course?.next ? (
           <div className="row">
             <a className="btn roadmap-link" href={lessonHref(course.next.lesson.id)}>
@@ -215,6 +220,11 @@ export function TodayPage() {
             </a>
           </div>
         ) : course && <><p className="hint">Đã hoàn thành {course.total} bài trong lộ trình</p><CourseRecommendation /></>}
+        </SkillDrills>
+        <nav className="hub-library" aria-label="Thư viện học tập">
+          <a href="#doc-them">Bài đọc song ngữ</a><a href="#tra-cuu">Tra cứu thuật ngữ</a>
+          <a href="#lo-trinh?memo=1">Sổ memo</a><a href="#tien-do">Xem tiến độ</a>
+        </nav>
         <div className="row">
           <a className="btn ghost roadmap-link" href="#lo-trinh">Mở lộ trình Total Rewards</a>
           {!!readingReview?.length && (
@@ -227,7 +237,12 @@ export function TodayPage() {
             </button>
           )}
         </div>
-      </div>
+      </section>
+      <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
+      <CommunicationSummary />
+      <GoalBar p={p} prefs={daily} />
+      <WeakPanel onStart={startWeak} />
+      <BackupNudge />
 
       <div className="panel stack">
         <div>

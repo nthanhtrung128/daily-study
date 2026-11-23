@@ -188,7 +188,7 @@ test('/dang-nhap không lấy từ cache service worker (để Cloudflare Access
   ]);
   expect(page.url()).toMatch(/\/dang-nhap$/);
   expect(res?.fromServiceWorker()).toBe(false);
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Trung tâm học tập');
   expect(await cspViolations(page)).toEqual([]);
 });
 

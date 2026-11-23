@@ -33,6 +33,6 @@ test('Hôm nay chỉ hẹn câu cần ôn, đổi tình huống ngày sau và l�
   await panel.getByRole('button', { name: 'Đối chiếu câu ôn' }).click();
   await expect(panel).toContainText('Đúng. Đã hoàn thành');
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Hôm nay ôn bao lâu?', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Trung tâm học tập', exact: true })).toBeVisible();
   await expect(panel).toHaveCount(0);
 });

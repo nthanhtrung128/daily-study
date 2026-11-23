@@ -1,5 +1,5 @@
 import { liveQuery } from 'dexie';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { dayKey } from '../../core/date';
 import { db } from '../../core/db';
 import { drillKeys, drillSchedule, finishDrill, type Drill } from '../../core/skillDrills';
@@ -12,7 +12,7 @@ function sourceLabel(source: string) {
   return source === 'capstone' ? 'bài tổng hợp' : 'bài vận dụng ngày ' + source;
 }
 
-export function SkillDrills() {
+export function SkillDrills({ children }: { children: ReactNode }) {
   const [queue, setQueue] = useState<Drill[]>([]);
   const [today, setToday] = useState(dayKey);
   const [feedback, setFeedback] = useState('');
@@ -28,8 +28,8 @@ export function SkillDrills() {
     return () => { sub.unsubscribe(); window.clearInterval(timer); document.removeEventListener('visibilitychange', update); };
   }, []);
   const next = queue[0];
-  if (!next && !feedback && !error) return null;
-  return <section className="panel stack skill-drills" aria-label="Ôn theo tiêu chí cần luyện">
+  if (!next && !feedback && !error) return children;
+  const panel = <section className="panel stack skill-drills" aria-label="Ôn theo tiêu chí cần luyện">
     <h2 className="h-sec">Ôn theo tiêu chí cần luyện</h2>
     {error && <p role="alert">Chưa đọc được lịch ôn. Hãy tải lại để thử lại.</p>}
     {feedback ? <><h3 ref={focus} tabIndex={-1}>Kết quả lượt ôn</h3><p>{feedback}</p>
@@ -38,6 +38,7 @@ export function SkillDrills() {
       {next.due <= today && <DrillForm key={[next.skill, next.sourceAt, next.index].join('-')} drill={next} onFeedback={setFeedback} />}
     </>}
   </section>;
+  return next && next.due <= today || feedback ? <>{panel}{children}</> : <>{children}{panel}</>;
 }
 
 function DrillForm({ drill, onFeedback }: { drill: Drill; onFeedback: (message: string) => void }) {

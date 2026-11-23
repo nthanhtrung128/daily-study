@@ -109,7 +109,7 @@ test.beforeEach(async ({ page }) => {
 
 test('phiên hằng ngày 10 phút: TR + EN xen kẽ, có câu nói có chấm, chạy hết đến màn kết quả; chuỗi ngày cập nhật', async ({ page }) => {
   await page.goto('./#hom-nay');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Trung tâm học tập');
   await expect(page.getByTestId('streak')).toHaveText('0');
   await page.getByRole('group', { name: 'Thời lượng phiên hôm nay' }).getByRole('button', { name: '10 phút' }).click();
   await expect(page.getByTestId('daily-sum')).toContainText('1 câu nói có chấm');
@@ -222,7 +222,7 @@ test('tiếp tục phiên dở: tải lại trang giữa phiên trộn → "Ti�
   await page.getByRole('button', { name: 'Kết thúc' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Xong phiên hôm nay');
   await page.reload();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Trung tâm học tập');
   await expect(page.getByTestId('resume-panel')).toHaveCount(0);
 });
 
