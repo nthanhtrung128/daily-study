@@ -517,5 +517,224 @@
         "check": "Đề xuất một phép so sánh và ngày báo lại."
       }
     ]
+  },
+  {
+    "id": "nho-moc-so-sanh",
+    "region": "Quốc tế",
+    "title": {
+      "en": "Which number belongs in the denominator?",
+      "vi": "Chọn mẫu số khi giải thích mức lương"
+    },
+    "source": {
+      "publisher": "Roediger & Karpicke",
+      "name": "Test-enhanced learning (2006)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16507066/",
+      "reason": "Nghiên cứu về tự nhớ sau khi đọc là căn cứ cho cách luyện. Tình huống lương và số liệu do Daily Study tự soạn."
+    },
+    "paragraphs": [
+      {
+        "en": "“Lan earns 27 million dong a month. The range midpoint is 30 million. Does that put her 90% of the way through the range?” a manager asks before a pay review. The range runs from 21 to 39 million dong.",
+        "vi": "Trước kỳ xét lương, quản lý hỏi: “Lan nhận 27 triệu đồng mỗi tháng. Trung điểm dải là 30 triệu. Vậy Lan đã đi được 90% dải lương phải không?” Dải lương từ 21 đến 39 triệu đồng."
+      },
+      {
+        "en": "Mai closes her notes and writes down what each denominator represents. Dividing salary by the midpoint gives a compa-ratio of 90%. To find the position within the range, she divides the six million above the minimum by the eighteen million between the limits. Lan is one third of the way through the range.",
+        "vi": "Mai gấp ghi chú rồi viết ý nghĩa từng mẫu số. Lấy lương chia cho trung điểm được compa-ratio 90%. Để xác định vị trí trong dải, cô lấy 6 triệu cao hơn mức tối thiểu chia cho độ rộng 18 triệu. Lan đang ở một phần ba dải lương."
+      },
+      {
+        "en": "The manager asks whether a raise is due. Mai says the midpoint gives them a reference. She will check the role, performance evidence and pay policy before making a recommendation. After the meeting, she writes one question for her next review: “What exactly am I comparing?”",
+        "vi": "Quản lý hỏi đã đến lúc tăng lương chưa. Mai giải thích rằng trung điểm là một mốc đối chiếu. Cô sẽ kiểm tra vai trò, bằng chứng hiệu suất và chính sách lương trước khi đề xuất. Sau buổi họp, cô viết một câu cho lần ôn tới: “Mình đang so hai đại lượng nào?”"
+      }
+    ],
+    "terms": [
+      {
+        "en": "range midpoint",
+        "vi": "trung điểm dải lương"
+      },
+      {
+        "en": "denominator",
+        "vi": "mẫu số"
+      },
+      {
+        "en": "position within the range",
+        "vi": "vị trí trong dải lương"
+      }
+    ],
+    "question": {
+      "en": "Why can 90% and one third both describe Lan’s salary?",
+      "vi": "Vì sao cả 90% lẫn một phần ba đều mô tả đúng mức lương của Lan?"
+    },
+    "answer": {
+      "en": "They answer different questions. 27 ÷ 30 compares pay with the midpoint. (27 − 21) ÷ (39 − 21) measures how far pay has moved from the minimum towards the maximum.",
+      "vi": "Hai số trả lời hai câu hỏi khác nhau. 27 ÷ 30 so lương với trung điểm. (27 − 21) ÷ (39 − 21) cho biết lương đã đi được bao xa từ đầu tới cuối dải."
+    },
+    "turns": [
+      {
+        "cue": "So, she is almost at the top?",
+        "task": "Hỏi quản lý đang muốn so với mốc nào.",
+        "model": "Are you asking about the midpoint or the top of the range?",
+        "meaning": "Anh đang hỏi về trung điểm hay mức tối đa của dải?",
+        "check": "Nêu được hai mốc."
+      },
+      {
+        "cue": "I meant the midpoint.",
+        "task": "Trả lời bằng một câu có tỷ lệ và mốc.",
+        "model": "Her monthly salary is ninety percent of the range midpoint.",
+        "meaning": "Lương tháng của cô ấy bằng 90% trung điểm dải.",
+        "check": "Gắn tỷ lệ với đúng mẫu số."
+      },
+      {
+        "cue": "Should I approve a raise today?",
+        "task": "Nêu thông tin cần kiểm tra trước khi chốt.",
+        "model": "Let me check the role and performance evidence before we decide.",
+        "meaning": "Để tôi kiểm tra vai trò và bằng chứng hiệu suất trước khi ta quyết định.",
+        "check": "Nêu được một bước xác minh."
+      }
+    ]
+  },
+  {
+    "id": "on-lai-trong-so",
+    "region": "Quốc tế",
+    "title": {
+      "en": "Rebuild a bonus calculation from memory",
+      "vi": "Tự tính lại khoản thưởng có trọng số"
+    },
+    "source": {
+      "publisher": "Dunlosky và cộng sự",
+      "name": "Improving Students’ Learning With Effective Learning Techniques (2013)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26173288/",
+      "reason": "Tổng quan đánh giá việc tự kiểm tra và phân bố các lượt học theo thời gian. Công thức thưởng trong bài thuộc một chính sách giả định."
+    },
+    "paragraphs": [
+      {
+        "en": "On Monday, Minh checks a proposed bonus plan. The target payment is VND 30 million. Team results carry a 60% weight and individual results carry 40%. The plan pays in direct proportion to achievement, with no caps, thresholds or time adjustment.",
+        "vi": "Thứ Hai, Minh kiểm tra một phương án thưởng. Mức thưởng mục tiêu là 30 triệu đồng. Kết quả nhóm có trọng số 60%, kết quả cá nhân 40%. Chính sách trả tuyến tính theo mức đạt, không có trần, ngưỡng hay điều chỉnh thời gian."
+      },
+      {
+        "en": "On Thursday he tries the calculation again before opening the spreadsheet. The team achieved 80% and the employee achieved 110%. Minh almost takes the simple average. He catches the mistake by naming the two contributions: 48 percentage points from the team and 44 from the individual. Together they give a payout factor of 92%.",
+        "vi": "Thứ Năm, Minh thử tính lại trước khi mở bảng tính. Nhóm đạt 80%, cá nhân đạt 110%. Minh suýt lấy trung bình cộng. Anh phát hiện lỗi khi gọi tên từng phần đóng góp: nhóm 48 điểm phần trăm, cá nhân 44 điểm phần trăm. Tổng lại là hệ số chi thưởng 92%."
+      },
+      {
+        "en": "The resulting payment is VND 27.6 million. Minh tells his colleague why strong individual results do not fully offset the team result in this plan. He keeps a blank version of the problem to try on another day with the weights reversed.",
+        "vi": "Khoản thưởng là 27,6 triệu đồng. Minh giải thích với đồng nghiệp vì sao kết quả cá nhân cao chưa bù hết kết quả nhóm trong chính sách này. Anh giữ một bản đề trống để hôm khác thử lại với trọng số đảo ngược."
+      }
+    ],
+    "terms": [
+      {
+        "en": "target bonus",
+        "vi": "mức thưởng mục tiêu"
+      },
+      {
+        "en": "payout factor",
+        "vi": "hệ số chi thưởng"
+      },
+      {
+        "en": "percentage point",
+        "vi": "điểm phần trăm"
+      }
+    ],
+    "question": {
+      "en": "What goes wrong if Minh simply averages the two achievement rates?",
+      "vi": "Minh sai ở đâu nếu lấy trung bình cộng hai mức đạt?"
+    },
+    "answer": {
+      "en": "The simple average assumes equal weights and gives 95%. The plan assigns 60% to the team and 40% to the individual, so the correct factor is 92% and the payment is VND 27.6 million.",
+      "vi": "Trung bình cộng ngầm coi hai trọng số bằng nhau và cho ra 95%. Chính sách quy định nhóm 60%, cá nhân 40%, nên hệ số đúng là 92% và tiền thưởng là 27,6 triệu."
+    },
+    "turns": [
+      {
+        "cue": "Why is my bonus below target?",
+        "task": "Ghi nhận câu hỏi rồi nêu hai thành phần.",
+        "model": "Let’s look at the team and individual parts separately.",
+        "meaning": "Ta xem riêng phần kết quả nhóm và phần cá nhân nhé.",
+        "check": "Gọi tên được hai thành phần."
+      },
+      {
+        "cue": "I exceeded my own target.",
+        "task": "Giải thích bằng phần đóng góp cá nhân.",
+        "model": "Yes. Your individual result contributes forty-four percentage points to the overall factor.",
+        "meaning": "Đúng. Kết quả cá nhân của bạn đóng góp 44 điểm phần trăm vào hệ số chung.",
+        "check": "Phân biệt mức đạt với phần đóng góp."
+      },
+      {
+        "cue": "Can I check the calculation later?",
+        "task": "Hẹn gửi phép tính có trọng số.",
+        "model": "I’ll send the weights, achievement rates and final amount after this call.",
+        "meaning": "Tôi sẽ gửi trọng số, mức đạt và tiền thưởng sau cuộc gọi.",
+        "check": "Nêu rõ dữ liệu người nhận sẽ có."
+      }
+    ]
+  },
+  {
+    "id": "doi-boi-canh-fte",
+    "region": "Quốc tế",
+    "title": {
+      "en": "Compare pay when the working week changes",
+      "vi": "So lương khi số ngày làm việc khác nhau"
+    },
+    "source": {
+      "publisher": "Andrew C. Butler",
+      "name": "Repeated testing produces superior transfer of learning relative to repeated studying (2010)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20804289/",
+      "reason": "Nghiên cứu dùng câu hỏi mới để kiểm tra khả năng vận dụng sau khi học. Hồ sơ nhân sự, tiền lương và hội thoại trong bài là ví dụ tự soạn."
+    },
+    "paragraphs": [
+      {
+        "en": "A supervisor sees two monthly salaries on a report: VND 18 million for Hoa and VND 24.5 million for An. The employees do the same job at the same site. The supervisor asks whether Hoa is underpaid by VND 6.5 million.",
+        "vi": "Trưởng nhóm thấy hai mức lương tháng trên báo cáo: Hoa nhận 18 triệu, An nhận 24,5 triệu đồng. Hai người làm cùng công việc, cùng địa điểm. Trưởng nhóm hỏi có phải Hoa đang được trả thấp hơn 6,5 triệu đồng hay không."
+      },
+      {
+        "en": "Hoa works 75% of the standard schedule and An works full time. Both figures are contractual monthly base pay for the hours actually agreed. Assuming pay scales proportionally with hours, Hoa’s full-time equivalent rate is 18 divided by 0.75, or VND 24 million. The difference on that basis is VND 0.5 million.",
+        "vi": "Hoa làm 75% thời lượng chuẩn, An làm toàn thời gian. Cả hai số là lương cơ bản tháng theo thời lượng ghi trên hợp đồng. Giả định lương tỷ lệ thuận với thời lượng, mức quy đổi toàn thời gian của Hoa là 18 chia 0,75, bằng 24 triệu. So trên cùng cơ sở thì chênh 0,5 triệu đồng."
+      },
+      {
+        "en": "The supervisor then wants the payroll cost for next month. Hoa is still on the same contract, so HR budgets VND 18 million for her base pay. Putting VND 24 million into payroll would answer the comparison question twice and the cost question incorrectly.",
+        "vi": "Sau đó trưởng nhóm hỏi về chi phí lương tháng tới. Hoa vẫn giữ hợp đồng cũ nên HR dự toán 18 triệu đồng lương cơ bản cho cô. Mức 24 triệu dùng để đối sánh công việc; ghi số đó vào dự toán sẽ làm chi phí cao hơn thực tế."
+      }
+    ],
+    "terms": [
+      {
+        "en": "contractual base pay",
+        "vi": "lương cơ bản theo hợp đồng"
+      },
+      {
+        "en": "full-time equivalent",
+        "vi": "quy đổi toàn thời gian"
+      },
+      {
+        "en": "on the same basis",
+        "vi": "trên cùng cơ sở"
+      }
+    ],
+    "question": {
+      "en": "Which two amounts would you report for Hoa and what is each one for?",
+      "vi": "Bạn sẽ báo hai số nào cho Hoa, mỗi số dùng vào việc gì?"
+    },
+    "answer": {
+      "en": "Use VND 24 million to compare base pay on a full-time basis. Use VND 18 million for next month’s contractual base-pay cost if her schedule stays the same.",
+      "vi": "Dùng 24 triệu để so lương cơ bản trên cơ sở toàn thời gian. Dùng 18 triệu để dự toán lương cơ bản tháng tới nếu thời lượng theo hợp đồng giữ nguyên."
+    },
+    "turns": [
+      {
+        "cue": "Why are there two figures for Hoa?",
+        "task": "Hỏi mục đích dùng số liệu.",
+        "model": "Do you need a comparable pay rate or the actual payroll cost?",
+        "meaning": "Anh cần mức lương để so sánh hay chi phí lương thực tế?",
+        "check": "Phân biệt hai mục đích."
+      },
+      {
+        "cue": "I need a fair comparison.",
+        "task": "Trình bày phép quy đổi và giả định.",
+        "model": "At seventy-five percent of full time, eighteen million is equivalent to twenty-four million at full time.",
+        "meaning": "Với thời lượng 75%, 18 triệu tương đương 24 triệu khi quy đổi toàn thời gian.",
+        "check": "Nêu cả thời lượng và mức quy đổi."
+      },
+      {
+        "cue": "And what should Finance budget?",
+        "task": "Kết thúc bằng số tiền và điều kiện.",
+        "model": "Budget eighteen million for next month if her contracted hours stay the same.",
+        "meaning": "Dự toán 18 triệu cho tháng tới nếu số giờ theo hợp đồng giữ nguyên.",
+        "check": "Gắn dự toán với điều kiện hợp đồng."
+      }
+    ]
   }
 ]
