@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { loadTheme, saveTheme, type Theme } from '../../core/theme';
 import { FONT_SIZES, FONT_SIZE_LABELS, loadFontSize, saveFontSize, type FontSize } from '../../core/fontsize';
 import { ICS_FILENAME, appUrl, buildIcs } from '../../core/ics';
@@ -21,6 +21,11 @@ const DAY_LONG_VI = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Th�
 const rateLabel = (r: number) => `${String(r).replace('.', ',')}×`;
 
 export function SettingsPage() {
+  useEffect(() => {
+    if (new URLSearchParams(window.location.hash.split('?')[1]).get('nhac') === '1') {
+      document.getElementById('h-set-remind')?.focus();
+    }
+  }, []);
   const [theme, setTheme] = useState<Theme>(loadTheme);
   const [fontSize, setFontSize] = useState<FontSize>(loadFontSize);
   const prefs = useDailyPrefs();
@@ -246,7 +251,7 @@ export function SettingsPage() {
       </div>
 
       <div className="panel stack" aria-labelledby="h-set-remind">
-        <h2 id="h-set-remind" className="h-page">
+        <h2 id="h-set-remind" tabIndex={-1} className="h-page">
           Nhắc lịch
         </h2>
         <div className="set-group">
