@@ -434,3 +434,17 @@ body:has(main .roadmap-reader) .top { position: static; }
 .checkpoint-question input { flex: none; accent-color: var(--accent); }
 .pool-amounts { margin: 0; padding-inline-start: 1.5em; }
 .pool-amounts li + li { margin-top: 4px; }
+
+/* Lộ trình giao tiếp dùng cùng cỡ chữ và vùng chạm với phần đọc TR. */
+.comm-summary, .comm-intro { border-inline-start: 4px solid var(--accent); }
+.comm-counts, .comm-lessons { list-style: none; padding: 0; margin: 0; }
+.comm-counts li, .comm-lesson { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding-block: 10px; }
+.comm-counts li + li, .comm-lessons li + li { border-top: 1px solid var(--line); }
+.comm-lesson { min-height: var(--tap); color: var(--ink); text-decoration: none; }
+.comm-lesson strong { color: var(--accent); text-decoration: underline; text-underline-offset: 0.15em; }
+.comm-lesson span, .comm-counts span { font-size: 0.9rem; color: var(--muted); }
+.comm-cue { background: var(--sunk); padding: 14px; border-radius: 8px; }
+.comm-reader .checkpoint-question input { width: var(--tap); height: var(--tap); margin: 0; }
+.comm-option { text-align: start; }
+.comm-reader summary, .lesson-reminder summary { min-height: var(--tap); padding-block: 10px; cursor: pointer; font-weight: 600; }
+.lesson-reminder[open] > div { margin-block: 8px; }

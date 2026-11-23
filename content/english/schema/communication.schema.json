@@ -1,0 +1,130 @@
+{
+  "$id": "communication.schema.json",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "topic",
+          "title",
+          "scene",
+          "cue",
+          "vi",
+          "options",
+          "correct",
+          "feedback",
+          "model",
+          "meaning",
+          "task",
+          "criteria",
+          "recall",
+          "speakingPrompt",
+          "hints"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^cc-[0-9]{2}$"
+          },
+          "topic": {
+            "enum": [
+              "Small talk",
+              "Tư duy phản biện",
+              "Trình bày và nói"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scene": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cue": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vi": {
+            "type": "string",
+            "minLength": 1
+          },
+          "options": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "correct": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "feedback": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1
+          },
+          "meaning": {
+            "type": "string",
+            "minLength": 1
+          },
+          "task": {
+            "type": "string",
+            "minLength": 1
+          },
+          "criteria": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "recall": {
+            "type": "string",
+            "minLength": 1
+          },
+          "speakingPrompt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hints": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

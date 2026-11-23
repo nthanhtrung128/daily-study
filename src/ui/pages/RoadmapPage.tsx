@@ -14,6 +14,9 @@ import { LessonMemo, MemoBook } from '../components/ReadingMemos';
 import { RoadmapSearch } from '../components/RoadmapSearch';
 import { RoadmapRelatedCards } from '../components/RoadmapRelatedCards';
 import { lessonHref, reviewHref } from '../routes';
+import { CommunicationCourse } from '../../modules/english/ui/CommunicationCourse';
+import { communicationHome } from '../../modules/english/communication';
+import { LessonReminder } from '../components/LessonReminder';
 import { useLocationHash } from '../useHashRoute';
 
 export function RoadmapPage() {
@@ -24,6 +27,7 @@ export function RoadmapPage() {
   const params = new URLSearchParams(hash.split('?')[1]);
   const id = params.get('bai');
   const review = ROADMAP_MODULES.find((entry) => entry.code === params.get('on'));
+  const communication = params.get('giao-tiep');
   const memo = params.get('memo') === '1';
   const notes = useReadingMemos();
   const [memoQuery, setMemoQuery] = useState('');
@@ -31,7 +35,7 @@ export function RoadmapPage() {
   const returnResult = useRef<string | null>(null);
   const module = ROADMAP_MODULES.find((entry) => entry.lessons.some((lesson) => lesson.id === id));
   const selected = module?.lessons.find((lesson) => lesson.id === id);
-  const heading = useFocusOnMount<HTMLHeadingElement>(!selected && !memo && !review);
+  const heading = useFocusOnMount<HTMLHeadingElement>(!selected && !memo && !review && !communication);
 
   useEffect(() => {
     if (selected && memo) document.getElementById('lesson-memo-title')?.focus();
@@ -49,6 +53,7 @@ export function RoadmapPage() {
     window.location.assign(lesson ? lessonHref(lesson.id) : '#lo-trinh');
   }
 
+  if (communication) return <CommunicationCourse key={communication} id={communication} />;
   if (review) return <CourseReview key={review.code} code={review.code} graduated={!!course && !course.next} />;
 
   if (selected && module) {
@@ -94,6 +99,7 @@ export function RoadmapPage() {
           </div>
         )}
         <div className="row">
+          <a className="btn ghost roadmap-link" href={communicationHome}>Lộ trình giao tiếp công sở</a>
           <a className="btn ghost roadmap-link" href="#lo-trinh?memo=1">Sổ memo bài học{notes?.length ? ` (${notes.length})` : ''}</a>
         </div>
       </header>
@@ -230,6 +236,7 @@ function Lesson({ lesson, notes, fromMemo, label, moduleCode, source, done, foll
         {revealed && <p>{lesson.review.answer}</p>}
       </section>
       {!browseNext && <div className="row"><a className="btn ghost roadmap-link" href={reviewHref(moduleCode)}>Tự kiểm tra {moduleCode}</a></div>}
+      <LessonReminder id={lesson.id} title={lesson.title} prompt={lesson.review.question} href={lessonHref(lesson.id)} />
       <LessonMemo id={lesson.id} notes={notes} />
       {related.length > 0 && <RoadmapRelatedCards ids={related} />}
       <p className="hint">Nguồn biên soạn · {source}</p>

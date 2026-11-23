@@ -1,0 +1,196 @@
+{
+  "items": [
+    {
+      "id": "cc-01",
+      "topic": "Small talk",
+      "title": "Bắt chuyện trước cuộc họp",
+      "scene": "Bạn gặp đồng nghiệp từ chi nhánh khác trong lúc chờ phòng họp mở. Hai người chưa gặp nhau. Hãy chọn lời đáp giúp họ dễ tiếp chuyện.",
+      "cue": "I got here a little early. This is my first visit to the Hanoi office.",
+      "vi": "Tôi đến hơi sớm. Đây là lần đầu tôi tới văn phòng Hà Nội.",
+      "options": [
+        "Did you get a good salary offer to move here?",
+        "Welcome! How has your visit been so far?",
+        "I know. We start at nine."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Câu hỏi về lương và giả định chuyển nơi làm việc đều quá riêng tư cho lần gặp đầu.",
+        "Lời chào đón và một câu hỏi mở bám vào chuyến thăm vừa được nhắc.",
+        "Giờ bắt đầu hữu ích nhưng chưa mở ra chủ đề chung."
+      ],
+      "model": "Welcome! How has your visit been so far?",
+      "meaning": "Chào bạn! Chuyến thăm đến giờ thế nào?",
+      "task": "Nói hai lượt bằng tiếng Anh. Chào người mới và hỏi về chuyến thăm. Giả sử họ vừa đi bộ quanh hồ, hãy hỏi tiếp về chi tiết đó.",
+      "criteria": [
+        "Tôi mở lời bằng một chủ đề chung, dễ trả lời.",
+        "Tôi dùng một chi tiết vừa nghe để hỏi tiếp."
+      ],
+      "recall": "Khi gặp đồng nghiệp lần đầu, bạn sẽ mở lời và hỏi tiếp thế nào?",
+      "speakingPrompt": "Welcome a visiting colleague and follow up on something they mention.",
+      "hints": [
+        "How has your visit been?",
+        "You mentioned the lake. What was it like?"
+      ]
+    },
+    {
+      "id": "cc-02",
+      "topic": "Small talk",
+      "title": "Nối câu chuyện và kết thúc tự nhiên",
+      "scene": "Một đồng nghiệp kể về buổi chạy sáng. Bạn còn một phút trước khi phải đi. Hãy duy trì cuộc trò chuyện rồi khép lại lịch sự.",
+      "cue": "I finally found a quiet running route near the office.",
+      "vi": "Cuối cùng tôi đã tìm được một đường chạy yên tĩnh gần văn phòng.",
+      "options": [
+        "Where does the route start? I might try it before work.",
+        "Anyway, let me tell you about my deadline.",
+        "How much do you weigh now?"
+      ],
+      "correct": 0,
+      "feedback": [
+        "Câu hỏi về đường chạy cho thấy bạn lắng nghe và tạo cơ hội trao đổi thêm.",
+        "Đổi hẳn chủ đề dễ khiến người kể cảm thấy bị ngắt lời.",
+        "Cân nặng là thông tin cá nhân và không cần cho câu chuyện này."
+      ],
+      "model": "That sounds worth trying. I need to head in, but thanks for the tip.",
+      "meaning": "Nghe đáng thử đấy. Tôi phải vào họp rồi, cảm ơn bạn đã gợi ý.",
+      "task": "Hỏi một chi tiết về đường chạy. Sau đó kết thúc bằng lý do ngắn và lời ghi nhận.",
+      "criteria": [
+        "Tôi hỏi tiếp đúng chủ đề của người đối diện.",
+        "Tôi báo hiệu phải đi và cảm ơn cụ thể."
+      ],
+      "recall": "Bạn có thể kết thúc small talk thế nào để người kia vẫn cảm thấy được lắng nghe?",
+      "speakingPrompt": "Keep a conversation going, then leave politely for your meeting.",
+      "hints": [
+        "I have been looking for a route like that.",
+        "I should get going, but it was good to catch up."
+      ]
+    },
+    {
+      "id": "cc-03",
+      "topic": "Tư duy phản biện",
+      "title": "Tách quan sát khỏi kết luận",
+      "scene": "Tỷ lệ nghỉ việc tăng sau khi lịch trực thay đổi. Nhóm sắp đề xuất bỏ lịch mới. Hãy chọn câu hỏi giúp kiểm tra suy luận.",
+      "cue": "More people left after the rota changed. The new rota must be the reason.",
+      "vi": "Nhiều người nghỉ sau khi lịch trực thay đổi. Chắc hẳn lịch mới là nguyên nhân.",
+      "options": [
+        "Then we should cancel it today.",
+        "Everyone knows rota changes are unpopular.",
+        "Did turnover also rise in teams that kept the old rota?"
+      ],
+      "correct": 2,
+      "feedback": [
+        "Hành động này giả định trước nguyên nhân cần kiểm tra.",
+        "Nhận xét chung chưa cho biết vì sao những người cụ thể rời đi.",
+        "Nhóm giữ lịch cũ cung cấp điểm so sánh. Cần xét thêm quy mô, mùa vụ và các thay đổi khác."
+      ],
+      "model": "What else changed during the same period?",
+      "meaning": "Trong cùng kỳ còn có yếu tố nào thay đổi?",
+      "task": "Nói trong khoảng 30 giây. Nêu một điều đã quan sát được, một nguyên nhân khác có thể xảy ra và dữ liệu giúp kiểm tra.",
+      "criteria": [
+        "Tôi phân biệt được dữ kiện với suy đoán.",
+        "Tôi nêu được một cách kiểm tra giả định."
+      ],
+      "recall": "Hai sự kiện xảy ra nối tiếp. Bạn sẽ hỏi gì trước khi kết luận quan hệ nhân quả?",
+      "speakingPrompt": "Offer a second explanation for the rise in turnover and a way to test it.",
+      "hints": [
+        "One possible explanation is…",
+        "We could compare teams that…"
+      ]
+    },
+    {
+      "id": "cc-04",
+      "topic": "Tư duy phản biện",
+      "title": "Phản biện một mẫu khảo sát nhỏ",
+      "scene": "Tám trong mười người trả lời khảo sát thích nhận thưởng theo quý. Công ty có 400 người. Chọn cách phản hồi vừa tôn trọng ý kiến vừa xác định giới hạn của dữ liệu.",
+      "cue": "Eighty percent prefer quarterly bonuses. Can we call that the company view?",
+      "vi": "Tám mươi phần trăm thích thưởng theo quý. Có thể xem đó là ý kiến của cả công ty không?",
+      "options": [
+        "Yes, eighty percent is a clear majority.",
+        "That is eight respondents. Which teams and shifts did we reach?",
+        "We should discard every answer."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Tỷ lệ đúng cho nhóm trả lời, nhưng độ phủ của mẫu còn chưa rõ.",
+        "Nêu cả số người và phạm vi tiếp cận giúp nhận diện nhóm có thể bị thiếu.",
+        "Các câu trả lời vẫn có giá trị định tính và có thể định hướng lần hỏi tiếp theo."
+      ],
+      "model": "Before we generalise, could we hear from the night shift as well?",
+      "meaning": "Trước khi khái quát, mình có thể hỏi thêm ca đêm được không?",
+      "task": "Ghi nhận tín hiệu ban đầu rồi đề nghị cách thu ý kiến từ một nhóm còn thiếu. Nói như đang trao đổi với người vừa làm khảo sát.",
+      "criteria": [
+        "Tôi ghi nhận kết quả trong đúng phạm vi mẫu.",
+        "Tôi đề nghị một bước bổ sung khả thi."
+      ],
+      "recall": "Nếu chỉ có mười người phản hồi, bạn sẽ trình bày tỷ lệ 80% ra sao?",
+      "speakingPrompt": "Explain what the survey supports and whose opinion is still missing.",
+      "hints": [
+        "Among the people who responded…",
+        "To include other shifts, we could…"
+      ]
+    },
+    {
+      "id": "cc-05",
+      "topic": "Trình bày và nói",
+      "title": "Đề xuất trong một phút",
+      "scene": "Quản lý có một phút để nghe phương án giảm số câu hỏi lặp lại lúc chốt lương. Hãy chọn cách mở đầu giúp quản lý ra quyết định.",
+      "cue": "We have one minute. What would you like me to approve?",
+      "vi": "Chúng ta có một phút. Bạn muốn tôi duyệt điều gì?",
+      "options": [
+        "I suggest testing a payslip guide with one team for two cycles.",
+        "There are many interesting details about payroll.",
+        "Everyone will understand their payslip after one email."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Đề xuất nêu rõ phạm vi thử và thời hạn, tạo cơ sở để bàn về kết quả.",
+        "Người nghe vẫn chưa biết mình cần quyết định gì.",
+        "Cam kết tuyệt đối chưa có căn cứ hay cách đo."
+      ],
+      "model": "We can compare repeat questions before and after the trial.",
+      "meaning": "Chúng ta có thể so số câu hỏi lặp lại trước và sau đợt thử.",
+      "task": "Trình bày 45–60 giây. Nêu đề xuất, một lý do, một chỉ số theo dõi và quyết định bạn cần từ người nghe.",
+      "criteria": [
+        "Tôi nói đề xuất cụ thể ngay ở câu đầu.",
+        "Tôi chốt bằng cách đo kết quả và lời đề nghị quyết định."
+      ],
+      "recall": "Trong một phút, bạn sẽ đề xuất thử nghiệm và xin quyết định như thế nào?",
+      "speakingPrompt": "Ask for a decision on a small payroll communication trial.",
+      "hints": [
+        "I would like approval to…",
+        "We will measure the change in…"
+      ]
+    },
+    {
+      "id": "cc-06",
+      "topic": "Trình bày và nói",
+      "title": "Xử lý phản đối và chốt bước tiếp",
+      "scene": "Hội đồng lo rằng thí điểm mới làm tăng tải cho nhóm payroll trong tuần cao điểm. Chọn cách xử lý ý kiến phản đối.",
+      "cue": "Who will answer questions if the pilot creates more work at month end?",
+      "vi": "Ai sẽ trả lời nếu thí điểm làm tăng việc vào cuối tháng?",
+      "options": [
+        "That is unlikely to happen.",
+        "Let us decide who owns it after launch.",
+        "Could HR handle first-line questions and log anything payroll needs to review?"
+      ],
+      "correct": 2,
+      "feedback": [
+        "Phủ nhận lo ngại chưa giải quyết việc ai phụ trách.",
+        "Để sau khi triển khai mới phân công sẽ tạo khoảng trống trách nhiệm.",
+        "Phương án phân luồng làm rõ người tiếp nhận và việc nào cần chuyển chuyên môn."
+      ],
+      "model": "Let us review the workload on Friday and pause if payroll needs more support.",
+      "meaning": "Hãy xem lại khối lượng việc vào thứ Sáu và tạm dừng nếu payroll cần thêm hỗ trợ.",
+      "task": "Trả lời trong 45 giây. Nhắc lại lo ngại, phân công người xử lý rồi hẹn thời điểm quyết định tiếp tục hay dừng.",
+      "criteria": [
+        "Tôi diễn đạt lại được điều người nghe lo ngại.",
+        "Tôi nêu người phụ trách, mốc kiểm tra và điều kiện điều chỉnh."
+      ],
+      "recall": "Khi bị phản đối, bạn sẽ chốt người phụ trách và mốc kiểm tra bằng câu nào?",
+      "speakingPrompt": "Respond to the workload concern and agree on a review date.",
+      "hints": [
+        "If I understand you correctly…",
+        "On Friday we can decide whether to…"
+      ]
+    }
+  ]
+}

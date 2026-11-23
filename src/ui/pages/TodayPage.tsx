@@ -1,3 +1,4 @@
+import { CommunicationSummary } from '../../modules/english/ui/CommunicationCourse';
 import { useEffect, useRef, useState } from 'react';
 import { getSetting, setSetting } from '../../core/db';
 import type { Grade } from '../../core/leitner';
@@ -200,6 +201,7 @@ export function TodayPage() {
       <GoalBar p={p} prefs={daily} />
       <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
       <WeakPanel onStart={startWeak} />
+      <CommunicationSummary />
 
       <div className="panel stack">
         <h2 className="h-sec">Tự ôn bằng cách đọc</h2>

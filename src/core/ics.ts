@@ -27,6 +27,8 @@ export interface ReminderOptions {
   alarmBefore?: number;
   /** Link mở app (chỉ thêm khi biết origin). */
   url?: string;
+  reminderId?: string;
+  alarmText?: string;
   summary?: string;
   description?: string;
 }
@@ -114,7 +116,7 @@ export function buildIcs(o: ReminderOptions): string {
     'END:STANDARD',
     'END:VTIMEZONE',
     'BEGIN:VEVENT',
-    `UID:${ICS_UID}`,
+    `UID:${o.reminderId ? encodeURIComponent(o.reminderId) + '@daily-study.app' : ICS_UID}`,
     `DTSTAMP:${utcStamp(o.now)}`,
     `DTSTART;TZID=${ICS_TZID}:${start}T${m[1]}${m[2]}00`,
     `DURATION:PT${minutes}M`,
@@ -125,7 +127,7 @@ export function buildIcs(o: ReminderOptions): string {
     'TRANSP:TRANSPARENT',
     'BEGIN:VALARM',
     'ACTION:DISPLAY',
-    `DESCRIPTION:${escapeText(summary)}`,
+    `DESCRIPTION:${escapeText(o.alarmText ?? summary)}`,
     `TRIGGER:${before ? `-PT${before}M` : 'PT0S'}`,
     'END:VALARM',
     'END:VEVENT',
@@ -135,8 +137,8 @@ export function buildIcs(o: ReminderOptions): string {
 }
 
 /** Link mở app từ sự kiện lịch: chỉ khi app chạy qua http(s) (không phải file:// hay localhost lúc phát triển). */
-export function appUrl(loc: Pick<Location, 'protocol' | 'host' | 'pathname' | 'hostname'>): string | undefined {
+export function appUrl(loc: Pick<Location, 'protocol' | 'host' | 'pathname' | 'hostname'>, hash = '#hom-nay'): string | undefined {
   if (!/^https?:$/.test(loc.protocol)) return undefined;
   if (loc.hostname === 'localhost' || loc.hostname === '127.0.0.1') return undefined;
-  return `${loc.protocol}//${loc.host}${loc.pathname}#hom-nay`;
+  return `${loc.protocol}//${loc.host}${loc.pathname}${hash}`;
 }
