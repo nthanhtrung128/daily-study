@@ -475,3 +475,5 @@ body:has(main .roadmap-reader) .top { position: static; }
 .course-map [aria-current="step"] .map-index { background: var(--accent); color: var(--accent-ink); }
 .map-status { display: block; color: var(--muted); }
 .stage-target { scroll-margin-block-start: 8rem; }
+.recall-confidence input { flex: 0 0 var(--tap); width: var(--tap); height: var(--tap); margin: 0; }
+.recall-translation summary { min-height: var(--tap); padding-block: 10px; cursor: pointer; }

@@ -1,0 +1,95 @@
+{
+  "nho-moc-so-sanh": {
+    "lesson": "trm-05-02",
+    "tasks": [
+      {
+        "prompt": {
+          "en": "A buyer earns VND 30 million. Her range is 24 to 40 million with a midpoint of 32 million. How far has she moved from the minimum towards the maximum, as a percentage of the range width?",
+          "vi": "Một chuyên viên mua hàng nhận 30 triệu đồng. Dải lương 24–40 triệu, trung điểm 32 triệu. Khoảng từ mức tối thiểu tới lương hiện tại chiếm bao nhiêu phần trăm độ rộng dải?"
+        },
+        "unit": "%",
+        "answer": 37.5,
+        "feedback": "Lấy khoảng đã đi trong dải (30 − 24) chia cho độ rộng (40 − 24): 6/16 = 37,5%. Nếu ra 93,75%, bạn đã chia lương cho trung điểm và tính compa-ratio.",
+        "model": {
+          "en": "I divided the six million above the minimum by the sixteen-million range width. Her position is 37.5%.",
+          "vi": "Tôi lấy 6 triệu cao hơn mức tối thiểu chia cho độ rộng dải 16 triệu. Vị trí của cô ấy là 37,5%."
+        }
+      },
+      {
+        "prompt": {
+          "en": "A planner earns VND 38 million in a range of 28 to 52 million. Finance wants pay as a percentage of the VND 40 million midpoint. What percentage should you report?",
+          "vi": "Một chuyên viên kế hoạch hưởng 38 triệu đồng trong dải 28–52 triệu. Tài chính cần lương hiện tại tính theo phần trăm của trung điểm 40 triệu. Bạn báo bao nhiêu phần trăm?"
+        },
+        "unit": "%",
+        "answer": 95,
+        "feedback": "Câu hỏi yêu cầu so với trung điểm, nên lấy 38/40 × 100 = 95%. Khoảng cách tới mức tối thiểu chỉ cần khi tính vị trí trong dải.",
+        "model": {
+          "en": "I used the midpoint as the reference. Thirty-eight million is 95% of forty million.",
+          "vi": "Tôi dùng trung điểm làm mốc. 38 triệu bằng 95% của 40 triệu."
+        }
+      }
+    ]
+  },
+  "on-lai-trong-so": {
+    "lesson": "trm-07-03",
+    "tasks": [
+      {
+        "prompt": {
+          "en": "A linear bonus plan puts 70% weight on team results and 30% on individual results. The team achieves 90% and the employee 110%. The target payment is VND 25 million. With no cap or threshold, how many million dong should be paid?",
+          "vi": "Chính sách thưởng tuyến tính có trọng số nhóm 70%, cá nhân 30%. Nhóm đạt 90%, cá nhân đạt 110%. Mức thưởng mục tiêu là 25 triệu đồng, không có ngưỡng hay trần. Khoản chi là bao nhiêu triệu đồng?"
+        },
+        "unit": "triệu đồng",
+        "answer": 24,
+        "feedback": "Nhóm đóng góp 63 điểm phần trăm, cá nhân 33. Hệ số chung 96% nhân với 25 triệu được 24 triệu. Nếu ra 25 triệu, hãy kiểm tra xem bạn có dùng trung bình cộng hay không.",
+        "model": {
+          "en": "The team contributes 63 percentage points and the individual adds 33. At 96% of target, we pay VND 24 million.",
+          "vi": "Nhóm đóng góp 63 điểm phần trăm, cá nhân thêm 33 điểm. Đạt 96% mục tiêu nên ta chi 24 triệu đồng."
+        }
+      },
+      {
+        "prompt": {
+          "en": "Another plan weights the team at 30% and the individual at 70%. Achievement is 80% for the team and 110% for the individual. Payment is linear and uncapped. What is the overall payout factor as a percentage?",
+          "vi": "Một chính sách khác đặt trọng số nhóm 30%, cá nhân 70%. Nhóm đạt 80%, cá nhân đạt 110%. Tính tuyến tính và không có trần. Hệ số chi trả chung là bao nhiêu phần trăm?"
+        },
+        "unit": "%",
+        "answer": 101,
+        "feedback": "30% × 80% + 70% × 110% = 24% + 77% = 101%. Mức trên 100% phù hợp với giả định không có trần. Đề hỏi hệ số nên chưa nhân với số tiền thưởng mục tiêu.",
+        "model": {
+          "en": "The overall factor is 101% because individual results carry more weight in this plan.",
+          "vi": "Hệ số chung là 101% vì kết quả cá nhân có trọng số lớn hơn trong chính sách này."
+        }
+      }
+    ]
+  },
+  "doi-boi-canh-fte": {
+    "lesson": "trm-09-03",
+    "tasks": [
+      {
+        "prompt": {
+          "en": "Huy works three of the five standard days each week. His contractual base pay is VND 21 million per month. Assuming pay scales with days worked, what monthly amount in million dong is comparable with full-time roles?",
+          "vi": "Huy làm 3 trong 5 ngày chuẩn mỗi tuần. Lương cơ bản theo hợp đồng là 21 triệu đồng/tháng. Giả sử lương tỷ lệ thuận với số ngày làm, mức lương tháng quy đổi để so với vị trí toàn thời gian là bao nhiêu triệu đồng?"
+        },
+        "unit": "triệu đồng",
+        "answer": 35,
+        "feedback": "Huy làm 3/5 = 0,6 FTE. Lấy 21/0,6 = 35 triệu đồng để đối sánh. 21 triệu vẫn là số ghi theo hợp đồng hiện tại.",
+        "model": {
+          "en": "Three days out of five is 0.6 of full time, so I divided the contractual pay by 0.6 and got VND 35 million.",
+          "vi": "Ba trên năm ngày bằng 0,6 thời lượng chuẩn, nên tôi chia lương hợp đồng cho 0,6 và được 35 triệu đồng."
+        }
+      },
+      {
+        "prompt": {
+          "en": "A report already shows a full-time equivalent monthly rate of VND 30 million. The employee works 80% of standard hours all month. How many million dong should Finance budget for contractual base pay if pay scales with hours?",
+          "vi": "Báo cáo đã ghi mức quy đổi toàn thời gian là 30 triệu đồng/tháng. Nhân viên làm 80% thời lượng chuẩn trong cả tháng. Nếu lương tỷ lệ thuận với số giờ, Tài chính cần dự toán bao nhiêu triệu đồng lương cơ bản theo hợp đồng?"
+        },
+        "unit": "triệu đồng",
+        "answer": 24,
+        "feedback": "Mức cho toàn thời gian đã có sẵn. Để trở về chi phí theo hợp đồng, nhân 30 × 0,8 = 24 triệu. Chia thêm cho 0,8 sẽ quy đổi lần thứ hai.",
+        "model": {
+          "en": "The report gives the full-time rate, so Finance should budget 80% of it: VND 24 million for the month.",
+          "vi": "Báo cáo đã cho mức toàn thời gian, vì vậy Tài chính dự toán 80% mức đó, tức 24 triệu đồng trong tháng."
+        }
+      }
+    ]
+  }
+}

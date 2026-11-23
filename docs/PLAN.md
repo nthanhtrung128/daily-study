@@ -40,6 +40,18 @@ Chỉ kiểm được trên iPhone thật — làm theo [docs/DEPLOY.md § 10](D
 Có thể làm thêm (nhỏ, không bắt buộc):
 - C. Ôn "lỗi hay gặp"; D. Tổng kết tuần — xem docs/HANDOFF.md.
 
+## Thử nghiệm tự nhớ trong Đọc thêm
+
+Trước thay đổi này, người học có thể mở đáp án trong khi bài mẫu vẫn ở cùng màn hình. Đây là quan sát về thiết kế. Hiện chưa có dữ liệu để kết luận người dùng thường xem đáp án sớm hay học tốt hơn với một cách luyện cụ thể.
+
+- **Tự nhớ trước khi đối chiếu.** Trong hai thí nghiệm với văn bản, nhóm tự nhớ làm tốt hơn ở lần kiểm tra sau hai ngày hoặc một tuần, trong khi đọc lại có lợi ở lần kiểm tra sau năm phút. Ba bài C&B vì thế có màn riêng để người học trả lời trước khi xem cách tính. [Roediger và Karpicke, 2006](https://pubmed.ncbi.nlm.nih.gov/16507066/)
+- **Ôn cách quãng.** Tổng quan của Dunlosky và cộng sự đánh giá cao tự kiểm tra và phân bố lần học theo thời gian. Người học có thể xuất lịch để quay lại tình huống thứ hai; ngày nhắc là lựa chọn cá nhân. [Dunlosky và cộng sự, 2013](https://pubmed.ncbi.nlm.nih.gov/26173288/)
+- **Đổi câu hỏi, giữ kỹ năng.** Trong thí nghiệm của Butler, nhóm tự kiểm tra nhiều lần vận dụng tốt hơn vào các câu suy luận mới sau một tuần. Mỗi bài thử đổi dữ kiện hoặc đổi mục đích ra quyết định, chẳng hạn chuyển từ đối sánh FTE sang dự toán chi phí hợp đồng. [Butler, 2010](https://pubmed.ncbi.nlm.nih.gov/20804289/)
+
+Phân tích tổng hợp 122 thí nghiệm của Pan và Rickard cho thấy khả năng vận dụng phụ thuộc vào cách đặt câu hỏi và việc người học giải thích khi tự nhớ. Vì vậy, mỗi đề yêu cầu nói căn cứ bằng tiếng Anh trước khi mở mẫu. App chỉ chấm đáp số; người học tự đối chiếu phần lập luận. [Pan và Rickard, 2018](https://pubmed.ncbi.nlm.nih.gov/29733621/)
+
+**Đề xuất sau hai tuần dùng.** Người học có thể ghi vào memo ba điều cho mỗi chủ đề: lần sau có tự tính đúng với dữ kiện mới không, có cần mở bài mẫu không, và có giải thích được bằng một câu tiếng Anh không. Nếu tiếp tục nhầm cùng một bước qua hai ngày, ưu tiên thêm cặp bài đối chiếu đúng bước đó. Nếu tính đúng nhưng ngập ngừng khi giải thích, ưu tiên luyện hỏi–đáp và nghe lại lời nói. Ba bài là thử nghiệm nhỏ; các kết quả nghiên cứu trên tài liệu học tập chỉ hướng dẫn thiết kế, chưa xác nhận hiệu quả của Daily Study.
+
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
 - Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.
 - Đồng bộ nhiều máy bằng Supabase.

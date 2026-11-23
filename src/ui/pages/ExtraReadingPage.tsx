@@ -1,17 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
+import { ReadingRecall, type RecallCase } from './ReadingRecall';
+import recall from '../../../content/reading/recall.json';
 import { ReadingConversation } from './ReadingConversation';
 import articles from '../../../content/reading/articles.json';
+import { lessonHref } from '../routes';
 import { useLocationHash } from '../useHashRoute';
 import { useFocusOnMount } from '../useFocusOnMount';
 
 type Article = typeof articles[number];
+const practice: Readonly<Record<string, { lesson: string; tasks: readonly RecallCase[] }>> = recall;
 type Language = 'en' | 'vi';
 const languageNames = { en: 'English', vi: 'Tiếng Việt' };
 const regions = ['Tất cả', 'Việt Nam', 'Quốc tế'];
 
 export function ExtraReadingPage() {
   const hash = useLocationHash();
-  const id = new URLSearchParams(hash.split('?')[1]).get('bai');
+  const params = new URLSearchParams(hash.split('?')[1]);
+  const id = params.get('bai');
+  const variant = params.get('tu-nho');
   const article = articles.find((item) => item.id === id);
   const [region, setRegion] = useState('Tất cả');
   const [language, setLanguage] = useState<Language>('en');
@@ -27,8 +33,13 @@ export function ExtraReadingPage() {
       link?.scrollIntoView({ block: 'center' });
       previous.current = null;
     }
-  }, [article]);
+  }, [article, variant]);
 
+  if (article && (variant === '1' || variant === '2')) {
+    const index = Number(variant) - 1;
+    const task = practice[article.id]?.tasks[index];
+    if (task) return <ReadingRecall key={hash} title={article.title} id={article.id} task={task} index={index} language={language} />;
+  }
   if (article) return <Reader key={article.id} article={article} language={language} onLanguage={setLanguage} />;
   const visible = articles.filter((item) => region === 'Tất cả' || item.region === region);
   return (
@@ -62,6 +73,7 @@ function Reader({ article, language, onLanguage }: {
 }) {
   const heading = useFocusOnMount<HTMLHeadingElement>();
   const other = language === 'en' ? 'vi' : 'en';
+  const lesson = practice[article.id]?.lesson;
   return (
     <article className="panel stack roadmap-reader extra-reader" aria-labelledby="extra-article">
       <div><a className="btn ghost roadmap-link" href="#doc-them">Về Đọc thêm</a></div>
@@ -73,6 +85,7 @@ function Reader({ article, language, onLanguage }: {
         {(['en', 'vi'] as const).map((code) => <button key={code} lang={code} type="button" className="chip"
           aria-pressed={language === code} onClick={() => onLanguage(code)}>{languageNames[code]}</button>)}
       </div>
+      {practice[article.id] && <div className="row"><a className="btn ghost roadmap-link" href={'#doc-them?bai=' + article.id + '&tu-nho=1'}>Gấp bài và tự thử</a></div>}
       <div className="stack passages" key={language}>
         {article.paragraphs.map((pair, index) => (
           <div key={index}>
@@ -96,6 +109,7 @@ function Reader({ article, language, onLanguage }: {
         <details><summary>Xem đáp án</summary><p lang={language}>{article.answer[language]}</p></details>
       </section>
       {article.turns && <ReadingConversation turns={article.turns} />}
+      {lesson && <a className="btn ghost roadmap-link" href={lessonHref(lesson)}>Mở bài liên quan trong lộ trình Total Rewards</a>}
       <footer className="stack">
         <h2 className="h-sec">Nguồn tham khảo</h2>
         <p className="hint">Tình huống và bản dịch do Daily Study biên soạn. {article.source.reason}</p>
