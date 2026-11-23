@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { addDays } from '../../core/date';
 import { db } from '../../core/db';
 import { anchorDay, readTransfer, saveTransfer, startTransfer, transferAnchor, transferPrefix, type TransferDay, type TransferResult } from '../../core/transfer';
-import { memoLessons, useReadingMemos } from './readingMemos';
+import { useReadingMemos } from './readingMemos';
 import { useProgress } from '../../ui/useProgress';
 import { useFocusOnMount } from '../../ui/useFocusOnMount';
 
@@ -78,7 +78,7 @@ function TransferAnswer({ task, saved }: { task: Task; saved: TransferResult | u
     {revealed || saved ? <>
       <h4 tabIndex={-1} ref={heading}>Đối chiếu bài làm</h4><p>{saved?.response ?? draft}</p><p>{task.guide}</p>
       <details><summary>Xem memo các buổi liên quan</summary>
-        {relevant?.length ? relevant.map((n) => <p key={n.id}><strong>{memoLessons.get(n.id)?.lesson.title}</strong> · {n.text}</p>) :
+        {relevant?.length ? relevant.map((n) => <p key={n.id}><strong>{n.lesson.title}{n.recall && ' · ' + n.recall.label}</strong> · {n.text}</p>) :
           <p>{notes === undefined ? 'Đang đọc memo…' : notes === null ? 'Chưa đọc được memo.' : 'Chưa có memo ở các buổi liên quan.'}</p>}</details>
       {saved?.criteria.includes(false) && <a className="btn ghost roadmap-link" href="#hom-nay">Xem lịch ôn tiêu chí ở Hôm nay</a>}
       {saved ? <ul>{task.criteria.map((c, i) => <li key={c}>{saved.criteria[i] ? 'Đã làm được' : 'Cần luyện'} · {c}</li>)}</ul> : <>

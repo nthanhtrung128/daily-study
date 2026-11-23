@@ -1,27 +1,39 @@
 import { useRef, useState } from 'react';
 import { db } from '../../core/db';
 import { fold, matchesAll, queryTokens } from '../../core/fold';
-import { memoLessons, type MemoState } from '../../modules/tr/readingMemos';
+import { readingMemoSource, type MemoState } from '../../modules/tr/readingMemos';
 import { lessonHref } from '../routes';
 import { useFocusOnMount } from '../useFocusOnMount';
 
-export function MemoBook({ notes, query, onQuery }: {
+export function MemoBook({ notes, query, onQuery, selected }: {
+  selected: string | null;
   notes: MemoState;
   query: string;
   onQuery: (query: string) => void;
 }) {
   const heading = useFocusOnMount<HTMLHeadingElement>();
+  const source = selected ? readingMemoSource(selected) : undefined;
+  if (selected && source?.recall) return (
+    <section className="panel stack roadmap-reader" aria-labelledby="memo-book-title">
+      <div><a className="btn ghost roadmap-link" href="#lo-trinh?memo=1">Về sổ memo</a></div>
+      <header>
+        <p className="eyebrow">{source.module.code} · {source.lesson.title}</p>
+        <h1 className="h-page" id="memo-book-title" ref={heading} tabIndex={-1}>Memo lần tự thử</h1>
+      </header>
+      <LessonMemo id={selected} notes={notes} title={source.recall.label} />
+      <div><a className="btn ghost roadmap-link" href={source.recall.href}>Làm lại tình huống này</a></div>
+    </section>
+  );
   const tokens = queryTokens(query);
-  const results = notes?.filter(({ id, text }) => {
-    const { lesson, module } = memoLessons.get(id)!;
-    return matchesAll(fold([module.code, module.title, lesson.title, text].join(' ')), tokens);
-  }) ?? [];
+  const results = notes?.filter(({ module, lesson, recall, text }) =>
+    matchesAll(fold([module.code, module.title, lesson.title, recall?.label, text].join(' ')), tokens),
+  ) ?? [];
   return (
     <section className="panel stack" aria-labelledby="memo-book-title">
       <div><a className="btn ghost roadmap-link" href="#lo-trinh">Về lộ trình</a></div>
       <h1 className="h-page" id="memo-book-title" ref={heading} tabIndex={-1}>Sổ memo bài học</h1>
       {notes == null ? <p role="status">{notes === null ? 'Chưa đọc được memo từ bộ nhớ máy.' : 'Đang đọc memo…'}</p>
-        : notes.length === 0 ? <p>Chưa có memo. Khi đọc bài, chọn “Ghi memo” để lưu điều cần nhớ vào đây.</p>
+        : notes.length === 0 ? <p>Chưa có memo. Bạn có thể ghi khi đọc bài trong lộ trình hoặc sau khi tự thử ở Đọc thêm.</p>
         : <>
           <label className="field">
             <span>Tìm theo bài, mô-đun hoặc nội dung memo</span>
@@ -29,12 +41,12 @@ export function MemoBook({ notes, query, onQuery }: {
           </label>
           <p className="hint" role="status">{results.length ? `${results.length} memo · Mới sửa trước` : 'Không tìm thấy memo phù hợp.'}</p>
           <ul className="memo-list" role="list">
-            {results.map(({ id, text }) => {
-              const { lesson, module } = memoLessons.get(id)!;
+            {results.map(({ id, text, lesson, module, recall }) => {
+              const href = recall ? '#lo-trinh?memo=1&lan=' + encodeURIComponent(id) : lessonHref(id) + '&memo=1';
               return (
                 <li key={id}>
                   <span className="eyebrow">{module.code} · {module.title}</span>
-                  <a className="memo-source" href={lessonHref(id) + '&memo=1'}>{lesson.title}</a>
+                  <a className="memo-source" href={href}>{lesson.title}{recall && ' · ' + recall.label}</a>
                   <p className="memo-excerpt">{text}</p>
                 </li>
               );
@@ -45,7 +57,9 @@ export function MemoBook({ notes, query, onQuery }: {
   );
 }
 
-export function LessonMemo({ id, notes }: { id: string; notes: MemoState }) {
+export function LessonMemo({ id, notes, title = 'Memo của bài', prompt }: {
+  id: string; notes: MemoState; title?: string; prompt?: string;
+}) {
   const stored = notes?.find((note) => note.id === id)?.text ?? '';
   const [draft, setDraft] = useState<string>();
   const [focused, setFocused] = useState(false);
@@ -76,8 +90,9 @@ export function LessonMemo({ id, notes }: { id: string; notes: MemoState }) {
 
   return (
     <section className="stack roadmap-review" aria-labelledby="lesson-memo-title">
-      <h2 className="h-sec" id="lesson-memo-title" tabIndex={-1}>Memo của bài</h2>
-      <textarea id="lesson-memo" aria-labelledby="lesson-memo-title" aria-describedby="memo-state"
+      <h2 className="h-sec" id="lesson-memo-title" tabIndex={-1}>{title}</h2>
+      {prompt && <p className="hint" id="memo-prompt">{prompt}</p>}
+      <textarea id="lesson-memo" aria-labelledby="lesson-memo-title" aria-describedby={prompt ? 'memo-prompt memo-state' : 'memo-state'}
         placeholder="Điều cần nhớ hoặc cách mình sẽ áp dụng…" disabled={notes == null} value={value}
         onFocus={(event) => { setDraft(event.currentTarget.value); setFocused(true); }}
         onBlur={() => setFocused(false)} onChange={(event) => void save(event.target.value)} />

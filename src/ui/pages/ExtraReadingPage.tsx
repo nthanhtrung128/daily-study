@@ -37,8 +37,9 @@ export function ExtraReadingPage() {
 
   if (article && (variant === '1' || variant === '2')) {
     const index = Number(variant) - 1;
-    const task = practice[article.id]?.tasks[index];
-    if (task) return <ReadingRecall key={hash} title={article.title} id={article.id} task={task} index={index} language={language} />;
+    const exercise = practice[article.id];
+    const task = exercise?.tasks[index];
+    if (exercise && task) return <ReadingRecall key={hash} lessonId={exercise.lesson} title={article.title} id={article.id} task={task} index={index} language={language} />;
   }
   if (article) return <Reader key={article.id} article={article} language={language} onLanguage={setLanguage} />;
   const visible = articles.filter((item) => region === 'Tất cả' || item.region === region);

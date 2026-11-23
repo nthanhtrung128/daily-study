@@ -50,6 +50,8 @@ Trước thay đổi này, người học có thể mở đáp án trong khi bà
 
 Phân tích tổng hợp 122 thí nghiệm của Pan và Rickard cho thấy khả năng vận dụng phụ thuộc vào cách đặt câu hỏi và việc người học giải thích khi tự nhớ. Vì vậy, mỗi đề yêu cầu nói căn cứ bằng tiếng Anh trước khi mở mẫu. App chỉ chấm đáp số; người học tự đối chiếu phần lập luận. [Pan và Rickard, 2018](https://pubmed.ncbi.nlm.nih.gov/29733621/)
 
+Sau khi đối chiếu một trong sáu tình huống, chọn **Ghi memo lần tự thử** để tự ghi bước cần xem lại hoặc câu tiếng Anh muốn luyện. Mỗi tình huống có một memo cho từng ngày trên thiết bị. Mở **Lộ trình → Sổ memo bài học** để tìm hai lần ôn, sửa ghi chú hoặc làm lại đúng đề.
+
 **Đề xuất sau hai tuần dùng.** Người học có thể ghi vào memo ba điều cho mỗi chủ đề: lần sau có tự tính đúng với dữ kiện mới không, có cần mở bài mẫu không, và có giải thích được bằng một câu tiếng Anh không. Nếu tiếp tục nhầm cùng một bước qua hai ngày, ưu tiên thêm cặp bài đối chiếu đúng bước đó. Nếu tính đúng nhưng ngập ngừng khi giải thích, ưu tiên luyện hỏi–đáp và nghe lại lời nói. Ba bài là thử nghiệm nhỏ; các kết quả nghiên cứu trên tài liệu học tập chỉ hướng dẫn thiết kế, chưa xác nhận hiệu quả của Daily Study.
 
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
