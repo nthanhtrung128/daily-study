@@ -465,3 +465,5 @@ body:has(main .roadmap-reader) .top { position: static; }
 .case-response { white-space: pre-line; overflow-wrap: anywhere; }
 
 .case-file .offer-input { align-items: stretch; }
+.portfolio-entry summary { cursor: pointer; min-height: var(--tap); padding: 10px 0; }
+.portfolio-voice audio { width: 100%; min-height: var(--tap); }

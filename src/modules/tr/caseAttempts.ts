@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { liveQuery } from 'dexie';
 import { db } from '../../core/db';
-import { readTransfer, type TransferResult } from '../../core/transfer';
+import { readTransfer, transferPrefix, type TransferResult } from '../../core/transfer';
 
 export type CaseAttempt = TransferResult;
 export const casePrefix = 'tr.caseAttempt.';
@@ -14,8 +14,19 @@ export function saveCase(id: string, response: string, criteria: boolean[]) {
 export function useCaseAttempts(id: string) {
   const [rows, setRows] = useState<CaseAttempt[] | null>();
   useEffect(() => {
-    const sub = liveQuery(() => db.settings.where('key').startsWith(casePrefix + id + '.').toArray()).subscribe({
-      next: (items) => setRows(items.flatMap((item) => readTransfer(item.value) ?? []).sort((a, b) => b.at - a.at)),
+    const sub = liveQuery(async () => {
+      const rows = await db.settings.where('key').startsWith(casePrefix + id + '.').toArray();
+      if (id === 'capstone') {
+        const current = await db.settings.get(transferPrefix + 'capstone');
+        if (current) rows.push(current);
+      }
+      return rows;
+    }).subscribe({
+      next: (items) => {
+        const attempts = items.flatMap((item) => readTransfer(item.value) ?? []);
+        const unique = new Map(attempts.map((r) => [JSON.stringify([r.at, r.response, r.criteria]), r]));
+        setRows([...unique.values()].sort((a, b) => b.at - a.at));
+      },
       error: () => setRows(null),
     });
     return () => sub.unsubscribe();

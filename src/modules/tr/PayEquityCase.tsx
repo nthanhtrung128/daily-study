@@ -54,6 +54,7 @@ export function PayEquityCase() {
         <p>E02 và E03 cùng cấp, địa bàn, trách nhiệm, ca và thời lượng làm việc với E01. Mức tham chiếu của hai người là 23,5 triệu. E01 thấp hơn 3,5 triệu, khoảng 14,9% so với mức tham chiếu.</p>
         <p>E08 làm 60% thời gian. Mức quy đổi toàn thời gian là 16 / 0,6 ≈ 26,67 triệu đồng; cần xác minh thêm trước khi đưa vào mẫu. Hai người đối chứng là một mẫu nhỏ. Kiểm tra mô tả việc thực tế, lần tăng gần nhất, hiệu suất đã hiệu chỉnh và độ chính xác của dữ liệu trước khi định mức xử lý.</p>
         <p lang="en">The gap deserves a review. I would check the actual duties and pay history before recommending an adjustment.</p>
+    <a className="btn ghost roadmap-link" href="#tien-do">So sánh các lần làm ở Tiến độ</a>
         <button className="btn ghost" onClick={() => { setRetry(true); setSelected([]); setChecks(['', '', '']); setGap(''); setSpoken(''); setRecorder(false); }}>Làm lại hồ sơ</button>
       </> : <>
         <h2>1. Chọn người để so trực tiếp với E01</h2>

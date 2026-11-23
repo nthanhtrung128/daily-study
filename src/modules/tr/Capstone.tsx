@@ -8,6 +8,7 @@ import { RecordingList } from '../english/ui/RecordingList';
 import type { SpeakingTopic } from '../english/speech/topics';
 import { raiseBudget, readAmount } from './raiseBudget';
 
+import { casePrefix } from './caseAttempts';
 import { draftKey, emptyDraft, readDraft, type CapstoneDraft } from './capstoneDraft';
 
 const key = transferPrefix + 'capstone';
@@ -18,7 +19,7 @@ const topic: SpeakingTopic = {
   vi: 'Trong 90 giây, nêu quyết định, căn cứ và bước xác minh trước khi giải ngân.',
   hints: ['My recommendation is…', 'This year we can afford…', 'Before approval, I would check…'],
 };
-const labels = ['Nguồn so sánh', 'Chi phí và lựa chọn trong quỹ', 'Trình bày và bước kiểm chứng'];
+export const capstoneCriteria = ['Nguồn so sánh', 'Chi phí và lựa chọn trong quỹ', 'Trình bày và bước kiểm chứng'];
 const amounts = ['A trong năm', 'A đủ 12 tháng', 'B trong năm', 'B đủ 12 tháng'];
 const a = raiseBudget(20, 4, 7)!;
 const b = raiseBudget(20, 3, 10)!;
@@ -70,6 +71,9 @@ function Submission({ initial, onSave }: { initial: CapstoneDraft; onSave: (valu
     setSaving(true); setError(false);
     try {
       await db.transaction('rw', db.settings, async () => {
+        const old = readTransfer((await db.settings.get(key))?.value);
+        if (old) await db.settings.put({ key: casePrefix + 'capstone.' + old.at, value: old });
+        await db.settings.put({ key: casePrefix + 'capstone.' + result.at, value: result });
         await db.settings.put({ key, value: result });
         await db.settings.delete(draftKey);
       });
@@ -107,11 +111,12 @@ function Result({ saved, onRetry }: { saved: TransferResult; onRetry: () => void
   const heading = useFocusOnMount<HTMLHeadingElement>();
   return <div className="stack">
     <h2 className="h-sec" tabIndex={-1} ref={heading}>Đề xuất đã lưu trên máy</h2>
-    <p>{saved.response}</p><ul>{labels.map((label, i) => <li key={label}>{label} · {saved.criteria[i] ? 'Đạt' : 'Cần luyện'} ({i === 2 ? 'tự đánh giá' : 'đối chiếu đáp án'})</li>)}</ul>
+    <p>{saved.response}</p><ul>{capstoneCriteria.map((label, i) => <li key={label}>{label} · {saved.criteria[i] ? 'Đạt' : 'Cần luyện'} ({i === 2 ? 'tự đánh giá' : 'đối chiếu đáp án'})</li>)}</ul>
     <p><strong>Nguồn lương.</strong> Y gần công việc thực tế hơn về phạm vi và quyền hạn. Kiểm tra tuổi, cỡ mẫu và biến động thị trường trước khi dùng P50.</p>
     <p><strong>Ngân sách.</strong> Mỗi tháng A tăng 16 triệu, B tăng 12 triệu. A là {a.year} triệu trong năm và {a.full} triệu đủ năm. B là {b.year} triệu trong năm và {b.full} triệu đủ năm. B còn dư {60 - b.year} triệu trong quỹ.</p>
     <p><strong>Lập luận.</strong> Có thể đề xuất B trong quỹ và kiểm tra lịch ca cùng dữ liệu lương trước khi giải ngân. Bốn lượt nghỉ chưa đủ để quy nguyên nhân cho lương.</p>
     {saved.criteria.includes(false) && <a className="btn ghost roadmap-link" href="#hom-nay">Xem lịch ôn tiêu chí ở Hôm nay</a>}
+    <a className="btn ghost roadmap-link" href="#tien-do">So sánh các lần làm ở Tiến độ</a>
     <nav className="stack" aria-label="Bài đọc để ôn theo tiêu chí">
       <h3>Đọc lại theo tiêu chí</h3>
       <a className="reading-result-link" href="#doc-them?bai=kiem-tra-mau-luong">Chọn nguồn · Hai trưởng nhóm, hai phạm vi công việc</a>
