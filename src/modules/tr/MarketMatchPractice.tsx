@@ -1,3 +1,4 @@
+import { lessonHref } from '../../ui/routes';
 import { useState } from 'react';
 import { marketProfiles, marketRole } from './marketCase';
 import { useFocusOnMount } from '../../ui/useFocusOnMount';
@@ -32,6 +33,7 @@ export function MarketMatchPractice() {
       <p>{selected.feedback}</p>
       <p><strong>Tự kiểm tra căn cứ</strong> · Bạn đã nêu ai kiểm soát bảng lương, ai duyệt ngân sách và vì sao một hồ sơ khác kém phù hợp chưa?</p>
       <p>Trước khi đề xuất mức trả, cần biết thị trường đã thay đổi bao nhiêu kể từ ngày khảo sát và mẫu có đủ doanh nghiệp tương đương hay không.</p>
+      <a className="btn ghost roadmap-link" href={lessonHref('trm-11-02')}>Luyện bảo vệ đề xuất ở M11.2</a>
     </div>}
   </section>;
 }
