@@ -456,3 +456,8 @@ body:has(main .roadmap-reader) .top { position: static; }
 .transfer-practice summary { min-height: var(--tap); cursor: pointer; padding-block: 10px; }
 
 .capstone summary { min-height: var(--tap); padding-block: 10px; cursor: pointer; }
+
+.study-hub { border-top: 4px solid var(--accent); }
+.study-hub header p { margin: 4px 0 0; }
+.hub-library { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+.hub-library a { display: flex; align-items: center; min-height: var(--tap); padding-block: 6px; border-bottom: 1px solid var(--line); }

@@ -9,7 +9,7 @@
 export const LAST_KEY = 'backup.lastAt';
 export const SNOOZE_KEY = 'backup.snoozeUntil';
 export const EVERY_KEY = 'backup.remindDays';
-export const LOCAL_ONLY_KEYS: ReadonlySet<string> = new Set([LAST_KEY, SNOOZE_KEY]);
+export const LOCAL_ONLY_KEYS: ReadonlySet<string> = new Set([LAST_KEY, SNOOZE_KEY, 'tr.capstone.draft']);
 
 export const REMIND_CHOICES = [7, 14, 30, 0] as const;
 export type RemindEvery = (typeof REMIND_CHOICES)[number];

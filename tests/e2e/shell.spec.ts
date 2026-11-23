@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const PAGES = [
-  { hash: 'hom-nay', tab: 'Hôm nay', heading: 'Hôm nay ôn bao lâu?' },
+  { hash: 'hom-nay', tab: 'Hôm nay', heading: 'Trung tâm học tập' },
   { hash: 'tra-cuu', tab: 'Tra cứu', heading: 'Tra cứu' },
   { hash: 'lo-trinh', tab: 'Lộ trình', heading: 'Đọc và tự ôn Total Rewards' },
   { hash: 'doc-them', tab: 'Đọc thêm', heading: 'Đọc thêm' },
@@ -11,7 +11,7 @@ const PAGES = [
 
 test('điều hướng qua 6 trang bằng tab, không cuộn ngang', async ({ page }) => {
   await page.goto('./');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hôm nay ôn bao lâu?');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Trung tâm học tập');
 
   for (const p of PAGES) {
     await page.getByRole('link', { name: p.tab, exact: true }).click();

@@ -10,8 +10,8 @@ describe('App', () => {
 
   it('mở mặc định ở Hôm nay, có đủ 6 tab', () => {
     render(<App />);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Hôm nay ôn bao lâu?');
-    const tabs = within(screen.getByRole('navigation')).getAllByRole('link');
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Trung tâm học tập');
+    const tabs = within(screen.getByRole('navigation', { name: 'Mục' })).getAllByRole('link');
     expect(tabs.map((t) => t.textContent)).toEqual(['Hôm nay', 'Tra cứu', 'Lộ trình', 'Đọc thêm', 'Tiến độ', 'Cài đặt']);
     expect(screen.getByRole('link', { name: 'Hôm nay' })).toHaveAttribute('aria-current', 'page');
   });
