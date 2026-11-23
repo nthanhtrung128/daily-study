@@ -1,7 +1,7 @@
 # Bàn giao (cập nhật 23/11/2026)
 
 ## Hiện trạng
-App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Playwright trên cấu hình iPhone 14 / iPhone SE với Chromium và WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
+App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra nội dung và build cho mọi PR. PR sẵn sàng review chạy thêm Playwright với Chromium trên iPhone 14 và iPhone SE. Push lên `main` và chạy CI thủ công kiểm tra cả Chromium lẫn WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
 
 | PR | Nội dung |
 |---|---|
@@ -43,6 +43,9 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, build và Play
 | #38 | Ôn duy trì sau khóa ở Hôm nay và Lộ trình. M01–M17 có 34 câu trắc nghiệm, 17 tình huống tự chấm và lịch ôn lưu trên thiết bị. |
 | #39 | Cả 69 bài trong 17 buổi đều có thẻ liên quan. Có thể chọn thẻ khái niệm, công thức hoặc thuật ngữ để ôn từ Hôm nay. |
 | #40 | M04.5 có bài thực hành chấm giá trị năm vị trí bằng bốn yếu tố, xem điểm, ngạch và căn cứ cho mỗi cấp. |
+| #41 | M07.3 có mô phỏng phân bổ quỹ thưởng cho năm nhân viên. Thử thay đổi quỹ và trọng số từng người, kiểm tra số đã chia và số còn lại sau làm tròn. |
+| #42 | Tiết kiệm phút Actions. PR nháp chạy kiểm tra mã và nội dung, PR sẵn sàng review chạy thêm Chromium. Push lên main và chạy tay có cả Chromium và WebKit. |
+| #43 | Lộ trình giao tiếp công sở có sáu buổi từ small talk đến phản biện và đề xuất. Hôm nay gợi ý buổi học hoặc ôn theo Leitner, Tiến độ đối chiếu những lần luyện và mỗi bài giao tiếp/TR có thể xuất lời nhắc riêng cho Lịch. |
 | #44 | Skill thiết kế học tập dùng trong repo, bảng tra UX ngoại tuyến và DESIGN.md cho giao diện Daily Study. |
 
 ## Bản đồ code
