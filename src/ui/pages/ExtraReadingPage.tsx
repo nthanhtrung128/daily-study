@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { ReadingConversation } from './ReadingConversation';
 import articles from '../../../content/reading/articles.json';
 import { useLocationHash } from '../useHashRoute';
 import { useFocusOnMount } from '../useFocusOnMount';
@@ -94,6 +95,7 @@ function Reader({ article, language, onLanguage }: {
         <p lang={language}>{article.question[language]}</p>
         <details><summary>Xem đáp án</summary><p lang={language}>{article.answer[language]}</p></details>
       </section>
+      {article.turns && <ReadingConversation turns={article.turns} />}
       <footer className="stack">
         <h2 className="h-sec">Nguồn tham khảo</h2>
         <p className="hint">Tình huống và bản dịch do Daily Study biên soạn. {article.source.reason}</p>

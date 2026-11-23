@@ -52,6 +52,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #47 | M11.2 dùng lại tình huống M08 để trình bày 60 giây, trả lời CFO và nghe đối chiếu hai lượt. |
 | #48 | M10.2 cho dự đoán chi phí tăng lương trong năm và đủ 12 tháng, so hai phương án trong quỹ. |
 | #49 | Sau khóa có hai tình huống vận dụng vào ngày 7 và 30, mở memo sau khi trả lời và lưu ba tiêu chí tự chấm. |
+| #50 | Thêm ba bài tham khảo Anh–Việt về dự toán, nguồn lương và nghỉ việc, mỗi bài có ba lượt hội thoại tự đánh giá. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

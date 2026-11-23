@@ -298,5 +298,224 @@
       "en": "Whether the opening hours suit each shift, and why people with a pass have not used it.",
       "vi": "Cần xem giờ mở cửa có phù hợp với từng ca và hỏi vì sao người được cấp thẻ chưa sử dụng."
     }
+  },
+  {
+    "id": "thu-du-toan",
+    "region": "Quốc tế",
+    "title": {
+      "en": "Does October change the annual cost?",
+      "vi": "Tăng lương từ tháng 10 thì chi phí cả năm thay đổi thế nào?"
+    },
+    "paragraphs": [
+      {
+        "en": "Subject: A quick check before the budget call. Hi Mai, Finance has set aside VND 80 million for this year. We plan to raise monthly base pay by 4% for 20 people on VND 25 million each, starting on 1 October. Can we tell the director the annualized cost is VND 60 million?",
+        "vi": "Chủ đề: Kiểm tra nhanh trước cuộc họp ngân sách. Chào Mai, Tài chính đã dành 80 triệu đồng cho năm nay. Ta dự kiến tăng 4% lương cơ bản tháng cho 20 người, mỗi người đang nhận 25 triệu, từ đầu tháng 10. Có thể báo giám đốc rằng chi phí tăng quy đổi đủ năm là 60 triệu không?"
+      },
+      {
+        "en": "Mai checks the monthly increase first: VND 20 million. Three payrolls fall in the current year, so the proposal uses VND 60 million and leaves VND 20 million. Twelve payrolls at the new rate would cost an extra VND 240 million against the old base.",
+        "vi": "Mai tính phần tăng mỗi tháng trước: 20 triệu đồng. Năm nay còn ba kỳ lương nên phương án dùng 60 triệu và còn dư 20 triệu. So với nền lương cũ, đủ 12 kỳ theo mức mới sẽ tốn thêm 240 triệu."
+      },
+      {
+        "en": "On the call, Mai asks which number the director needs for each column. She offers to send a two-line budget note by noon. Both figures assume the same headcount and exclude employer contributions.",
+        "vi": "Trong cuộc họp, Mai hỏi giám đốc cần số nào cho từng cột. Cô đề nghị gửi bản giải thích ngân sách hai dòng trước buổi trưa. Cả hai số đều giả định giữ nguyên nhân sự và chỉ tính lương cơ bản."
+      }
+    ],
+    "terms": [
+      {
+        "en": "in-year cost",
+        "vi": "chi phí trong năm hiện tại"
+      },
+      {
+        "en": "annualized cost",
+        "vi": "chi phí quy đổi đủ 12 tháng"
+      },
+      {
+        "en": "set aside",
+        "vi": "dành riêng một khoản"
+      }
+    ],
+    "question": {
+      "en": "Which amount belongs in the annualized column, and under what assumption?",
+      "vi": "Điền số nào vào cột đủ năm và với giả định gì?"
+    },
+    "answer": {
+      "en": "VND 240 million, assuming 20 employees receive the same monthly increase for twelve months.",
+      "vi": "240 triệu đồng nếu 20 người nhận cùng mức tăng suốt 12 tháng."
+    },
+    "source": {
+      "publisher": "British Council",
+      "name": "Challenging someone’s ideas",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/speaking/b2/challenging-someones-ideas",
+      "reason": "Tham khảo cách phản biện lịch sự trong buổi họp B2. Email và các con số là tình huống giả định."
+    },
+    "turns": [
+      {
+        "cue": "Good morning! How has your week been?",
+        "task": "Mở lời trước cuộc họp, rồi dẫn vào dự toán.",
+        "model": "Busy, thanks. How about yours? Shall we look at the October figures?",
+        "meaning": "Khá bận, cảm ơn bạn. Tuần của bạn thế nào? Ta xem các con số tháng 10 nhé?",
+        "check": "Đáp lời tự nhiên và dẫn vào chủ đề."
+      },
+      {
+        "cue": "So the annualized cost is sixty million, right?",
+        "task": "Hỏi lại ý của quản lý và phân biệt hai con số.",
+        "model": "Do you mean this year’s cost? It is sixty million this year and two hundred and forty million over twelve months.",
+        "meaning": "Ý bạn là chi phí năm nay? Năm nay là 60 triệu, còn đủ 12 tháng là 240 triệu.",
+        "check": "Nêu rõ kỳ tính cho cả hai số."
+      },
+      {
+        "cue": "What should we send the director?",
+        "task": "Chốt sản phẩm, người gửi và thời hạn.",
+        "model": "I’ll send both figures by noon, with the headcount assumption beside them.",
+        "meaning": "Tôi sẽ gửi cả hai số trước buổi trưa và ghi rõ giả định nhân sự bên cạnh.",
+        "check": "Chốt việc, người chịu trách nhiệm và thời hạn."
+      }
+    ]
+  },
+  {
+    "id": "kiem-tra-mau-luong",
+    "region": "Việt Nam",
+    "title": {
+      "en": "Two supervisors, two different jobs",
+      "vi": "Hai trưởng nhóm, hai phạm vi công việc"
+    },
+    "paragraphs": [
+      {
+        "en": "In a pay review in Hanoi, a manager forwards a survey extract. The title matches the vacancy exactly, and the median is VND 32 million a month. She asks HR to use it in an offer that afternoon.",
+        "vi": "Trong kỳ rà soát lương tại Hà Nội, quản lý chuyển một trích đoạn khảo sát. Chức danh trùng hẳn vị trí đang tuyển, trung vị là 32 triệu đồng mỗi tháng. Chị muốn dùng số đó để gửi thư mời chiều nay."
+      },
+      {
+        "en": "The survey role approves spending for three sites. The vacancy schedules six staff at one site and sends spending requests to a manager. Another survey row has a median of VND 27 million and similar duties, but its figures are nine months old.",
+        "vi": "Vị trí trong khảo sát duyệt chi cho ba cơ sở. Vị trí đang tuyển xếp lịch cho sáu người tại một cơ sở và trình quản lý duyệt chi. Một dòng khảo sát khác có trung vị 27 triệu và nhiệm vụ gần hơn, nhưng số liệu đã chín tháng tuổi."
+      },
+      {
+        "en": "HR proposes the second row as a starting point and contacts the provider about the survey date and sample size. The manager can still request a retention premium, but she will need to explain it separately from the market match.",
+        "vi": "HR đề xuất dùng dòng thứ hai làm điểm xuất phát và hỏi nhà cung cấp về thời điểm khảo sát, cỡ mẫu. Quản lý vẫn có thể đề xuất trả thêm để giữ người và cần giải trình khoản đó riêng."
+      }
+    ],
+    "terms": [
+      {
+        "en": "scope of responsibility",
+        "vi": "phạm vi trách nhiệm"
+      },
+      {
+        "en": "spending authority",
+        "vi": "quyền duyệt chi"
+      },
+      {
+        "en": "survey effective date",
+        "vi": "thời điểm dữ liệu khảo sát có hiệu lực"
+      }
+    ],
+    "question": {
+      "en": "Which row would you check first, and what is still missing?",
+      "vi": "Bạn kiểm chứng dòng nào trước, và còn thiếu thông tin gì?"
+    },
+    "answer": {
+      "en": "Start with the second row because the duties match. Check how current and representative its sample is before setting an offer.",
+      "vi": "Bắt đầu từ dòng thứ hai vì nhiệm vụ tương đồng. Kiểm tra độ mới và tính đại diện của mẫu trước khi chốt mức mời."
+    },
+    "source": {
+      "publisher": "Talentnet–Mercer",
+      "name": "Báo cáo lương và thị trường lao động Việt Nam 2025",
+      "url": "https://www.talentnetgroup.com/vn/vi/phan-tich-chuyen-sau/rewards-vi/bao-cao-luong-thi-truong-lao-dong-viet-nam-2025",
+      "reason": "Tham khảo bối cảnh khảo sát lương tại Việt Nam. Hai hồ sơ và mức lương trong bài do Daily Study giả định."
+    },
+    "turns": [
+      {
+        "cue": "Thanks for making time today.",
+        "task": "Mở lời và hỏi về vị trí cần tuyển.",
+        "model": "Happy to help. What decisions can this supervisor make?",
+        "meaning": "Rất sẵn lòng. Trưởng nhóm này có quyền quyết định việc gì?",
+        "check": "Hỏi về một nhiệm vụ cụ thể."
+      },
+      {
+        "cue": "The titles match. Why look further?",
+        "task": "Giải thích khác biệt về quyền hạn.",
+        "model": "One role approves spending at three sites. Ours submits requests at just one.",
+        "meaning": "Một vị trí duyệt chi cho ba cơ sở. Vị trí của ta chỉ trình đề nghị ở một cơ sở.",
+        "check": "So sánh được cả quyền hạn và phạm vi."
+      },
+      {
+        "cue": "Can we send the offer now?",
+        "task": "Nêu điều cần xác minh và hẹn phản hồi.",
+        "model": "I’ll check the sample and survey date, then get back to you this afternoon.",
+        "meaning": "Tôi sẽ kiểm tra mẫu và thời điểm khảo sát rồi phản hồi chiều nay.",
+        "check": "Nêu thông tin cần kiểm chứng và thời hạn."
+      }
+    ]
+  },
+  {
+    "id": "kiem-chung-nghi-viec",
+    "region": "Quốc tế",
+    "title": {
+      "en": "What do four departures tell us?",
+      "vi": "Bốn lượt nghỉ việc cho biết điều gì?"
+    },
+    "paragraphs": [
+      {
+        "en": "Four people left a service team last quarter. The director calls it a pay problem. Before drafting a retention proposal, An checks the records: two people resigned, one retired and one took a job in another department of the same establishment.",
+        "vi": "Bốn người rời một nhóm dịch vụ trong quý trước. Giám đốc cho rằng nguyên nhân do lương. Trước khi soạn đề xuất giữ người, An kiểm tra hồ sơ: hai người xin nghỉ, một người nghỉ hưu và một người chuyển sang phòng khác trong cùng cơ sở."
+      },
+      {
+        "en": "The team averaged 40 people during the quarter. For an internal measure of voluntary resignations, An uses two as the numerator and 40 as the denominator. The resulting 5% describes this team in this quarter. It is not an annual estimate.",
+        "vi": "Nhóm có bình quân 40 người trong quý. Với chỉ số nội bộ về tự xin nghỉ, An dùng hai làm tử số và 40 làm mẫu số. Kết quả 5% mô tả riêng nhóm trong quý đó. Đây là tỷ lệ theo quý."
+      },
+      {
+        "en": "One departing employee mentioned pay; the other mentioned shifts. An asks for shift records, comparable pay and several quarters of resignations before recommending an increase. She reports both reasons without claiming either caused all departures.",
+        "vi": "Một người xin nghỉ nhắc đến lương, người kia nhắc đến lịch ca. An đề nghị xem dữ liệu ca, mức trả tương đương và số người xin nghỉ qua vài quý trước khi kiến nghị tăng lương. Cô báo cáo cả hai lý do và để ngỏ kết luận về nguyên nhân."
+      }
+    ],
+    "terms": [
+      {
+        "en": "voluntary resignation",
+        "vi": "tự xin nghỉ việc"
+      },
+      {
+        "en": "average headcount",
+        "vi": "số nhân viên bình quân"
+      },
+      {
+        "en": "exit interview",
+        "vi": "phỏng vấn nghỉ việc"
+      }
+    ],
+    "question": {
+      "en": "Can the team conclude that pay caused a 10% resignation rate?",
+      "vi": "Nhóm có thể kết luận rằng lương gây tỷ lệ tự xin nghỉ 10% không?"
+    },
+    "answer": {
+      "en": "Two resignations out of forty give 5% for the quarter. The reasons differ, so further evidence is needed.",
+      "vi": "Hai người tự xin nghỉ trên 40 người là 5% trong quý. Lý do khác nhau nên cần thêm bằng chứng."
+    },
+    "source": {
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "name": "JOLTS Data Definitions",
+      "url": "https://www.bls.gov/jlt/jltdef.htm",
+      "reason": "Tham khảo cách nguồn phân biệt quits với các dạng rời việc khác. Tỷ lệ theo quý trong bài là phép tính nội bộ giả định."
+    },
+    "turns": [
+      {
+        "cue": "How did the quarterly review go?",
+        "task": "Mở lời và tóm tắt phát hiện chính.",
+        "model": "Thanks for asking. Two people resigned, and we are checking why.",
+        "meaning": "Cảm ơn bạn đã hỏi. Hai người xin nghỉ và chúng tôi đang tìm hiểu nguyên nhân.",
+        "check": "Gọi đúng loại rời việc."
+      },
+      {
+        "cue": "Does that prove our pay is too low?",
+        "task": "Phản biện bằng một quan sát và giới hạn của nó.",
+        "model": "One person mentioned pay, but the other cited shifts. Two interviews cannot establish a single cause.",
+        "meaning": "Một người nhắc đến lương, người kia nói về ca làm. Hai cuộc phỏng vấn chưa đủ để kết luận một nguyên nhân chung.",
+        "check": "Tách bằng chứng khỏi suy đoán."
+      },
+      {
+        "cue": "What would help us decide?",
+        "task": "Hẹn bước thu thập bằng chứng tiếp theo.",
+        "model": "I’ll compare shifts and pay for similar roles and report back on Friday.",
+        "meaning": "Tôi sẽ đối chiếu lịch ca và lương ở vị trí tương đương rồi báo lại thứ Sáu.",
+        "check": "Đề xuất một phép so sánh và ngày báo lại."
+      }
+    ]
   }
 ]
