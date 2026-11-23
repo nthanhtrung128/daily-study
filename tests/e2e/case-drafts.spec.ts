@@ -1,0 +1,36 @@
+import { expect, test } from '@playwright/test';
+
+test('hai phiếu dở còn sau tải lại ngoại tuyến và chỉ hết nháp khi nộp đúng hồ sơ', async ({ page, context }) => {
+  await page.goto('/#lo-trinh?ho-so=cong-bang-luong');
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+  await page.reload();
+  await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+  await context.setOffline(true);
+  const pause = page.getByRole('button', { name: 'Lưu nháp và về Hôm nay' });
+  const equity = page.getByRole('link', { name: 'Tiếp tục phiếu công bằng lương' });
+  const offers = page.getByRole('link', { name: 'Tiếp tục so sánh thư mời' });
+  await page.getByRole('checkbox', { name: /^E02/ }).check();
+  await page.getByRole('textbox').first().fill('Ai duyệt kết quả?');
+  await pause.click();
+  await expect(equity).toBeVisible();
+  await page.goto('/#lo-trinh?ho-so=thu-moi');
+  const fields = page.getByRole('textbox');
+  for (const [i, v] of ['408', '420', '465,6', '462', '422,4', '430,5', 'Chọn B vì dòng tiền bảo đảm.', 'Is my child covered?'].entries()) await fields.nth(i).fill(v);
+  await page.getByRole('radio', { name: 'Thư B' }).check();
+  await pause.click();
+  await expect(offers).toBeVisible();
+  await page.reload();
+  await offers.click();
+  await expect(fields.nth(4)).toHaveValue('422,4');
+  await expect(fields.last()).toHaveValue('Is my child covered?');
+  await expect(page.getByRole('radio', { name: 'Thư B' })).toBeChecked();
+  await page.getByRole('radio', { name: 'Đã hỏi được' }).check();
+  await page.getByRole('button', { name: 'Lưu so sánh và xem đáp án' }).click();
+  await expect(page.getByRole('heading', { name: 'Bản so sánh đã lưu' })).toBeVisible();
+  await page.getByRole('link', { name: 'Hôm nay', exact: true }).click();
+  await expect(equity).toBeVisible();
+  await expect(offers).toHaveCount(0);
+  await equity.click();
+  await expect(page.getByRole('checkbox', { name: /^E02/ })).toBeChecked();
+  await expect(fields.first()).toHaveValue('Ai duyệt kết quả?');
+});

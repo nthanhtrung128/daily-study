@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { liveQuery } from 'dexie';
+import { caseDraftKeys, draftEnvelope, type CaseId } from '../../core/caseDraft';
 import { db } from '../../core/db';
 import { readTransfer, transferPrefix, type TransferResult } from '../../core/transfer';
 
 export type CaseAttempt = TransferResult;
 export const casePrefix = 'tr.caseAttempt.';
-export function saveCase(id: string, response: string, criteria: boolean[]) {
+export function saveCase(id: CaseId, response: string, criteria: boolean[], draftVersion?: string) {
   const value = readTransfer({ at: Date.now(), response, criteria });
   if (!value) throw new Error('Phiếu chưa hợp lệ.');
-  return db.settings.add({ key: casePrefix + id + '.' + crypto.randomUUID(), value });
+  return db.transaction('rw', db.settings, async () => {
+    await db.settings.add({ key: casePrefix + id + '.' + crypto.randomUUID(), value });
+    if (!draftVersion) return;
+    const draft = draftEnvelope((await db.settings.get(caseDraftKeys[id]))?.value);
+    if (draft?.version === draftVersion) await db.settings.delete(caseDraftKeys[id]);
+  });
 }
 
 export function useCaseAttempts(id: string) {

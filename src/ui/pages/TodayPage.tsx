@@ -2,6 +2,9 @@ import { CommunicationSummary } from '../../modules/english/ui/CommunicationCour
 import { useEffect, useRef, useState } from 'react';
 import { liveQuery } from 'dexie';
 import { capstoneHref } from '../../modules/tr/Capstone';
+import { caseDraftKeys, draftEnvelope, readEquity, readOffers } from '../../core/caseDraft';
+import { equityHref } from '../../modules/tr/PayEquityCase';
+import { offerHref } from '../../modules/tr/OfferCase';
 import { draftKey, readDraft } from '../../modules/tr/capstoneDraft';
 import { db, getSetting, setSetting } from '../../core/db';
 import type { Grade } from '../../core/leitner';
@@ -62,10 +65,13 @@ export function TodayPage() {
   const readingReview = useRoadmapReview(p);
   const readingProgress = useRoadmapProgress();
   const daily = useDailyPrefs();
-  const [hasDraft, setHasDraft] = useState(false);
+  const [drafts, setDrafts] = useState({ capstone: false, equity: false, offers: false });
   useEffect(() => {
-    const sub = liveQuery(() => db.settings.get(draftKey)).subscribe({
-      next: (row) => setHasDraft(!!readDraft(row?.value)), error: () => setHasDraft(false),
+    const sub = liveQuery(() => db.settings.bulkGet([draftKey, caseDraftKeys.equity, caseDraftKeys.offers])).subscribe({
+      next: ([capstone, equity, offers]) => setDrafts({
+        capstone: !!readDraft(capstone?.value), equity: !!readEquity(draftEnvelope(equity?.value)?.fields),
+        offers: !!readOffers(draftEnvelope(offers?.value)?.fields),
+      }), error: () => setDrafts({ capstone: false, equity: false, offers: false }),
     });
     return () => sub.unsubscribe();
   }, []);
@@ -211,7 +217,9 @@ export function TodayPage() {
         <header><h1 className="h-page" id="h-today">Trung tâm học tập</h1>
           {course && <p className="hint">{course.count}/{course.total} bài Total Rewards đã hoàn thành</p>}</header>
         {resume && <ResumePanel done={resume.done} total={resume.total} onResume={continueResume} onDrop={dropResume} />}
-        {hasDraft && <a className="btn roadmap-link" href={capstoneHref}>Tiếp tục đề xuất giữ người</a>}
+        {drafts.capstone && <a className="btn roadmap-link" href={capstoneHref}>Tiếp tục đề xuất giữ người</a>}
+        {drafts.equity && <a className="btn roadmap-link" href={equityHref}>Tiếp tục phiếu công bằng lương</a>}
+        {drafts.offers && <a className="btn roadmap-link" href={offerHref}>Tiếp tục so sánh thư mời</a>}
         <SkillDrills>
         {course?.next ? (
           <div className="row">
