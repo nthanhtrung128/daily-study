@@ -47,6 +47,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #42 | Tiết kiệm phút Actions. PR nháp chạy kiểm tra mã và nội dung, PR sẵn sàng review chạy thêm Chromium. Push lên main và chạy tay có cả Chromium và WebKit. |
 | #43 | Lộ trình giao tiếp công sở có sáu buổi từ small talk đến phản biện và đề xuất. Hôm nay gợi ý buổi học hoặc ôn theo Leitner, Tiến độ đối chiếu những lần luyện và mỗi bài giao tiếp/TR có thể xuất lời nhắc riêng cho Lịch. |
 | #44 | Skill thiết kế học tập dùng trong repo, bảng tra UX ngoại tuyến và DESIGN.md cho giao diện Daily Study. |
+| #45 | Ghim ba action CI theo commit, bỏ lưu token checkout và chỉ tải trace Playwright khi CI lỗi trong repo private. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
