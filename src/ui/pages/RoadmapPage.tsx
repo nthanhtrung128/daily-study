@@ -6,6 +6,7 @@ import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { CourseRecommendation, CourseReview } from '../../modules/tr/CourseReview';
 import { MarketMatchPractice } from '../../modules/tr/MarketMatchPractice';
+import { Capstone, capstoneHref } from '../../modules/tr/Capstone';
 import { BenchmarkPitch } from '../../modules/tr/BenchmarkPitch';
 import { RaiseBudgetPractice } from '../../modules/tr/RaiseBudgetPractice';
 import { BonusPoolPractice } from '../../modules/tr/BonusPoolPractice';
@@ -79,6 +80,7 @@ export function RoadmapPage() {
     );
   }
 
+  if (params.get('tong-ket') === '1') return <Capstone />;
   if (memo) return <MemoBook notes={notes} query={memoQuery} onQuery={setMemoQuery} />;
 
   return (
@@ -229,6 +231,7 @@ function Lesson({ lesson, notes, fromMemo, label, moduleCode, source, done, foll
       {lesson.id === 'trm-08-02' && <MarketMatchPractice />}
       {lesson.id === 'trm-09-03' && <SalaryAnalysisPractice />}
       {lesson.id === 'trm-10-02' && <RaiseBudgetPractice />}
+      {lesson.id === 'trm-17-04' && <a href={capstoneHref} className="btn roadmap-link">Làm bài tổng hợp cuối khóa</a>}
       {lesson.id === 'trm-11-02' && <BenchmarkPitch />}
       <section className="roadmap-reading roadmap-review" aria-labelledby="scenario-title">
         <h2 className="h-sec" id="scenario-title">Tự ôn</h2>
