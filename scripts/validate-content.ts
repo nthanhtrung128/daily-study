@@ -182,6 +182,10 @@ function validateReadings() {
       if (!isObj(pair) || !nonEmpty(pair.en) || !nonEmpty(pair.vi)) err(`${where}: thiếu bản Anh–Việt cho ${field}`);
     }
     for (const field of ['paragraphs', 'terms']) checkList(file, where + '.' + field, row[field], ['en', 'vi']);
+    if (row.turns !== undefined) {
+      if (!Array.isArray(row.turns) || row.turns.length !== 3) err(where + ': cần ba lượt hội thoại');
+      checkList(file, where + '.turns', row.turns, ['cue', 'task', 'model', 'meaning', 'check']);
+    }
     const source = row.source;
     if (!isObj(source) || !nonEmpty(source.publisher) || !nonEmpty(source.name) || !nonEmpty(source.reason)
       || !isStr(source.url) || !/^https:\/\/[^/]+\/.+/.test(source.url)) err(`${where}: thiếu nguồn tham khảo`);
