@@ -98,6 +98,7 @@ function Result({ saved, onRetry }: { saved: TransferResult; onRetry: () => void
     <p><strong>Nguồn lương.</strong> Y gần công việc thực tế hơn về phạm vi và quyền hạn. Kiểm tra tuổi, cỡ mẫu và biến động thị trường trước khi dùng P50.</p>
     <p><strong>Ngân sách.</strong> Mỗi tháng A tăng 16 triệu, B tăng 12 triệu. A là {a.year} triệu trong năm và {a.full} triệu đủ năm. B là {b.year} triệu trong năm và {b.full} triệu đủ năm. B còn dư {60 - b.year} triệu trong quỹ.</p>
     <p><strong>Lập luận.</strong> Có thể đề xuất B trong quỹ và kiểm tra lịch ca cùng dữ liệu lương trước khi giải ngân. Bốn lượt nghỉ chưa đủ để quy nguyên nhân cho lương.</p>
+    {saved.criteria.includes(false) && <a className="btn ghost roadmap-link" href="#hom-nay">Xem lịch ôn tiêu chí ở Hôm nay</a>}
     <nav className="stack" aria-label="Bài đọc để ôn theo tiêu chí">
       <h3>Đọc lại theo tiêu chí</h3>
       <a className="reading-result-link" href="#doc-them?bai=kiem-tra-mau-luong">Chọn nguồn · Hai trưởng nhóm, hai phạm vi công việc</a>
