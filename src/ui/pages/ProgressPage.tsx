@@ -1,3 +1,4 @@
+import { CommunicationSummary } from '../../modules/english/ui/CommunicationCourse';
 import { getSetting, setSetting } from '../../core/db';
 import { LEVEL_NAME, levelOf } from '../../core/leitner';
 import { fmt } from '../../core/num';
@@ -86,6 +87,7 @@ export function ProgressPage() {
 
       <WeekPanel p={p} goalMin={daily.goalMin} />
 
+      <CommunicationSummary assessment />
       <section className="panel stack" aria-labelledby="reading-progress">
         <h2 id="reading-progress" className="h-sec">Bài đọc theo mô-đun</h2>
         {completedLessons ? ROADMAP_MODULES.map(({ code, title, lessons }) => {
