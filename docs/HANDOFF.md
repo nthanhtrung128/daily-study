@@ -60,6 +60,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #55 | Hai thư mời giả định giúp so dòng tiền bảo đảm, thưởng mục tiêu, kịch bản thấp và luyện hỏi về bảo hiểm người thân. |
 | #56 | Tiến độ so hai phiếu cùng nhiệm vụ theo ngày và tiêu chí, đồng thời phát lại hai bản ghi gần nhất của nhiệm vụ đó. |
 | #57 | Bản đồ dọc bốn chặng hiển thị tiến độ, đi tới từng nhóm bài và có nhiệm vụ vận dụng ở cuối chặng. |
+| #58 | Lưu nháp riêng cho hai hồ sơ công bằng lương và so thư mời. Hôm nay mở lại đúng phiếu, kể cả khi ngoại tuyến. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
