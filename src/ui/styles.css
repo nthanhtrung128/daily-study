@@ -467,3 +467,11 @@ body:has(main .roadmap-reader) .top { position: static; }
 .case-file .offer-input { align-items: stretch; }
 .portfolio-entry summary { cursor: pointer; min-height: var(--tap); padding: 10px 0; }
 .portfolio-voice audio { width: 100%; min-height: var(--tap); }
+.course-map { list-style: none; margin: 0; padding: 0; }
+.course-map li { position: relative; }
+.course-map li:not(:last-child)::before { content: ""; position: absolute; inset-inline-start: 15px; top: 30px; bottom: -12px; border-inline-start: 2px solid var(--line); pointer-events: none; }
+.map-step { display: flex; position: relative; align-items: flex-start; gap: 12px; text-align: start; width: 100%; min-height: var(--tap); padding: 8px 0; background: transparent; color: var(--ink); border: 0; font: inherit; cursor: pointer; }
+.map-index { display: grid; place-items: center; flex: 0 0 32px; height: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 50%; }
+.course-map [aria-current="step"] .map-index { background: var(--accent); color: var(--accent-ink); }
+.map-status { display: block; color: var(--muted); }
+.stage-target { scroll-margin-block-start: 8rem; }

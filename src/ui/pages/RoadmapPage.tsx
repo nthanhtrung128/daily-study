@@ -6,6 +6,7 @@ import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { CourseRecommendation, CourseReview } from '../../modules/tr/CourseReview';
 import { MarketMatchPractice } from '../../modules/tr/MarketMatchPractice';
+import { CourseMap, stagePractice } from '../../modules/tr/CourseMap';
 import { OfferCase, offerHref } from '../../modules/tr/OfferCase';
 import { PayEquityCase, equityHref } from '../../modules/tr/PayEquityCase';
 import { Capstone, capstoneHref } from '../../modules/tr/Capstone';
@@ -116,11 +117,12 @@ export function RoadmapPage() {
       </header>
       <RoadmapSearch query={lessonQuery} onQuery={setLessonQuery} completed={completed}
         onOpen={(id) => { returnResult.current = id; }} />
+      {!lessonQuery.trim() && <CourseMap completed={completed} nextId={course?.next?.lesson.id} />}
       {!lessonQuery.trim() && COURSE_STAGES.map((stage, stageIndex) => (
         <section key={stage.title} className="panel stack" aria-labelledby={`stage-${stageIndex}`}>
           <header>
             <p className="eyebrow">Chặng {stageIndex + 1}</p>
-            <h2 className="h-sec" id={`stage-${stageIndex}`}>{stage.title}</h2>
+            <h2 id={`stage-${stageIndex}`} className="h-sec stage-target" tabIndex={-1}>{stage.title}</h2>
           </header>
           {stage.modules.map((entry) => {
             const isOpen = expanded === entry.code;
@@ -167,6 +169,7 @@ export function RoadmapPage() {
               </section>
             );
           })}
+          <a className="btn ghost roadmap-link" href={stagePractice[stageIndex]!.href}>Vận dụng cuối chặng · {stagePractice[stageIndex]!.name}</a>
         </section>
       ))}
     </section>
