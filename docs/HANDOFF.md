@@ -49,6 +49,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #44 | Skill thiết kế học tập dùng trong repo, bảng tra UX ngoại tuyến và DESIGN.md cho giao diện Daily Study. |
 | #45 | Ghim ba action CI theo commit, bỏ lưu token checkout và chỉ tải trace Playwright khi CI lỗi trong repo private. |
 | #46 | M08.2 luyện chọn một trong ba hồ sơ khảo sát và viết căn cứ trước khi đối chiếu. |
+| #47 | M11.2 dùng lại tình huống M08 để trình bày 60 giây, trả lời CFO và nghe đối chiếu hai lượt. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

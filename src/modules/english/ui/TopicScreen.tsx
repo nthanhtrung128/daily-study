@@ -91,7 +91,7 @@ export function TopicScreen({ onExit }: { onExit: () => void }) {
 
 type Phase = 'idle' | 'requesting' | 'recording' | 'saving';
 
-export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
+export function TopicRecorder({ topic, onBusyChange }: { topic: SpeakingTopic; onBusyChange?: (busy: boolean) => void }) {
   const [secs, setSecs] = useState(() => defaultSeconds(topic));
   const [withText, setWithText] = useState(false);
   const [phase, setPhase] = useState<Phase>('idle');
@@ -201,6 +201,7 @@ export function TopicRecorder({ topic }: { topic: SpeakingTopic }) {
   };
 
   const busy = phase !== 'idle';
+  useEffect(() => { onBusyChange?.(busy); }, [busy, onBusyChange]);
   const leftS = Math.ceil(left / 1000);
   const pct = Math.max(0, Math.min(100, (1 - left / (secs * 1000)) * 100));
   const live = withText ? [rs.final, rs.interim].filter(Boolean).join(' ') : '';
