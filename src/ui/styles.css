@@ -449,6 +449,9 @@ body:has(main .roadmap-reader) .top { position: static; }
 .comm-reader summary, .lesson-reminder summary { min-height: var(--tap); padding-block: 10px; cursor: pointer; font-weight: 600; }
 .lesson-reminder[open] > div { margin-block: 8px; }
 .pitch-criteria input { width: var(--tap); height: var(--tap); margin: 0; }
+.capstone .checkpoint-question input,
 .budget-choice input { width: var(--tap); height: var(--tap); margin: 0; }
 .transfer-practice .checkpoint-question input { width: var(--tap); height: var(--tap); margin: 0; }
 .transfer-practice summary { min-height: var(--tap); cursor: pointer; padding-block: 10px; }
+
+.capstone summary { min-height: var(--tap); padding-block: 10px; cursor: pointer; }
