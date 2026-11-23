@@ -314,3 +314,21 @@ test('chấm lại yếu tố ảnh hưởng và so sánh các hồ sơ của M0
   await expect(score).toContainText('53/100 điểm · Ngạch G2');
   expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
 });
+
+test('chia quỹ thưởng M07 và kiểm tra lại khi một người hết thời gian đủ điều kiện', async ({ page }) => {
+  await page.addInitScript(watchCsp);
+  await page.goto('./#lo-trinh?bai=trm-07-03');
+  const practice = page.getByRole('region', { name: 'Thử phân bổ quỹ thưởng' });
+  const results = practice.getByRole('status');
+  await expect(results).toContainText('Đã phân bổ 300,00 triệu · Còn lại 0,00 triệu');
+  await practice.getByRole('button', { name: 'NV03' }).click();
+  const time = practice.getByLabel('Thời gian đủ điều kiện (%)');
+  await time.fill('101');
+  await expect(results).toContainText('Kiểm tra NV03');
+  await time.fill('0');
+  await expect(results.getByRole('listitem').nth(2)).toHaveText('NV03 · 0,00 triệu');
+  await expect(results).toContainText('Đã phân bổ 300,00 triệu · Còn lại 0,00 triệu');
+  await practice.getByRole('button', { name: 'Khôi phục quỹ và hồ sơ mẫu' }).click();
+  await expect(results.getByRole('listitem').nth(2)).toHaveText('NV03 · 54,40 triệu');
+  expect(await page.evaluate(() => (window as unknown as { __csp: string[] }).__csp)).toEqual([]);
+});
