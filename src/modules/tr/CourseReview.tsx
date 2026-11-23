@@ -1,3 +1,4 @@
+import { TransferPractice } from './TransferPractice';
 import { liveQuery } from 'dexie';
 import { useEffect, useState } from 'react';
 import checkpoints from '../../../content/tr-roadmap/checkpoints.json';
@@ -49,6 +50,7 @@ export function CourseRecommendation() {
       <p>{attempts.has(next) ? 'Buổi đã đến hạn ôn.' : 'Buổi này chưa có lượt tự kiểm tra.'} Trả lời hai câu hỏi và giải một tình huống để xác định lần ôn tiếp theo.</p>
       <div className="row"><a className="btn roadmap-link" href={reviewHref(next)}>Ôn {next} · {moduleTitle(next)}</a></div>
     </> : nextDate && <p>Bạn đã ôn hết các buổi đến hạn. Lần ôn tiếp theo vào {formatDay(nextDate)}.</p>}
+    <TransferPractice today={today} />
   </div>;
 }
 
