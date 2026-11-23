@@ -16,6 +16,8 @@ import { BonusPoolPractice } from '../../modules/tr/BonusPoolPractice';
 import { JobEvaluationPractice } from '../../modules/tr/JobEvaluationPractice';
 import { MeritPractice } from '../../modules/tr/MeritPractice';
 import { useFocusOnMount } from '../useFocusOnMount';
+import recall from '../../../content/reading/recall.json';
+import articles from '../../../content/reading/articles.json';
 import { useReadingMemos } from '../../modules/tr/readingMemos';
 import { LessonMemo, MemoBook } from '../components/ReadingMemos';
 import { RoadmapSearch } from '../components/RoadmapSearch';
@@ -25,6 +27,9 @@ import { CommunicationCourse } from '../../modules/english/ui/CommunicationCours
 import { communicationHome } from '../../modules/english/communication';
 import { LessonReminder } from '../components/LessonReminder';
 import { useLocationHash } from '../useHashRoute';
+
+const practiceReadings = new Map(Object.entries(recall).map(([id, { lesson }]) =>
+  [lesson, articles.find((article) => article.id === id)] as const));
 
 export function RoadmapPage() {
   const completed = useRoadmapProgress();
@@ -194,6 +199,7 @@ function Lesson({ lesson, notes, fromMemo, label, moduleCode, source, done, foll
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(false);
   const related = relatedCardIds(lesson.id);
+  const reading = practiceReadings.get(lesson.id);
 
   async function finish() {
     setSaving(true);
@@ -256,6 +262,7 @@ function Lesson({ lesson, notes, fromMemo, label, moduleCode, source, done, foll
         {revealed && <p>{lesson.review.answer}</p>}
       </section>
       {!browseNext && <div className="row"><a className="btn ghost roadmap-link" href={reviewHref(moduleCode)}>Tự kiểm tra {moduleCode}</a></div>}
+      {reading && <a className="btn ghost roadmap-link" href={'#doc-them?bai=' + reading.id}>Đọc thêm · {reading.title.vi}</a>}
       <LessonReminder id={lesson.id} title={lesson.title} prompt={lesson.review.question} href={lessonHref(lesson.id)} />
       <LessonMemo id={lesson.id} notes={notes} />
       {related.length > 0 && <RoadmapRelatedCards ids={related} />}

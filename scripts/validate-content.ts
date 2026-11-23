@@ -192,6 +192,36 @@ function validateReadings() {
   });
 }
 
+function validateRecall() {
+  const file = 'content/reading/recall.json';
+  const catalog = readJson('content/reading/articles.json');
+  const ids = new Set(Array.isArray(catalog) ? catalog.filter(isObj).map((r) => r.id) : []);
+  const cases = readJson(file);
+  if (!isObj(cases) || !Object.keys(cases).length) return err(file + ': thiếu tình huống');
+  const linked = new Set<string>();
+  for (const [id, group] of Object.entries(cases)) {
+    if (!isObj(group) || !isStr(group.lesson) || !/^trm-\d{2}-\d{2}$/.test(group.lesson)) {
+      err(file + ': thiếu mã bài lộ trình cho ' + id);
+      continue;
+    }
+    const module = readJson('content/tr-roadmap/m' + group.lesson.slice(4, 6) + '.json');
+    if (!isObj(module) || !Array.isArray(module.lessons) || !module.lessons.some((r: unknown) => isObj(r) && r.id === group.lesson)) err(file + ': bài lộ trình không tồn tại ' + group.lesson);
+    if (linked.has(group.lesson)) err(file + ': trùng liên kết bài lộ trình ' + group.lesson);
+    linked.add(group.lesson);
+    const items = group.tasks;
+    if (!ids.has(id)) err(file + ': mã bài đọc không tồn tại ' + id);
+    if (!Array.isArray(items) || items.length !== 2) err(file + ': cần hai tình huống cho ' + id);
+    checkList(file, id, items, ['unit', 'feedback'], undefined, (row, where) => {
+      if (typeof row.answer !== 'number' || !Number.isFinite(row.answer) || row.answer < 0) err(where + ': đáp số không hợp lệ');
+      for (const field of ['prompt', 'model']) {
+        const pair = row[field];
+        if (!isObj(pair) || !nonEmpty(pair.en) || !nonEmpty(pair.vi)) err(where + ': thiếu bản Anh–Việt cho ' + field);
+      }
+    });
+  }
+}
+validateRecall();
+
 validateReadings();
 validateTr101();
 validateRoadmap();
