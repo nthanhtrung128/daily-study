@@ -17,7 +17,9 @@ import module14 from '../../../content/tr-roadmap/m14.json';
 import module15 from '../../../content/tr-roadmap/m15.json';
 import module16 from '../../../content/tr-roadmap/m16.json';
 import module17 from '../../../content/tr-roadmap/m17.json';
-import { db, setSetting } from '../../core/db';
+import { db } from '../../core/db';
+import { dayKey } from '../../core/date';
+import { transferAnchor, anchorDay } from '../../core/transfer';
 
 export const COURSE_STAGES = [
   { title: 'Nền tảng Total Rewards', modules: [module01, module02, module03, module04] },
@@ -62,5 +64,12 @@ export function useRoadmapProgress() {
 }
 
 export function completeLesson(id: string) {
-  return setSetting(prefix + id, true);
+  return db.transaction('rw', db.settings, async () => {
+    await db.settings.put({ key: prefix + id, value: true });
+    if (anchorDay((await db.settings.get(transferAnchor))?.value)) return;
+    const flags = await db.settings.bulkGet(courseSteps.map(({ lesson }) => prefix + lesson.id));
+    if (flags.every((row) => row?.value === true)) {
+      await db.settings.put({ key: transferAnchor, value: dayKey() });
+    }
+  });
 }

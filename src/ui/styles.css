@@ -450,3 +450,5 @@ body:has(main .roadmap-reader) .top { position: static; }
 .lesson-reminder[open] > div { margin-block: 8px; }
 .pitch-criteria input { width: var(--tap); height: var(--tap); margin: 0; }
 .budget-choice input { width: var(--tap); height: var(--tap); margin: 0; }
+.transfer-practice .checkpoint-question input { width: var(--tap); height: var(--tap); margin: 0; }
+.transfer-practice summary { min-height: var(--tap); cursor: pointer; padding-block: 10px; }

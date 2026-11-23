@@ -2,6 +2,7 @@ import { db as defaultDb, type DayStat, type ItemState, type Note, type Recordin
 import { LOCAL_ONLY_KEYS } from './backupReminder';
 import { LEARNED_BOX, MAX_BOX } from './leitner';
 import { MISS_KEY, mergeMiss, normalizeMiss } from './misswords';
+import { transferPrefix, transferAnchor, readTransfer, anchorDay } from './transfer';
 import { COURSE_REVIEW_PREFIX, readAttempt } from './courseReview';
 import { ROADMAP_REVIEW_PREFIX, readReviewChoice } from './roadmapReview';
 
@@ -385,6 +386,7 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
       await store.reviews.bulkAdd(data.reviews.map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })));
       // "Từ hay sai" là tiến độ: file không có (bản sao lưu cũ) thì xóa bản trên máy cho khớp tiến độ vừa thay.
       if (!data.settings.some((x) => x.key === MISS_KEY)) await store.settings.delete(MISS_KEY);
+      await store.settings.where('key').startsWith(transferPrefix).delete();
       await store.settings.where('key').startsWith(COURSE_REVIEW_PREFIX).delete();
       await store.settings.where('key').startsWith(ROADMAP_REVIEW_PREFIX).delete();
       await store.settings.bulkPut(data.settings.filter((x) => !LOCAL_ONLY_KEYS.has(x.key)));
@@ -438,6 +440,15 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
     const currentSettings = new Map((await store.settings.toArray()).map((s) => [s.key, s.value]));
     await store.settings.bulkPut(data.settings.filter((s) => {
       if (LOCAL_ONLY_KEYS.has(s.key)) return false;
+      if (s.key === transferAnchor) {
+        const incoming = anchorDay(s.value);
+        const current = anchorDay(currentSettings.get(s.key));
+        return !!incoming && (!current || incoming < current);
+      }
+      if (s.key.startsWith(transferPrefix)) {
+        const incoming = readTransfer(s.value);
+        return !!incoming && incoming.at > (readTransfer(currentSettings.get(s.key))?.at ?? 0);
+      }
       if (s.key.startsWith(COURSE_REVIEW_PREFIX)) {
         const incoming = readAttempt(s.value);
         return !!incoming && incoming.last > (readAttempt(currentSettings.get(s.key))?.last ?? 0);
