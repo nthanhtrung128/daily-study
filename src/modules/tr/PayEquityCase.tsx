@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useFocusOnMount } from '../../ui/useFocusOnMount';
 import { TopicRecorder } from '../english/ui/TopicScreen';
-import { useCaseAttempts, saveCase, type CaseAttempt } from './caseAttempts';
+import { CaseEvidence } from './CaseEvidence';
+import { useCaseAttempts, saveCase } from './caseAttempts';
 
 export const equityHref = '#lo-trinh?ho-so=cong-bang-luong';
 export const equityCriteria = ['Chọn đúng nhóm đối sánh', 'Chọn đúng chênh lệch cần tìm hiểu', 'Tự giải thích bằng tiếng Anh'];
@@ -51,12 +52,12 @@ export function PayEquityCase() {
       latest && !retry ? <>
         <h2 ref={result} tabIndex={-1}>Phiếu điều tra đã lưu</h2><CaseEvidence attempt={latest} labels={equityCriteria} />
         <p>E02 và E03 cùng cấp, địa bàn, trách nhiệm, ca và thời lượng làm việc với E01. Mức tham chiếu của hai người là 23,5 triệu. E01 thấp hơn 3,5 triệu, khoảng 14,9% so với mức tham chiếu.</p>
-        <p>E08 làm 60% thời gian nên cần quy đổi trước khi so. Hai người đối chứng là một mẫu nhỏ. Kiểm tra mô tả việc thực tế, lần tăng gần nhất, hiệu suất đã hiệu chỉnh và độ chính xác của dữ liệu trước khi định mức xử lý.</p>
+        <p>E08 làm 60% thời gian. Mức quy đổi toàn thời gian là 16 / 0,6 ≈ 26,67 triệu đồng; cần xác minh thêm trước khi đưa vào mẫu. Hai người đối chứng là một mẫu nhỏ. Kiểm tra mô tả việc thực tế, lần tăng gần nhất, hiệu suất đã hiệu chỉnh và độ chính xác của dữ liệu trước khi định mức xử lý.</p>
         <p lang="en">The gap deserves a review. I would check the actual duties and pay history before recommending an adjustment.</p>
         <button className="btn ghost" onClick={() => { setRetry(true); setSelected([]); setChecks(['', '', '']); setGap(''); setSpoken(''); setRecorder(false); }}>Làm lại hồ sơ</button>
       </> : <>
         <h2>1. Chọn người để so trực tiếp với E01</h2>
-        <p>Lương cơ bản thực nhận theo hợp đồng, triệu đồng/tháng, trước thuế và chưa cộng phụ cấp. Các hồ sơ giả định làm toàn thời gian, trừ E08.</p>
+        <p>Lương cơ bản ghi trên hợp đồng, triệu đồng/tháng, trước thuế và chưa cộng phụ cấp. Các hồ sơ giả định làm toàn thời gian, trừ E08.</p>
         <fieldset className="checkpoint-question"><legend>Danh sách hồ sơ</legend>
           {profiles.map(([id, pay, scope]) => id === 'E01' ? <p key={id}><strong>E01 · {pay} triệu</strong><br />{scope}</p> :
             <label key={id}><input type="checkbox" checked={selected.includes(id)} onChange={(e) => setSelected(e.target.checked ? [...selected, id] : selected.filter((x) => x !== id))} /><span><strong>{id} · {pay} triệu</strong><br />{scope}</span></label>)}
@@ -72,9 +73,4 @@ export function PayEquityCase() {
         {error && <p role="alert">Chưa lưu được phiếu. Hãy thử lại.</p>}
       </>}
   </section>;
-}
-
-export function CaseEvidence({ attempt, labels }: { attempt: CaseAttempt; labels: string[] }) {
-  return <div className="stack"><p className="case-response">{attempt.response}</p>
-    <ul>{labels.map((s, i) => <li key={s}>{s} · {attempt.criteria[i] ? 'Đạt' : 'Cần luyện'}</li>)}</ul></div>;
 }

@@ -461,5 +461,7 @@ body:has(main .roadmap-reader) .top { position: static; }
 .study-hub header p { margin: 4px 0 0; }
 .hub-library { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
 .hub-library a { display: flex; align-items: center; min-height: var(--tap); padding-block: 6px; border-bottom: 1px solid var(--line); }
-.case-file .checkpoint-question input { width: var(--tap); height: var(--tap); margin: 0; }
+.case-file .checkpoint-question input:is([type="radio"], [type="checkbox"]) { width: var(--tap); height: var(--tap); margin: 0; }
 .case-response { white-space: pre-line; overflow-wrap: anywhere; }
+
+.case-file .offer-input { align-items: stretch; }
