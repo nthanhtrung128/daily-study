@@ -387,6 +387,7 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
       await store.reviews.bulkAdd(data.reviews.map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })));
       // "Từ hay sai" là tiến độ: file không có (bản sao lưu cũ) thì xóa bản trên máy cho khớp tiến độ vừa thay.
       if (!data.settings.some((x) => x.key === MISS_KEY)) await store.settings.delete(MISS_KEY);
+      await store.settings.where('key').startsWith('tr.caseAttempt.').delete();
       await store.settings.where('key').startsWith(drillPrefix).delete();
       await store.settings.where('key').startsWith(transferPrefix).delete();
       await store.settings.where('key').startsWith(COURSE_REVIEW_PREFIX).delete();

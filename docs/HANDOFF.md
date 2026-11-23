@@ -56,6 +56,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #51 | Bài tổng hợp cuối khóa kết nối M08, M10, M11. Lưu đề xuất, đối chiếu nguồn, ngân sách và tự đánh giá lượt nói 90 giây. |
 | #52 | Hôm nay hẹn lại từng tiêu chí cần luyện của bài tổng hợp và ngày 7/30, đổi tình huống sau lượt sai và giữ kết quả khi sao lưu. |
 | #53 | Hôm nay ưu tiên phiên dở, bản nháp đề xuất, tiêu chí đến hạn và bài tiếp theo. Có lối tắt vào thư viện, memo và tiến độ. |
+| #54 | Hồ sơ công bằng lương gồm tám người, chọn nhóm đối sánh, lập ba câu hỏi kiểm chứng và luyện trả lời quản lý. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
