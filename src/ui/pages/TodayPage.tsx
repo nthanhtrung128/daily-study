@@ -10,6 +10,7 @@ import { useProgress } from '../useProgress';
 import { BAI_KEYS, BAI_SHORT } from '../../modules/tr/data';
 import { titleOf, type TrItem } from '../../modules/tr/items';
 import { DEFAULT_PREFS, DURATIONS, MODES, TIME, countBy, homeStats, modeOf, planSession, type Prefs } from '../../modules/tr/plan';
+import { SkillDrills } from '../../modules/tr/SkillDrills';
 import { CourseRecommendation } from '../../modules/tr/CourseReview';
 import { courseProgress, useRoadmapProgress } from '../../modules/tr/roadmap';
 import { useRoadmapReview } from '../../modules/tr/roadmapCards';
@@ -201,6 +202,7 @@ export function TodayPage() {
       <GoalBar p={p} prefs={daily} />
       <DailyPanel onStart={(plan, minutes) => startMix(minutes, plan.entries)} />
       <WeakPanel onStart={startWeak} />
+      <SkillDrills />
       <CommunicationSummary />
 
       <div className="panel stack">

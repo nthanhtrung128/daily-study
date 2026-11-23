@@ -80,6 +80,7 @@ function TransferAnswer({ task, saved }: { task: Task; saved: TransferResult | u
       <details><summary>Xem memo các buổi liên quan</summary>
         {relevant?.length ? relevant.map((n) => <p key={n.id}><strong>{memoLessons.get(n.id)?.lesson.title}</strong> · {n.text}</p>) :
           <p>{notes === undefined ? 'Đang đọc memo…' : notes === null ? 'Chưa đọc được memo.' : 'Chưa có memo ở các buổi liên quan.'}</p>}</details>
+      {saved?.criteria.includes(false) && <a className="btn ghost roadmap-link" href="#hom-nay">Xem lịch ôn tiêu chí ở Hôm nay</a>}
       {saved ? <ul>{task.criteria.map((c, i) => <li key={c}>{saved.criteria[i] ? 'Đã làm được' : 'Cần luyện'} · {c}</li>)}</ul> : <>
         <fieldset className="checkpoint-question"><legend>Đánh dấu những tiêu chí đã có trong câu trả lời</legend>{task.criteria.map((c, i) =>
           <label key={c}><input type="checkbox" checked={criteria[i]} onChange={(e) => setCriteria(criteria.map((v, j) => j === i ? e.target.checked : v))} />{c}</label>)}</fieldset>
