@@ -6,6 +6,7 @@ import { relatedCardIds } from '../../modules/tr/roadmapCards';
 import { SalaryAnalysisPractice } from '../../modules/tr/SalaryAnalysisPractice';
 import { CourseRecommendation, CourseReview } from '../../modules/tr/CourseReview';
 import { MarketMatchPractice } from '../../modules/tr/MarketMatchPractice';
+import { PayEquityCase, equityHref } from '../../modules/tr/PayEquityCase';
 import { Capstone, capstoneHref } from '../../modules/tr/Capstone';
 import { BenchmarkPitch } from '../../modules/tr/BenchmarkPitch';
 import { RaiseBudgetPractice } from '../../modules/tr/RaiseBudgetPractice';
@@ -80,6 +81,7 @@ export function RoadmapPage() {
     );
   }
 
+  if (params.get('ho-so') === 'cong-bang-luong') return <PayEquityCase />;
   if (params.get('tong-ket') === '1') return <Capstone />;
   if (memo) return <MemoBook notes={notes} query={memoQuery} onQuery={setMemoQuery} />;
 
@@ -88,6 +90,7 @@ export function RoadmapPage() {
       <header className="panel stack roadmap-intro">
         <h1 className="h-page" id="roadmap-title" tabIndex={-1} ref={heading}>Đọc và tự ôn Total Rewards</h1>
         <p>{ROADMAP_MODULES.length} buổi qua {COURSE_STAGES.length} chặng. Bắt đầu từ chiến lược đãi ngộ, sau đó thiết kế lương thưởng và vận dụng vào các tình huống chuyên sâu.</p>
+        <nav className="stack" aria-label="Hồ sơ thực hành"><a className="reading-result-link" href={equityHref}>Điều tra công bằng lương nội bộ</a></nav>
         {course && (
           <div className="stack">
             <div className="reading-progress-row">
@@ -229,6 +232,7 @@ function Lesson({ lesson, notes, fromMemo, label, moduleCode, source, done, foll
       {lesson.id === 'trm-06-03' && <MeritPractice />}
       {lesson.id === 'trm-07-03' && <BonusPoolPractice />}
       {lesson.id === 'trm-08-02' && <MarketMatchPractice />}
+      {lesson.id === 'trm-09-03' && <a className="btn ghost roadmap-link" href={equityHref}>Mở hồ sơ công bằng lương</a>}
       {lesson.id === 'trm-09-03' && <SalaryAnalysisPractice />}
       {lesson.id === 'trm-10-02' && <RaiseBudgetPractice />}
       {lesson.id === 'trm-17-04' && <a href={capstoneHref} className="btn roadmap-link">Làm bài tổng hợp cuối khóa</a>}
