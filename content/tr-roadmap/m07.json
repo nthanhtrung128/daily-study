@@ -68,5 +68,40 @@
         "answer": "Hệ số gộp là 0,6 × 1,1 + 0,4 × 0,9 = 1,02. Tiền thưởng là 30,6 triệu trước khi xét điều kiện đủ và trần."
       }
     }
-  ]
+  ],
+  "bonusPool": {
+    "budget": 300,
+    "people": [
+      {
+        "id": "NV01",
+        "target": 60,
+        "eligible": 100,
+        "factor": 1.2
+      },
+      {
+        "id": "NV02",
+        "target": 60,
+        "eligible": 100,
+        "factor": 1.0
+      },
+      {
+        "id": "NV03",
+        "target": 48,
+        "eligible": 75,
+        "factor": 1.1
+      },
+      {
+        "id": "NV04",
+        "target": 36,
+        "eligible": 100,
+        "factor": 0.8
+      },
+      {
+        "id": "NV05",
+        "target": 36,
+        "eligible": 50,
+        "factor": 1.0
+      }
+    ]
+  }
 }

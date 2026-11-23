@@ -187,6 +187,7 @@ export const ENGLISH_FILES: EnglishFileSpec[] = [
   { file: 'phrases.json', schema: 'phrases.schema.json', idPrefix: 'ph', uniqueFields: ['en', 'example'], required: true },
   { file: 'patterns.json', schema: 'patterns.schema.json', idPrefix: 'pt', uniqueFields: ['en'], required: true },
   { file: 'dialogues.json', schema: 'dialogues.schema.json', idPrefix: 'dl', uniqueFields: ['title'], required: true },
+  { file: 'communication.json', schema: 'communication.schema.json', idPrefix: 'cc', uniqueFields: ['cue', 'model'], required: true },
   { file: 'speaking-topics.json', schema: 'speaking-topics.schema.json', idPrefix: 'st', uniqueFields: ['en', 'opener'], required: true },
 ];
 

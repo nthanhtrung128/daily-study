@@ -2,6 +2,8 @@ name: CI
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
+  workflow_dispatch:
   push:
     branches: [main]
 
@@ -35,6 +37,9 @@ jobs:
     name: Playwright (iPhone 14, iPhone SE)
     runs-on: ubuntu-latest
     needs: check
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    env:
+      PW_WEBKIT: ${{ github.event_name != 'pull_request' && '1' || '0' }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -44,11 +49,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # Chromium + WebKit (engine của Safari); PW_WEBKIT=1 bật thêm 2 project WebKit trong playwright.config.ts.
-      - run: npx playwright install --with-deps webkit chromium
+      - run: npx playwright install --with-deps chromium ${{ env.PW_WEBKIT == '1' && 'webkit' || '' }}
       - run: npm run test:e2e
-        env:
-          PW_WEBKIT: '1'
       # Khi chạy lại CI, sự kiện ban đầu có thể thuộc thời điểm repo còn private.
       - name: Kiểm tra quyền hiển thị trước khi lưu báo cáo lỗi
         id: visibility
