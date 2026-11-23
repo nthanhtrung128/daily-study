@@ -1,3 +1,4 @@
+import { CasePortfolio } from '../../modules/tr/CasePortfolio';
 import { CommunicationSummary } from '../../modules/english/ui/CommunicationCourse';
 import { getSetting, setSetting } from '../../core/db';
 import { LEVEL_NAME, levelOf } from '../../core/leitner';
@@ -85,6 +86,7 @@ export function ProgressPage() {
         </div>
       </div>
 
+      <CasePortfolio />
       <WeekPanel p={p} goalMin={daily.goalMin} />
 
       <CommunicationSummary assessment />

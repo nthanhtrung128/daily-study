@@ -58,6 +58,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #53 | Hôm nay ưu tiên phiên dở, bản nháp đề xuất, tiêu chí đến hạn và bài tiếp theo. Có lối tắt vào thư viện, memo và tiến độ. |
 | #54 | Hồ sơ công bằng lương gồm tám người, chọn nhóm đối sánh, lập ba câu hỏi kiểm chứng và luyện trả lời quản lý. |
 | #55 | Hai thư mời giả định giúp so dòng tiền bảo đảm, thưởng mục tiêu, kịch bản thấp và luyện hỏi về bảo hiểm người thân. |
+| #56 | Tiến độ so hai phiếu cùng nhiệm vụ theo ngày và tiêu chí, đồng thời phát lại hai bản ghi gần nhất của nhiệm vụ đó. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

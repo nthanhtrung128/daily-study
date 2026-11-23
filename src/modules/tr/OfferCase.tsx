@@ -53,6 +53,7 @@ export function OfferCase() {
       <p>B hơn A 12 triệu ở phần bảo đảm. A hơn B 3,6 triệu khi đạt đủ mục tiêu. Đối chiếu phạm vi bảo hiểm và điều kiện dùng ngày nghỉ theo nhu cầu riêng trước khi chốt. Cả hai lựa chọn đều có thể giải trình.</p>
       <p lang="en">Could you confirm whether my child is covered from the start date and whether there is an extra premium?</p>
       <p>Bạn có thể xác nhận con tôi được bảo hiểm từ ngày bắt đầu làm việc và có phải đóng thêm phí không?</p>
+    <a className="btn ghost roadmap-link" href="#tien-do">So sánh các lần làm ở Tiến độ</a>
       <button className="btn ghost" onClick={restart}>So sánh lại hai thư mời</button>
     </> : <>
       <h2>Thư A · Lương và phụ cấp cố định</h2><p>32 triệu/tháng cộng phụ cấp cố định 2 triệu/tháng. Thưởng mục tiêu 15% lương cơ bản năm. Bảo hiểm sức khỏe cho nhân viên; 16 ngày nghỉ phép.</p>
