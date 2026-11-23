@@ -49,9 +49,18 @@ jobs:
       - run: npm run test:e2e
         env:
           PW_WEBKIT: '1'
+      # Khi chạy lại CI, sự kiện ban đầu có thể thuộc thời điểm repo còn private.
+      - name: Kiểm tra quyền hiển thị trước khi lưu báo cáo lỗi
+        id: visibility
+        if: failure() && github.event.repository.private == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          visibility=$(gh api "repos/$GITHUB_REPOSITORY" --jq '.visibility')
+          echo "current=$visibility" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         # Trace có thể chứa nội dung bài học và trạng thái trình duyệt.
-        if: failure() && github.event.repository.private == true
+        if: failure() && steps.visibility.outputs.current == 'private'
         with:
           name: playwright-report
           path: |
