@@ -2,6 +2,8 @@
 
 App ôn luyện mỗi ngày cho một người dùng: **Total Rewards (TR101)** + **tiếng Anh giao tiếp**. Đây là PWA chạy trên Safari iPhone, có thể thêm vào Màn hình chính, và chạy trên trình duyệt máy tính.
 
+Khi thiết kế hoặc rà soát UI/UX, dùng [skill thiết kế học tập](.agents/skills/thiet-ke-hoc-tap/SKILL.md) cùng [hướng dẫn giao diện Daily Study](DESIGN.md).
+
 ## Người dùng
 - Chuyên viên C&B / Total Rewards ở Hà Nội. Mục tiêu tiếng Anh: **nói lưu loát** trong môi trường công sở. Trình độ hiện tại khoảng B2 (TOEIC 855 Listening & Reading), phần nói yếu hơn.
 - Giao diện, nội dung giải thích, commit message và mô tả PR: **tiếng Việt**. Nội dung học tiếng Anh viết bằng tiếng Anh, kèm nghĩa tiếng Việt ngắn.
