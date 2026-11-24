@@ -1,4 +1,4 @@
-# Bàn giao (cập nhật 23/11/2026)
+# Bàn giao (cập nhật 24/11/2026)
 
 ## Hiện trạng
 App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra nội dung và build cho mọi PR. PR sẵn sàng review chạy thêm Playwright với Chromium trên iPhone 14 và iPhone SE. Push lên `main` và chạy CI thủ công kiểm tra cả Chromium lẫn WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
@@ -64,6 +64,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #59 | Đọc thêm có ba bài song ngữ về chọn mẫu số khi so lương, tính thưởng có trọng số và quy đổi FTE; mỗi bài có ba lượt nói và nguồn nghiên cứu về cách học. |
 | #60 | Ba bài C&B mới có sáu tình huống gấp bài tự tính, phản hồi theo đáp số và mức tự tin tùy chọn, kèm lời nhắc mở biến thể còn lại. |
 | #61 | Sau khi tự thử, người học có thể ghi riêng một memo cho từng tình huống và ngày. Sổ memo cho tìm, sửa và mở lại đúng đề, cả khi ngoại tuyến. |
+| #62 | Đặt tiêu điểm vào tiêu đề trước lần vẽ đầu tiên để giữ con trỏ và chữ số khi người học chạm ô nhập ngay lúc mở đề trên WebKit. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
