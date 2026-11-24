@@ -91,7 +91,7 @@ export function TopicScreen({ onExit }: { onExit: () => void }) {
 
 type Phase = 'idle' | 'requesting' | 'recording' | 'saving';
 
-export function TopicRecorder({ topic, onBusyChange }: { topic: SpeakingTopic; onBusyChange?: (busy: boolean) => void }) {
+export function TopicRecorder({ topic, onBusyChange, localOnly = false }: { topic: SpeakingTopic; localOnly?: boolean; onBusyChange?: (busy: boolean) => void }) {
   const [secs, setSecs] = useState(() => defaultSeconds(topic));
   const [withText, setWithText] = useState(false);
   const [phase, setPhase] = useState<Phase>('idle');
@@ -221,14 +221,14 @@ export function TopicRecorder({ topic, onBusyChange }: { topic: SpeakingTopic; o
         <div className="row">
           <SpeakButton text={topic.en} label="Nghe đề" what={topic.en} />
         </div>
-        <div>
+        {topic.hints.length > 0 && <div>
           <div className="eyebrow">Gợi ý</div>
           <ul className="topic-hints" lang="en">
             {topic.hints.map((h, i) => (
               <li key={i}>{h}</li>
             ))}
           </ul>
-        </div>
+        </div>}
         {!!topic.useful?.length && (
           <div>
             <div className="eyebrow">Cụm nên dùng</div>
@@ -267,7 +267,7 @@ export function TopicRecorder({ topic, onBusyChange }: { topic: SpeakingTopic; o
             </button>
           ))}
         </div>
-        {speechRec.supported && (
+        {!localOnly && speechRec.supported && (
           <div className="row">
             <button type="button" className="chip" aria-pressed={withText} disabled={busy} onClick={() => setWithText(!withText)}>
               Kèm chữ (nhận giọng, thử nghiệm)

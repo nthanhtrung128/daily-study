@@ -792,23 +792,34 @@
         "task": "Bạn mới gặp quản lý ca sáng. Mở lời bằng một câu hỏi để họ kể về tuần đầu.",
         "model": "How did the first week on the new shift go for your team?",
         "meaning": "Tuần đầu làm theo ca mới của nhóm anh diễn ra thế nào?",
-        "check": "Đặt một câu hỏi mở về trải nghiệm của nhóm."
+        "check": "Đặt một câu hỏi mở về trải nghiệm của nhóm.",
+        "cueVi": "Nhóm tôi vừa qua tuần đầu tiên theo lịch ca mới."
       },
       {
         "cue": "It's easier most mornings, except when a delivery turns up early.",
         "task": "Hỏi tiếp đúng chi tiết xe hàng đến sớm trong lời quản lý.",
         "model": "What happens at handover when a truck arrives early?",
         "meaning": "Khi xe hàng đến sớm thì buổi bàn giao ca diễn ra thế nào?",
-        "check": "Nhắc đúng chi tiết vừa nghe và để người kia giải thích."
+        "check": "Nhắc đúng chi tiết vừa nghe và để người kia giải thích.",
+        "cueVi": "Hầu hết các buổi sáng đều dễ chịu hơn, trừ khi xe hàng đến sớm."
       },
       {
         "cue": "The meeting is starting. Our Tuesday briefing might give you a clearer picture.",
         "task": "Cảm ơn và xin phép tham dự một buổi cụ thể.",
         "model": "Thanks for the tip. Could I sit in on Tuesday's briefing?",
         "meaning": "Cảm ơn anh đã gợi ý. Tôi có thể dự buổi giao ban thứ Ba được không?",
-        "check": "Kết thúc tự nhiên bằng một bước tiếp theo có sự đồng ý."
+        "check": "Kết thúc tự nhiên bằng một bước tiếp theo có sự đồng ý.",
+        "cueVi": "Cuộc họp sắp bắt đầu. Dự giao ban thứ Ba có thể giúp bạn hình dung rõ hơn."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "We moved deliveries to after handover. Now the new starters say they miss the briefing.",
+      "cueVi": "Chúng tôi đã chuyển giờ nhận hàng sang sau bàn giao. Giờ các bạn mới lại nói họ bị lỡ buổi giao ban.",
+      "task": "Mở cuộc trò chuyện ở tuần kế tiếp. Nhắc lại thay đổi và hỏi một chi tiết về các bạn mới.",
+      "model": "How has the new delivery time worked out? What keeps the new starters from joining the briefing?",
+      "meaning": "Giờ nhận hàng mới có thuận lợi không? Điều gì khiến các bạn mới chưa dự được giao ban?",
+      "check": "Nhắc được thay đổi và hỏi nguyên nhân dựa trên lời quản lý."
+    }
   },
   {
     "id": "giai-thich-thuong",
@@ -865,23 +876,34 @@
         "task": "Ghi nhận mức đạt cá nhân 110% và gọi tên hai thành phần chi thưởng.",
         "model": "You reached 110% of your own target. Your bonus also includes a team component. Shall we look at both parts together?",
         "meaning": "Bạn đã đạt 110% mục tiêu cá nhân. Tiền thưởng còn có phần kết quả nhóm. Ta xem cả hai phần cùng nhau nhé?",
-        "check": "Ghi nhận thành tích trước khi giải thích phần nhóm."
+        "check": "Ghi nhận thành tích trước khi giải thích phần nhóm.",
+        "cueVi": "Tôi vượt mục tiêu cá nhân. Sao tiền thưởng lại thấp hơn mức mục tiêu?"
       },
       {
         "cue": "How did the two results turn into my payment?",
         "task": "Nhóm đạt 90% với trọng số 70%. Cá nhân đạt 110% với trọng số 30%. Giải thích số tiền trên mức mục tiêu 20 triệu đồng.",
         "model": "The team contributed 63 points and your result added 33. That gives 96% of 20 million dong, or 19.2 million.",
         "meaning": "Nhóm đóng góp 63 điểm, kết quả của bạn thêm 33 điểm. Vậy số tiền bằng 96% của 20 triệu đồng, tức 19,2 triệu.",
-        "check": "Giải thích được hệ số 96% và số tiền, đúng đơn vị."
+        "check": "Giải thích được hệ số 96% và số tiền, đúng đơn vị.",
+        "cueVi": "Hai kết quả đó được tính thành tiền thưởng của tôi như thế nào?"
       },
       {
         "cue": "Can we check where the team figure came from?",
         "task": "Hẹn kiểm tra số liệu gốc cùng nhân viên và nói rõ thời điểm.",
         "model": "Of course. Let's check the approved team result and the calculation together on Thursday.",
         "meaning": "Được chứ. Thứ Năm ta cùng đối chiếu kết quả nhóm đã duyệt và phép tính nhé.",
-        "check": "Chỉ ra tài liệu cần xem và hẹn một thời điểm cụ thể."
+        "check": "Chỉ ra tài liệu cần xem và hẹn một thời điểm cụ thể.",
+        "cueVi": "Ta có thể kiểm tra kết quả nhóm lấy từ đâu không?"
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "A different plan gives the team 30% of the weight and me 70%. Can I still earn my target bonus?",
+      "cueVi": "Một phương án khác chia trọng số nhóm 30%, cá nhân 70%. Tôi còn có thể đạt mức thưởng mục tiêu không?",
+      "task": "Giải thích trong 30–45 giây. Nhóm đạt 80%, cá nhân đạt 110%, mức thưởng mục tiêu 20 triệu đồng. Chính sách tuyến tính, không có ngưỡng hay trần.",
+      "model": "Yes. The team contributes 24 points and your result adds 77. Together that is 101% of target, so the payment is 20.2 million dong.",
+      "meaning": "Có. Nhóm đóng góp 24 điểm, kết quả cá nhân thêm 77 điểm. Tổng bằng 101% mục tiêu, tương ứng 20,2 triệu đồng.",
+      "check": "Gọi đúng hai phần đóng góp và giải thích vì sao 101% tương ứng 20,2 triệu đồng."
+    }
   },
   {
     "id": "kiem-tra-phu-cap-ca",
@@ -938,22 +960,33 @@
         "task": "Thừa nhận khó khăn tuyển ca rồi hỏi một câu để phân biệt nguyên nhân do thu nhập hay giờ làm.",
         "model": "I can see the shift is hard to fill. Did either candidate mention the pay or the time they would get home?",
         "meaning": "Tôi hiểu ca này khó tuyển. Có ai nhắc đến thu nhập hoặc giờ họ sẽ về đến nhà không?",
-        "check": "Gọi tên hai khả năng và đặt câu hỏi trung lập."
+        "check": "Gọi tên hai khả năng và đặt câu hỏi trung lập.",
+        "cueVi": "Hai ứng viên đã từ chối. Ta tăng phụ cấp ca tối nhé."
       },
       {
         "cue": "One mentioned the last bus; the other didn't give a reason.",
         "task": "Nêu điều đã biết và điều còn thiếu trước khi đưa ra kết luận.",
         "model": "We have one transport concern. What do we know about candidates offered the same allowance on an earlier shift?",
         "meaning": "Ta có một phản hồi về đi lại. Ta biết gì về các ứng viên được đề nghị cùng mức phụ cấp ở ca kết thúc sớm hơn?",
-        "check": "Tách một quan sát khỏi kết luận chung và chọn nhóm so sánh."
+        "check": "Tách một quan sát khỏi kết luận chung và chọn nhóm so sánh.",
+        "cueVi": "Một người nhắc chuyến xe buýt cuối, người kia không nói lý do."
       },
       {
         "cue": "What should we collect before Friday's meeting?",
         "task": "Chốt dữ liệu cần thu, người thực hiện và thời điểm đối chiếu.",
         "model": "Could recruitment log the finish time, allowance and any reason given for the next ten offers? We can review the entries on Friday.",
         "meaning": "Nhờ nhóm tuyển dụng ghi giờ tan ca, phụ cấp và lý do được chia sẻ cho mười thư mời tiếp theo. Thứ Sáu ta cùng xem các lượt đã ghi nhé.",
-        "check": "Có người phụ trách, dữ kiện cụ thể và ngày xem lại."
+        "check": "Có người phụ trách, dữ kiện cụ thể và ngày xem lại.",
+        "cueVi": "Ta nên thu thập gì trước cuộc họp thứ Sáu?"
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Five of the next ten offers were declined. Four of those candidates mentioned the last bus. Can we approve the allowance today?",
+      "cueVi": "Năm trong mười thư mời kế tiếp bị từ chối. Bốn người nhắc đến chuyến xe cuối. Hôm nay ta duyệt tăng phụ cấp được chưa?",
+      "task": "Phân biệt tín hiệu về đi lại với bằng chứng về thu nhập. Đề nghị một cách kiểm tra cụ thể.",
+      "model": "Four people mentioned transport. Could we compare acceptance rates on shifts that finish before and after the last bus, at the same allowance?",
+      "meaning": "Bốn người nhắc đến đi lại. Ta có thể so tỷ lệ nhận việc của các ca tan trước và sau chuyến xe cuối với cùng mức phụ cấp không?",
+      "check": "Dùng đúng mẫu số và đề xuất so hai nhóm có cùng mức phụ cấp."
+    }
   }
 ]
