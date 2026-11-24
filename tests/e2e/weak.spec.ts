@@ -19,12 +19,22 @@ test('ôn điểm yếu: chấm sai vài mục → Hôm nay hiện "Ôn điểm 
   const P = info.project.name;
   const found: string[] = [];
   const btn = (name: string | RegExp) => page.getByRole('button', { name, exact: typeof name === 'string' });
-  await page.goto('./#hom-nay');
+  // Hai câu thật đều có “Thanks”, mỗi câu có một từ riêng. Đặt cả hai đến hạn để
+  // phiên nghe chép bình thường chọn đúng cặp này dù thứ tự được xáo lại.
+  await page.goto('./#cai-dat');
+  const items = ['en:pt-0010', 'en:pt-0026'].map(id => ({ id, box: 3, due: '2020-01-01', wrong: 0, last: 0 }));
+  await page.getByTestId('import-file').setInputFiles({
+    name: 'hai-cau-den-han.json', mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify({ app: 'daily-study', format: 1, items, days: [], notes: [], reviews: [], settings: [] })),
+  });
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Gộp' }).click();
+  await expect(page.getByTestId('backup-status')).toContainText('Đã gộp');
+  await openTab(page, 'hom-nay');
   // Chưa có điểm yếu: trạng thái rỗng thân thiện, không có nút bắt đầu.
   await expect(page.getByTestId('weak-empty')).toBeVisible();
   await expect(btn(/^Ôn điểm yếu \(/)).toHaveCount(0);
 
-  // (a) Nghe chép 2 câu, mỗi câu gõ sai đúng một từ (từ dài nhất) → 2 "từ hay sai".
+  // (a) Sai một từ riêng ở mỗi câu. “Thanks” sai ở câu đầu rồi được chép đúng ở câu sau.
   // Làm trước phần thẻ từ: nghe chép ưu tiên câu của thẻ đến hạn, sẽ chấm lại chính thẻ vừa Quên.
   await btn(/^Nghe chép/).click();
   const box = page.getByRole('textbox', { name: 'Gõ lại câu bạn nghe được' });
@@ -32,9 +42,12 @@ test('ôn điểm yếu: chấm sai vài mục → Hôm nay hiện "Ôn điểm 
   for (let k = 0; k < 2; k++) {
     await btn('Nghe câu').click();
     const words = ((await spoken(page)).at(-1) ?? '').trim().split(/\s+/);
-    const long = words.reduce((a, w) => (wordKey(w).length > wordKey(a).length ? w : a), '');
-    missed.push(wordKey(long));
-    await box.fill(words.map((w) => (w === long ? 'zzzz' : w)).join(' '));
+    const keys = words.map(wordKey);
+    expect(keys).toContain('thanks');
+    const target = keys.includes('appreciate') ? 'appreciate' : 'everyone';
+    expect(keys).toContain(target);
+    missed.push(target);
+    await box.fill(words.map((word, i) => (keys[i] === target || (k === 0 && keys[i] === 'thanks') ? 'zzzz' : word)).join(' '));
     await btn('Kiểm tra').click();
     await expect(page.getByTestId('dict-score')).not.toHaveText('100%');
     await btn('Câu tiếp').click();
@@ -55,7 +68,9 @@ test('ôn điểm yếu: chấm sai vài mục → Hôm nay hiện "Ôn điểm 
   await openTab(page, 'tien-do');
   const list = page.getByTestId('miss-list');
   await list.scrollIntoViewIfNeeded();
-  for (const w of new Set(missed)) await expect(list.getByText(w, { exact: true })).toBeVisible();
+  expect([...missed].sort()).toEqual(['appreciate', 'everyone']);
+  for (const w of missed) await expect(list.getByText(w, { exact: true })).toBeVisible();
+  await expect(list.getByText('thanks', { exact: true })).toHaveCount(0);
   await list.getByRole('button', { name: `Nghe: ${missed[0]}` }).click();
   expect((await spoken(page)).at(-1)).toBe(missed[0]);
   await audit(page, 'tien-do-tu-hay-sai', found);
