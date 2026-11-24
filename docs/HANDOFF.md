@@ -63,6 +63,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #58 | Lưu nháp riêng cho hai hồ sơ công bằng lương và so thư mời. Hôm nay mở lại đúng phiếu, kể cả khi ngoại tuyến. |
 | #59 | Đọc thêm có ba bài song ngữ về chọn mẫu số khi so lương, tính thưởng có trọng số và quy đổi FTE; mỗi bài có ba lượt nói và nguồn nghiên cứu về cách học. |
 | #60 | Ba bài C&B mới có sáu tình huống gấp bài tự tính, phản hồi theo đáp số và mức tự tin tùy chọn, kèm lời nhắc mở biến thể còn lại. |
+| #61 | Sau khi tự thử, người học có thể ghi riêng một memo cho từng tình huống và ngày. Sổ memo cho tìm, sửa và mở lại đúng đề, cả khi ngoại tuyến. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

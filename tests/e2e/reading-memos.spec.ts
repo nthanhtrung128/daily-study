@@ -65,13 +65,18 @@ test('sao lưu và khôi phục memo bài học cùng ghi chú thẻ', async ({ 
   expect(backup.notes).toEqual([{ id: 'trm-17-04', text: 'So sánh option và RSU', at: expect.any(Number) }]);
   backup.notes[0].text = 'Đọc lại điều kiện vesting';
   backup.notes.push({ id: 'tr:K001', text: 'Ghi chú thẻ riêng', at: Date.now() });
+  backup.notes.push({ id: 'trm-09-03:tu-nho:2:2026-11-10', text: 'Giải thích được FTE.', at: Date.now() });
   await page.getByTestId('import-file').setInputFiles({
     name: 'memo.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(backup)),
   });
   await page.getByRole('alertdialog').getByRole('button', { name: 'Thay thế' }).click();
   await expect(page.getByTestId('backup-status')).toContainText('Đã thay tiến độ');
   await openTab(page, 'lo-trinh');
-  await page.getByRole('link', { name: 'Sổ memo bài học (1)' }).click();
-  await expect(page.locator('.memo-list li')).toHaveCount(1);
+  await page.getByRole('link', { name: 'Sổ memo bài học (2)' }).click();
+  await expect(page.locator('.memo-list li')).toHaveCount(2);
   await expect(page.locator('.memo-list')).toContainText('Đọc lại điều kiện vesting');
+  await page.getByRole('link', { name: /Tình huống 2 · 10\/11\/2026/ }).click();
+  await expect(page.getByRole('textbox')).toHaveValue('Giải thích được FTE.');
+  await page.getByRole('link', { name: 'Làm lại tình huống này' }).click();
+  await expect(page).toHaveURL(/bai=doi-boi-canh-fte&tu-nho=2$/);
 });

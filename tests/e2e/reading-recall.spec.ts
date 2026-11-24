@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { audit } from './helpers/audit';
+import { audit, trackErrors } from './helpers/audit';
 
 test('gấp bài, tự nhớ khi ngoại tuyến, đối chiếu độ chắc và đổi dữ kiện', async ({ page, context }) => {
   await page.goto('/#lo-trinh?bai=trm-05-02');
@@ -47,4 +47,65 @@ test('tự tính thưởng và FTE trên bốn tình huống mới', async ({ pa
     await audit(page, 'tu-nho', findings);
     expect(findings).toEqual([]);
   }
+});
+
+test('memo tự thử theo ngày và đề, mở lại và sửa từ sổ khi ngoại tuyến', async ({ page, context }) => {
+  const errors = trackErrors(page);
+  await page.clock.setFixedTime(new Date('2026-11-10T12:00:00'));
+  await page.goto('/#lo-trinh?bai=trm-05-02');
+  const saved = page.getByText('Đã lưu trên máy.');
+  await page.getByRole('textbox', { name: 'Memo của bài' }).fill('Memo bài chính.');
+  await expect(saved).toBeVisible();
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+  await page.reload();
+  await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+  await context.setOffline(true);
+
+  await page.getByRole('link', { name: /Đọc thêm · Chọn mẫu số/ }).click();
+  await page.getByRole('link', { name: 'Gấp bài và tự thử' }).click();
+  const memo = page.getByText('Ghi memo lần tự thử', { exact: true });
+  async function answer(value: string) {
+    await expect(memo).toHaveCount(0);
+    await page.getByRole('textbox', { name: /Đáp số/ }).fill(value);
+    await page.getByRole('button', { name: 'Đối chiếu đáp số' }).click();
+    await memo.click();
+  }
+  await answer('93,75');
+  const first = 'Tôi còn nhầm mẫu số.';
+  const second = 'Tôi giải thích được trung điểm.';
+  const nextDay = 'Tôi đã tự tính được.';
+  await page.getByRole('textbox', { name: 'Tình huống 1 · 10/11/2026' }).fill(first);
+  await expect(saved).toBeVisible();
+  await page.getByRole('link', { name: 'Thử tình huống khác' }).click();
+  await answer('95');
+  await page.getByRole('textbox', { name: 'Tình huống 2 · 10/11/2026' }).fill(second);
+  await expect(saved).toBeVisible();
+  await page.clock.setFixedTime(new Date('2026-11-12T12:00:00'));
+  await page.getByRole('link', { name: 'Thử tình huống khác' }).click();
+  await answer('37,5');
+  const current = page.getByRole('textbox', { name: 'Tình huống 1 · 12/11/2026' });
+  await expect(current).toHaveValue('');
+  await current.fill(nextDay);
+  await expect(saved).toBeVisible();
+  await page.getByRole('link', { name: 'Mở sổ memo' }).click();
+  await page.reload();
+  const entries = page.locator('.memo-list li');
+  await expect(entries).toHaveCount(4);
+  await expect(entries.filter({ hasText: 'Memo bài chính.' })).toHaveCount(1);
+  await page.getByRole('searchbox').fill('m05 nham mau so');
+  await expect(entries).toHaveCount(1);
+  await entries.getByRole('link').click();
+  await expect(page.getByRole('heading', { name: 'Memo lần tự thử' })).toBeFocused();
+  const old = page.getByRole('textbox', { name: 'Tình huống 1 · 10/11/2026' });
+  await expect(old).toHaveValue(first);
+  await old.fill('Đã tìm được mẫu số đúng.');
+  await expect(saved).toBeVisible();
+  await page.getByRole('link', { name: 'Làm lại tình huống này' }).click();
+  await expect(page).toHaveURL(/bai=nho-moc-so-sanh&tu-nho=1$/);
+  await answer('37,5');
+  await expect(current).toHaveValue(nextDay);
+  await page.getByRole('link', { name: 'Mở sổ memo' }).click();
+  await expect(entries).toHaveCount(4);
+  await expect(entries.filter({ hasText: 'Đã tìm được mẫu số đúng.' })).toHaveCount(1);
+  expect(errors).toEqual([]);
 });

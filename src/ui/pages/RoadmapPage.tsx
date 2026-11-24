@@ -91,7 +91,7 @@ export function RoadmapPage() {
   if (params.get('ho-so') === 'thu-moi') return <OfferCase />;
   if (params.get('ho-so') === 'cong-bang-luong') return <PayEquityCase />;
   if (params.get('tong-ket') === '1') return <Capstone />;
-  if (memo) return <MemoBook notes={notes} query={memoQuery} onQuery={setMemoQuery} />;
+  if (memo) return <MemoBook key={params.get('lan')} selected={params.get('lan')} notes={notes} query={memoQuery} onQuery={setMemoQuery} />;
 
   return (
     <section className="stack roadmap-library" aria-labelledby="roadmap-title">

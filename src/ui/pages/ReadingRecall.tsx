@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { readAmount } from '../../modules/tr/raiseBudget';
+import { dayKey } from '../../core/date';
+import { recallMemoId, recallMemoLabel, useReadingMemos } from '../../modules/tr/readingMemos';
+import { LessonMemo } from '../components/ReadingMemos';
 import { fmt } from '../../core/num';
 import { LessonReminder } from '../components/LessonReminder';
 import { useFocusOnMount } from '../useFocusOnMount';
@@ -7,7 +10,8 @@ import { useFocusOnMount } from '../useFocusOnMount';
 type Pair = { en: string; vi: string };
 export type RecallCase = { prompt: Pair; unit: string; answer: number; feedback: string; model: Pair };
 
-export function ReadingRecall({ id, title, task, index, language }: {
+export function ReadingRecall({ id, lessonId, title, task, index, language }: {
+  lessonId: string;
   id: string; title: Pair; task: RecallCase; index: number; language: 'en' | 'vi';
 }) {
   const [value, setValue] = useState('');
@@ -34,6 +38,7 @@ export function ReadingRecall({ id, title, task, index, language }: {
       <h3>Một cách giải thích bằng tiếng Anh</h3><p lang="en">{task.model.en}</p><p>{task.model.vi}</p>
       <p className="hint">Đối chiếu với câu mẫu: bạn đã giải thích lý do chọn phép tính và nêu đúng đơn vị chưa?</p>
       <div className="row"><a className="btn roadmap-link" href={nextHref}>Thử tình huống khác</a></div>
+      <RecallMemo lessonId={lessonId} variant={index + 1} />
       <LessonReminder id={'reading-recall-' + id} title={title.vi} prompt={'Tự tính trước khi xem lại lời giải · ' + title.vi} href={nextHref} />
     </> : <form className="stack" onSubmit={(e) => { e.preventDefault(); if (number !== undefined) setRevealed(true); }}>
       <label className="field">Đáp số ({task.unit})<input type="text" inputMode="decimal" maxLength={10} value={value} onChange={(e) => setValue(e.target.value)} /></label>
@@ -43,4 +48,16 @@ export function ReadingRecall({ id, title, task, index, language }: {
       <div className="row"><button className="btn" disabled={number === undefined}>Đối chiếu đáp số</button></div>
     </form>}
   </section>;
+}
+
+function RecallMemo({ lessonId, variant }: { lessonId: string; variant: number }) {
+  const [day] = useState(() => dayKey());
+  const notes = useReadingMemos();
+  return <details>
+    <summary>Ghi memo lần tự thử</summary>
+    <LessonMemo id={recallMemoId(lessonId, variant, day)} notes={notes}
+      title={recallMemoLabel(variant, day)}
+      prompt="Bạn tự tính được đến bước nào? Có cần xem lại bài hoặc đọc câu mẫu để giải thích bằng tiếng Anh?" />
+    <a className="reading-result-link" href="#lo-trinh?memo=1">Mở sổ memo</a>
+  </details>;
 }
