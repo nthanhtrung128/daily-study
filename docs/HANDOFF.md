@@ -65,6 +65,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #60 | Ba bài C&B mới có sáu tình huống gấp bài tự tính, phản hồi theo đáp số và mức tự tin tùy chọn, kèm lời nhắc mở biến thể còn lại. |
 | #61 | Sau khi tự thử, người học có thể ghi riêng một memo cho từng tình huống và ngày. Sổ memo cho tìm, sửa và mở lại đúng đề, cả khi ngoại tuyến. |
 | #62 | Đặt tiêu điểm vào tiêu đề trước lần vẽ đầu tiên để giữ con trỏ và chữ số khi người học chạm ô nhập ngay lúc mở đề trên WebKit. |
+| #63 | Ba bài đọc Anh–Việt về bắt chuyện đầu ca, giải thích thưởng và kiểm tra đề xuất phụ cấp. Mỗi bài có ba lượt hội thoại, câu tự kiểm và nguồn tham khảo. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
