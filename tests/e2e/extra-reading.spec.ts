@@ -9,9 +9,9 @@ test('lọc nguồn, đối chiếu hai ngôn ngữ và tự kiểm tra khi ngo�
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   await context.setOffline(true);
   const list = page.getByRole('list', { name: 'Danh sách bài đọc' });
-  await expect(list.getByRole('link')).toHaveCount(12);
+  await expect(list.getByRole('link')).toHaveCount(15);
   await page.getByRole('button', { name: 'Quốc tế' }).click();
-  await expect(list.getByRole('link')).toHaveCount(8);
+  await expect(list.getByRole('link')).toHaveCount(11);
   await page.getByRole('button', { name: 'Việt Nam' }).click();
   await expect(list.getByRole('link')).toHaveCount(4);
   const item = list.getByRole('link', { name: 'Which engineers belong in the comparison?' });

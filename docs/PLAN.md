@@ -54,6 +54,12 @@ Sau khi đối chiếu một trong sáu tình huống, chọn **Ghi memo lần t
 
 **Đề xuất sau hai tuần dùng.** Người học có thể ghi vào memo ba điều cho mỗi chủ đề: lần sau có tự tính đúng với dữ kiện mới không, có cần mở bài mẫu không, và có giải thích được bằng một câu tiếng Anh không. Nếu tiếp tục nhầm cùng một bước qua hai ngày, ưu tiên thêm cặp bài đối chiếu đúng bước đó. Nếu tính đúng nhưng ngập ngừng khi giải thích, ưu tiên luyện hỏi–đáp và nghe lại lời nói. Ba bài là thử nghiệm nhỏ; các kết quả nghiên cứu trên tài liệu học tập chỉ hướng dẫn thiết kế, chưa xác nhận hiệu quả của Daily Study.
 
+## Tình huống công việc trong tuần
+
+1. Đọc và luyện ba tình huống song ngữ về bắt chuyện, giải thích thưởng và phản biện đề xuất phụ cấp ca.
+2. Chọn một tình huống từ Hôm nay, trả lời từng câu trong lượt khoảng hai phút và quay lại tiếp tục câu kế tiếp.
+3. Nhìn lại hai lượt của cùng tình huống, nghe lại hoặc đọc memo, rồi ghi điều đã dùng được trong công việc và điều muốn luyện tiếp.
+
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
 - Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.
 - Đồng bộ nhiều máy bằng Supabase.

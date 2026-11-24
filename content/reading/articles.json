@@ -736,5 +736,224 @@
         "check": "Gắn dự toán với điều kiện hợp đồng."
       }
     ]
+  },
+  {
+    "id": "chuyen-dau-gio",
+    "region": "Quốc tế",
+    "title": {
+      "en": "A minute before the shift meeting",
+      "vi": "Bắt chuyện trước cuộc họp ca"
+    },
+    "source": {
+      "publisher": "Huang và cộng sự",
+      "name": "It doesn't hurt to ask: Question-asking increases liking",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28447835/",
+      "reason": "Nghiên cứu về câu hỏi tiếp nối trong hội thoại. Tình huống đổi ca và lời thoại do Daily Study biên soạn."
+    },
+    "paragraphs": [
+      {
+        "en": "The shift review starts in two minutes. Mai, who works in rewards, has never met the early-shift supervisor. The team has just tried a new handover time. She can invite him to tell a short story by asking how the first week went.",
+        "vi": "Còn hai phút trước cuộc họp giao ca. Mai phụ trách đãi ngộ và mới gặp quản lý ca sáng lần đầu. Nhóm vừa thử giờ bàn giao mới. Mai có thể bắt chuyện bằng cách hỏi tuần đầu diễn ra thế nào."
+      },
+      {
+        "en": "He says the mornings are calmer, but mentions that deliveries still arrive during the handover. Mai follows up on that detail. He explains that two people sometimes leave the briefing to unload a truck. Now she can picture the problem.",
+        "vi": "Anh kể buổi sáng đã bớt cập rập, nhưng xe hàng vẫn đến đúng giờ bàn giao. Mai hỏi tiếp về chi tiết ấy. Anh giải thích có lúc hai người phải rời buổi giao ban để dỡ hàng. Nhờ vậy Mai hình dung được điều nhóm đang gặp."
+      },
+      {
+        "en": "When the meeting chair arrives, Mai thanks him and asks if she can join one briefing next week. He suggests Tuesday. Her next conversation can start with something they both remember.",
+        "vi": "Khi chủ trì cuộc họp đến, Mai cảm ơn và hỏi liệu tuần sau cô có thể dự một buổi giao ban. Anh gợi ý thứ Ba. Lần gặp sau, cả hai đã có một chi tiết chung để bắt chuyện."
+      }
+    ],
+    "terms": [
+      {
+        "en": "handover",
+        "vi": "bàn giao ca"
+      },
+      {
+        "en": "What happens when…?",
+        "vi": "Chuyện gì xảy ra khi…?"
+      },
+      {
+        "en": "sit in on a briefing",
+        "vi": "tham dự một buổi giao ban để quan sát"
+      }
+    ],
+    "question": {
+      "en": "The supervisor says, “Mornings are calmer, except when the truck is early.” Which detail could you ask about?",
+      "vi": "Quản lý nói buổi sáng đã đỡ vội, trừ hôm xe hàng đến sớm. Bạn có thể hỏi tiếp về chi tiết nào?"
+    },
+    "answer": {
+      "en": "Ask what the team does when the truck arrives during handover. The answer can tell you where the two tasks overlap.",
+      "vi": "Hỏi nhóm xử lý thế nào khi xe đến đúng giờ bàn giao. Lời đáp sẽ cho biết hai việc bị trùng ở bước nào."
+    },
+    "turns": [
+      {
+        "cue": "We've just finished our first week on the new shifts.",
+        "task": "Bạn mới gặp quản lý ca sáng. Mở lời bằng một câu hỏi để họ kể về tuần đầu.",
+        "model": "How did the first week on the new shift go for your team?",
+        "meaning": "Tuần đầu làm theo ca mới của nhóm anh diễn ra thế nào?",
+        "check": "Đặt một câu hỏi mở về trải nghiệm của nhóm."
+      },
+      {
+        "cue": "It's easier most mornings, except when a delivery turns up early.",
+        "task": "Hỏi tiếp đúng chi tiết xe hàng đến sớm trong lời quản lý.",
+        "model": "What happens at handover when a truck arrives early?",
+        "meaning": "Khi xe hàng đến sớm thì buổi bàn giao ca diễn ra thế nào?",
+        "check": "Nhắc đúng chi tiết vừa nghe và để người kia giải thích."
+      },
+      {
+        "cue": "The meeting is starting. Our Tuesday briefing might give you a clearer picture.",
+        "task": "Cảm ơn và xin phép tham dự một buổi cụ thể.",
+        "model": "Thanks for the tip. Could I sit in on Tuesday's briefing?",
+        "meaning": "Cảm ơn anh đã gợi ý. Tôi có thể dự buổi giao ban thứ Ba được không?",
+        "check": "Kết thúc tự nhiên bằng một bước tiếp theo có sự đồng ý."
+      }
+    ]
+  },
+  {
+    "id": "giai-thich-thuong",
+    "region": "Quốc tế",
+    "title": {
+      "en": "I beat my target. Why is my bonus lower?",
+      "vi": "Giải thích thưởng cho nhân viên"
+    },
+    "source": {
+      "publisher": "CIPD",
+      "name": "Incentives and recognition: an evidence review",
+      "url": "https://www.cipd.org/globalassets/media/knowledge/knowledge-hub/evidence-reviews/incentives-recognition-practice-summary_tcm18-105466.pdf",
+      "reason": "Tài liệu tham khảo về thưởng và ghi nhận. Các tỷ lệ, số tiền và quy tắc tuyến tính trong bài thuộc chính sách giả định."
+    },
+    "paragraphs": [
+      {
+        "en": "An employee asks Lan for a private conversation. His target bonus is VND 20 million. He achieved 110% of his personal target, yet the bonus notice shows VND 19.2 million. Lan asks which line he would like to go through first.",
+        "vi": "Một nhân viên hẹn gặp riêng Lan. Mức thưởng mục tiêu là 20 triệu đồng. Anh đạt 110% mục tiêu cá nhân nhưng phiếu thông báo ghi 19,2 triệu. Lan hỏi anh muốn xem lại dòng nào trước."
+      },
+      {
+        "en": "In this example the payout is linear, with no threshold or cap. The team carries 70% of the weight and achieved 90%. That contributes 63 percentage points. The personal result carries the other 30% and contributes 33 points. Together they give 96% of the target bonus.",
+        "vi": "Trong ví dụ này, tiền thưởng tính tuyến tính, không có ngưỡng hay trần. Nhóm chiếm trọng số 70% và đạt 90%, đóng góp 63 điểm phần trăm. Cá nhân chiếm 30% còn lại và đóng góp 33 điểm. Tổng cộng bằng 96% mức thưởng mục tiêu."
+      },
+      {
+        "en": "Lan acknowledges the extra work, then puts the two lines of the calculation side by side. The employee asks how to check the team figure. They agree to look at the approved team result together on Thursday.",
+        "vi": "Lan ghi nhận nỗ lực của nhân viên, sau đó đặt hai dòng tính cạnh nhau. Anh hỏi có thể kiểm tra kết quả nhóm ở đâu. Hai người hẹn thứ Năm cùng đối chiếu bảng kết quả đã duyệt."
+      }
+    ],
+    "terms": [
+      {
+        "en": "target bonus",
+        "vi": "mức thưởng mục tiêu"
+      },
+      {
+        "en": "team weighting",
+        "vi": "trọng số của nhóm"
+      },
+      {
+        "en": "walk someone through a figure",
+        "vi": "giải thích từng bước để người nghe hiểu một con số"
+      }
+    ],
+    "question": {
+      "en": "How would you explain the difference between 110% and 96% to the employee?",
+      "vi": "Bạn giải thích thế nào để nhân viên hiểu hai con số 110% và 96%?"
+    },
+    "answer": {
+      "en": "110% measures personal achievement. The 96% payout combines 63 points from the team with 33 from the individual. Multiplying 20 million by 96% gives 19.2 million dong.",
+      "vi": "110% là mức đạt cá nhân. Hệ số chi thưởng 96% gồm 63 điểm từ nhóm và 33 điểm từ cá nhân. Lấy 20 triệu nhân 96% được 19,2 triệu đồng."
+    },
+    "turns": [
+      {
+        "cue": "I beat my target. Why is my bonus below target?",
+        "task": "Ghi nhận mức đạt cá nhân 110% và gọi tên hai thành phần chi thưởng.",
+        "model": "You reached 110% of your own target. Your bonus also includes a team component. Shall we look at both parts together?",
+        "meaning": "Bạn đã đạt 110% mục tiêu cá nhân. Tiền thưởng còn có phần kết quả nhóm. Ta xem cả hai phần cùng nhau nhé?",
+        "check": "Ghi nhận thành tích trước khi giải thích phần nhóm."
+      },
+      {
+        "cue": "How did the two results turn into my payment?",
+        "task": "Nhóm đạt 90% với trọng số 70%. Cá nhân đạt 110% với trọng số 30%. Giải thích số tiền trên mức mục tiêu 20 triệu đồng.",
+        "model": "The team contributed 63 points and your result added 33. That gives 96% of 20 million dong, or 19.2 million.",
+        "meaning": "Nhóm đóng góp 63 điểm, kết quả của bạn thêm 33 điểm. Vậy số tiền bằng 96% của 20 triệu đồng, tức 19,2 triệu.",
+        "check": "Giải thích được hệ số 96% và số tiền, đúng đơn vị."
+      },
+      {
+        "cue": "Can we check where the team figure came from?",
+        "task": "Hẹn kiểm tra số liệu gốc cùng nhân viên và nói rõ thời điểm.",
+        "model": "Of course. Let's check the approved team result and the calculation together on Thursday.",
+        "meaning": "Được chứ. Thứ Năm ta cùng đối chiếu kết quả nhóm đã duyệt và phép tính nhé.",
+        "check": "Chỉ ra tài liệu cần xem và hẹn một thời điểm cụ thể."
+      }
+    ]
+  },
+  {
+    "id": "kiem-tra-phu-cap-ca",
+    "region": "Quốc tế",
+    "title": {
+      "en": "Would a higher allowance fill the evening shift?",
+      "vi": "Phản biện đề xuất tăng phụ cấp ca"
+    },
+    "source": {
+      "publisher": "CIPD",
+      "name": "Evidence-based practice for effective decision-making",
+      "url": "https://www.cipd.org/en/knowledge/factsheets/evidence-based-practice-factsheet/",
+      "reason": "Khung ra quyết định nhân sự bằng chứng cứ gợi ý kết hợp dữ liệu tổ chức với ý kiến của người liên quan. Số liệu tuyển ca trong bài là giả định."
+    },
+    "paragraphs": [
+      {
+        "en": "The operations manager wants to raise the evening shift allowance. Four offers went out and two candidates declined. One mentioned getting home after the last bus. The other gave no reason.",
+        "vi": "Quản lý vận hành muốn tăng phụ cấp ca tối. Trong bốn thư mời có hai ứng viên từ chối. Một người nhắc chuyện về nhà sau chuyến xe buýt cuối, người còn lại không nêu lý do."
+      },
+      {
+        "en": "An asks to see the finish times and the reasons candidates gave, alongside the current allowance. If refusals cluster on late finishes, a different timetable might help. If candidates repeatedly cite pay on shifts with similar hours, the allowance merits a closer look.",
+        "vi": "An xin xem giờ tan ca, lý do ứng viên đã nêu và mức phụ cấp hiện tại. Nếu nhiều người từ chối các ca kết thúc muộn, điều chỉnh giờ có thể hữu ích. Nếu ứng viên liên tục nhắc thu nhập ở các ca có khung giờ tương tự, nhóm nên phân tích kỹ mức phụ cấp."
+      },
+      {
+        "en": "The manager and the recruiter agree to record the next ten offers, keeping a separate line for each shift. On Friday they will review what they know and which questions still need an answer. Candidates can choose whether to share a reason.",
+        "vi": "Quản lý và tuyển dụng thống nhất ghi lại mười thư mời tiếp theo, tách từng ca. Thứ Sáu họ sẽ xem bằng chứng đang có và câu hỏi còn bỏ ngỏ. Ứng viên có thể tự chọn chia sẻ lý do."
+      }
+    ],
+    "terms": [
+      {
+        "en": "decline an offer",
+        "vi": "từ chối thư mời"
+      },
+      {
+        "en": "finish time",
+        "vi": "giờ kết thúc ca"
+      },
+      {
+        "en": "rule out an explanation",
+        "vi": "loại trừ một cách giải thích"
+      }
+    ],
+    "question": {
+      "en": "What would help you distinguish a pay concern from a transport problem?",
+      "vi": "Dữ kiện nào giúp bạn phân biệt băn khoăn về thu nhập với khó khăn đi lại?"
+    },
+    "answer": {
+      "en": "Compare refusals for similar roles by allowance and finish time, and ask candidates what influenced their decision. Two declines alone leave both explanations open.",
+      "vi": "Đối chiếu các lượt từ chối ở vị trí tương đương theo phụ cấp và giờ tan ca, đồng thời hỏi điều gì tác động đến quyết định của ứng viên. Hai lượt từ chối vẫn chưa đủ để chọn nguyên nhân."
+    },
+    "turns": [
+      {
+        "cue": "Two candidates turned us down. Let's raise the evening shift allowance.",
+        "task": "Thừa nhận khó khăn tuyển ca rồi hỏi một câu để phân biệt nguyên nhân do thu nhập hay giờ làm.",
+        "model": "I can see the shift is hard to fill. Did either candidate mention the pay or the time they would get home?",
+        "meaning": "Tôi hiểu ca này khó tuyển. Có ai nhắc đến thu nhập hoặc giờ họ sẽ về đến nhà không?",
+        "check": "Gọi tên hai khả năng và đặt câu hỏi trung lập."
+      },
+      {
+        "cue": "One mentioned the last bus; the other didn't give a reason.",
+        "task": "Nêu điều đã biết và điều còn thiếu trước khi đưa ra kết luận.",
+        "model": "We have one transport concern. What do we know about candidates offered the same allowance on an earlier shift?",
+        "meaning": "Ta có một phản hồi về đi lại. Ta biết gì về các ứng viên được đề nghị cùng mức phụ cấp ở ca kết thúc sớm hơn?",
+        "check": "Tách một quan sát khỏi kết luận chung và chọn nhóm so sánh."
+      },
+      {
+        "cue": "What should we collect before Friday's meeting?",
+        "task": "Chốt dữ liệu cần thu, người thực hiện và thời điểm đối chiếu.",
+        "model": "Could recruitment log the finish time, allowance and any reason given for the next ten offers? We can review the entries on Friday.",
+        "meaning": "Nhờ nhóm tuyển dụng ghi giờ tan ca, phụ cấp và lý do được chia sẻ cho mười thư mời tiếp theo. Thứ Sáu ta cùng xem các lượt đã ghi nhé.",
+        "check": "Có người phụ trách, dữ kiện cụ thể và ngày xem lại."
+      }
+    ]
   }
 ]
