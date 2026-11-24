@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto';
 import { expect, it } from 'vitest';
 import { StudyDB } from '../../src/core/db';
 import { applyBackup, exportBackup, parseBackup } from '../../src/core/backup';
-import { finishWorkTurn, openWorkTurn, weeklyChoiceKey, weeklyOpenPrefix, workReviews } from '../../src/core/workWeek';
+import { finishWorkTurn, openWorkTurn, weeklyChoiceKey, weeklyOpenPrefix, workReviews, workWeekSnapshot } from '../../src/core/workWeek';
 
 it('giữ câu dở, ghi đúng một lượt, sang tuần đổi đề rồi quay về lượt kế tiếp', async () => {
   const store = new StudyDB('week-' + crypto.randomUUID());
@@ -31,4 +31,37 @@ it('giữ câu dở, ghi đúng một lượt, sang tuần đổi đề rồi qu
     expect((await store.notes.get(a.id))?.text).toBe('Hai phần của khoản thưởng.');
     expect((await store.settings.get(weeklyChoiceKey))?.value).toBe(id);
   } finally { await store.delete(); }
+});
+
+it('đối chiếu cùng tình huống, ưu tiên khác ngày, giữ memo và đúng bản ghi sau khôi phục', async () => {
+  const store = new StudyDB('journal-' + crypto.randomUUID());
+  const restored = new StudyDB('journal-restored-' + crypto.randomUUID());
+  const topic = 'giai-thich-thuong';
+  async function answer(day: string, hour: number, memo: string, name = topic) {
+    const turn = await openWorkTurn(name, 4, day, store);
+    const date = new Date(day + 'T' + hour + ':00:00');
+    await store.notes.put({ id: turn.id, at: date.getTime(), text: memo });
+    await finishWorkTurn(name, turn, 2, date.getTime(), date, store);
+    return turn.id;
+  }
+  try {
+    const monday = await answer('2026-11-23', 10, 'Nhắc lại mục tiêu.');
+    await store.recordings.add({ topicId: monday, title: 'Thử câu đầu', at: 10, ms: 3000, mime: 'audio/mp4', data: new ArrayBuffer(3), size: 3 });
+    await answer('2026-11-25', 10, 'Câu sáng.');
+    const latest = await answer('2026-11-25', 16, 'Tách phần cá nhân.');
+    await answer('2026-11-27', 11, 'Chủ đề khác.', 'chuyen-dau-gio');
+    expect((await workWeekSnapshot(topic, 4, '2026-11-23', store)).entries.map(e => e.review.itemId)).toEqual([monday, latest]);
+    expect(await workWeekSnapshot(topic, 4, '2026-11-30', store)).toEqual({ count: 0, entries: [] });
+    const next = await answer('2026-12-01', 12, 'Trọng số mới.');
+    expect((await workWeekSnapshot(topic, 4, '2026-11-30', store)).entries.map(e => e.review.itemId)).toEqual([latest, next]);
+    await answer('2026-12-01', 16, 'Luyện lại buổi chiều.');
+    expect((await workWeekSnapshot(topic, 4, '2026-11-30', store)).entries.map(e => e.review.day)).toEqual(['2026-12-01', '2026-12-01']);
+    await store.notes.put({ id: 'en:weekly-reflection:' + topic + ':2026-11-23', text: 'Tôi đã giải thích cho quản lý.', at: 42 });
+    const archive = parseBackup(await exportBackup(store, new Date(), { recordings: true }));
+    await applyBackup(archive, 'replace', restored);
+    const snapshot = await workWeekSnapshot(topic, 4, '2026-11-23', restored);
+    expect(snapshot.count).toBe(3);
+    expect(snapshot.entries.map(e => [e.memo, e.hasRecording])).toEqual([['Nhắc lại mục tiêu.', true], ['Tách phần cá nhân.', false]]);
+    expect((await restored.notes.get('en:weekly-reflection:' + topic + ':2026-11-23'))?.text).toBe('Tôi đã giải thích cho quản lý.');
+  } finally { await store.delete(); await restored.delete(); }
 });

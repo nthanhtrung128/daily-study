@@ -5,3 +5,5 @@ export const workTopics = articles.flatMap(article => article.weeklyFollowUp && 
   : []);
 export type WorkTopic = typeof workTopics[number];
 export const workHref = (id: string) => '#hom-nay?tinh-huong=' + encodeURIComponent(id);
+export const journalHref = (id?: string, week?: string) =>
+  '#hom-nay?nhin-lai=' + encodeURIComponent(id ?? 'tuan') + (week ? '&tuan=' + encodeURIComponent(week) : '');

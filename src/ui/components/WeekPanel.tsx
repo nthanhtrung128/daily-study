@@ -1,3 +1,4 @@
+import { journalHref } from '../../modules/english/workTopics';
 import { useState } from 'react';
 import { fmt } from '../../core/num';
 import { DAY_SHORT_VI } from '../../core/prefs';
@@ -130,6 +131,7 @@ export function WeekPanel({ p, goalMin }: { p: Progress; goalMin: number }) {
           </p>
         </>
       )}
+      <a className="reading-result-link" href={journalHref(undefined, start)}>Nhìn lại tình huống công việc</a>
     </div>
   );
 }
