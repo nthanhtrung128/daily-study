@@ -68,6 +68,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #63 | Ba bài đọc Anh–Việt về bắt chuyện đầu ca, giải thích thưởng và kiểm tra đề xuất phụ cấp. Mỗi bài có ba lượt hội thoại, câu tự kiểm và nguồn tham khảo. |
 | #64 | Hôm nay cho chọn tình huống trong tuần và luyện một câu khoảng hai phút. Ghi âm hoặc viết memo trên máy, quay lại đúng chủ đề và thử dữ kiện mới khi sang tuần. |
 | #65 | Nhìn lại tuần từ Hôm nay hoặc Tiến độ. Đọc memo, nghe lại hai lượt của cùng tình huống và ghi điều đã áp dụng, điều muốn luyện tiếp theo từng tuần trên máy. |
+| #66 | Tab Đọc thêm cho tìm bài Anh–Việt không dấu và lọc theo nguồn ngay khi ngoại tuyến. Cả hai tiêu đề mở bài, có lối vào lượt luyện tuần ngay trong bài phù hợp. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

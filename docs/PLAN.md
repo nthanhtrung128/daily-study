@@ -60,6 +60,11 @@ Sau khi đối chiếu một trong sáu tình huống, chọn **Ghi memo lần t
 2. Chọn một tình huống từ Hôm nay, trả lời từng câu trong lượt khoảng hai phút và quay lại tiếp tục câu kế tiếp.
 3. Nhìn lại hai lượt của cùng tình huống, nghe lại hoặc đọc memo, rồi ghi điều đã dùng được trong công việc và điều muốn luyện tiếp.
 
+## Tìm bài và luyện từ thư viện
+
+1. Tìm theo tiêu đề, cụm từ và nội dung Anh–Việt, kết hợp với nguồn. Chạm một trong hai tiêu đề để đọc và bắt đầu lượt luyện tuần từ bài phù hợp.
+2. Bổ sung hai bài có lời thoại và dữ kiện tuần sau về đối chiếu hỗ trợ bữa ăn trên phiếu lương và trao đổi khi một nhân viên muốn xét lại ngạch.
+
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
 - Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.
 - Đồng bộ nhiều máy bằng Supabase.

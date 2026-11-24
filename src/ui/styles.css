@@ -397,6 +397,9 @@ body:has(main .roadmap-reader) .top { position: static; }
 .memo-list, .reading-results { list-style: none; padding: 0; margin: 0; }
 .memo-list li, .reading-results li { border-top: 1px solid var(--line); padding: 12px 0; }
 .memo-source, .reading-result-link { display: flex; align-items: center; min-height: var(--tap); color: var(--accent); font-weight: 600; overflow-wrap: anywhere; }
+.article-titles { display: grid; align-content: center; gap: 4px; padding-block: 4px; text-decoration: none; }
+.article-titles [lang="en"] { text-decoration: underline; text-underline-offset: 0.16em; }
+.article-titles [lang="vi"] { color: var(--ink); font-weight: 400; }
 .memo-excerpt { white-space: pre-wrap; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
 .roadmap-reader { max-width: 66ch; margin-inline: auto; gap: 24px; }
 .roadmap-reading { display: grid; gap: 10px; }

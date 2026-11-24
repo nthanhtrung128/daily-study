@@ -3,6 +3,8 @@ import { ReadingRecall, type RecallCase } from './ReadingRecall';
 import recall from '../../../content/reading/recall.json';
 import { ReadingConversation } from './ReadingConversation';
 import articles from '../../../content/reading/articles.json';
+import { allReadings, findReadings, keepReadingFilters, readReadingFilters, readingRegions, type ReadingFilters } from '../../modules/english/readingSearch';
+import { workHref } from '../../modules/english/workTopics';
 import { lessonHref } from '../routes';
 import { useLocationHash } from '../useHashRoute';
 import { useFocusOnMount } from '../useFocusOnMount';
@@ -11,7 +13,6 @@ type Article = typeof articles[number];
 const practice: Readonly<Record<string, { lesson: string; tasks: readonly RecallCase[] }>> = recall;
 type Language = 'en' | 'vi';
 const languageNames = { en: 'English', vi: 'Tiếng Việt' };
-const regions = ['Tất cả', 'Việt Nam', 'Quốc tế'];
 
 export function ExtraReadingPage() {
   const hash = useLocationHash();
@@ -19,7 +20,9 @@ export function ExtraReadingPage() {
   const id = params.get('bai');
   const variant = params.get('tu-nho');
   const article = articles.find((item) => item.id === id);
-  const [region, setRegion] = useState('Tất cả');
+  const [filters, setFilters] = useState(readReadingFilters);
+  const search = useRef<HTMLInputElement>(null);
+  const count = useRef<HTMLParagraphElement>(null);
   const [language, setLanguage] = useState<Language>('en');
   const previous = useRef<string | null>(null);
   const heading = useFocusOnMount<HTMLHeadingElement>(!article);
@@ -42,26 +45,42 @@ export function ExtraReadingPage() {
     if (exercise && task) return <ReadingRecall key={hash} lessonId={exercise.lesson} title={article.title} id={article.id} task={task} index={index} language={language} />;
   }
   if (article) return <Reader key={article.id} article={article} language={language} onLanguage={setLanguage} />;
-  const visible = articles.filter((item) => region === 'Tất cả' || item.region === region);
+  function changeFilters(next: ReadingFilters) {
+    setFilters(next);
+    keepReadingFilters(next);
+  }
+  const visible = findReadings(filters);
+  const filtered = !!filters.query || filters.region !== allReadings.region;
   return (
     <section className="panel stack" aria-labelledby="extra-title">
-      <header className="stack">
-        <h1 className="h-page" ref={heading} id="extra-title" tabIndex={-1}>Đọc thêm</h1>
-        <p>Luyện đọc tiếng Anh qua tình huống công sở và đãi ngộ. Mỗi bài có bản tiếng Việt để đối chiếu.</p>
-      </header>
-      <div className="row" role="group" aria-label="Lọc theo nguồn">
-        {regions.map((name) => <button key={name} type="button" className="chip" aria-pressed={region === name}
-          onClick={() => setRegion(name)}>{name}</button>)}
+      <h1 className="h-page" ref={heading} id="extra-title" tabIndex={-1}>Đọc thêm</h1>
+      <form role="search" aria-label="Tìm trong thư viện bài đọc" className="stack"
+        onSubmit={event => { event.preventDefault(); count.current?.focus(); }}>
+        <label className="field">
+          <strong>Tìm bài đọc bằng tiếng Anh hoặc tiếng Việt</strong>
+          <input type="search" ref={search} enterKeyHint="search" placeholder="Ví dụ: phụ cấp ca, handover"
+            value={filters.query} onChange={event => changeFilters({ ...filters, query: event.target.value })} />
+        </label>
+        <div className="row" role="group" aria-label="Lọc theo nguồn">
+          {readingRegions.map(name => <button key={name} type="button" className="chip" aria-pressed={filters.region === name}
+            onClick={() => changeFilters({ ...filters, region: name })}>{name}</button>)}
+        </div>
+      </form>
+      <div className="row">
+        <p className="hint" role="status" ref={count} tabIndex={-1}>{visible.length
+          ? `${visible.length} bài đọc` : 'Không tìm thấy bài đọc. Thử từ khác hoặc đặt lại bộ lọc.'}</p>
+        {filtered && <button type="button" className="btn ghost small" onClick={() => {
+          changeFilters(allReadings); search.current?.focus();
+        }}>Đặt lại bộ lọc</button>}
       </div>
-      <p className="hint" role="status">{visible.length} bài đọc</p>
       <ul className="reading-results" aria-label="Danh sách bài đọc" role="list">
         {visible.map((item) => (
           <li key={item.id}>
             <span className="eyebrow">{item.region} · {item.source.publisher}</span>
-            <a className="reading-result-link" id={'doc-' + item.id} href={'#doc-them?bai=' + item.id}>
+            <a className="reading-result-link article-titles" id={'doc-' + item.id} href={'#doc-them?bai=' + item.id}>
               <span lang="en">{item.title.en}</span>
+              <span lang="vi">{item.title.vi}</span>
             </a>
-            <p>{item.title.vi}</p>
           </li>
         ))}
       </ul>
@@ -86,6 +105,9 @@ function Reader({ article, language, onLanguage }: {
         {(['en', 'vi'] as const).map((code) => <button key={code} lang={code} type="button" className="chip"
           aria-pressed={language === code} onClick={() => onLanguage(code)}>{languageNames[code]}</button>)}
       </div>
+      {article.weeklyFollowUp && <div><a className="btn roadmap-link" href={workHref(article.id)}>
+        Chọn luyện trong tuần · 2 phút
+      </a></div>}
       {practice[article.id] && <div className="row"><a className="btn ghost roadmap-link" href={'#doc-them?bai=' + article.id + '&tu-nho=1'}>Gấp bài và tự thử</a></div>}
       <div className="stack passages" key={language}>
         {article.paragraphs.map((pair, index) => (
