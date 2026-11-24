@@ -1,5 +1,5 @@
 import { db, type ReviewLog, type StudyDB } from './db';
-import { dayKey } from './date';
+import { addDays, dayKey } from './date';
 import { addStudy, lapSecs, weekStart } from './studytime';
 
 export const weeklyChoiceKey = 'en.weekly.topic';
@@ -22,6 +22,34 @@ export async function workReviews(topic: string, length: number, store = db): Pr
     const turn = decodeTurn(topic, row.itemId, length);
     return turn ? [{ ...row, index: turn.index }] : [];
   }).sort((a, b) => b.at - a.at || (b.id ?? 0) - (a.id ?? 0));
+}
+
+export interface WorkWeekEntry {
+  review: WorkReview;
+  memo: string | undefined;
+  hasRecording: boolean;
+}
+
+export async function workWeekSnapshot(topic: string, length: number, start: string, store = db) {
+  const end = addDays(start, 6);
+  return store.transaction('r', store.reviews, store.notes, store.recordings, async () => {
+    const history = await workReviews(topic, length, store);
+    const inWeek = history.filter(row => row.day >= start && row.day <= end);
+    const latest = inWeek[0];
+    const entries: WorkWeekEntry[] = [];
+    if (latest) {
+      const others = inWeek.filter(row => row.itemId !== latest.itemId);
+      const previous = others.find(row => row.day !== latest.day) ?? others[0]
+        ?? history.find(row => row.day < start && row.itemId !== latest.itemId);
+      for (const review of previous ? [previous, latest] : [latest]) {
+        const [note, recordings] = await Promise.all([
+          store.notes.get(review.itemId), store.recordings.where('topicId').equals(review.itemId).count(),
+        ]);
+        entries.push({ review, memo: note?.text, hasRecording: recordings > 0 });
+      }
+    }
+    return { count: inWeek.length, entries };
+  });
 }
 
 export async function openWorkTurn(topic: string, length: number, today = dayKey(), store: StudyDB = db): Promise<WorkTurn> {

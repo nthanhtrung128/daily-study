@@ -1,3 +1,4 @@
+import { WorkWeekJournal } from '../../modules/english/ui/WorkWeekJournal';
 import { WorkWeekCard, WorkWeekPractice } from '../../modules/english/ui/WorkWeek';
 import { workTopics } from '../../modules/english/workTopics';
 import { useLocationHash } from '../useHashRoute';
@@ -65,6 +66,9 @@ function Chip({ pressed, onClick, children }: { pressed: boolean; onClick: () =>
 
 export function TodayPage() {
   const params = new URLSearchParams(useLocationHash().split('?')[1]);
+  if (params.has('nhin-lai')) {
+    return <WorkWeekJournal selected={params.get('nhin-lai')} week={params.get('tuan')} />;
+  }
   const topic = workTopics.find(t => t.id === params.get('tinh-huong'));
   return topic ? <WorkWeekPractice key={topic.id} topic={topic} /> : <TodayHome />;
 }
