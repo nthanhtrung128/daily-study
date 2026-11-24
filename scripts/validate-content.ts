@@ -186,6 +186,10 @@ function validateReadings() {
       if (!Array.isArray(row.turns) || row.turns.length !== 3) err(where + ': cần ba lượt hội thoại');
       checkList(file, where + '.turns', row.turns, ['cue', 'task', 'model', 'meaning', 'check']);
     }
+    if (row.weeklyFollowUp !== undefined) {
+      checkList(file, where + '.weeklyFollowUp', [row.weeklyFollowUp], ['cue', 'cueVi', 'task', 'model', 'meaning', 'check']);
+      checkList(file, where + '.turns', row.turns, ['cueVi']);
+    }
     const source = row.source;
     if (!isObj(source) || !nonEmpty(source.publisher) || !nonEmpty(source.name) || !nonEmpty(source.reason)
       || !isStr(source.url) || !/^https:\/\/[^/]+\/.+/.test(source.url)) err(`${where}: thiếu nguồn tham khảo`);

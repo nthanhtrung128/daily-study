@@ -1,3 +1,6 @@
+import { WorkWeekCard, WorkWeekPractice } from '../../modules/english/ui/WorkWeek';
+import { workTopics } from '../../modules/english/workTopics';
+import { useLocationHash } from '../useHashRoute';
 import { CommunicationSummary } from '../../modules/english/ui/CommunicationCourse';
 import { useEffect, useRef, useState } from 'react';
 import { liveQuery } from 'dexie';
@@ -61,6 +64,12 @@ function Chip({ pressed, onClick, children }: { pressed: boolean; onClick: () =>
 }
 
 export function TodayPage() {
+  const params = new URLSearchParams(useLocationHash().split('?')[1]);
+  const topic = workTopics.find(t => t.id === params.get('tinh-huong'));
+  return topic ? <WorkWeekPractice key={topic.id} topic={topic} /> : <TodayHome />;
+}
+
+function TodayHome() {
   const p = useProgress();
   const readingReview = useRoadmapReview(p);
   const readingProgress = useRoadmapProgress();
@@ -229,6 +238,7 @@ export function TodayPage() {
           </div>
         ) : course && <><p className="hint">Đã hoàn thành {course.total} bài trong lộ trình</p><CourseRecommendation /></>}
         </SkillDrills>
+        <WorkWeekCard />
         <nav className="hub-library" aria-label="Thư viện học tập">
           <a href="#doc-them">Bài đọc song ngữ</a><a href="#tra-cuu">Tra cứu thuật ngữ</a>
           <a href="#lo-trinh?memo=1">Sổ memo</a><a href="#tien-do">Xem tiến độ</a>

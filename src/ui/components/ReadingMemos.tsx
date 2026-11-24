@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
-import { db } from '../../core/db';
+import { liveQuery } from 'dexie';
+import { useEffect, useRef, useState } from 'react';
+import { db, type Note } from '../../core/db';
 import { fold, matchesAll, queryTokens } from '../../core/fold';
 import { readingMemoSource, type MemoState } from '../../modules/tr/readingMemos';
 import { lessonHref } from '../routes';
@@ -57,8 +58,19 @@ export function MemoBook({ notes, query, onQuery, selected }: {
   );
 }
 
+export function StoredMemo({ id, title, prompt }: { id: string; title: string; prompt: string }) {
+  const [notes, setNotes] = useState<Note[] | null>();
+  useEffect(() => {
+    const sub = liveQuery(() => db.notes.where('id').equals(id).toArray()).subscribe({
+      next: setNotes, error: () => setNotes(null),
+    });
+    return () => sub.unsubscribe();
+  }, [id]);
+  return <LessonMemo id={id} notes={notes} title={title} prompt={prompt} />;
+}
+
 export function LessonMemo({ id, notes, title = 'Memo của bài', prompt }: {
-  id: string; notes: MemoState; title?: string; prompt?: string;
+  id: string; notes: readonly Note[] | null | undefined; title?: string; prompt?: string;
 }) {
   const stored = notes?.find((note) => note.id === id)?.text ?? '';
   const [draft, setDraft] = useState<string>();

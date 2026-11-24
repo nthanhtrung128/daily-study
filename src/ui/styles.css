@@ -477,3 +477,7 @@ body:has(main .roadmap-reader) .top { position: static; }
 .stage-target { scroll-margin-block-start: 8rem; }
 .recall-confidence input { flex: 0 0 var(--tap); width: var(--tap); height: var(--tap); margin: 0; }
 .recall-translation summary { min-height: var(--tap); padding-block: 10px; cursor: pointer; }
+
+.study-hub .work-week { border-block-start: 1px solid var(--line); padding-top: 12px; }
+.work-week summary { min-height: var(--tap); padding-block: 10px; cursor: pointer; font-weight: 600; }
+.work-week fieldset { min-width: 0; }
