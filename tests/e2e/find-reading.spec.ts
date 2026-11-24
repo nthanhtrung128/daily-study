@@ -1,0 +1,55 @@
+import { expect, test } from '@playwright/test';
+import { audit, trackErrors } from './helpers/audit';
+
+test('tìm không dấu, chạm tựa tiếng Việt, luyện ngay rồi quay về đúng kết quả ngoại tuyến', async ({ page, context }) => {
+  const errors = trackErrors(page);
+  await page.goto('/#doc-them');
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+  await page.reload();
+  await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+  await context.setOffline(true);
+  const library = page.getByRole('region', { name: 'Đọc thêm' });
+  const search = library.getByRole('searchbox');
+  await search.fill('phu cap ca');
+  await library.getByRole('button', { name: 'Quốc tế' }).click();
+  await search.press('Enter');
+  await expect(library.getByRole('status')).toBeFocused();
+  const first = library.getByRole('list').getByRole('link').first();
+  await expect(first).toHaveAttribute('id', 'doc-kiem-tra-phu-cap-ca');
+  await first.getByText('Phản biện đề xuất tăng phụ cấp ca').click();
+  await page.getByRole('link', { name: 'Chọn luyện trong tuần · 2 phút' }).click();
+  await expect(page.getByRole('heading', { name: 'Phản biện đề xuất tăng phụ cấp ca' })).toBeVisible();
+  await page.goBack();
+  await page.reload();
+  await page.getByRole('link', { name: 'Về Đọc thêm' }).click();
+  await expect(first).toBeFocused();
+  await expect(search).toHaveValue('phu cap ca');
+  await expect(library.getByRole('button', { name: 'Quốc tế' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('link', { name: 'Chọn luyện trong tuần · 2 phút' })).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
+
+test('kết hợp nguồn và từ trong đoạn, thông báo khi rỗng, đặt lại bằng một chạm', async ({ page }) => {
+  const errors = trackErrors(page);
+  await page.goto('/#doc-them');
+  const library = page.getByRole('region', { name: 'Đọc thêm' });
+  const search = library.getByRole('searchbox');
+  const results = library.getByRole('list').getByRole('link');
+  const initial = await results.count();
+  expect(initial).toBeGreaterThan(0);
+  await search.fill('last bus');
+  await expect(results.filter({ hasText: 'Phản biện đề xuất tăng phụ cấp ca' })).toHaveCount(1);
+  await library.getByRole('button', { name: 'Việt Nam' }).click();
+  await expect(results.filter({ hasText: 'Phản biện đề xuất tăng phụ cấp ca' })).toHaveCount(0);
+  await search.fill('cumbaitapkhongtontai');
+  await expect(library.getByRole('status')).toContainText('Không tìm thấy bài đọc');
+  const found: string[] = [];
+  await audit(page, 'tìm bài khi rỗng', found);
+  expect(found).toEqual([]);
+  await library.getByRole('button', { name: 'Đặt lại bộ lọc' }).click();
+  await expect(search).toBeFocused();
+  await expect(search).toHaveValue('');
+  await expect(library.getByRole('button', { name: 'Tất cả' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(results).toHaveCount(initial);
+  expect(errors).toEqual([]);
+});
