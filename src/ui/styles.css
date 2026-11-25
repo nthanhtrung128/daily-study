@@ -424,8 +424,9 @@ body:has(main .roadmap-reader) .top { position: static; }
 .access-status { overflow-wrap: anywhere; }
 
 .extra-reader .passages p { font-family: var(--f-card); font-size: 1.125rem; line-height: 1.65; overflow-wrap: anywhere; }
-.extra-reader summary { display: list-item; min-height: var(--tap); padding-block: 10px; color: var(--accent); cursor: pointer; font-weight: 600; }
+.extra-reader summary, .reading-resume summary { display: list-item; min-height: var(--tap); padding-block: 10px; color: var(--accent); cursor: pointer; font-weight: 600; }
 .extra-reader .passages details p { padding-inline-start: 12px; border-inline-start: 3px solid var(--line); }
+.reading-resume { background: var(--accent-soft); border-inline-start: 3px solid var(--accent); border-radius: var(--r); padding: 1rem; }
 .word-pairs { margin: 0; }
 .word-pairs > div { border-top: 1px solid var(--line); padding-block: 8px; }
 .word-pairs dt { font-weight: 600; }

@@ -1,4 +1,5 @@
 import { weeklyOpenPrefix } from './workWeek';
+import { conversationPrefix, readConversation } from './readingConversation';
 import { db as defaultDb, type DayStat, type ItemState, type Note, type Recording, type ReviewLog, type Setting, type StudyDB } from './db';
 import { LOCAL_ONLY_KEYS } from './backupReminder';
 import { LEARNED_BOX, MAX_BOX } from './leitner';
@@ -224,7 +225,11 @@ function fromApp(raw: Record<string, unknown>): ParsedBackup {
     })
     .filter(keep);
   const settings = arr(raw.settings)
-    .map((x): Setting | null => (isObj(x) && typeof x.key === 'string' && 'value' in x ? { key: x.key, value: x.value } : null))
+    .map((x): Setting | null => {
+      if (!isObj(x) || typeof x.key !== 'string' || !('value' in x)) return null;
+      if (x.key.startsWith(conversationPrefix) && !readConversation(x.value)) return null;
+      return { key: x.key, value: x.value };
+    })
     .filter(keep)
     .filter((x) => !LOCAL_ONLY_KEYS.has(x.key));
   const recordings = Array.isArray(raw.recordings) ? raw.recordings.map(cleanRecording).filter(keep) : undefined;
@@ -388,6 +393,7 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
       await store.reviews.bulkAdd(data.reviews.map(({ itemId, day, grade, at }) => ({ itemId, day, grade, at })));
       // "Từ hay sai" là tiến độ: file không có (bản sao lưu cũ) thì xóa bản trên máy cho khớp tiến độ vừa thay.
       if (!data.settings.some((x) => x.key === MISS_KEY)) await store.settings.delete(MISS_KEY);
+      await store.settings.where('key').startsWith(conversationPrefix).delete();
       await store.settings.where('key').startsWith(weeklyOpenPrefix).delete();
       await store.settings.where('key').startsWith('tr.caseAttempt.').delete();
       await store.settings.where('key').startsWith(drillPrefix).delete();
@@ -445,6 +451,10 @@ export async function applyBackup(data: ParsedBackup, mode: ImportMode, store: S
     const currentSettings = new Map((await store.settings.toArray()).map((s) => [s.key, s.value]));
     await store.settings.bulkPut(data.settings.filter((s) => {
       if (LOCAL_ONLY_KEYS.has(s.key)) return false;
+      if (s.key.startsWith(conversationPrefix)) {
+        const incoming = readConversation(s.value);
+        return !!incoming && incoming.at > (readConversation(currentSettings.get(s.key))?.at ?? 0);
+      }
       if (s.key.startsWith(drillPrefix)) {
         const incoming = readDrill(s.value);
         const current = readDrill(currentSettings.get(s.key));
