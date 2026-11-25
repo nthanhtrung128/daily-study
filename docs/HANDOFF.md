@@ -1,4 +1,4 @@
-# Bàn giao (cập nhật 24/11/2026)
+# Bàn giao (cập nhật 25/11/2026)
 
 ## Hiện trạng
 App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra nội dung và build cho mọi PR. PR sẵn sàng review chạy thêm Playwright với Chromium trên iPhone 14 và iPhone SE. Push lên `main` và chạy CI thủ công kiểm tra cả Chromium lẫn WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
@@ -70,6 +70,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #65 | Nhìn lại tuần từ Hôm nay hoặc Tiến độ. Đọc memo, nghe lại hai lượt của cùng tình huống và ghi điều đã áp dụng, điều muốn luyện tiếp theo từng tuần trên máy. |
 | #66 | Tab Đọc thêm cho tìm bài Anh–Việt không dấu và lọc theo nguồn ngay khi ngoại tuyến. Cả hai tiêu đề mở bài, có lối vào lượt luyện tuần ngay trong bài phù hợp. |
 | #67 | Kiểm thử Ôn điểm yếu dùng hai câu nghe chép đến hạn có chung một từ. Xác nhận từ đã chép lại đúng được gỡ và hai từ còn sai vẫn có trong phiên ôn. |
+| #68 | Hai bài song ngữ nối Đọc thêm với lượt luyện tuần. Bài phiếu lương đối chiếu số ca và khoản ăn ca, bài xét ngạch luyện hỏi về quyền quyết định lâu dài và hẹn rà soát có căn cứ. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

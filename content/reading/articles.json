@@ -988,5 +988,173 @@
       "meaning": "Bốn người nhắc đến đi lại. Ta có thể so tỷ lệ nhận việc của các ca tan trước và sau chuyến xe cuối với cùng mức phụ cấp không?",
       "check": "Dùng đúng mẫu số và đề xuất so hai nhóm có cùng mức phụ cấp."
     }
+  },
+  {
+    "id": "doi-chieu-tien-an-ca",
+    "region": "Việt Nam",
+    "title": {
+      "en": "Can we check the meal allowance on my payslip?",
+      "vi": "Đối chiếu tiền ăn ca trên phiếu lương"
+    },
+    "source": {
+      "publisher": "Quốc hội Việt Nam",
+      "name": "Bộ luật Lao động 2019, khoản 3 Điều 95",
+      "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2019/12/45.signed.pdf",
+      "reason": "Khoản 3 Điều 95 nói về việc thông báo bảng kê khi trả lương. Điều kiện hưởng hỗ trợ bữa ăn và mức 40.000 đồng mỗi ca là chính sách của doanh nghiệp giả định trong bài."
+    },
+    "paragraphs": [
+      {
+        "en": "Hương brings her June payslip to Tâm in payroll. The meal allowance line shows 240,000 dong for six shifts. Her rota lists eight. At this factory, each eligible shift actually worked earns a flat meal allowance of 40,000 dong. Tâm asks which two dates she wants to check and pulls up the approved attendance record for June.",
+        "vi": "Hương mang phiếu lương tháng Sáu đến gặp Tâm ở bộ phận tiền lương. Dòng hỗ trợ bữa ăn ghi 240.000 đồng cho sáu ca, trong khi lịch phân công của cô có tám ca. Ở nhà máy giả định này, mỗi ca thực tế làm việc đủ điều kiện được hỗ trợ 40.000 đồng. Tâm hỏi hai ngày Hương muốn kiểm tra và mở bảng chấm công tháng Sáu đã được duyệt."
+      },
+      {
+        "en": "The supervisor confirms that Hương worked all eight eligible shifts. Two entries were approved after payroll took its snapshot. Tâm writes the two amounts side by side. Eight shifts come to 320,000 dong. The payslip already includes 240,000 dong. The difference on that line is 80,000 dong.",
+        "vi": "Quản lý xác nhận Hương đã làm đủ tám ca thuộc diện hỗ trợ. Hai lượt chấm công được duyệt sau thời điểm bộ phận lương chốt dữ liệu. Tâm viết hai con số cạnh nhau. Tám ca tương ứng 320.000 đồng. Phiếu lương đã ghi 240.000 đồng. Phần chênh của riêng khoản ăn ca là 80.000 đồng."
+      },
+      {
+        "en": "Hương asks if the money will arrive on Friday. The adjustment has no payment date yet. With her agreement, Tâm sends the two dates and the supervisor’s confirmation to the person handling the adjustment. She promises Hương an update by 3 p.m. on Thursday, even if the payment date is still pending.",
+        "vi": "Hương hỏi thứ Sáu tiền có về tài khoản không. Khoản điều chỉnh vẫn đang chờ xác nhận ngày chi. Được Hương đồng ý, Tâm chuyển hai ngày còn thiếu cùng xác nhận của quản lý cho người xử lý. Tâm hẹn phản hồi trước 15 giờ thứ Năm, kể cả khi lúc đó vẫn đang chờ ngày thanh toán."
+      }
+    ],
+    "terms": [
+      {
+        "en": "the meal allowance line",
+        "vi": "dòng hỗ trợ bữa ăn trên phiếu lương"
+      },
+      {
+        "en": "approved attendance record",
+        "vi": "bảng chấm công đã được duyệt"
+      },
+      {
+        "en": "payroll cut-off",
+        "vi": "thời điểm chốt dữ liệu tính lương"
+      }
+    ],
+    "question": {
+      "en": "What would you check before telling Hương the amount and the payment date?",
+      "vi": "Bạn cần kiểm tra gì trước khi thông báo cho Hương số tiền và ngày chi?"
+    },
+    "answer": {
+      "en": "Match the two dates to approved attendance for the same pay period. Once eight eligible shifts are confirmed, subtract the 240,000 dong already on the payslip from 320,000. Payroll still needs to confirm when the 80,000-dong adjustment will be paid.",
+      "vi": "Đối chiếu hai ngày với bảng chấm công đã duyệt của cùng kỳ. Khi đã xác nhận tám ca đủ điều kiện, lấy 320.000 trừ 240.000 đồng đã ghi. Bộ phận tiền lương còn phải xác nhận ngày chi khoản điều chỉnh 80.000 đồng."
+    },
+    "turns": [
+      {
+        "cue": "My rota shows eight shifts, but my payslip only shows six meals. Can you check?",
+        "cueVi": "Lịch phân công có tám ca, nhưng phiếu lương chỉ ghi sáu suất ăn. Bạn kiểm tra giúp được không?",
+        "task": "Bạn phụ trách tiền lương. Ghi nhận thắc mắc, hỏi hai ngày cụ thể và nói sẽ đối chiếu với chứng từ nào.",
+        "model": "Thanks for flagging this. Which two dates look wrong? I’ll check them against the approved attendance record for June.",
+        "meaning": "Cảm ơn bạn đã báo. Hai ngày nào có vẻ chưa khớp? Tôi sẽ đối chiếu với bảng chấm công tháng Sáu đã duyệt.",
+        "check": "Hỏi ngày cụ thể và nêu được chứng từ xác nhận ca thực tế."
+      },
+      {
+        "cue": "My supervisor has confirmed all eight shifts. How much is missing from the meal allowance?",
+        "cueVi": "Quản lý đã xác nhận đủ tám ca. Khoản hỗ trợ bữa ăn còn thiếu bao nhiêu?",
+        "task": "Chính sách trong bài là 40.000 đồng mỗi ca đủ điều kiện. Phiếu đã ghi sáu ca. Giải thích số đã ghi và phần chênh cho nhân viên.",
+        "model": "Eight shifts come to 320,000 dong. Your payslip already includes 240,000, so the difference is 80,000 dong.",
+        "meaning": "Tám ca tương ứng 320.000 đồng. Phiếu của bạn đã ghi 240.000 đồng, nên phần chênh là 80.000 đồng.",
+        "check": "Nêu được 320.000 đồng theo chấm công, 240.000 đồng đã ghi và 80.000 đồng chênh lệch."
+      },
+      {
+        "cue": "Does that mean the extra money will be in my account on Friday?",
+        "cueVi": "Như vậy khoản bổ sung sẽ về tài khoản của tôi vào thứ Sáu phải không?",
+        "task": "Ngày chi còn chờ duyệt. Trả lời về tình trạng xử lý, hẹn một mốc phản hồi mà bạn có thể giữ.",
+        "model": "I’ll ask payroll to confirm the payment date. I’ll update you by 3 p.m. on Thursday, even if we’re still waiting for approval.",
+        "meaning": "Tôi sẽ nhờ bộ phận lương xác nhận ngày chi. Tôi sẽ báo lại trước 15 giờ thứ Năm, kể cả khi vẫn đang chờ duyệt.",
+        "check": "Phân biệt ngày mình sẽ phản hồi với ngày tiền thực sự được chi."
+      }
+    ],
+    "weeklyFollowUp": {
+      "cue": "This period has nine entries. One shift is listed twice, and my payslip covers seven shifts. What difference should we check?",
+      "cueVi": "Kỳ này có chín dòng chấm công. Một ca bị ghi hai lần và phiếu lương đã tính bảy ca. Ta cần kiểm tra phần chênh bao nhiêu?",
+      "task": "Mỗi ca riêng biệt đều đủ điều kiện và có mức hỗ trợ 40.000 đồng. Đếm ca sau khi bỏ dòng trùng rồi giải thích phần chênh.",
+      "model": "There are eight distinct shifts once we remove the duplicate. Seven are already on the payslip, so we need to check one shift worth 40,000 dong.",
+      "meaning": "Sau khi bỏ dòng trùng còn tám ca riêng biệt. Phiếu đã tính bảy ca, nên cần kiểm tra một ca trị giá 40.000 đồng.",
+      "check": "Đếm tám ca riêng biệt, trừ bảy ca đã tính và nêu đúng 40.000 đồng."
+    }
+  },
+  {
+    "id": "trao-doi-xet-lai-ngach",
+    "region": "Quốc tế",
+    "title": {
+      "en": "Does covering for my team lead change my grade?",
+      "vi": "Tạm thay trưởng nhóm có được xét lại ngạch?"
+    },
+    "source": {
+      "publisher": "CIPD",
+      "name": "Job evaluation and market pricing",
+      "url": "https://www.cipd.org/en/knowledge/factsheets/market-pricing-factsheet/",
+      "reason": "Phần giới thiệu của CIPD giải thích việc dùng thông tin về vị trí và rà soát lại khi công việc thay đổi. Nhân vật, quyền phê duyệt và lịch xem xét trong bài là ví dụ giả định."
+    },
+    "paragraphs": [
+      {
+        "en": "For six weeks, Linh has covered the morning handover while her team lead is away. She now wants to know whether her job should move up a grade. Hoa, the reward specialist, thanks her for keeping the team running. Before opening the grade framework, Hoa asks Linh to walk her through one decision she made last week.",
+        "vi": "Trong sáu tuần trưởng nhóm vắng mặt, Linh phụ trách bàn giao buổi sáng. Cô muốn biết vị trí của mình có nên được xếp lên ngạch cao hơn. Hoa, chuyên viên đãi ngộ, cảm ơn Linh đã giúp nhóm duy trì công việc. Trước khi mở tiêu chí xếp ngạch, Hoa nhờ Linh kể lại một quyết định cụ thể trong tuần vừa rồi."
+      },
+      {
+        "en": "Linh built the rota and proposed a cover plan when two people were absent. Her manager approved the change. When the team lead returns, the rota goes back to them. Linh will continue to brief new starters using the same checklist she used before. Hoa notes who proposed the change, who had the final say and which responsibilities will last.",
+        "vi": "Linh lập lịch và đề xuất người trực thay khi hai đồng nghiệp vắng mặt. Quản lý là người duyệt thay đổi. Khi trưởng nhóm trở lại, việc lập lịch sẽ được bàn giao lại. Linh tiếp tục hướng dẫn nhân viên mới theo bảng kiểm cô vẫn dùng từ trước. Hoa ghi rõ ai đề xuất, ai quyết định cuối cùng và trách nhiệm nào sẽ được giao lâu dài."
+      },
+      {
+        "en": "Linh wants to know what happens next. Hoa asks the manager to send the updated responsibilities by Thursday. At Friday’s meeting they will compare them with the grade criteria. They will also check how the company recognises temporary cover. Linh leaves knowing what evidence to bring and when she will get an update.",
+        "vi": "Linh muốn biết việc xét lại vị trí sẽ diễn ra thế nào. Hoa nhờ quản lý gửi danh sách trách nhiệm được cập nhật trước thứ Năm. Trong cuộc họp thứ Sáu, họ sẽ đối chiếu danh sách với tiêu chí của ngạch và tìm hiểu cách công ty ghi nhận thời gian phụ trách thay. Linh biết mình cần mang bằng chứng gì và khi nào sẽ nhận được thông tin tiếp theo."
+      }
+    ],
+    "terms": [
+      {
+        "en": "cover for a team lead",
+        "vi": "đảm nhiệm công việc thay trưởng nhóm khi họ vắng mặt"
+      },
+      {
+        "en": "have the final say",
+        "vi": "có quyền quyết định cuối cùng"
+      },
+      {
+        "en": "ongoing responsibility",
+        "vi": "trách nhiệm được giao lâu dài"
+      }
+    ],
+    "question": {
+      "en": "Which facts would help you decide whether Linh’s role needs a fresh evaluation?",
+      "vi": "Bạn cần thông tin nào để quyết định có nên đánh giá lại vị trí của Linh?"
+    },
+    "answer": {
+      "en": "Ask which duties Linh keeps after the cover ends, which decisions she can make herself and what she is accountable for. Compare those changes with the role description and the grade criteria. The temporary assignment can also be recognised through the company’s own process.",
+      "vi": "Hỏi Linh sẽ giữ nhiệm vụ nào sau khi hết thời gian thay thế, cô được tự quyết định việc gì và phải chịu trách nhiệm về kết quả nào. Đối chiếu thay đổi với mô tả vị trí và tiêu chí ngạch. Việc ghi nhận đợt phụ trách tạm thời có thể được xem xét theo quy trình riêng của công ty."
+    },
+    "turns": [
+      {
+        "cue": "I’ve covered for my team lead for six weeks. Does that put me in the next grade?",
+        "cueVi": "Tôi đã phụ trách thay trưởng nhóm sáu tuần. Như vậy tôi được lên ngạch kế tiếp chứ?",
+        "task": "Bạn là chuyên viên đãi ngộ. Ghi nhận đóng góp và hỏi một câu cụ thể về quyền quyết định trong thời gian phụ trách thay.",
+        "model": "Thank you for stepping in. Could you walk me through one decision from last week? Where did you need your manager’s approval?",
+        "meaning": "Cảm ơn bạn đã đứng ra phụ trách. Bạn có thể kể lại một quyết định trong tuần vừa rồi không? Ở bước nào bạn cần quản lý phê duyệt?",
+        "check": "Ghi nhận đóng góp và làm rõ phần việc cần được quản lý phê duyệt."
+      },
+      {
+        "cue": "I proposed the cover plan, but my manager approved it. I’ll hand the rota back next week.",
+        "cueVi": "Tôi đề xuất phương án trực thay nhưng quản lý duyệt. Tuần sau tôi sẽ bàn giao lại việc lập lịch.",
+        "task": "Tóm tắt quyền mà nhân viên đã thực hiện rồi hỏi nhiệm vụ nào sẽ được giữ sau khi trưởng nhóm trở lại.",
+        "model": "You put the plan together and your manager gave final approval. Which decisions will you still own once your team lead is back?",
+        "meaning": "Bạn lập phương án và quản lý phê duyệt cuối cùng. Sau khi trưởng nhóm trở lại, bạn vẫn sẽ chịu trách nhiệm quyết định những việc nào?",
+        "check": "Nêu đúng người phê duyệt và hỏi riêng về trách nhiệm lâu dài."
+      },
+      {
+        "cue": "I’d like to know where this leaves me. What can we agree today?",
+        "cueVi": "Tôi muốn biết bước tiếp theo của mình. Hôm nay ta có thể thống nhất gì?",
+        "task": "Chốt tài liệu cần bổ sung, người phụ trách và ngày đối chiếu tiêu chí. Kết quả xếp ngạch vẫn đang được xem xét.",
+        "model": "Could your manager confirm the ongoing duties by Thursday? On Friday we can compare them with the grade criteria and discuss how the temporary cover is recognised.",
+        "meaning": "Quản lý có thể xác nhận nhiệm vụ lâu dài trước thứ Năm không? Thứ Sáu ta cùng đối chiếu tiêu chí ngạch và bàn cách ghi nhận đợt phụ trách thay.",
+        "check": "Có người cung cấp thông tin, mốc gặp lại và căn cứ sẽ dùng khi xem xét."
+      }
+    ],
+    "weeklyFollowUp": {
+      "cue": "My team lead is back. I now approve shift swaps for two sites without sign-off, and this is a permanent part of my role. What changes?",
+      "cueVi": "Trưởng nhóm đã trở lại. Tôi được tự duyệt đổi ca cho hai cơ sở và đây là nhiệm vụ lâu dài. Điều đó có ý nghĩa gì?",
+      "task": "Nhận diện hai dữ kiện mới về phạm vi và thẩm quyền. Đề nghị bằng chứng để mở lại việc đánh giá vị trí.",
+      "model": "The approval authority now stays with you across two sites. Could we review the updated role description and a recent decision against the grade criteria?",
+      "meaning": "Bạn được giao quyền duyệt lâu dài ở hai cơ sở. Ta có thể đối chiếu mô tả vị trí đã cập nhật và một quyết định gần đây với tiêu chí xếp ngạch không?",
+      "check": "Nhắc cả quyền tự duyệt và phạm vi hai cơ sở, rồi nêu tài liệu hoặc quyết định để đối chiếu."
+    }
   }
 ]
