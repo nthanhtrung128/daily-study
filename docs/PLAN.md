@@ -64,6 +64,7 @@ Sau khi đối chiếu một trong sáu tình huống, chọn **Ghi memo lần t
 
 1. Tìm theo tiêu đề, cụm từ và nội dung Anh–Việt, kết hợp với nguồn. Chạm một trong hai tiêu đề để đọc và bắt đầu lượt luyện tuần từ bài phù hợp.
 2. Bổ sung hai bài có lời thoại và dữ kiện tuần sau về đối chiếu hỗ trợ bữa ăn trên phiếu lương và trao đổi khi một nhân viên muốn xét lại ngạch.
+3. Giữ từng lượt hội thoại đã tự chấm khi người học rời bài. Từ thư viện, mở lại đúng câu đang dở và xem kết quả sau lượt cuối.
 
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
 - Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.
