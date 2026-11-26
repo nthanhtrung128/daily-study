@@ -97,7 +97,8 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 - Độ yếu của mục: `wrong × (4 − hộp)/3 + 2 (nếu hộp 1 và ôn ≤ 3 ngày)`, yếu khi ≥ 2 (`core/weak.ts`). Phiên Ôn điểm yếu và câu nghe chép trong phiên hằng ngày đều là `DailyEntry` chạy bằng `DailySession` (mục thêm kiểu `dict`, id `dict:<khóa câu>`); phiên dở lưu kiểu `weak` / `dict` trong `core/resume.ts`.
 
 ## Việc còn lại
-1. Kiểm tra các khả năng riêng của iPhone bằng danh sách trong `docs/DEPLOY.md` §10.
-2. **Sau 1–2 tuần dùng, nếu người dùng chọn:**
+1. Đăng nhập bằng email đã cấp quyền đã có từ PR #36. Ngày 26/11/2026, yêu cầu GET không kèm cookie đến `/`, `/dang-nhap`, `/manifest.webmanifest`, `/sw.js` và `/robots.txt` trên tên miền production đều trả HTTP 302 về trang đăng nhập Cloudflare Access. Chưa xác nhận việc nhận mã, danh sách email được phép và kết quả sau khi nhập mã trên thiết bị thật.
+2. Kiểm tra trên iPhone theo [lộ trình nghiệm thu](PLAN.md#nghiệm-thu-trên-iphone). Bộ kịch bản chi tiết nằm ở mục 10 trong [hướng dẫn triển khai](DEPLOY.md).
+3. **Sau 1–2 tuần dùng, nếu người dùng chọn:**
    - Chỉnh tỉ lệ 40/60, số mục mới/ngày, độ khó đề nói theo phản hồi.
-3. Giai đoạn 4 (cần người dùng quyết định, có chi phí): xem `docs/PLAN.md`.
+4. Giai đoạn 4 (cần người dùng quyết định, có chi phí): xem `docs/PLAN.md`.

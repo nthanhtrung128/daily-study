@@ -69,6 +69,17 @@ Sau khi đối chiếu một trong sáu tình huống, chọn **Ghi memo lần t
 5. Thêm hội thoại cho sáu bài đọc đầu tiên, từ đổi ca và bàn giao đến giải thích tăng lương và đánh giá phúc lợi.
 6. Thêm tình huống vận dụng ở tuần kế tiếp cho các bài còn thiếu, với số liệu hoặc điều kiện công việc mới.
 
+## Nghiệm thu trên iPhone
+
+Bản PWA đã được cài trên Màn hình chính. Dùng chính bản này để thử luồng học hằng ngày. Ghi phiên bản iOS, ngày thử và kết quả vào mục 10 của [hướng dẫn triển khai](DEPLOY.md).
+
+| Thứ tự | Thao tác | Dấu hiệu đạt |
+|---|---|---|
+| 1. Email đã cấp quyền | Mở trang bằng tab Safari riêng tư có mạng, nhận mã bằng email đã đăng ký, nhập mã rồi mở Cài đặt → Tài khoản → Kiểm tra phiên. | Vào được bài học và thấy đúng email. Thử đăng nhập bằng một email ngoài danh sách trong phiên riêng mới, xác nhận không vào được bài. |
+| 2. Học trên thiết bị | Mở app từ Màn hình chính, học một lượt, lưu memo và thử nghe, nói, ghi âm. Sau khi app đã tải xong, bật chế độ máy bay, mở lại bài và memo. | Đọc được bài và memo ngoại tuyến. Khi có mạng, có thể nhận giọng; bản ghi phát lại được trên iPhone. |
+| 3. Sao lưu và khôi phục | Xuất bản sao có ghi âm vào Tệp. Nhập vào một phiên thử có kho dữ liệu trống, rồi đối chiếu memo, tiến độ và phát lại bản ghi. | Khôi phục được cả nội dung lẫn âm thanh. Giữ bản đang học và tệp sao lưu trong suốt lần thử. |
+| 4. Quyết định về app iOS riêng | Sau 1–2 tuần, ghi tác vụ cụ thể còn vướng trên PWA, tần suất và ảnh hưởng khi học. | Nếu có nhu cầu cần tính năng native, thử đúng tác vụ đó với Capacitor trên thiết bị thật trước khi quyết định phân phối. Nếu PWA đáp ứng được, tiếp tục dùng bản đang chạy. |
+
 ## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
 - Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.
 - Đồng bộ nhiều máy bằng Supabase.
