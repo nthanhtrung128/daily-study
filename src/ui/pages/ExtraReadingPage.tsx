@@ -122,9 +122,11 @@ export function ExtraReadingPage() {
 function ReadingResume({ conversations }: { conversations: ReadonlyMap<string, ConversationProgress> }) {
   const unfinished = articles.flatMap(item => {
     const saved = conversations.get(item.id);
-    if (!item.turns || !saved || saved.scores.length >= item.turns.length) return [];
+    if (!item.turns || !saved) return [];
+    const index = saved.retryIndex ?? saved.scores.length;
+    if (index >= item.turns.length) return [];
     return [{
-      id: item.id, title: item.title.vi, at: saved.at, turn: (saved.scores.length + 1) + '/' + item.turns.length,
+      id: item.id, title: item.title.vi, at: saved.at, retrying: saved.retryIndex !== undefined, turn: (index + 1) + '/' + item.turns.length,
       href: '#doc-them?bai=' + item.id + '&hoi-thoai=1',
     }];
   });
@@ -133,10 +135,11 @@ function ReadingResume({ conversations }: { conversations: ReadonlyMap<string, C
   return <section className="reading-resume stack" aria-labelledby="reading-resume-title">
     <h2 className="h-sec" id="reading-resume-title">Hội thoại đang dở</h2>
     <p>{latest.title}</p>
-    <div><a className="btn roadmap-link" id={'hoi-thoai-' + latest.id} href={latest.href}>Tiếp tục lượt {latest.turn}</a></div>
+    <div><a className="btn roadmap-link" id={'hoi-thoai-' + latest.id} href={latest.href}>
+      {latest.retrying ? 'Tiếp tục luyện lại câu' : 'Tiếp tục lượt'} {latest.turn}</a></div>
     {others.length > 0 && <details><summary>{others.length} hội thoại đang dở khác</summary>
       {others.map(item => <a key={item.id} className="reading-result-link" id={'hoi-thoai-' + item.id}
-        href={item.href}>{item.title} · Lượt {item.turn}</a>)}
+        href={item.href}>{item.title} · {item.retrying ? 'Luyện lại câu' : 'Lượt'} {item.turn}</a>)}
     </details>}
   </section>;
 }
