@@ -73,7 +73,15 @@
         "meaning": "Vào thứ Sáu cuối đợt thử, ta đếm số tin khẩn còn chờ đến trưa và xem có ai trong hai người thường xuyên phải về muộn không.",
         "check": "Hẹn được ngày rà soát, xem cả thời gian phản hồi lẫn việc làm quá giờ."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Nam is in training this Wednesday. I can cover the eight o’clock payroll check, but I need to leave at nine. Who can take over anything still open?",
+      "cueVi": "Sáng thứ Tư này Nam đi tập huấn. Tôi có thể kiểm tra dữ liệu lương lúc tám giờ nhưng phải đi lúc chín giờ. Ai sẽ tiếp nhận các việc còn dở?",
+      "task": "Bạn là Linh và có thể bắt đầu lúc chín giờ. Chốt giờ bàn giao và cách xử lý nếu thiếu dữ liệu chấm công của cả tổ trước lúc đó.",
+      "model": "Thanks for covering eight to nine. If a whole team’s time records are missing, please call the shift lead straight away. Send me the open items at nine and I’ll take over.",
+      "meaning": "Cảm ơn bạn đã trực từ tám đến chín giờ. Nếu thiếu dữ liệu chấm công của cả tổ, bạn gọi ngay cho trưởng ca nhé. Lúc chín giờ bạn gửi các việc còn dở để tôi tiếp nhận.",
+      "check": "Nêu ai phụ trách trước và sau chín giờ. Việc thiếu dữ liệu của cả tổ cần báo ngay cho trưởng ca."
+    }
   },
   {
     "id": "thu-ban-giao",
@@ -149,7 +157,15 @@
         "meaning": "Huy sẽ gửi thẳng tệp nhà máy đã kiểm tra cho bộ phận tính lương trước bốn giờ chiều thứ Sáu và đồng gửi cho Mai.",
         "check": "Nêu Huy gửi trực tiếp cho bộ phận tính lương, đồng gửi Mai và nói rõ hạn gửi."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "It’s 3:30 on Friday. The factory file is here, but the shift lead can only confirm the night total at 4:15. Payroll expects our checked file at four. What should I tell them?",
+      "cueVi": "Bây giờ là ba rưỡi chiều thứ Sáu. Ta đã nhận tệp nhà máy nhưng bốn giờ mười lăm trưởng ca mới xác nhận được tổng ca đêm. Bộ phận tính lương chờ tệp đã kiểm tra lúc bốn giờ. Tôi nên báo thế nào?",
+      "task": "Bạn là Huy. Báo ngay cho bộ phận tính lương về phần còn chờ, nêu người cần nhận bản sao và xin thống nhất hạn gửi mới.",
+      "model": "I’ll tell Payroll now and copy Mai. The night total still needs the shift lead’s check at 4:15. Would a checked file by 4:30 work for you?",
+      "meaning": "Tôi sẽ báo ngay cho bộ phận tính lương và đồng gửi Mai. Bốn giờ mười lăm trưởng ca mới kiểm tra được tổng ca đêm. Anh chị có thể nhận tệp đã kiểm tra trước bốn giờ rưỡi không?",
+      "check": "Báo kịp cho bộ phận tính lương, đồng gửi Mai và xin xác nhận một hạn gửi sau khi kiểm tra."
+    }
   },
   {
     "id": "bang-luong-thi-truong",
@@ -225,7 +241,15 @@
         "meaning": "Ta phải cam kết thêm 24 triệu đồng mỗi năm. Trước khi đổi lời mời, ta xem thu nhập của các đồng nghiệp đang làm công việc tương đương được không?",
         "check": "Nêu đúng 24 triệu đồng mỗi năm và xác định đúng nhóm nội bộ cần so sánh."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Offer A guarantees 25 million dong a month for twelve payments. Offer B guarantees 24 million for thirteen. A also mentions a target bonus with no guaranteed minimum. Which offer guarantees more?",
+      "cueVi": "Lời mời A cam kết 12 kỳ, mỗi kỳ 25 triệu đồng. B cam kết 13 kỳ, mỗi kỳ 24 triệu. A còn nêu thưởng mục tiêu và chưa cam kết mức tối thiểu. Bên nào bảo đảm thu nhập cao hơn?",
+      "task": "Tính hai mức thu nhập được bảo đảm trong năm, nêu chênh lệch và giải thích cách trình bày thưởng mục tiêu.",
+      "model": "A guarantees 300 million dong a year and B guarantees 312 million. B is 12 million higher. I’d show A’s target bonus separately because the payout can vary.",
+      "meaning": "A bảo đảm 300 triệu đồng một năm, B bảo đảm 312 triệu. B cao hơn 12 triệu. Tôi sẽ ghi thưởng mục tiêu của A ở mục riêng vì số thực trả có thể thay đổi.",
+      "check": "Nêu đúng 300, 312 và chênh lệch 12 triệu đồng một năm. Tách thưởng chưa có mức cam kết khỏi thu nhập bảo đảm."
+    }
   },
   {
     "id": "doc-trung-vi",
@@ -301,7 +325,15 @@
         "meaning": "Tôi sẽ ghi trung vị kèm cỡ mẫu năm vị trí. Ta có thể đối chiếu thêm một nguồn có công việc tương đương trước khi dùng số này để ra đề nghị không?",
         "check": "Nêu cỡ mẫu năm và đề xuất thêm một nguồn có phạm vi công việc tương đương."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Five comparable monthly salaries are 21, 23, 25, 27 and 44 million dong. The last figure was corrected to 54. Do we need to change both the median and the mean?",
+      "cueVi": "Năm mức lương tháng của các vị trí tương đương là 21, 23, 25, 27 và 44 triệu đồng. Số cuối vừa được sửa thành 54. Ta cần sửa cả trung vị và trung bình sao?",
+      "task": "Giải thích con số nào đổi bằng cách chỉ ra vị trí giữa và chia phần tăng cho đúng số quan sát.",
+      "model": "The middle salary is still 25 million. The total rises by 10 million across five jobs, so the mean rises by 2 million, from 28 to 30.",
+      "meaning": "Mức lương ở giữa vẫn là 25 triệu. Tổng tăng 10 triệu cho năm vị trí, nên trung bình tăng 2 triệu, từ 28 lên 30 triệu đồng.",
+      "check": "Xác định đúng số thứ ba là 25 và giải thích được 10 chia 5 khiến trung bình tăng 2 triệu."
+    }
   },
   {
     "id": "chuyen-dai-luong",
@@ -377,7 +409,15 @@
         "meaning": "Em mang một ví dụ cho thấy em chịu trách nhiệm khâu nào của quy trình lương và được quyết định gì ở các cơ sở. Buổi tới ta sẽ đối chiếu phạm vi đó với tiêu chí của ngạch kế tiếp.",
         "check": "Yêu cầu bằng chứng về phạm vi và quyền quyết định để đối chiếu ở buổi tới."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Lan earns 27.5 million dong a month. Her range tops out at 28 million and her duties are the same. Can I promise her a 4% raise within this range?",
+      "cueVi": "Lan đang nhận 27,5 triệu đồng mỗi tháng. Trần dải là 28 triệu và nhiệm vụ của Lan vẫn như cũ. Tôi có thể hứa tăng 4% trong dải này không?",
+      "task": "Tính mức đề xuất và chênh với trần dải. Đề xuất một việc cần kiểm tra trước khi trả lời Lan.",
+      "model": "A 4% raise would take her to 28.6 million, which is 0.6 million above the ceiling. Let’s check how our pay policy handles that before we promise an amount.",
+      "meaning": "Tăng 4% sẽ đưa lương lên 28,6 triệu, cao hơn trần 0,6 triệu đồng. Ta xem chính sách của công ty xử lý trường hợp vượt trần thế nào trước khi hứa mức cụ thể với Lan nhé.",
+      "check": "Tính ra 28,6 triệu và phần vượt 0,6 triệu. Hỏi về cách xử lý mức vượt trần theo chính sách hiện hành."
+    }
   },
   {
     "id": "doc-binh-chon",
@@ -453,7 +493,15 @@
         "meaning": "Với từng ca, ta so tỷ lệ người dùng trên số người được cấp thẻ trước và sau thay đổi. Sau đó hỏi những người vẫn chưa đi tập xem họ gặp trở ngại gì.",
         "check": "So tỷ lệ trên đúng số người có thẻ trong từng ca và hỏi thêm người chưa dùng."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Eight of twenty day-shift pass holders used the gym. Three of ten night-shift pass holders went. Can I say the gym is twice as popular on the day shift?",
+      "cueVi": "Trong số người có thẻ, ca ngày có 8 trên 20 người đi tập, ca đêm có 3 trên 10. Tôi có thể nói phòng tập được ưa thích gấp đôi ở ca ngày không?",
+      "task": "So tỷ lệ sử dụng trong từng ca rồi hỏi một câu về khả năng tiếp cận trước khi diễn giải mức độ yêu thích.",
+      "model": "Usage was 40% on days and 30% on nights, a gap of ten percentage points. What time does the gym close relative to the end of the night shift?",
+      "meaning": "Tỷ lệ sử dụng là 40% ở ca ngày và 30% ở ca đêm, chênh 10 điểm phần trăm. Phòng tập đóng cửa lúc nào so với giờ tan ca đêm?",
+      "check": "Dùng đúng mẫu số 20 và 10, phân biệt chênh 10 điểm phần trăm với tỷ lệ gấp đôi và hỏi về điều kiện đi tập."
+    }
   },
   {
     "id": "thu-du-toan",
@@ -507,6 +555,7 @@
     "turns": [
       {
         "cue": "Good morning! How has your week been?",
+        "cueVi": "Chào buổi sáng! Tuần này của bạn thế nào?",
         "task": "Mở lời trước cuộc họp, rồi dẫn vào dự toán.",
         "model": "Busy, thanks. How about yours? Shall we look at the October figures?",
         "meaning": "Khá bận, cảm ơn bạn. Tuần của bạn thế nào? Ta xem các con số tháng 10 nhé?",
@@ -514,6 +563,7 @@
       },
       {
         "cue": "So the annualized cost is sixty million, right?",
+        "cueVi": "Vậy chi phí tăng quy đổi đủ năm là sáu mươi triệu, đúng không?",
         "task": "Hỏi lại ý của quản lý và phân biệt hai con số.",
         "model": "Do you mean this year’s cost? It is sixty million this year and two hundred and forty million over twelve months.",
         "meaning": "Ý bạn là chi phí năm nay? Năm nay là 60 triệu, còn đủ 12 tháng là 240 triệu.",
@@ -521,12 +571,21 @@
       },
       {
         "cue": "What should we send the director?",
+        "cueVi": "Ta nên gửi gì cho giám đốc?",
         "task": "Chốt sản phẩm, người gửi và thời hạn.",
         "model": "I’ll send both figures by noon, with the headcount assumption beside them.",
         "meaning": "Tôi sẽ gửi cả hai số trước buổi trưa và ghi rõ giả định nhân sự bên cạnh.",
         "check": "Chốt việc, người chịu trách nhiệm và thời hạn."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Six people will each get one million dong more in monthly base pay from 1 September. Our year ends in December. What extra cost should I put in this year’s budget and in the twelve-month forecast?",
+      "cueVi": "Từ ngày 1 tháng 9, sáu người sẽ được tăng mỗi người một triệu đồng lương cơ bản mỗi tháng. Năm ngân sách kết thúc vào tháng 12. Tôi ghi bao nhiêu vào ngân sách năm nay và dự báo đủ 12 tháng?",
+      "task": "Giả sử cả sáu người ở lại và nhận đủ các kỳ lương. Nêu chi phí tăng trong hai khoảng thời gian và gọi tên giả định.",
+      "model": "That’s 6 million dong extra per month. Four pay periods add 24 million this year, and twelve add 72 million, assuming all six people stay on the new rate.",
+      "meaning": "Mỗi tháng tăng 6 triệu đồng. Bốn kỳ lương làm chi phí năm nay tăng 24 triệu, còn đủ 12 kỳ tăng 72 triệu, với giả định cả sáu người tiếp tục nhận mức mới.",
+      "check": "Phân biệt bốn kỳ còn lại với 12 kỳ đủ năm và giữ cùng giả định nhân sự cho cả hai số."
+    }
   },
   {
     "id": "kiem-tra-mau-luong",
@@ -580,6 +639,7 @@
     "turns": [
       {
         "cue": "Thanks for making time today.",
+        "cueVi": "Cảm ơn bạn đã dành thời gian hôm nay.",
         "task": "Mở lời và hỏi về vị trí cần tuyển.",
         "model": "Happy to help. What decisions can this supervisor make?",
         "meaning": "Rất sẵn lòng. Trưởng nhóm này có quyền quyết định việc gì?",
@@ -587,6 +647,7 @@
       },
       {
         "cue": "The titles match. Why look further?",
+        "cueVi": "Hai chức danh trùng nhau. Sao còn phải xem thêm?",
         "task": "Giải thích khác biệt về quyền hạn.",
         "model": "One role approves spending at three sites. Ours submits requests at just one.",
         "meaning": "Một vị trí duyệt chi cho ba cơ sở. Vị trí của ta chỉ trình đề nghị ở một cơ sở.",
@@ -594,12 +655,21 @@
       },
       {
         "cue": "Can we send the offer now?",
+        "cueVi": "Giờ ta gửi thư mời được chưa?",
         "task": "Nêu điều cần xác minh và hẹn phản hồi.",
         "model": "I’ll check the sample and survey date, then get back to you this afternoon.",
         "meaning": "Tôi sẽ kiểm tra mẫu và thời điểm khảo sát rồi phản hồi chiều nay.",
         "check": "Nêu thông tin cần kiểm chứng và thời hạn."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Our supervisor approves overtime at one site. Survey A covers four supervisors with the same authority. Survey B covers sixty schedulers who need approval. Which group would you start with?",
+      "cueVi": "Trưởng nhóm của ta duyệt làm thêm tại một cơ sở. Mẫu A có bốn trưởng nhóm có cùng thẩm quyền. Mẫu B có sáu mươi người xếp lịch phải trình duyệt. Bạn sẽ bắt đầu từ nhóm nào?",
+      "task": "Chọn nguồn đối sánh ban đầu. Nêu một hạn chế của nguồn đó và cách kiểm tra trước khi đưa ra mức lương.",
+      "model": "I’d start with A because those supervisors can approve overtime. Four roles make a small sample. Can we check a second source for roles with the same authority before we set pay?",
+      "meaning": "Tôi sẽ bắt đầu từ A vì các trưởng nhóm đó có quyền duyệt làm thêm. Bốn vị trí là mẫu nhỏ. Ta có thể đối chiếu nguồn thứ hai có vị trí cùng thẩm quyền trước khi chốt lương không?",
+      "check": "Gắn lựa chọn A với quyền duyệt làm thêm, nêu cỡ mẫu bốn và yêu cầu thêm bằng chứng cho nhóm công việc tương đương."
+    }
   },
   {
     "id": "kiem-chung-nghi-viec",
@@ -653,6 +723,7 @@
     "turns": [
       {
         "cue": "How did the quarterly review go?",
+        "cueVi": "Buổi rà soát quý vừa rồi thế nào?",
         "task": "Mở lời và tóm tắt phát hiện chính.",
         "model": "Thanks for asking. Two people resigned, and we are checking why.",
         "meaning": "Cảm ơn bạn đã hỏi. Hai người xin nghỉ và chúng tôi đang tìm hiểu nguyên nhân.",
@@ -660,6 +731,7 @@
       },
       {
         "cue": "Does that prove our pay is too low?",
+        "cueVi": "Như vậy có chứng minh mức lương của mình quá thấp không?",
         "task": "Phản biện bằng một quan sát và giới hạn của nó.",
         "model": "One person mentioned pay, but the other cited shifts. Two interviews cannot establish a single cause.",
         "meaning": "Một người nhắc đến lương, người kia nói về ca làm. Hai cuộc phỏng vấn chưa đủ để kết luận một nguyên nhân chung.",
@@ -667,12 +739,21 @@
       },
       {
         "cue": "What would help us decide?",
+        "cueVi": "Thông tin nào sẽ giúp ta quyết định?",
         "task": "Hẹn bước thu thập bằng chứng tiếp theo.",
         "model": "I’ll compare shifts and pay for similar roles and report back on Friday.",
         "meaning": "Tôi sẽ đối chiếu lịch ca và lương ở vị trí tương đương rồi báo lại thứ Sáu.",
         "check": "Đề xuất một phép so sánh và ngày báo lại."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Our team averaged 50 people this quarter. Three resigned and two fixed-term contracts ended as scheduled. Can I report a 10% resignation rate and say pay caused it?",
+      "cueVi": "Quý này nhóm có bình quân 50 người. Ba người tự xin nghỉ và hai hợp đồng có thời hạn kết thúc đúng lịch. Tôi báo tỷ lệ tự xin nghỉ là 10% và kết luận nguyên nhân do lương được không?",
+      "task": "Tính tỷ lệ tự xin nghỉ trong quý, giải thích cách chọn tử số và đề nghị kiểm tra thêm một nguồn bằng chứng về nguyên nhân.",
+      "model": "Three people resigned out of an average of 50, so the quarterly resignation rate was 6%. The two contracts ended as planned. What reasons did the three people give for leaving?",
+      "meaning": "Ba người tự xin nghỉ trên bình quân 50 người, nên tỷ lệ tự xin nghỉ trong quý là 6%. Hai hợp đồng kia hết hạn đúng lịch. Ba người xin nghỉ đã nêu những lý do nào?",
+      "check": "Dùng 3 chia 50, nêu 6% theo quý và hỏi về lý do nghỉ trước khi quy nguyên nhân cho lương."
+    }
   },
   {
     "id": "nho-moc-so-sanh",
@@ -726,6 +807,7 @@
     "turns": [
       {
         "cue": "So, she is almost at the top?",
+        "cueVi": "Vậy lương của cô ấy gần chạm trần dải rồi sao?",
         "task": "Hỏi quản lý đang muốn so với mốc nào.",
         "model": "Are you asking about the midpoint or the top of the range?",
         "meaning": "Anh đang hỏi về trung điểm hay mức tối đa của dải?",
@@ -733,6 +815,7 @@
       },
       {
         "cue": "I meant the midpoint.",
+        "cueVi": "Ý tôi là trung điểm của dải.",
         "task": "Trả lời bằng một câu có tỷ lệ và mốc.",
         "model": "Her monthly salary is ninety percent of the range midpoint.",
         "meaning": "Lương tháng của cô ấy bằng 90% trung điểm dải.",
@@ -740,12 +823,21 @@
       },
       {
         "cue": "Should I approve a raise today?",
+        "cueVi": "Hôm nay tôi có nên duyệt tăng lương không?",
         "task": "Nêu thông tin cần kiểm tra trước khi chốt.",
         "model": "Let me check the role and performance evidence before we decide.",
         "meaning": "Để tôi kiểm tra vai trò và bằng chứng hiệu suất trước khi ta quyết định.",
         "check": "Nêu được một bước xác minh."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "My monthly salary is 36 million dong. The range runs from 24 to 40 million, with a midpoint of 32. How does my pay compare with the midpoint, and how far through the range am I?",
+      "cueVi": "Lương tháng của tôi là 36 triệu đồng. Dải từ 24 đến 40 triệu, trung điểm 32 triệu. Lương của tôi bằng bao nhiêu phần trăm trung điểm và tôi đã đi được bao nhiêu phần của dải?",
+      "task": "Nêu compa-ratio và vị trí trong dải. Giải thích tử số và mẫu số của từng tỷ lệ bằng tiếng Anh.",
+      "model": "Dividing 36 by 32 puts your pay at 112.5% of the midpoint. You are 12 million above the minimum in a range 16 million wide, so you are 75% of the way through.",
+      "meaning": "Lương của bạn bằng 112,5% trung điểm, tính bằng 36 chia 32. Bạn cao hơn sàn 12 triệu trong dải rộng 16 triệu nên đang ở vị trí 75% của dải.",
+      "check": "Phân biệt 36/32 với (36 − 24)/(40 − 24). Nêu được compa-ratio 112,5% và vị trí 75%."
+    }
   },
   {
     "id": "on-lai-trong-so",
@@ -799,6 +891,7 @@
     "turns": [
       {
         "cue": "Why is my bonus below target?",
+        "cueVi": "Vì sao khoản thưởng của tôi thấp hơn mức mục tiêu?",
         "task": "Ghi nhận câu hỏi rồi nêu hai thành phần.",
         "model": "Let’s look at the team and individual parts separately.",
         "meaning": "Ta xem riêng phần kết quả nhóm và phần cá nhân nhé.",
@@ -806,6 +899,7 @@
       },
       {
         "cue": "I exceeded my own target.",
+        "cueVi": "Tôi đã vượt mục tiêu cá nhân mà.",
         "task": "Giải thích bằng phần đóng góp cá nhân.",
         "model": "Yes. Your individual result contributes forty-four percentage points to the overall factor.",
         "meaning": "Đúng. Kết quả cá nhân của bạn đóng góp 44 điểm phần trăm vào hệ số chung.",
@@ -813,12 +907,21 @@
       },
       {
         "cue": "Can I check the calculation later?",
+        "cueVi": "Sau cuộc gọi tôi có thể xem lại phép tính không?",
         "task": "Hẹn gửi phép tính có trọng số.",
         "model": "I’ll send the weights, achievement rates and final amount after this call.",
         "meaning": "Tôi sẽ gửi trọng số, mức đạt và tiền thưởng sau cuộc gọi.",
         "check": "Nêu rõ dữ liệu người nhận sẽ có."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "The target bonus is 20 million dong. The team reached 75% and counts for 40%. I reached 110% and count for 60%. With a linear payout and no caps or thresholds, what will I receive?",
+      "cueVi": "Thưởng mục tiêu là 20 triệu đồng. Nhóm đạt 75% với trọng số 40%, tôi đạt 110% với trọng số 60%. Chính sách trả tuyến tính, không có trần hay ngưỡng. Tôi sẽ nhận bao nhiêu?",
+      "task": "Tính phần đóng góp của nhóm và cá nhân trước khi quy hệ số thành tiền thưởng.",
+      "model": "The team contributes 30 percentage points and your result adds 66. That gives a 96% payout factor, so your bonus is 19.2 million dong.",
+      "meaning": "Nhóm đóng góp 30 điểm phần trăm, cá nhân thêm 66 điểm. Hệ số chi thưởng là 96%, nên khoản thưởng bằng 19,2 triệu đồng.",
+      "check": "Ghép đúng từng kết quả với trọng số, cộng thành 96% rồi nhân với mức thưởng mục tiêu 20 triệu."
+    }
   },
   {
     "id": "doi-boi-canh-fte",
@@ -872,6 +975,7 @@
     "turns": [
       {
         "cue": "Why are there two figures for Hoa?",
+        "cueVi": "Sao Hoa lại có hai con số lương?",
         "task": "Hỏi mục đích dùng số liệu.",
         "model": "Do you need a comparable pay rate or the actual payroll cost?",
         "meaning": "Anh cần mức lương để so sánh hay chi phí lương thực tế?",
@@ -879,6 +983,7 @@
       },
       {
         "cue": "I need a fair comparison.",
+        "cueVi": "Tôi cần so sánh trên cùng một cơ sở.",
         "task": "Trình bày phép quy đổi và giả định.",
         "model": "At seventy-five percent of full time, eighteen million is equivalent to twenty-four million at full time.",
         "meaning": "Với thời lượng 75%, 18 triệu tương đương 24 triệu khi quy đổi toàn thời gian.",
@@ -886,12 +991,21 @@
       },
       {
         "cue": "And what should Finance budget?",
+        "cueVi": "Vậy Tài chính nên dự toán bao nhiêu?",
         "task": "Kết thúc bằng số tiền và điều kiện.",
         "model": "Budget eighteen million for next month if her contracted hours stay the same.",
         "meaning": "Dự toán 18 triệu cho tháng tới nếu số giờ theo hợp đồng giữ nguyên.",
         "check": "Gắn dự toán với điều kiện hợp đồng."
       }
-    ]
+    ],
+    "weeklyFollowUp": {
+      "cue": "Mai earns 20.8 million dong a month for 80% of full-time hours. A colleague in the same job earns 27 million full time. If pay scales with hours, what should we compare and what should Finance budget for Mai next month?",
+      "cueVi": "Mai nhận 20,8 triệu đồng mỗi tháng cho 80% thời lượng chuẩn. Đồng nghiệp cùng vị trí nhận 27 triệu khi làm toàn thời gian. Giả sử lương tỷ lệ thuận với thời lượng, ta nên so mức nào và dự toán lương cho Mai tháng tới ra sao?",
+      "task": "Giả sử lịch làm của Mai giữ nguyên. Quy đổi về cùng thời lượng, tính chênh lệch và nêu tiền lương thực tế cần dự toán.",
+      "model": "Mai’s full-time equivalent is 26 million dong, which is 1 million below her colleague’s 27 million. Budget 20.8 million for Mai on her current hours.",
+      "meaning": "Lương quy đổi toàn thời gian của Mai là 26 triệu đồng, thấp hơn mức 27 triệu của đồng nghiệp một triệu. Với thời lượng hiện tại, dự toán lương cho Mai là 20,8 triệu.",
+      "check": "Lấy 20,8 chia 0,8 khi đối sánh và dùng đúng 20,8 triệu khi lập dự toán cho hợp đồng hiện tại."
+    }
   },
   {
     "id": "chuyen-dau-gio",

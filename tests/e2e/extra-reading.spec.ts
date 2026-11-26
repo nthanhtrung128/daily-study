@@ -66,6 +66,10 @@ const newSituations = [
     id: 'trao-doi-xet-lai-ngach', title: 'Tạm thay trưởng nhóm có được xét lại ngạch?', query: 'xet lai ngach', region: 'Quốc tế',
     source: 'CIPD', answer: 'trách nhiệm quyết định', followUp: 'quyền duyệt lâu dài ở hai cơ sở',
   },
+  {
+    id: 'kiem-chung-nghi-viec', title: 'Bốn lượt nghỉ việc cho biết điều gì?', query: 'bon luot nghi viec', region: 'Quốc tế',
+    source: 'U.S. Bureau of Labor Statistics', answer: 'Hai cuộc phỏng vấn', followUp: 'tỷ lệ tự xin nghỉ trong quý là 6%',
+  },
 ];
 
 for (const item of newSituations) {
