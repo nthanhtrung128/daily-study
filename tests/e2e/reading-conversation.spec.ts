@@ -1,6 +1,45 @@
 import { expect, test } from '@playwright/test';
 import { audit, trackErrors } from './helpers/audit';
 
+test('chỉ luyện lại câu còn vướng và mở tiếp sau khi đóng trang ngoại tuyến', async ({ page, context }) => {
+  const errors = trackErrors(page);
+  await page.goto('/#doc-them?bai=doi-chieu-tien-an-ca');
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+  await page.reload();
+  await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+  await context.setOffline(true);
+  const practice = page.getByRole('region', { name: 'Từ bài đọc đến hội thoại' });
+  for (const [i, mark] of ['Cần luyện thêm', 'Tôi đã làm được', 'Cần luyện thêm'].entries()) {
+    await expect(practice.getByRole('heading', { level: 3 })).toHaveText('Lượt ' + (i + 1) + '/3');
+    await practice.getByRole('button', { name: 'Đã nói · Xem câu gợi ý' }).click();
+    await practice.getByRole('button', { name: mark }).click();
+  }
+  await practice.getByRole('button', { name: 'Luyện lại 2 câu' }).click();
+  await expect(practice.getByRole('heading', { name: 'Luyện lại · Câu 1/3' })).toBeFocused();
+  await practice.getByRole('button', { name: 'Đã nói · Xem câu gợi ý' }).click();
+  await practice.getByRole('button', { name: 'Cần luyện thêm' }).click();
+  await expect(practice.getByRole('heading', { name: 'Luyện lại · Câu 3/3' })).toBeFocused();
+  await practice.getByRole('link', { name: 'Tạm dừng · Về thư viện' }).click();
+  await page.close();
+  const reopened = await context.newPage();
+  const afterErrors = trackErrors(reopened);
+  await reopened.goto('/#doc-them');
+  await reopened.getByRole('link', { name: 'Tiếp tục luyện lại câu 3/3' }).click();
+  const again = reopened.getByRole('region', { name: 'Từ bài đọc đến hội thoại' });
+  await expect(again.getByRole('heading', { name: 'Luyện lại · Câu 3/3' })).toBeFocused();
+  await again.getByRole('button', { name: 'Đã nói · Xem câu gợi ý' }).click();
+  await again.getByRole('button', { name: 'Tôi đã làm được' }).click();
+  await expect(again).toContainText('đạt 2/3 tiêu chí');
+  await expect(again.getByRole('listitem').nth(1)).toContainText('Đã làm được');
+  await again.getByRole('button', { name: 'Luyện lại 1 câu' }).click();
+  await expect(again.getByRole('heading', { name: 'Luyện lại · Câu 1/3' })).toBeFocused();
+  await again.getByRole('button', { name: 'Đã nói · Xem câu gợi ý' }).click();
+  await again.getByRole('button', { name: 'Tôi đã làm được' }).click();
+  await expect(again).toContainText('đạt 3/3 tiêu chí');
+  await expect(again.getByRole('button', { name: /Luyện lại \d câu/ })).toHaveCount(0);
+  expect([...errors, ...afterErrors]).toEqual([]);
+});
+
 test('tạm dừng hội thoại, mở đúng lượt từ thư viện và giữ kết quả ngoại tuyến', async ({ page, context }) => {
   const errors = trackErrors(page);
   await page.goto('/#doc-them');
