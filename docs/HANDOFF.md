@@ -73,6 +73,7 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #68 | Hai bài song ngữ nối Đọc thêm với lượt luyện tuần. Bài phiếu lương đối chiếu số ca và khoản ăn ca, bài xét ngạch luyện hỏi về quyền quyết định lâu dài và hẹn rà soát có căn cứ. |
 | #69 | Đọc thêm lưu từng lượt hội thoại đã tự chấm trên máy. Đầu thư viện mở đúng câu của bài đang dở gần nhất và cho chọn các hội thoại dở khác. Kết quả từng bài đi cùng bản sao lưu. |
 | #70 | Khi kết thúc hội thoại, người học có thể luyện riêng những câu còn vướng. Kết quả từng câu và vị trí đang luyện lại được giữ khi tạm dừng, mở ngoại tuyến hoặc khôi phục sao lưu. |
+| #71 | Thêm ba lượt đối thoại Anh–Việt cho mỗi bài trong sáu bài đọc đầu. Toàn bộ 17 bài có thể luyện nói, tự đối chiếu và luyện lại từng câu đã đánh dấu. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

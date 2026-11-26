@@ -47,7 +47,33 @@
     "answer": {
       "en": "She needs a later start. She would still be responsible for the eight o’clock check at home.",
       "vi": "Linh cần bắt đầu muộn hơn. Nếu làm ở nhà, cô vẫn phải phụ trách lượt kiểm tra lúc tám giờ."
-    }
+    },
+    "turns": [
+      {
+        "cue": "Would working from home on Wednesday help you get to the appointment?",
+        "cueVi": "Làm ở nhà vào thứ Tư có giúp bạn đưa bố đi khám được không?",
+        "task": "Bạn là Linh. Cảm ơn quản lý và nói rõ điều cần đổi trong ca sáng.",
+        "model": "Thanks for offering. I need a later start on Wednesday to take my dad to his appointment. Could someone cover the eight o’clock check?",
+        "meaning": "Cảm ơn anh đã gợi ý. Sáng thứ Tư em cần vào muộn để đưa bố đi khám. Có ai trực thay em phần kiểm tra lúc tám giờ được không?",
+        "check": "Nêu được nhu cầu vào muộn và hỏi ai sẽ trực lúc tám giờ."
+      },
+      {
+        "cue": "I can cover Wednesday morning. Which shift could you take for me?",
+        "cueVi": "Tôi có thể trực sáng thứ Tư. Bạn có thể nhận ca nào cho tôi?",
+        "task": "Nhận một ca của Nam và bàn giao việc khẩn có thể phát sinh từ nhà máy.",
+        "model": "I can take your late shift on Friday. Could you check the overnight messages and call the shift supervisor if a whole team’s time records are missing?",
+        "meaning": "Tôi có thể nhận ca muộn thứ Sáu của bạn. Bạn xem giúp tin nhắn trong đêm và gọi trưởng ca nếu thiếu dữ liệu chấm công của cả tổ nhé?",
+        "check": "Xác nhận ca muộn thứ Sáu và nêu đúng trường hợp cần gọi trưởng ca."
+      },
+      {
+        "cue": "What should we look at before we keep this arrangement?",
+        "cueVi": "Ta nên xem điều gì trước khi quyết định duy trì cách đổi ca này?",
+        "task": "Hẹn thời điểm nhìn lại và đề xuất hai dấu hiệu cho biết việc đổi ca có phù hợp.",
+        "model": "On the last Friday of the trial, let’s count urgent messages still waiting at noon and check whether either of us regularly had to stay late.",
+        "meaning": "Vào thứ Sáu cuối đợt thử, ta đếm số tin khẩn còn chờ đến trưa và xem có ai trong hai người thường xuyên phải về muộn không.",
+        "check": "Hẹn được ngày rà soát, xem cả thời gian phản hồi lẫn việc làm quá giờ."
+      }
+    ]
   },
   {
     "id": "thu-ban-giao",
@@ -97,7 +123,33 @@
     "answer": {
       "en": "Huy sends the file to payroll and copies Mai.",
       "vi": "Huy gửi tệp cho bộ phận tính lương và đồng gửi cho Mai."
-    }
+    },
+    "turns": [
+      {
+        "cue": "If you take Friday afternoon off, what will still need checking?",
+        "cueVi": "Nếu bạn nghỉ chiều thứ Sáu thì phần nào vẫn cần được kiểm tra?",
+        "task": "Trả lời Mai bằng lịch bàn giao cụ thể, từ thứ Năm đến giờ chốt thứ Sáu.",
+        "model": "I’ll finish checking the office records on Thursday. Huy will check the factory file when it arrives at noon on Friday, ahead of the four o’clock deadline.",
+        "meaning": "Em sẽ kiểm tra xong số liệu khối văn phòng vào thứ Năm. Huy sẽ kiểm tra tệp nhà máy khi nhận lúc trưa thứ Sáu để kịp hạn bốn giờ chiều.",
+        "check": "Nêu đúng phần đã xong, người nhận phần còn lại và hạn bốn giờ."
+      },
+      {
+        "cue": "The night-shift total looks unusually high. Should I send it as it is?",
+        "cueVi": "Tổng số ca đêm có vẻ cao bất thường. Tôi gửi luôn như vậy nhé?",
+        "task": "Bạn đang bàn giao cho Huy. Chỉ nơi tìm hướng dẫn và người cần xác minh số ca.",
+        "model": "Please use last month’s checklist in the payroll folder and call the shift supervisor to confirm the night shifts before you send the totals.",
+        "meaning": "Bạn dùng danh sách kiểm tra tháng trước trong thư mục tiền lương rồi gọi trưởng ca xác nhận số ca đêm trước khi gửi số tổng nhé.",
+        "check": "Chỉ đúng danh sách kiểm tra và yêu cầu xác minh với trưởng ca trước khi gửi."
+      },
+      {
+        "cue": "Just to confirm, who gets the checked file and who needs a copy?",
+        "cueVi": "Cho tôi xác nhận lại, ai nhận tệp đã kiểm tra và ai cần được đồng gửi?",
+        "task": "Chốt người gửi, hai nơi nhận và hạn gửi để người ngoài cuộc trao đổi cũng thực hiện được.",
+        "model": "Huy will send the checked factory file directly to payroll by four on Friday and copy Mai on the email.",
+        "meaning": "Huy sẽ gửi thẳng tệp nhà máy đã kiểm tra cho bộ phận tính lương trước bốn giờ chiều thứ Sáu và đồng gửi cho Mai.",
+        "check": "Nêu Huy gửi trực tiếp cho bộ phận tính lương, đồng gửi Mai và nói rõ hạn gửi."
+      }
+    ]
   },
   {
     "id": "bang-luong-thi-truong",
@@ -147,7 +199,33 @@
     "answer": {
       "en": "Neither offer guarantees a minimum bonus. Adding an estimate would mix a possible payment with committed pay.",
       "vi": "Cả hai lời mời đều không cam kết mức thưởng tối thiểu. Nếu cộng một số ước tính, Thu sẽ gộp khoản có thể nhận với khoản chắc chắn được trả."
-    }
+    },
+    "turns": [
+      {
+        "cue": "Both offers say 24 million dong a month. Are the packages the same?",
+        "cueVi": "Cả hai lời mời đều ghi 24 triệu đồng một tháng. Hai gói thu nhập có bằng nhau không?",
+        "task": "Bạn là Thu. Đặt câu hỏi giúp so sánh hai lời mời trên cùng một cơ sở.",
+        "model": "Could I see the written payment terms? I want to check how many months of salary each employer guarantees over a full year.",
+        "meaning": "Cho tôi xem điều khoản chi trả bằng văn bản được không? Tôi muốn kiểm tra mỗi bên cam kết trả bao nhiêu tháng lương trong một năm.",
+        "check": "Hỏi điều khoản bằng văn bản và số tháng lương được bảo đảm."
+      },
+      {
+        "cue": "One employer guarantees twelve payments and the other guarantees thirteen. Where does the bonus go?",
+        "cueVi": "Một bên cam kết trả mười hai tháng, bên kia mười ba tháng. Ta ghi tiền thưởng ở đâu?",
+        "task": "Tính hai mức được cam kết và trình bày riêng khoản thưởng có thể nhận.",
+        "model": "At 24 million dong per payment, the guaranteed totals are 288 million and 312 million a year. I’d list the possible bonus separately because neither offer promises a minimum.",
+        "meaning": "Với 24 triệu đồng mỗi tháng lương, hai tổng được bảo đảm là 288 triệu và 312 triệu đồng một năm. Tôi sẽ ghi thưởng ở mục riêng vì cả hai bên đều chưa cam kết mức tối thiểu.",
+        "check": "Nêu đúng hai tổng theo năm và diễn đạt được điều kiện của khoản thưởng."
+      },
+      {
+        "cue": "How much would it cost to match the higher guarantee, and what should we check first?",
+        "cueVi": "Muốn ngang mức cam kết cao hơn thì phải chi thêm bao nhiêu, và trước hết cần kiểm tra gì?",
+        "task": "Trả lời quản lý tuyển dụng bằng phần chênh và một câu hỏi về công bằng nội bộ.",
+        "model": "We’d need to guarantee another 24 million dong a year. Before changing the offer, could we check what colleagues doing comparable work already receive?",
+        "meaning": "Ta phải cam kết thêm 24 triệu đồng mỗi năm. Trước khi đổi lời mời, ta xem thu nhập của các đồng nghiệp đang làm công việc tương đương được không?",
+        "check": "Nêu đúng 24 triệu đồng mỗi năm và xác định đúng nhóm nội bộ cần so sánh."
+      }
+    ]
   },
   {
     "id": "doc-trung-vi",
@@ -197,7 +275,33 @@
     "answer": {
       "en": "The average rises. The middle observation, and therefore the median, stays at 24 million.",
       "vi": "Số trung bình tăng. Giá trị đứng giữa, tức trung vị, vẫn là 24 triệu."
-    }
+    },
+    "turns": [
+      {
+        "cue": "Can we use the team lead’s figure for all our software engineers?",
+        "cueVi": "Ta dùng mức lương trưởng nhóm cho tất cả kỹ sư phần mềm được không?",
+        "task": "Đặt một câu hỏi về công việc thực tế để xác định đúng nhóm đối sánh.",
+        "model": "Which technical decisions can the engineers make on their own? I’d like to compare them with roles that have similar decision-making authority.",
+        "meaning": "Các kỹ sư được tự đưa ra những quyết định kỹ thuật nào? Tôi muốn đối chiếu họ với các vị trí có thẩm quyền tương đương.",
+        "check": "Hỏi một biểu hiện cụ thể của trách nhiệm và dùng nó để chọn nhóm đối sánh."
+      },
+      {
+        "cue": "In our five salaries, the highest goes from 46 to 56 million. What changes?",
+        "cueVi": "Trong năm mức lương của ta, mức cao nhất tăng từ 46 lên 56 triệu. Chỉ số nào thay đổi?",
+        "task": "Dùng các mức 20, 22, 24, 28 và 46 triệu đồng để giải thích tác động của thay đổi.",
+        "model": "The middle salary is still 24 million. The total rises by 10 million across five people, so the mean rises by 2 million, from 28 to 30 million.",
+        "meaning": "Mức ở giữa vẫn là 24 triệu. Tổng tăng 10 triệu trên năm người nên trung bình tăng 2 triệu, từ 28 lên 30 triệu đồng.",
+        "check": "Giữ đúng trung vị 24 và giải thích vì sao trung bình tăng 2 triệu."
+      },
+      {
+        "cue": "We found only five comparable roles. How would you present the figure?",
+        "cueVi": "Ta chỉ tìm được năm vị trí tương đương. Bạn sẽ trình bày con số này thế nào?",
+        "task": "Nêu hạn chế của mẫu và một bước kiểm chứng trước quyết định tuyển dụng.",
+        "model": "I’d report the median alongside the sample size of five. Could we check a second source with comparable roles before using it for the offer?",
+        "meaning": "Tôi sẽ ghi trung vị kèm cỡ mẫu năm vị trí. Ta có thể đối chiếu thêm một nguồn có công việc tương đương trước khi dùng số này để ra đề nghị không?",
+        "check": "Nêu cỡ mẫu năm và đề xuất thêm một nguồn có phạm vi công việc tương đương."
+      }
+    ]
   },
   {
     "id": "chuyen-dai-luong",
@@ -247,7 +351,33 @@
     "answer": {
       "en": "She handles harder cases independently and coaches a colleague. Moving to a higher grade would require reviewing the scope of the role.",
       "vi": "Lan tự xử lý được trường hợp khó hơn và hướng dẫn đồng nghiệp. Việc lên ngạch cần đánh giá lại phạm vi trách nhiệm của vị trí."
-    }
+    },
+    "turns": [
+      {
+        "cue": "My proposed salary goes from 22 to 24 million. Does that mean I’m moving up a grade?",
+        "cueVi": "Lương đề xuất của em tăng từ 22 lên 24 triệu. Như vậy có phải em lên ngạch không?",
+        "task": "Bạn là quản lý của Lan. Dùng dải lương của chính vị trí để giải thích đề xuất.",
+        "model": "Your current grade runs from 20 to 28 million dong a month. Both 22 and 24 million fall within it, so this proposal moves your pay up within your current grade.",
+        "meaning": "Dải lương của ngạch hiện tại là 20 đến 28 triệu đồng mỗi tháng. Cả 22 và 24 triệu đều nằm trong dải, nên đề xuất này tăng lương cho em trong ngạch hiện tại.",
+        "check": "Nói rõ hai đầu dải và đặt cả hai mức lương vào cùng ngạch."
+      },
+      {
+        "cue": "What have I done that supports the increase?",
+        "cueVi": "Em đã làm được việc gì để có căn cứ cho lần tăng lương này?",
+        "task": "Ghi nhận bằng hai việc Lan đã thực sự làm được trong nhóm tiền lương.",
+        "model": "You handled a complex payroll case independently, then showed a colleague how to check it. Those are the examples I used to support the increase.",
+        "meaning": "Em đã tự xử lý một trường hợp tính lương phức tạp, rồi hướng dẫn đồng nghiệp cách kiểm tra. Đó là những ví dụ anh dùng làm căn cứ đề xuất tăng lương.",
+        "check": "Nêu được cả việc tự xử lý ca khó và hướng dẫn đồng nghiệp."
+      },
+      {
+        "cue": "What evidence should I bring to our next career conversation?",
+        "cueVi": "Em nên mang bằng chứng gì cho buổi trao đổi nghề nghiệp tới?",
+        "task": "Giúp Lan chuẩn bị trao đổi về phạm vi vị trí và quyền quyết định thực tế.",
+        "model": "Bring an example showing which part of payroll you own and which decisions you make across sites. At our next career conversation we can compare that scope with the next grade’s criteria.",
+        "meaning": "Em mang một ví dụ cho thấy em chịu trách nhiệm khâu nào của quy trình lương và được quyết định gì ở các cơ sở. Buổi tới ta sẽ đối chiếu phạm vi đó với tiêu chí của ngạch kế tiếp.",
+        "check": "Yêu cầu bằng chứng về phạm vi và quyền quyết định để đối chiếu ở buổi tới."
+      }
+    ]
   },
   {
     "id": "doc-binh-chon",
@@ -297,7 +427,33 @@
     "answer": {
       "en": "Whether the opening hours suit each shift, and why people with a pass have not used it.",
       "vi": "Cần xem giờ mở cửa có phù hợp với từng ca và hỏi vì sao người được cấp thẻ chưa sử dụng."
-    }
+    },
+    "turns": [
+      {
+        "cue": "That employer ranks highly. Should we copy its gym benefit?",
+        "cueVi": "Công ty đó đứng cao trong bảng xếp hạng. Ta có nên làm theo phúc lợi tập gym của họ?",
+        "task": "Bạn là Hạnh. Thừa nhận thông tin từ bảng xếp hạng và hỏi điều cần biết về phúc lợi cụ thể.",
+        "model": "The ranking tells us people like the employer overall. Do we know whether access to a gym influenced their votes?",
+        "meaning": "Bảng xếp hạng cho thấy mọi người nhìn chung thích nhà tuyển dụng đó. Ta có biết việc được đi tập gym có ảnh hưởng đến lá phiếu của họ không?",
+        "check": "Phân biệt đánh giá nhà tuyển dụng với bằng chứng về riêng phúc lợi tập gym."
+      },
+      {
+        "cue": "Only six of our forty pass holders used the gym last month. Is demand low?",
+        "cueVi": "Tháng trước chỉ sáu trong bốn mươi người được cấp thẻ đi tập. Có phải nhu cầu thấp không?",
+        "task": "Nói tỷ lệ sử dụng và hỏi về một trở ngại cụ thể đối với nhân viên ca đêm.",
+        "model": "Six out of forty is 15%. Could we check whether the gym was still open when the night shift finished?",
+        "meaning": "Sáu trên bốn mươi là 15%. Ta có thể kiểm tra xem phòng tập còn mở cửa khi nhân viên ca đêm tan ca không?",
+        "check": "Tính đúng 15% và hỏi về giờ mở cửa trước khi kết luận về nhu cầu."
+      },
+      {
+        "cue": "How will we tell whether offering a choice of two gyms helps?",
+        "cueVi": "Làm sao biết việc cho chọn một trong hai phòng tập có tác dụng?",
+        "task": "Đề xuất phép so sánh theo ca và cách tìm phần thông tin số liệu chưa phản ánh.",
+        "model": "For each shift, let’s compare the share of pass holders who use a gym before and after the change. Then ask people who still haven’t gone what gets in the way.",
+        "meaning": "Với từng ca, ta so tỷ lệ người dùng trên số người được cấp thẻ trước và sau thay đổi. Sau đó hỏi những người vẫn chưa đi tập xem họ gặp trở ngại gì.",
+        "check": "So tỷ lệ trên đúng số người có thẻ trong từng ca và hỏi thêm người chưa dùng."
+      }
+    ]
   },
   {
     "id": "thu-du-toan",
