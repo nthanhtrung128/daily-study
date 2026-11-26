@@ -3,6 +3,18 @@
 ## Hiện trạng
 App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra nội dung và build cho mọi PR. PR sẵn sàng review chạy thêm Playwright với Chromium trên iPhone 14 và iPhone SE. Push lên `main` và chạy CI thủ công kiểm tra cả Chromium lẫn WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
 
+## Nhật ký tiếp nối
+
+Mỗi PR ghi một mốc tại đây khi bắt đầu việc mới hoặc khi có kết quả làm thay đổi bước tiếp theo. Ghi ngày giờ Việt Nam, nhánh hoặc PR, bằng chứng đã kiểm tra, phần còn chờ và bước kế tiếp. Trước khi nhận việc, đối chiếu SHA trên `main`, PR đang mở và hai job CI để tránh làm trùng giữa các phiên. Kết quả trên iPhone thật cần kèm mẫu máy và phiên bản iOS. Chỉ ghi kết quả thử, giữ địa chỉ email, mã đăng nhập và dữ liệu học riêng trên thiết bị.
+
+| Mốc (giờ Việt Nam) | Phần đã kiểm tra | Bước tiếp theo |
+|---|---|---|
+| 26/11/2026, 21:35 · nhánh `huong-dan-email-da-dang-ky` | Đã thử nút đăng nhập, mở hướng dẫn tìm mã bằng chạm và phím Enter, chữ lớn ở 320 px và chuyển sang ngoại tuyến trên Chromium lẫn WebKit. GET bằng curl, không kèm cookie, đến trang chủ, `/dang-nhap`, manifest, service worker và robots.txt đều trả 302 tới Cloudflare Access. [Trạng thái PR #74](https://github.com/nthanhtrung128/daily-study/pull/74) | Ghi kết quả phát hành của PR này rồi chuẩn bị các mốc thử tính năng iOS, TestFlight và App Review. Việc nhận thư thực tế cần người có hộp thư được cấp quyền. |
+| 26/11/2026, 14:07 · #73 | Đã gộp lộ trình nghiệm thu PWA vào `233d7f1`. Hai job CI trên `main` và Cloudflare Pages đã thành công. [PR #73](https://github.com/nthanhtrung128/daily-study/pull/73) · [CI](https://github.com/nthanhtrung128/daily-study/actions/runs/45772957861) | Thử nhận mã bằng email được cấp quyền trên iPhone thật và ghi kết quả tại mục 10 của hướng dẫn triển khai. |
+| 26/11/2026, 09:49 · #70–#72 | Đã phát hành luyện lại câu còn vướng, 18 lượt thoại mới và 12 lượt vận dụng. Cả 17 bài hiện có ba lượt thoại và một tình huống đổi dữ kiện. Hai job CI và Pages đạt tại `4bbbefc`. [PR #72](https://github.com/nthanhtrung128/daily-study/pull/72) · [CI](https://github.com/nthanhtrung128/daily-study/actions/runs/45744986477) | Khi kiểm lại nội dung, thử bài nghỉ việc qua hai tuần và đối chiếu tỷ lệ 3/50 = 6%. |
+
+## Các PR
+
 | PR | Nội dung |
 |---|---|
 | #1 | S1: khung Vite + React + TS strict, PWA, Dexie, CI, 4 trang (điều hướng hash) |
@@ -75,6 +87,8 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 | #70 | Khi kết thúc hội thoại, người học có thể luyện riêng những câu còn vướng. Kết quả từng câu và vị trí đang luyện lại được giữ khi tạm dừng, mở ngoại tuyến hoặc khôi phục sao lưu. |
 | #71 | Thêm ba lượt đối thoại Anh–Việt cho mỗi bài trong sáu bài đọc đầu. Toàn bộ 17 bài có thể luyện nói, tự đối chiếu và luyện lại từng câu đã đánh dấu. |
 | #72 | Cả 17 bài Đọc thêm có tình huống vận dụng với dữ kiện mới trong lịch luyện tuần. Thêm 12 tình huống song ngữ về nghỉ việc, bàn giao, ngân sách, lương và phúc lợi, cùng nghĩa của 18 lời đồng nghiệp ở sáu bài trước. |
+| #73 | Bổ sung kịch bản nghiệm thu đăng nhập, ngoại tuyến, sao lưu ghi âm và đánh giá nhu cầu native trên iPhone. |
+| #74 | Tài khoản hướng dẫn đăng nhập bằng email đã cấp quyền và xử lý khi chưa nhận mã. Mở nhật ký tiếp nối có liên kết đến PR, CI và việc cần thử trên thiết bị. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

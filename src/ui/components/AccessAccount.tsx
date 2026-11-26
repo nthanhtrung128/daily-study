@@ -5,7 +5,7 @@ type Session =
   | { kind: 'verified'; email: string };
 
 const messages = {
-  idle: 'Cloudflare Access quản lý đăng nhập vào Daily Study.',
+  idle: 'Dùng email đã được cấp quyền. Khi cần xác minh, Cloudflare Access sẽ gửi mã đăng nhập đến hộp thư của bạn.',
   checking: 'Đang kiểm tra phiên với Cloudflare…',
   login: 'Cần đăng nhập qua Cloudflare để xác nhận phiên.',
   unavailable: 'Chưa kiểm tra được phiên. Bạn có thể thử lại khi có kết nối.',
@@ -79,11 +79,15 @@ export function AccessAccount() {
       <div className="row">
         {online && (session.kind === 'verified'
           ? <a className="btn ghost link-btn" href="/cdn-cgi/access/logout">Đăng xuất Cloudflare</a>
-          : <a className="btn link-btn" href="/dang-nhap?ve=tai-khoan">Đăng nhập qua Cloudflare</a>)}
+          : <a className="btn link-btn" href="/dang-nhap?ve=tai-khoan">Đăng nhập bằng email</a>)}
         <button className="btn ghost" type="button" disabled={!online || session.kind === 'checking'} onClick={() => void check()}>
           Kiểm tra phiên
         </button>
       </div>
+      {online && session.kind !== 'verified' && <details className="access-help">
+        <summary>Chưa nhận được mã?</summary>
+        <p>Kiểm tra địa chỉ email đã nhập và thư mục Thư rác. Nếu mã hết hạn, yêu cầu mã mới trên trang đăng nhập. Nếu vẫn chưa có thư, nhờ người quản lý Daily Study kiểm tra quyền của email này.</p>
+      </details>}
       <p className="hint">Memo, tiến độ và ghi âm được lưu trên thiết bị này, kể cả sau khi đăng xuất.</p>
     </section>
   );

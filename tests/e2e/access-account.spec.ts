@@ -49,7 +49,12 @@ test('chỉ kiểm tra phiên theo yêu cầu, xác nhận email và mở đúng
   await page.goto(access.origin + '/#cai-dat');
   const account = page.getByRole('region', { name: 'Tài khoản' });
   const check = account.getByRole('button', { name: 'Kiểm tra phiên' });
-  await expect(account.getByRole('link', { name: 'Đăng nhập qua Cloudflare' })).toBeVisible();
+  await expect(account.getByRole('link', { name: 'Đăng nhập bằng email' })).toBeVisible();
+  await expect(account.getByRole('status')).toContainText('email đã được cấp quyền');
+  const help = account.getByText('Chưa nhận được mã?', { exact: true });
+  await help.click();
+  await expect(account.getByText(/Kiểm tra địa chỉ email đã nhập/)).toBeVisible();
+  await help.click();
   expect(access.checks()).toBe(0);
   await check.click();
   await expect(account.getByRole('status')).toContainText('Chưa kiểm tra được phiên');
@@ -60,6 +65,7 @@ test('chỉ kiểm tra phiên theo yêu cầu, xác nhận email và mở đúng
   await expect(account.getByRole('status')).toContainText('Cần đăng nhập qua Cloudflare');
   await check.click();
   await expect(account.getByRole('status')).toContainText('nguoi-hoc-voi-dia-chi-dai@example.test');
+  await expect(help).toHaveCount(0);
   const findings: string[] = [];
   await audit(page, 'tai-khoan', findings);
   expect(findings).toEqual([]);
@@ -79,7 +85,7 @@ test('đăng nhập qua mạng, quay về Cài đặt và tải lại ngoại tu
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   await page.getByRole('link', { name: 'Cài đặt', exact: true }).click();
   const account = page.getByRole('region', { name: 'Tài khoản' });
-  const login = account.getByRole('link', { name: 'Đăng nhập qua Cloudflare' });
+  const login = account.getByRole('link', { name: 'Đăng nhập bằng email' });
   const [response] = await Promise.all([
     page.waitForResponse((r) => r.request().isNavigationRequest() && new URL(r.url()).pathname === '/dang-nhap'),
     login.click(),
@@ -91,6 +97,7 @@ test('đăng nhập qua mạng, quay về Cài đặt và tải lại ngoại tu
   await page.reload();
   await expect(account.getByRole('status')).toContainText('ngoại tuyến');
   await expect(login).toHaveCount(0);
+  await expect(account.getByText('Chưa nhận được mã?', { exact: true })).toHaveCount(0);
   await expect(account.getByRole('button')).toBeDisabled();
   await context.setOffline(false);
   await expect(login).toBeVisible();
