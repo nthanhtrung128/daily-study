@@ -174,6 +174,13 @@ CI (GitHub Actions) luôn chạy cả Chromium và WebKit.
 
 ## 10. Danh sách kiểm tra trên iPhone thật
 
+Ghi một dòng sau mỗi lượt thử trên thiết bị. Dùng số build cho bản TestFlight hoặc mã commit của bản PWA nếu đã xác định được. Với bản PWA chỉ hiện số phiên bản, ghi “chưa rõ mã” và tên tính năng đã quan sát. Kết quả của trình duyệt mô phỏng nằm trong CI.
+
+| Ngày giờ Việt Nam | Máy, iOS, cách mở | Bản thử | Thao tác và kết quả quan sát | Bước tiếp theo |
+|---|---|---|---|---|
+| Chờ lượt thử đầu tiên | iPhone thật · Safari và Màn hình chính | PWA | Cần thử nhận mã email, mở memo ngoại tuyến và nghe bản ghi sau khôi phục. | Ghi kết quả của từng cách mở sau khi thực hiện. |
+
+
 Test tự động (Playwright giả lập iPhone 14 / iPhone SE, cả WebKit) đã kiểm bố cục, offline, header, luồng bấm. Những mục dưới đây **chỉ kiểm được trên iPhone thật** (giọng đọc, micro, nhận giọng, Lịch, Tệp). Làm một lượt sau lần deploy đầu, và sau mỗi lần nâng iOS lớn. Đánh dấu ☐ → ☑.
 
 ### A. Cài đặt và mở app

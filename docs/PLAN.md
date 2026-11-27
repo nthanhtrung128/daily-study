@@ -78,9 +78,26 @@ Bản PWA đã được cài trên Màn hình chính. Dùng chính bản này đ
 | 1. Email đã cấp quyền | Mở trang bằng tab Safari riêng tư có mạng, nhận mã bằng email đã đăng ký, nhập mã rồi mở Cài đặt → Tài khoản → Kiểm tra phiên. | Vào được bài học và thấy đúng email. Thử đăng nhập bằng một email ngoài danh sách trong phiên riêng mới, xác nhận không vào được bài. |
 | 2. Học trên thiết bị | Mở app từ Màn hình chính, học một lượt, lưu memo và thử nghe, nói, ghi âm. Sau khi app đã tải xong, bật chế độ máy bay, mở lại bài và memo. | Đọc được bài và memo ngoại tuyến. Khi có mạng, có thể nhận giọng; bản ghi phát lại được trên iPhone. |
 | 3. Sao lưu và khôi phục | Xuất bản sao có ghi âm vào Tệp. Nhập vào một phiên thử có kho dữ liệu trống, rồi đối chiếu memo, tiến độ và phát lại bản ghi. | Khôi phục được cả nội dung lẫn âm thanh. Giữ bản đang học và tệp sao lưu trong suốt lần thử. |
-| 4. Quyết định về app iOS riêng | Sau 1–2 tuần, ghi tác vụ cụ thể còn vướng trên PWA, tần suất và ảnh hưởng khi học. | Nếu có nhu cầu cần tính năng native, thử đúng tác vụ đó với Capacitor trên thiết bị thật trước khi quyết định phân phối. Nếu PWA đáp ứng được, tiếp tục dùng bản đang chạy. |
+| 4. Quyết định về app iOS riêng | Sau 1–2 tuần, ghi tác vụ cụ thể còn vướng trên PWA, tần suất và ảnh hưởng khi học. | Chọn tác vụ cần thử trong Xcode và ghi hành vi mong đợi trên thiết bị. Dùng kết quả PWA làm mốc so sánh cho bản thử iOS. |
 
-## Giai đoạn 4 (tùy chọn, cần quyết định của người dùng)
-- Bọc Capacitor thành app iOS: cần Mac hoặc dịch vụ build cloud, và tài khoản Apple Developer.
+## Lộ trình phát hành iOS
+
+Bản đang dùng là PWA trên Cloudflare Pages. Mục tiêu của bản iOS đầu tiên là hoàn thành một lượt ôn khi mất mạng và mở đúng bài từ lời nhắc trên iPhone. Dùng một bài đọc Anh–Việt tự biên soạn để thử toàn bộ hành trình trước khi mở rộng kho nội dung.
+
+| Mốc | Việc thực hiện | Điều kiện để đi tiếp |
+|---|---|---|
+| 1. Đối chiếu bản đang học | Hiển thị mã commit của bản đã tải ở **Cài đặt → Dữ liệu**, cùng cách đang mở app. Thử trên Safari và từ Màn hình chính, cả khi mất mạng. | Chép được mã trên máy để so với bản production của Pages. Sau **Có bản mới → Cập nhật**, memo vẫn mở được và mã đổi sang bản vừa phát hành. |
+| 2. Nghiệm thu PWA trên máy thật | Thử các bước email, ngoại tuyến, micro và khôi phục ở phần trên. Ghi kết quả theo từng cách mở app vào mục 10 của hướng dẫn triển khai. | Có kết quả trên một iPhone xác định, gồm cả lần từ chối micro. Bản sao thử khôi phục được memo, tiến độ và một bản ghi có thể phát lại. |
+| 3. Thử một chức năng native trong Xcode | Làm một lượt ôn có lời nhắc cục bộ do người học chọn giờ. Khi chạm thông báo, mở đúng câu đang dở. Khi từ chối thông báo, vẫn vào được bài từ Hôm nay. Dùng SwiftUI và UserNotifications cho bản thử trên máy Mac. | Trên iPhone thật, đóng app, mở từ thông báo trong chế độ máy bay, chấm câu rồi khởi động lại. Câu tiếp theo và kết quả lần chấm trước phải khớp. Đối chiếu với luồng PWA trước khi chọn cách tích hợp. |
+| 4. TestFlight | Chủ tài khoản Apple chọn Bundle ID, bật ký bản và tạo hồ sơ App Store Connect. Gửi một build cho nhóm thử nội bộ. Chỉ mời nhóm bên ngoài sau khi hoàn tất bước xét duyệt beta tương ứng. | Người thử cài được, hoàn thành lượt ôn và nâng từ build trước lên build sau mà giữ được tiến độ. Nhật ký có số build, phiên bản iOS, lỗi còn mở và kết quả thử lại. |
+| 5. App Review và phát hành | Chuẩn bị ảnh từ bản gửi duyệt, mô tả chức năng, URL hỗ trợ, chính sách riêng tư, khai báo dữ liệu và cách để người xét duyệt vào đủ tính năng. | Chủ dự án xác nhận quyền phân phối nội dung, kết quả TestFlight và hồ sơ riêng tư. Ghi vào nhật ký ngày gửi, kết quả App Review và phiên bản thực tế khi phát hành. |
+
+**Email và dữ liệu học.** Với bản hiện tại, người quản lý cấp quyền cho từng địa chỉ. Cloudflare Access gửi mã một lần và xác nhận phiên. Tiến độ, memo và ghi âm thuộc kho dữ liệu trên thiết bị. Khi thử bản native, kiểm tra lại lần đăng nhập đầu, hết phiên và đổi người dùng trên cùng iPhone. Người sau chỉ được mở dữ liệu của mình. Để chuyển dữ liệu PWA, dùng bản sao có ghi âm, nhập trên bản thử rồi đối chiếu trước khi xóa dữ liệu trên máy cũ. Tự đăng ký tài khoản trong app là một bước riêng, cần thiết kế cả xác minh và xóa tài khoản. [Đăng nhập bằng mã email của Cloudflare](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/) · [Yêu cầu xóa tài khoản của Apple](https://developer.apple.com/support/offering-account-deletion-in-your-app/)
+
+**Nội dung được phép phân phối.** Bản web hiện đóng gói dữ liệu TR nội bộ trong JavaScript và dựa vào Cloudflare Access trước khi tải. Gói thử iOS dùng bài đã có quyền phân phối. Kiểm tra danh sách tài nguyên trong bản Archive trước khi đưa lên TestFlight. Nếu bản phát hành cần bài nội bộ, thiết kế đường tải có xác thực và kiểm tra riêng quyền truy cập của người học. Cấp cho App Review tài khoản thử với nội dung mẫu đủ để trải nghiệm các tính năng. Phần mô tả cần chỉ ra cách học ngoại tuyến và mở lại bài từ lời nhắc. [App Review Guidelines, mục 2.1, 4.2 và 5.1](https://developer.apple.com/app-store/review/guidelines/)
+
+**Phân phối và quyền riêng tư.** Có thể dùng Apple Account với Xcode để thử trên thiết bị cá nhân. TestFlight và App Store cần tư cách thành viên Apple Developer Program của chủ dự án. Khi chuẩn bị thông tin riêng tư, đối chiếu riêng email xử lý qua Access, dữ liệu nằm trên máy và hành vi thực tế của tính năng giọng nói. [Quyền theo loại tài khoản](https://developer.apple.com/support/compare-memberships/) · [Hướng dẫn TestFlight](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/) · [Khai báo quyền riêng tư trên App Store](https://developer.apple.com/app-store/app-privacy-details/)
+
+## Các hướng mở rộng khác (tùy chọn)
 - Đồng bộ nhiều máy bằng Supabase.
 - AI chấm bài nói và sửa bài viết: cần API trả phí và một máy chủ nhỏ.
