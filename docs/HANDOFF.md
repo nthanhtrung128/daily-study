@@ -7,14 +7,16 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 
 Mỗi PR ghi một mốc tại đây khi bắt đầu việc mới hoặc khi có kết quả làm thay đổi bước tiếp theo. Ghi ngày giờ Việt Nam, nhánh hoặc PR, bằng chứng đã kiểm tra, phần còn chờ và bước kế tiếp. Trước khi nhận việc, đối chiếu SHA trên `main`, PR đang mở và hai job CI để tránh làm trùng giữa các phiên. Kết quả trên iPhone thật cần kèm mẫu máy và phiên bản iOS. Chỉ ghi kết quả thử, giữ địa chỉ email, mã đăng nhập và dữ liệu học riêng trên thiết bị.
 
-**Đã phát hành.** Cả 17 bài có hội thoại và tình huống đổi dữ kiện. Màn Tài khoản hướng dẫn dùng email đã được cấp quyền. Bản production `07b7322` đã qua hai job CI và Cloudflare Pages. [CI trên main](https://github.com/nthanhtrung128/daily-study/actions/runs/45843200945)
+**Đã phát hành.** 17 bài đọc có hội thoại và lượt vận dụng. Màn Tài khoản hướng dẫn đăng nhập bằng email đã cấp quyền. Lộ trình iOS từ PWA tới App Review có trong bản `2f707e4`. [PR #75](https://github.com/nthanhtrung128/daily-study/pull/75) · [CI trên main](https://github.com/nthanhtrung128/daily-study/actions/runs/45925331652)
 
-**Đang làm.** Nhánh `lo-trinh-ung-dung-ios` chuẩn bị tiêu chí nghiệm thu từ PWA đến TestFlight và App Review. Theo dõi kết quả phát hành trong PR. [PR #75](https://github.com/nthanhtrung128/daily-study/pull/75)
+**Đang làm.** Nghiệm thu trên iPhone thật đang chờ kết quả ở mục 10. Mốc nhận diện bản đang chạy nằm trong PR #76. Phần **Xác nhận phát hành** của PR ghi mã production và đường dẫn CI sau khi hoàn tất. [PR #76](https://github.com/nthanhtrung128/daily-study/pull/76) · [Sổ thử thiết bị](DEPLOY.md#10-danh-sách-kiểm-tra-trên-iphone-thật)
 
-**Dự kiến.** Việc kế tiếp là cho xem mã bản dựng và cách mở app ở Cài đặt để nhận diện đúng bản khi thử trên iPhone. Việc cần thiết bị là nhận mã email thật, kiểm tra ngoại tuyến, micro và khôi phục bản sao. Sau đó thử lời nhắc mở đúng bài bằng Xcode. [Lộ trình phát hành iOS](PLAN.md#lộ-trình-phát-hành-ios)
+**Dự kiến.** Từ Safari và từ Màn hình chính, ghi mã bản dựng, thử nhận mã email, mở memo ngoại tuyến và khôi phục bản sao có ghi âm. Sau khi có kết quả trên thiết bị, thử một lượt ôn mở từ thông báo cục bộ trong Xcode. [Lộ trình phát hành iOS](PLAN.md#lộ-trình-phát-hành-ios)
 
 | Mốc (giờ Việt Nam) | Phần đã kiểm tra | Bước tiếp theo |
 |---|---|---|
+| 27/11/2026, 15:00 · #76 | Đã thử hai gói cùng số phiên bản trên Chromium và WebKit. Khi dải **Có bản mới** xuất hiện, mã vẫn thuộc bản đang chạy. Sau **Cập nhật**, mã đổi và memo đã ghi vẫn mở được khi mất mạng. [Theo dõi kiểm thử và phát hành](https://github.com/nthanhtrung128/daily-study/pull/76) | Mở bản đã tải trên iPhone, so mã với Pages và ghi kết quả thử trước/sau khi cập nhật vào mục 10. |
+| 27/11/2026, 08:55 · #75 | Đã squash thành `2f707e4`, hai job trên main và Pages thành công. [CI](https://github.com/nthanhtrung128/daily-study/actions/runs/45925331652) | Tiếp nối bằng mốc nhận diện đúng bản cài trên iPhone. |
 | 27/11/2026, 08:33 · #75 | Đã đối chiếu cách cấp quyền email, điều kiện thử trên thiết bị, TestFlight và App Review với tài liệu Cloudflare và Apple. Bản iOS thử nghiệm dự kiến dùng một bài song ngữ tự soạn. [Lộ trình](PLAN.md#lộ-trình-phát-hành-ios) | Ghi mốc phát hành vào PR. Thực hiện riêng phần nhận diện bản dựng rồi đối chiếu trên máy thật. |
 | 26/11/2026, 21:51 · #74 | Đã squash thành `07b7322`, Pages đã triển khai. CI bản chính đạt cả Chromium và WebKit. [PR #74](https://github.com/nthanhtrung128/daily-study/pull/74) · [CI](https://github.com/nthanhtrung128/daily-study/actions/runs/45843200945) | Lối thử trên thiết bị là **Cài đặt → Tài khoản → Đăng nhập bằng email**. |
 | 26/11/2026, 21:35 · nhánh `huong-dan-email-da-dang-ky` | Đã thử nút đăng nhập, mở hướng dẫn tìm mã bằng chạm và phím Enter, chữ lớn ở 320 px và chuyển sang ngoại tuyến trên Chromium lẫn WebKit. GET bằng curl, không kèm cookie, đến trang chủ, `/dang-nhap`, manifest, service worker và robots.txt đều trả 302 tới Cloudflare Access. [Trạng thái PR #74](https://github.com/nthanhtrung128/daily-study/pull/74) | Ghi kết quả phát hành của PR này rồi chuẩn bị các mốc thử tính năng iOS, TestFlight và App Review. Việc nhận thư thực tế cần người có hộp thư được cấp quyền. |
@@ -98,6 +100,7 @@ Mỗi PR ghi một mốc tại đây khi bắt đầu việc mới hoặc khi c�
 | #73 | Bổ sung kịch bản nghiệm thu đăng nhập, ngoại tuyến, sao lưu ghi âm và đánh giá nhu cầu native trên iPhone. |
 | #74 | Tài khoản hướng dẫn đăng nhập bằng email đã cấp quyền và xử lý khi chưa nhận mã. Mở nhật ký tiếp nối có liên kết đến PR, CI và việc cần thử trên thiết bị. |
 | #75 | Lộ trình từ PWA đến bản iOS có năm mốc thử, tiêu chí cho đăng nhập, dữ liệu học, TestFlight và App Review. Nhật ký có ba trạng thái và mẫu ghi thử trên iPhone. |
+| #76 | Dữ liệu trong Cài đặt hiện mã commit của bản đã tải và cách mở PWA. Có thể đối chiếu với Pages cả khi mất mạng. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.

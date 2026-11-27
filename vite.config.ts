@@ -8,6 +8,9 @@ import { headersForPath, parseHeadersFile } from './scripts/cf-headers';
 
 const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string };
 
+const buildCommit = [process.env.CF_PAGES_COMMIT_SHA, process.env.GITHUB_SHA]
+  .find(value => value && /^[0-9a-f]{40}$/i.test(value))?.slice(0, 7).toLowerCase();
+
 /** `vite preview` trả đúng header trong public/_headers (như Cloudflare Pages) để test được CSP, cache. */
 function cloudflareHeadersPreview(): Plugin {
   return {
@@ -26,7 +29,10 @@ function cloudflareHeadersPreview(): Plugin {
 // base './' để chạy được ở thư mục con hoặc mở bản build cục bộ.
 export default defineConfig({
   base: './',
-  define: { __APP_VERSION__: JSON.stringify(pkg.version) },
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
+    __BUILD_COMMIT__: JSON.stringify(buildCommit ?? null),
+  },
   build: {
     rollupOptions: {
       output: {

@@ -8,7 +8,7 @@ import { BackupPanel } from '../components/BackupPanel';
 import { StorageInfo } from '../components/StorageInfo';
 import { setDailyPrefs, useDailyPrefs } from '../useDailyPrefs';
 import { useProgress } from '../useProgress';
-import { downloadText } from '../mix/download';
+import { downloadText, isStandalone } from '../mix/download';
 import { ACCENTS, RATES } from '../../modules/english/tts';
 import { setTtsPrefs, useTtsPrefs } from '../../modules/english/useTts';
 import { SpeakButton } from '../../modules/english/ui/SpeakButton';
@@ -298,14 +298,16 @@ export function SettingsPage() {
         </p>
       </div>
 
-      <div className="panel stack">
-        <div className="eyebrow">Dữ liệu</div>
+      <section className="panel stack" aria-labelledby="h-set-data">
+        <h2 id="h-set-data" className="eyebrow">Dữ liệu</h2>
         <p className="hint" style={{ margin: 0 }}>
           Tiến độ, cài đặt và ghi âm chỉ lưu trên máy này (IndexedDB). App không gửi dữ liệu đi đâu và chạy được khi không có mạng.
         </p>
         <StorageInfo />
         <p className="hint num" style={{ margin: 0 }}>
-          Phiên bản {__APP_VERSION__}
+          Phiên bản {__APP_VERSION__} · {__BUILD_COMMIT__ ? <>Mã bản dựng <code>{__BUILD_COMMIT__}</code></> : 'Chưa có mã bản dựng'}
+          <br />
+          {isStandalone() ? 'Mở từ Màn hình chính' : 'Mở trong trình duyệt'}
         </p>
         <div className="row">
           {sw.need && (
@@ -331,7 +333,7 @@ export function SettingsPage() {
           {updMsg || (sw.need ? 'Đã tải bản mới. Bấm Cập nhật ngay để dùng bản mới; tiến độ không bị ảnh hưởng.' : '') || 'Mở lại app qua mạng (đăng nhập Cloudflare Access nếu phiên đã hết hạn) để tải bản mới; khi tải xong, app hỏi trước khi cập nhật. Tiến độ không bị ảnh hưởng.'}
         </p>
         <BackupPanel />
-      </div>
+      </section>
     </section>
   );
 }
