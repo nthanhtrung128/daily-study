@@ -1,4 +1,4 @@
-# Bàn giao (cập nhật 26/11/2026)
+# Bàn giao (cập nhật 27/11/2026)
 
 ## Hiện trạng
 App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra nội dung và build cho mọi PR. PR sẵn sàng review chạy thêm Playwright với Chromium trên iPhone 14 và iPhone SE. Push lên `main` và chạy CI thủ công kiểm tra cả Chromium lẫn WebKit. Cloudflare Pages đang phục vụ app tại [daily-study-6en.pages.dev](https://daily-study-6en.pages.dev/) qua Cloudflare Access. Người dùng đã thêm PWA vào Màn hình chính trên iPhone.
@@ -7,8 +7,16 @@ App chạy từ nhánh `main`. CI chạy lint, typecheck, Vitest, kiểm tra n�
 
 Mỗi PR ghi một mốc tại đây khi bắt đầu việc mới hoặc khi có kết quả làm thay đổi bước tiếp theo. Ghi ngày giờ Việt Nam, nhánh hoặc PR, bằng chứng đã kiểm tra, phần còn chờ và bước kế tiếp. Trước khi nhận việc, đối chiếu SHA trên `main`, PR đang mở và hai job CI để tránh làm trùng giữa các phiên. Kết quả trên iPhone thật cần kèm mẫu máy và phiên bản iOS. Chỉ ghi kết quả thử, giữ địa chỉ email, mã đăng nhập và dữ liệu học riêng trên thiết bị.
 
+**Đã phát hành.** Cả 17 bài có hội thoại và tình huống đổi dữ kiện. Màn Tài khoản hướng dẫn dùng email đã được cấp quyền. Bản production `07b7322` đã qua hai job CI và Cloudflare Pages. [CI trên main](https://github.com/nthanhtrung128/daily-study/actions/runs/45843200945)
+
+**Đang làm.** Nhánh `lo-trinh-ung-dung-ios` chuẩn bị tiêu chí nghiệm thu từ PWA đến TestFlight và App Review. Theo dõi kết quả phát hành trong PR. [PR #75](https://github.com/nthanhtrung128/daily-study/pull/75)
+
+**Dự kiến.** Việc kế tiếp là cho xem mã bản dựng và cách mở app ở Cài đặt để nhận diện đúng bản khi thử trên iPhone. Việc cần thiết bị là nhận mã email thật, kiểm tra ngoại tuyến, micro và khôi phục bản sao. Sau đó thử lời nhắc mở đúng bài bằng Xcode. [Lộ trình phát hành iOS](PLAN.md#lộ-trình-phát-hành-ios)
+
 | Mốc (giờ Việt Nam) | Phần đã kiểm tra | Bước tiếp theo |
 |---|---|---|
+| 27/11/2026, 08:33 · #75 | Đã đối chiếu cách cấp quyền email, điều kiện thử trên thiết bị, TestFlight và App Review với tài liệu Cloudflare và Apple. Bản iOS thử nghiệm dự kiến dùng một bài song ngữ tự soạn. [Lộ trình](PLAN.md#lộ-trình-phát-hành-ios) | Ghi mốc phát hành vào PR. Thực hiện riêng phần nhận diện bản dựng rồi đối chiếu trên máy thật. |
+| 26/11/2026, 21:51 · #74 | Đã squash thành `07b7322`, Pages đã triển khai. CI bản chính đạt cả Chromium và WebKit. [PR #74](https://github.com/nthanhtrung128/daily-study/pull/74) · [CI](https://github.com/nthanhtrung128/daily-study/actions/runs/45843200945) | Lối thử trên thiết bị là **Cài đặt → Tài khoản → Đăng nhập bằng email**. |
 | 26/11/2026, 21:35 · nhánh `huong-dan-email-da-dang-ky` | Đã thử nút đăng nhập, mở hướng dẫn tìm mã bằng chạm và phím Enter, chữ lớn ở 320 px và chuyển sang ngoại tuyến trên Chromium lẫn WebKit. GET bằng curl, không kèm cookie, đến trang chủ, `/dang-nhap`, manifest, service worker và robots.txt đều trả 302 tới Cloudflare Access. [Trạng thái PR #74](https://github.com/nthanhtrung128/daily-study/pull/74) | Ghi kết quả phát hành của PR này rồi chuẩn bị các mốc thử tính năng iOS, TestFlight và App Review. Việc nhận thư thực tế cần người có hộp thư được cấp quyền. |
 | 26/11/2026, 14:07 · #73 | Đã gộp lộ trình nghiệm thu PWA vào `233d7f1`. Hai job CI trên `main` và Cloudflare Pages đã thành công. [PR #73](https://github.com/nthanhtrung128/daily-study/pull/73) · [CI](https://github.com/nthanhtrung128/daily-study/actions/runs/45772957861) | Thử nhận mã bằng email được cấp quyền trên iPhone thật và ghi kết quả tại mục 10 của hướng dẫn triển khai. |
 | 26/11/2026, 09:49 · #70–#72 | Đã phát hành luyện lại câu còn vướng, 18 lượt thoại mới và 12 lượt vận dụng. Cả 17 bài hiện có ba lượt thoại và một tình huống đổi dữ kiện. Hai job CI và Pages đạt tại `4bbbefc`. [PR #72](https://github.com/nthanhtrung128/daily-study/pull/72) · [CI](https://github.com/nthanhtrung128/daily-study/actions/runs/45744986477) | Khi kiểm lại nội dung, thử bài nghỉ việc qua hai tuần và đối chiếu tỷ lệ 3/50 = 6%. |
@@ -89,6 +97,7 @@ Mỗi PR ghi một mốc tại đây khi bắt đầu việc mới hoặc khi c�
 | #72 | Cả 17 bài Đọc thêm có tình huống vận dụng với dữ kiện mới trong lịch luyện tuần. Thêm 12 tình huống song ngữ về nghỉ việc, bàn giao, ngân sách, lương và phúc lợi, cùng nghĩa của 18 lời đồng nghiệp ở sáu bài trước. |
 | #73 | Bổ sung kịch bản nghiệm thu đăng nhập, ngoại tuyến, sao lưu ghi âm và đánh giá nhu cầu native trên iPhone. |
 | #74 | Tài khoản hướng dẫn đăng nhập bằng email đã cấp quyền và xử lý khi chưa nhận mã. Mở nhật ký tiếp nối có liên kết đến PR, CI và việc cần thử trên thiết bị. |
+| #75 | Lộ trình từ PWA đến bản iOS có năm mốc thử, tiêu chí cho đăng nhập, dữ liệu học, TestFlight và App Review. Nhật ký có ba trạng thái và mẫu ghi thử trên iPhone. |
 
 ## Bản đồ code
 - `src/core/`: Leitner, lập phiên, phiên trộn (`mix.ts`), chuỗi ngày, Dexie (`db.ts`), sao lưu (`backup.ts`), `.ics`, cỡ chữ, theme.
@@ -115,4 +124,4 @@ Mỗi PR ghi một mốc tại đây khi bắt đầu việc mới hoặc khi c�
 2. Kiểm tra trên iPhone theo [lộ trình nghiệm thu](PLAN.md#nghiệm-thu-trên-iphone). Bộ kịch bản chi tiết nằm ở mục 10 trong [hướng dẫn triển khai](DEPLOY.md).
 3. **Sau 1–2 tuần dùng, nếu người dùng chọn:**
    - Chỉnh tỉ lệ 40/60, số mục mới/ngày, độ khó đề nói theo phản hồi.
-4. Giai đoạn 4 (cần người dùng quyết định, có chi phí): xem `docs/PLAN.md`.
+4. Theo dõi năm mốc để phát triển và phân phối bản iOS. [Lộ trình phát hành iOS](PLAN.md#lộ-trình-phát-hành-ios)
