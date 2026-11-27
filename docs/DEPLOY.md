@@ -117,6 +117,8 @@ Trên máy tính, có thể mở trực tiếp `https://daily-study-6en.pages.de
 
 ## 6. Cập nhật phiên bản mới
 
+Trong **Cài đặt → Dữ liệu**, đọc **Mã bản dựng** và cách mở app. Mã là bảy ký tự đầu của commit đã dùng để đóng gói bản đang chạy, xem được khi mất mạng. Đối chiếu với commit ở bản production trong **Workers & Pages → daily-study → Deployments**. Khi app báo **Có bản mới**, mã cũ vẫn hiện cho tới khi chọn **Cập nhật** và app tải lại. Với bản tự đóng gói thiếu mã commit, dùng số phiên bản và ghi “chưa có mã bản dựng” vào nhật ký. [Biến môi trường của Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/build-configuration/)
+
 - Sau khi PR vào `main`, mở **Workers & Pages → daily-study → Deployments** để kiểm tra bản production đã triển khai thành công và đúng commit.
 - Mở app trên iPhone khi có mạng và phiên Access còn hạn. Khi bản mới đã tải xong, dải **Có bản mới** xuất hiện bên ngoài phiên ôn. Nếu đang ôn, tiếp tục đến màn kết quả.
 - Chọn **Cập nhật** để tải lại app và dùng bản mới. Chọn **Để sau** để ẩn dải trong lần mở app này. Nếu đổi ý, vào **Cài đặt → Dữ liệu → Cập nhật ngay**. Tiến độ, cài đặt và ghi âm vẫn nằm trong IndexedDB trên máy.
